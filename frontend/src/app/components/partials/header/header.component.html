@@ -1,0 +1,127 @@
+<div id="header">
+  <div class="container-sub">
+    <div class="sub-info">
+      <div class="time-info">
+        <span> Thứ 2-Thứ 6: 8:00 SA - 5:30 CH </span
+        ><i class="fa-solid fa-angle-down"></i>
+        <div class="time-popup">
+          <div class="row">
+            <div>
+              <i class="fa-regular fa-clock fa-shake"></i>
+            </div>
+            <div>
+              Giờ mở cửa: <br />
+              <span class="bold">Thứ 2-Thứ 6: </span>
+              <span class="bold blue">9:00 AM - 5:30 PM</span> <br />
+              <span class="bold">Thứ 7-CN: </span>
+              <span class="bold blue"> 9:00 AM - 6:00 PM</span> <br />
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <i class="fa-solid fa-location-dot fa-beat-fade"></i>
+            </div>
+            <div>
+              <span>Địa chỉ:</span>
+              <span class="bold blue">123 Nguyễn Huệ, HCM City</span>
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <i class="fa-solid fa-phone-volume fa-fade"></i>
+            </div>
+            <div>
+              <span
+                >Phones: <a href="tel:+084123456789">(0) 1234 56789</a></span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="address-info">
+        <span>Ghé thăm cửa hàng tại 123 Nguyễn Huệ, HCM City</span>
+        <button class="address-info__button">Liên hệ</button>
+      </div>
+      <div class="contact-info">
+        <span>SĐT: (+84) 012345678</span>
+        <span
+          ><a href=""><i class="fa-brands fa-square-facebook"></i></a>
+        </span>
+        <span
+          ><a href=""><i class="fa-brands fa-square-instagram"></i></a>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="container-nav">
+    <nav>
+      <ul class="nav-items">
+        <li>
+          <a class="logo" href=""
+            ><img src="../assets/images/logo/logo_BS.png" alt="Logo"
+          /></a>
+        </li>
+        <li class="nav-item" *ngIf="!isSearchActive">
+          <a href="">Laptop</a>
+          <ul class="sub-nav">
+            <li><a href="">Dell</a></li>
+            <li><a href="">HP</a></li>
+            <li><a href="">Lenovo</a></li>
+          </ul>
+        </li>
+        <li class="nav-item" *ngIf="!isSearchActive">
+          <a href="">Điện thoại</a>
+          <ul class="sub-nav">
+            <li><a href="">Dell</a></li>
+            <li><a href="">HP</a></li>
+            <li><a href="">Lenovo</a></li>
+          </ul>
+        </li>
+        <li class="nav-item" *ngIf="!isSearchActive">
+          <a href="">Tablet</a>
+          <ul class="sub-nav">
+            <li><a href="">Dell</a></li>
+            <li><a href="">HP</a></li>
+            <li><a href="">Lenovo</a></li>
+          </ul>
+        </li>
+        <li class="nav-item" *ngIf="!isSearchActive">
+          <a href="">Tai nghe</a>
+          <ul class="sub-nav">
+            <li><a href="">Dell</a></li>
+            <li><a href="">HP</a></li>
+            <li><a href="">Lenovo</a></li>
+          </ul>
+        </li>
+        <li class="nav-item" *ngIf="!isSearchActive">
+          <a href="">Bàn phím</a>
+          <ul class="sub-nav">
+            <li><a href="">Dell</a></li>
+            <li><a href="">HP</a></li>
+            <li><a href="">Lenovo</a></li>
+          </ul>
+        </li>
+        <li class="nav-item" *ngIf="!isSearchActive">
+          <a href="">Ứng dụng</a>
+          <ul class="sub-nav">
+            <li><a href="">Dell</a></li>
+            <li><a href="">HP</a></li>
+            <li><a href="">Lenovo</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav-functions">
+        <li>
+          <search-bar #searchBar *ngIf="isSearchActive"></search-bar>
+        </li>
+        <li>
+          <button (click)="toggleSearch()">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          </button>
+        </li>
+        <li><i class="fa-solid fa-cart-shopping"></i></li>
+        <li><i class="fa-regular fa-circle-user"></i></li>
+      </ul>
+    </nav>
+  </div>
+</div>

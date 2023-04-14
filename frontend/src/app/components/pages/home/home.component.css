@@ -1,0 +1,152 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.title {
+  font-size: 64px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.swiper-wrapper {
+  height: 400px;
+  width: 100%;
+}
+.slider img {
+  display: block;
+  width: 100%;
+  height: 400px;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff;
+  border: 1px solid #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 18px;
+}
+
+.category-list {
+  display: flex;
+  background-color: #f4f4f4;
+  flex-flow: row wrap;
+  margin-top: 80px;
+}
+.category-item {
+  width: 20%;
+  text-align: center;
+  padding: 30px;
+}
+.category-item:hover {
+}
+.category-item img {
+  border-radius: 50%;
+  width: 160px;
+  height: 160px;
+}
+
+.category-item a {
+  text-decoration: none;
+  color: #000;
+}
+
+.object-container {
+  display: flex;
+  height: 600px;
+}
+.main-object {
+  width: 50%;
+  padding: 12px;
+  text-align: center;
+  height: 100%;
+}
+.sub-object {
+  display: flex;
+  width: 50%;
+  text-align: center;
+  flex-flow: wrap;
+}
+.object {
+  height: 100%;
+}
+.object:hover {
+  animation: jump 0.5s ease-in-out;
+}
+.sub-object .object {
+  width: 50%;
+  height: 50%;
+  padding: 12px;
+}
+.object img {
+  width: 80%;
+}
+.object-link {
+  display: block;
+  border-radius: 50px;
+  border: 1px solid #d9d9d9;
+  padding: 24px;
+  height: 100%;
+}
+
+.object-heading {
+  display: block;
+  color: #7b00a1;
+  font-weight: 700;
+}
+.object-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.best-seller-container {
+  display: flex;
+  height: 500px;
+}
+.best-seller-container img {
+  width: 50%;
+}
+.best-seller-container ul {
+  width: 50%;
+}
+.best-seller-container .product-title {
+  display: block;
+  font-weight: bold;
+}
+.best-seller-container .more {
+  display: inline-block;
+  text-decoration: underline;
+  display: none;
+  margin-top: 16px;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: all 0.3s ease-in-out;
+}
+.best-seller-container li {
+  margin: 8px 16px;
+  padding: 8px 0;
+  font-size: 18px;
+  border-top: 1px solid #000;
+  min-height: 80px;
+  opacity: 0.6;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+}
+.best-seller-container li:hover {
+  opacity: 1;
+}
+
+.best-seller-container li:hover .more {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  display: block;
+}
