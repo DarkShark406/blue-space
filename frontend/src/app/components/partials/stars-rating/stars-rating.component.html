@@ -1,0 +1,11 @@
+<div class="star-rating">
+  <span *ngFor="let star of stars; let i = index">
+    <div [ngSwitch]="rating">
+      <div *ngSwitchCase="i <= rating"><i class="fas fa-star"></i></div>
+      <div *ngSwitchCase="i + 0.5 === rating">
+        <i class="fas fa-star-half-stroke"></i>
+      </div>
+      <div *ngSwitchDefault><i class="far fa-star"></i></div>
+    </div>
+  </span>
+</div>

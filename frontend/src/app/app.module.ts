@@ -10,6 +10,9 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { TabsComponent } from './components/partials/tabs/tabs.component';
 import { TabComponent } from './components/partials/tab/tab.component';
 import { SliderComponent } from './components/partials/slider/slider.component';
+import { ComparisionComponent } from './components/pages/comparision/comparision.component';
+import { ProductDetailsComponent } from './components/pages/product-details/product-details.component';
+import { StarsRatingComponent } from './components/partials/stars-rating/stars-rating.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,9 @@ import { SliderComponent } from './components/partials/slider/slider.component';
     TabsComponent,
     TabComponent,
     SliderComponent,
+    ComparisionComponent,
+    ProductDetailsComponent,
+    StarsRatingComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, SwiperModule],
   providers: [],
