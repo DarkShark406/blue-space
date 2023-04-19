@@ -10,6 +10,10 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { TabsComponent } from './components/partials/tabs/tabs.component';
 import { TabComponent } from './components/partials/tab/tab.component';
 import { SliderComponent } from './components/partials/slider/slider.component';
+import { FooterComponent } from './components/partials/footer/footer.component';
+import { CatalogComponent } from './components/pages/catalog/catalog.component';
+import { LoginComponent } from './components/pages/login/login.component';
+import { RegisterComponent } from './components/pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +24,10 @@ import { SliderComponent } from './components/partials/slider/slider.component';
     TabsComponent,
     TabComponent,
     SliderComponent,
+    FooterComponent,
+    CatalogComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, SwiperModule],
   providers: [],

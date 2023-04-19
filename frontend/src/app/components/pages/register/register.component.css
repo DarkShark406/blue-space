@@ -1,0 +1,140 @@
+.container-register {
+  max-width: 800px;
+  margin: 40px auto;
+}
+
+.heading {
+  color: #2f3192;
+  text-align: center;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  gap: 40px;
+}
+
+.form-group {
+  padding: 12px 16px;
+  background-color: #d9d9d9;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.form-group .title-input {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.form-group .title-input span {
+  color: red;
+}
+
+.form-group .form-control {
+  display: block;
+  width: 100%;
+  padding: 4px 12px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s;
+}
+
+.form-group .form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.form-group .icon-eye {
+  position: absolute;
+  right: 28px;
+  bottom: 20px;
+  display: none;
+  cursor: pointer;
+}
+
+.form-group .icon-eye.active {
+  display: inline-block;
+}
+
+.form-group .attention {
+  position: absolute;
+  bottom: -20px;
+  left: 16px;
+  color: red;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.container-policy-register {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.service-privacy .attention {
+  color: red;
+  font-size: 14px;
+  font-style: italic;
+  cursor: pointer;
+}
+
+.service-privacy .attention:hover {
+  text-decoration: underline;
+}
+
+.register-btn {
+  display: block;
+  width: 50%;
+  padding: 12px 16px;
+  font-weight: bold;
+  margin: 16px 0;
+  color: #fff;
+  background-color: #007bff;
+  border: 1px solid transparent;
+  border-color: #007bff;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: 0.15s;
+}
+
+.register-btn:hover {
+  color: #fff;
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+.had-account {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  color: #bdbbbb;
+}
+
+.had-account span {
+  font-style: italic;
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.had-account span:hover {
+  text-decoration: underline;
+}
