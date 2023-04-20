@@ -1,11 +1,9 @@
-<div class="star-rating">
-  <span *ngFor="let star of stars; let i = index">
-    <div [ngSwitch]="rating">
-      <div *ngSwitchCase="i <= rating"><i class="fas fa-star"></i></div>
-      <div *ngSwitchCase="i + 0.5 === rating">
-        <i class="fas fa-star-half-stroke"></i>
-      </div>
-      <div *ngSwitchDefault><i class="far fa-star"></i></div>
-    </div>
-  </span>
+<div>
+  <ngb-rating [rate]="rating" [max]="maxRating" [readonly]="isReadOnly">
+    <ng-template let-fill="fill">
+      <span class="defaultHeart" [class.filled]="fill === 100">
+        <span class="paintedHeart" [style.width.%]="fill">★</span>★
+      </span>
+    </ng-template>
+  </ngb-rating>
 </div>

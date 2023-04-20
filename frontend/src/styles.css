@@ -36,6 +36,9 @@ ul {
 .blue {
   color: blue;
 }
+.red {
+  color: red;
+}
 .underline {
   text-decoration: underline;
 }
@@ -43,6 +46,12 @@ ul {
   font-size: 30px;
   color: red;
   font-weight: bold;
+}
+.price-discount {
+  margin-left: 8px;
+  text-decoration-line: line-through;
+  font-size: 20px;
+  color: #666666;
 }
 @keyframes jump {
   0% {
@@ -55,9 +64,21 @@ ul {
     transform: translateY(0);
   }
 }
+@keyframes push {
+  0% {
+    height: 0;
+  }
+  50% {
+    height: 50%;
+  }
+  100% {
+    height: auto;
+  }
+}
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  margin-top: 8px;
 }
 .slider img {
   display: block;
@@ -75,4 +96,17 @@ ul {
   width: 36px;
   height: 36px;
   border-radius: 50%;
+}
+.online-green {
+  --mdc-snackbar-supporting-text-color: white;
+  --mat-mdc-snack-bar-button-color: white;
+  --mdc-snackbar-container-color: rgb(38, 177, 38);
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }

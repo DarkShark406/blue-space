@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { SwiperModule } from 'swiper/angular';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,7 +30,14 @@ import { StarsRatingComponent } from './components/partials/stars-rating/stars-r
     ProductDetailsComponent,
     StarsRatingComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, SwiperModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    SwiperModule,
+    NgbModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -1,5 +1,17 @@
-.star-rating {
-  display: inline-flex;
+.filled {
+  color: #ffa600;
+}
+
+.defaultHeart {
+  position: relative;
+  display: inline-block;
+  color: gray;
   font-size: 24px;
-  color: #ffc107;
+}
+
+.paintedHeart {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: #ffa600;
 }
