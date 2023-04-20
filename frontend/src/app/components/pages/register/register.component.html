@@ -1,0 +1,101 @@
+<div class="container-register">
+  <h1 class="heading">TẠO TÀI KHOẢN BLUESPACE</h1>
+  <div class="form-login">
+    <div class="form-row">
+      <div class="form-group">
+        <div class="title-input">
+          <label for="">Họ và tên đệm </label>
+          <span>(*)</span>
+        </div>
+        <input type="text" class="form-control" />
+      </div>
+      <div class="form-group">
+        <div class="title-input">
+          <label for="">Tên </label>
+          <span>(*)</span>
+        </div>
+        <input type="text" class="form-control" />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <div class="title-input">
+          <label for="">Tên người dùng </label>
+          <span>(*)</span>
+        </div>
+        <input type="text" class="form-control" />
+        <div class="attention">*Không sử dụng khoảng trắng</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <div class="title-input">
+          <label for="">Email </label>
+          <span>(*)</span>
+        </div>
+        <input type="text" class="form-control" />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <div class="title-input">
+          <label for="">Mật khẩu </label>
+          <span>(*)</span>
+        </div>
+        <input type="password" class="form-control" id="password-input" />
+        <div
+          class="icon-eye"
+          (click)="showHidePasswordInput()"
+          id="eye-show-password"
+        >
+          <i class="fa-solid fa-eye"></i>
+        </div>
+        <div
+          class="icon-eye active"
+          (click)="showHidePasswordInput()"
+          id="eye-hide-password"
+        >
+          <i class="fa-solid fa-eye-slash"></i>
+        </div>
+        <div class="attention">
+          *Sử dụng 8 chữ cái trở lên, có chữ cái in hoa, chữ thường và số
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="title-input">
+          <label for="">Xác nhận lại mật khẩu </label>
+          <span>(*)</span>
+        </div>
+        <input type="password" class="form-control" id="retypepassword-input" />
+        <div
+          class="icon-eye"
+          id="eye-show-retypepassword"
+          (click)="showHideRetypePasswordInput()"
+        >
+          <i class="fa-solid fa-eye"></i>
+        </div>
+        <div
+          class="icon-eye active"
+          id="eye-hide-retypepassword"
+          (click)="showHideRetypePasswordInput()"
+        >
+          <i class="fa-solid fa-eye-slash"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-policy-register">
+    <div class="agree-register">
+      Bấm vào Đăng ký, nếu bạn đồng ý với chúng tôi về
+    </div>
+    <div class="service-privacy">
+      <span class="attention">Điều khoản dịch vụ</span> và
+      <span class="attention">Chính sách bảo mật</span>
+    </div>
+
+    <button class="register-btn">Đăng ký</button>
+    <div class="had-account">Bạn đã có tài khoản <span>Đăng nhập</span></div>
+  </div>
+</div>
