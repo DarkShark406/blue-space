@@ -1,14 +1,6 @@
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
+.swiper {
+  z-index: 0;
 }
-.title {
-  font-size: 64px;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 80px;
-}
-
 .swiper-wrapper {
   height: 400px;
   width: 100%;
@@ -80,7 +72,7 @@
 .sub-object .object {
   width: 50%;
   height: 50%;
-  padding: 12px;
+  padding: 4px 12px;
 }
 .object img {
   width: 80%;
@@ -89,7 +81,7 @@
   display: block;
   border-radius: 50px;
   border: 1px solid #d9d9d9;
-  padding: 24px;
+  padding: 8px 24px;
   height: 100%;
 }
 

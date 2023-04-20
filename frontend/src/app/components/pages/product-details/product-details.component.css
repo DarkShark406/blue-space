@@ -1,0 +1,134 @@
+.c-row {
+  display: flex;
+  justify-content: space-between;
+}
+.product-title {
+  font-size: 20px;
+  font-weight: 600;
+  max-width: 60%;
+}
+.product-rating {
+  text-align: right;
+}
+.product-rating .c-row {
+  align-items: center;
+}
+.stars-rating {
+  margin-right: 4px;
+}
+.slider {
+  width: 45%;
+}
+
+.product-info {
+  width: 55%;
+  padding: 8px;
+}
+.product-info .info {
+}
+.product-info ul {
+  background: #f5f7ff;
+  border-radius: 20px;
+  list-style: disc inside;
+  font-size: 16px;
+  padding: 12px;
+}
+.product-info ul li {
+  padding: 2px 0;
+}
+.action button {
+  background-color: transparent;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  border-color: #0156ff;
+  border-style: solid;
+}
+.action button svg {
+  color: #0156ff;
+}
+.buy {
+  display: flex;
+}
+.buy .info {
+  width: 160px;
+  font-size: 12px;
+  text-align: center;
+}
+.buy input {
+  width: 48px;
+  margin-right: 8px;
+  background-color: #f5f7ff;
+  border: none;
+  border-radius: 4px;
+}
+.buy input:focus {
+  outline: none;
+  border: 2px solid #0156ff;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+.buy button {
+  border: none;
+  background-color: #0156ff;
+  border-radius: 50px;
+  color: white;
+  height: 40px;
+  width: 120px;
+  opacity: 0.95;
+}
+button:hover {
+  opacity: 1;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+.combo-container {
+  background-color: #f5f7ff;
+}
+
+.combo .buy {
+  text-decoration: underline;
+  border: none;
+  background-color: transparent;
+  border-radius: 50px;
+  font-size: 18px;
+  padding: 8px 16px;
+}
+.combo-list {
+  padding: 8px;
+}
+.combo-list img {
+  width: 100px;
+  border: 1px solid #000;
+}
+.combo .combo-list {
+  opacity: 0;
+  height: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.combo .combo-list.active {
+  height: auto;
+  opacity: 1;
+}
+
+.combo-list .product {
+  display: flex;
+}
+.combo-list .product > div {
+  padding: 0 8px;
+}
+.combo-list .add-to-cart-btn {
+  border: none;
+  background-color: #0156ff;
+  border-radius: 50px;
+  color: white;
+  height: 40px;
+  padding: 0 16px;
+  opacity: 0.95;
+}
+.combo-list .add-to-cart {
+  text-align: right;
+}

@@ -1,0 +1,92 @@
+<div class="container">
+  <div class="c-row">
+    <div class="product-title">
+      Laptop Asus TUF Gaming FX506LHB-HN188W i5 10300H/8GB/512GB/15.6"FHD/GTX
+      1650 4GB/Win11
+    </div>
+    <div class="product-rating">
+      <div class="c-row">
+        <stars-rating
+          class="stars-rating"
+          [rating]="3.5"
+          [maxRating]="5"
+          [isReadOnly]="true"
+        ></stars-rating>
+        <a href="">Đánh giá(4)</a>
+      </div>
+      <div><a href="">Lượt mua (500)</a></div>
+    </div>
+  </div>
+  <div class="c-row">
+    <div class="slider">
+      <slider [type]="'image'" [list]="images"></slider>
+    </div>
+    <div class="product-info">
+      <div>
+        <span class="price">15.890.000đ</span>
+        <span class="price-discount">22.000.000đ</span>
+      </div>
+      <div class="info">
+        <ul>
+          <li>Màn hình: 15,6 inch</li>
+          <li>Ổ cứng: SSD 512GB</li>
+          <li>RAM: 8 GB (1 thanh 8 GB), DDR4, 2933 MHz</li>
+          <li>Đồ họa: NVIDIA GeForce GTX 1650 4GB; Intel UHD Graphics</li>
+          <li>CPU: Intel core i5 10300H</li>
+          <li>Pin: Khoảng 10 tiếng</li>
+          <li>Xuất xứ: Trung Quốc</li>
+          <li>Khối lượng: 2,3 kg</li>
+          <li>Kích thước: 359 x 256 x 24.9 mm</li>
+        </ul>
+        <div>
+          <span class="bold">Bạn có câu hỏi nào?</span> &nbsp;
+          <span><a href="" class="blue underline">Liên hệ chúng tôi</a></span>
+        </div>
+        <div class="c-row">
+          <div class="action">
+            <button><i class="fa-regular fa-envelope fa-fade"></i></button>
+            <button><i class="fa-regular fa-heart fa-beat-fade"></i></button>
+            <button><i class="fa-solid fa-plus"></i></button>
+          </div>
+          <div class="buy">
+            <div class="info">
+              Thanh toán online <br />
+              Giảm ngay <span class="bold">3.000.000đ</span>
+            </div>
+            <input type="number" value="1" />
+            <button>Mua ngay</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="combo-container">
+  <div class="container">
+    <div class="combo">
+      <div>
+        <button class="buy" (click)="toggleCollapsed()">
+          <span *ngIf="show == false">+</span>
+          <span *ngIf="show">-</span> Mua theo combo
+        </button>
+      </div>
+      <div class="combo-list" [ngClass]="{ active: show }">
+        <div class="product">
+          <div class="img">
+            <img src="../assets/images/home/phone.png" alt="" />
+          </div>
+          <div>
+            <span
+              >Key-online Office Home & Student 2021 (Vĩnh viễn; cho 01
+              Windows/Mac)</span
+            >
+            <div><span class="red">2.990.000đ</span></div>
+          </div>
+        </div>
+        <div class="add-to-cart">
+          <button class="add-to-cart-btn">Thêm vào giỏ hàng</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
