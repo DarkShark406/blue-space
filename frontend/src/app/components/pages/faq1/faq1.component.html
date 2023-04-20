@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="faq1-title">
+    Các chính sách và dịch vụ
+  </div>
+  <div class="faq1-body" *ngFor="let f1 of faq1">
+    <span class="faq1-small-title">{{f1.title}}</span>
+    <p class="faq1-content" [innerHTML]="f1.description"></p>
+  </div>
+</div>

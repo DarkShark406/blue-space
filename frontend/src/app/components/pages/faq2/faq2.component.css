@@ -1,0 +1,28 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.faq2-title {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 80px;
+  padding-bottom: 30px;
+}
+
+.faq2-body {
+  padding-top: 10px;
+  text-align: justify;
+
+}
+
+.faq2-small-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+.faq2-content {
+  line-height: 40px;
+}
