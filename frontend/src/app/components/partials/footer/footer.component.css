@@ -1,0 +1,110 @@
+.container {
+  max-width: 1200px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 40px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.heading {
+  text-transform: capitalize;
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.sub-heading {
+  margin-top: 12px;
+}
+
+.right {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.input-email {
+  padding: 10px 14px;
+  border-radius: 20px;
+  width: 300px;
+  border: 1px solid #ced4da;
+  transition: 0.15s;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #495057;
+}
+
+.input-email:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+}
+
+.register-btn {
+  padding: 8px 12px;
+  background-color: #ffc0cb;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.information {
+  margin-top: 40px;
+}
+
+.row {
+  display: flex;
+}
+
+.row .col {
+  width: 25%;
+}
+
+.infor-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.infor-item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.infor-item-list a {
+  text-decoration: none;
+  color: #000;
+}
+
+.infor-item-list a:hover {
+  text-decoration: underline;
+}
+
+.infor-item-list .list-icon {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.infor-item-list .list-icon a {
+  display: inline-block;
+  width: 32px;
+  width: 32px;
+  transition: 0.3s;
+}
+
+.infor-item-list .list-icon a:hover {
+  transform: translateY(-6px);
+}
+
+.infor-item-list .list-icon a img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
