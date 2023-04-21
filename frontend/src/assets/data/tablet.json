@@ -814,43 +814,6 @@
         }
     },
     {    
-        "productID": "t11",
-        "productName": "Xiaomi Redmi Pad (4GB/128GB)",
-        "productPrice": 6190000,
-        "productDiscount": 30,
-        "productImage": [
-            "products/t21/slider1.jpg",
-            "products/t21/slider2.jpg",
-            "products/t21/slider3.jpg",
-            "products/t21/slider4.jpg",
-            "products/t21/slider5.jpg"
-        ],
-        "productBrand": "Xiaomi",
-        "productRegion": "Trung Quốc",
-        "ratingPoint": 4.2,
-        "numberReview": 42,
-        "warrantyPeriod": 18,
-        "description": "<h2>Xiaomi Redmi Pad (4GB/128GB) được xem là cái tên rất đáng mong đợi trên thị trường máy tính bảng giá rẻ hiện nay, máy được ra mắt vào đầu tháng 10/2022 với một mức giá bán khá ấn tượng, đi kèm là màn hình kích thước lớn, hiệu năng ổn định cùng một viên pin dung lượng khủng.</h2><h2>Hiển thị chi tiết trên một thiết kế đẹp mắt</h2><p>Lần này Xiaomi mang đến cho người dùng mẫu máy tính bảng có vẻ ngoài đẹp mắt với kiểu thiết kế phẳng thời thượng. Máy được hoàn thiện hoàn toàn từ kim loại nguyên khối, đồng thời khung phẳng và các góc bo tròn giúp Redmi Pad tạo nên sự trang nhã và cầm nắm dễ chịu khi sử dụng.</p><img src='http://localhost:5000/images/products/t21/description1.jpg' alt=''><p>Redmi Pad được nhà Xiaomi trang bị một màn hình IPS LCD kích thước 10.61 inch, quả thực là thông số rất ấn tượng về phần màn hình trên một chiếc tablet có mức giá thành không quá cao.</p><img src='http://localhost:5000/images/products/t21/description2.jpg' alt=''>",
-        "productTags": ["xiaomi", "tablet"],
-        "specifications": {
-            "cpu": "Chip MediaTek Helio G99",
-            "core": 8,
-            "operatingSystem": "Android 12",
-            "ram": "4gb",
-            "storage": "128 GB",
-            "sim-slot": 2,
-            "battery-capacity": "8000 mAh",
-            "screen": "10.61 inch, IPS LCD",
-            "bluetooth": "v5.3",
-            "camera": "Camera sau: camera 8 MP - Camera trước: 8 MP",
-            "weight": "445 g",
-            "color": ["Bạc","Xanh"],
-            "material": "Khung & mặt lưng kính cường lực",
-            "cable":true,
-            "pen":true
-        }
-    },
-    {    
         "productID": "t23",
         "productName": "Masstel Tab 10A",
         "productPrice": 2790000,
@@ -886,8 +849,8 @@
             "cable":true,
             "pen":false
         }
-    },
-    {    
+      },
+      {    
         "productID": "t24",
         "productName": "Masstel Tab 10S",
         "productPrice": 2690000,
@@ -923,8 +886,8 @@
             "cable":true,
             "pen":false
         }
-    },
-    {    
+      },
+      {    
         "productID": "t25",
         "productName": "Masstel Tab 8.2",
         "productPrice": 2390000,
@@ -960,8 +923,8 @@
             "cable":true,
             "pen":false
         }
-    },
-    {    
+      },
+      {    
         "productID": "t26",
         "productName": "OPPO Pad Air 128GB",
         "productPrice": 7690000,
@@ -997,8 +960,8 @@
             "cable":true,
             "pen":false
         }
-    },
-    {    
+      },
+      {    
         "productID": "t27",
         "productName": "OPPO Pad Air 64GB",
         "productPrice": 6690000,
@@ -1034,8 +997,8 @@
             "cable":true,
             "pen":false
         }
-    },
-    {    
+      },
+      {    
         "productID": "t28",
         "productName": "Huawei Matepad",
         "productPrice": 5490000,
@@ -1071,8 +1034,8 @@
             "cable":true,
             "pen":true
         }
-    },
-    {    
+      },
+      {    
         "productID": "t29",
         "productName": "Huawei MatePad SE 10.4",
         "productPrice": 5490000,
@@ -1108,8 +1071,8 @@
             "cable":true,
             "pen":true
         }
-    },
-    {    
+     },
+     {    
         "productID": "t30",
         "productName": "MatePad Pro 11",
         "productPrice": 6690000,
