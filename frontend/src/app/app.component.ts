@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -24,5 +25,29 @@ export class AppComponent {
         duration: 5000000,
       });
     });
+    document.addEventListener('click', function (event) {
+      console.log(event.target); // log ra phần tử mà chuột click vào
+    });
   }
+
+  products = [
+    {
+      name: 'Product A',
+      description: 'This is the description of product A',
+      price: 20,
+      image: 'https://example.com/product-a.jpg',
+    },
+    {
+      name: 'Product B',
+      description: 'This is the description of product B',
+      price: 25,
+      image: 'https://example.com/product-b.jpg',
+    },
+    {
+      name: 'Product C',
+      description: 'This is the description of product C',
+      price: 30,
+      image: 'https://example.com/product-c.jpg',
+    },
+  ];
 }

@@ -110,3 +110,10 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+.clear {
+  clear: both;
+}
+
+header {
+  z-index: 1;
+}

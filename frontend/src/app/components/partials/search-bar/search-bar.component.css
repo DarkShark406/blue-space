@@ -5,4 +5,37 @@
   border: 3px solid #000;
   border-radius: 50px;
   transition: width 0.3s ease-out;
+  outline: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+.search-bar {
+  display: block;
+  position: relative;
+}
+.recomendation {
+  position: absolute;
+  left: 25px;
+  width: 80%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  border-radius: 4px;
+  z-index: 2;
+}
+.recomendation a {
+  display: block;
+  width: 100%;
+  background-color: #fff;
+  padding: 8px;
+  border-radius: 4px;
+}
+.recomendation a:hover {
+  background-color: aliceblue;
+  font-weight: bold;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+@media (max-width: 992px) {
+  .search-bar input {
+    border: none;
+    width: 50vw;
+  }
 }

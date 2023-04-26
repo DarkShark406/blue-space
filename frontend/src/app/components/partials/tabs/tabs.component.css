@@ -19,3 +19,8 @@ li.active {
 li:hover {
   animation: jump 0.5s ease-in-out;
 }
+@media (max-width: 992px) {
+  li {
+    margin: 0;
+  }
+}

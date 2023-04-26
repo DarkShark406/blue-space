@@ -4,6 +4,10 @@ import { SwiperModule } from 'swiper/angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +17,6 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { TabsComponent } from './components/partials/tabs/tabs.component';
 import { TabComponent } from './components/partials/tab/tab.component';
 import { SliderComponent } from './components/partials/slider/slider.component';
-
 import { ComparisionComponent } from './components/pages/comparision/comparision.component';
 import { ProductDetailsComponent } from './components/pages/product-details/product-details.component';
 import { StarsRatingComponent } from './components/partials/stars-rating/stars-rating.component';
@@ -42,11 +45,16 @@ import { RegisterComponent } from './components/pages/register/register.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+
     SwiperModule,
     NgbModule,
     MatSnackBarModule,
-    BrowserAnimationsModule,
-
+    MatAutocompleteModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

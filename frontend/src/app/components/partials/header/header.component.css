@@ -2,6 +2,7 @@
   width: 100%;
   border-bottom: 1px solid #c9c9c9;
 }
+
 .container-sub {
   background-color: #000;
   margin: auto;
@@ -56,17 +57,18 @@
   display: flex;
 }
 
-.time-popup .row {
+.time-popup .my-row {
   display: flex;
   align-items: center;
   padding: 2px 0;
 }
 
-.time-popup .row:not(:last-child) {
+.time-popup .my-row:not(:last-child) {
   border-bottom: 2px solid #c1c1c1;
 }
 
-.time-popup .row svg {
+.time-popup .my-row svg {
+  display: inline-block;
   font-size: 20px;
   width: 40px;
 }
@@ -74,12 +76,19 @@
 .time-info svg {
   font-size: 10px;
 }
-
+.contact-info a {
+  color: #fff;
+}
 .contact-info svg {
   font-size: 18px;
   margin-left: 4px;
   color: #fff;
 }
+.contact-info svg:hover,
+.contact-info a:hover {
+  opacity: 0.7;
+}
+
 .sub-info button {
   background-color: transparent;
   color: #fff;
@@ -96,6 +105,7 @@
   background-color: white;
   border-bottom: 2px solid black;
 }
+
 nav {
   position: relative;
   display: flex;
@@ -202,4 +212,92 @@ nav .logo img {
 .nav-functions button {
   background-color: transparent;
   border: none;
+}
+.responsive-menu {
+  background-color: transparent;
+  border: none;
+}
+
+/* Responsive */
+.responsive-contact-info,
+.responsive-logo,
+.responsive-menu {
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .time-info {
+    display: flex;
+    align-items: center;
+  }
+  .time-popup {
+    top: 30px;
+    right: -44px;
+  }
+
+  .responsive-logo {
+    display: block;
+    width: 120px;
+    margin: 0 8px 0 20px;
+  }
+  .responsive-logo img {
+    position: absolute;
+    display: block;
+    top: -10px;
+    height: 60px;
+    width: 108px;
+    background-color: white;
+    padding: 20px 0 0;
+    z-index: 1;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+  }
+
+  .responsive-menu {
+    display: block;
+  }
+  .responsive-menu:hover ~ .nav-items {
+    position: absolute;
+    display: block;
+    z-index: 1000;
+  }
+  .responsive-menu svg {
+    font-size: 22px;
+    padding: 18px 12px;
+  }
+
+  .container-sub {
+    padding: 0 4px;
+  }
+  .sub-info {
+    align-items: center;
+    height: 60px;
+  }
+  .contact-info {
+    display: none;
+  }
+  .responsive-contact-info {
+    display: block;
+  }
+  .address-info {
+    display: none;
+  }
+  nav {
+    /* background-color: #0156ff; */
+    height: 60px;
+    overflow: visible;
+  }
+  nav .nav-items {
+    width: 100vw;
+    z-index: 10;
+    top: 100%;
+    display: none;
+  }
+
+  nav .nav-items .nav-item a {
+    width: 100%;
+  }
+  .nav-items .logo {
+    display: none;
+  }
 }
