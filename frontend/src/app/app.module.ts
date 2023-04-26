@@ -4,6 +4,10 @@ import { SwiperModule } from 'swiper/angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,16 +17,13 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { TabsComponent } from './components/partials/tabs/tabs.component';
 import { TabComponent } from './components/partials/tab/tab.component';
 import { SliderComponent } from './components/partials/slider/slider.component';
-<<<<<<< HEAD
 import { ComparisionComponent } from './components/pages/comparision/comparision.component';
 import { ProductDetailsComponent } from './components/pages/product-details/product-details.component';
 import { StarsRatingComponent } from './components/partials/stars-rating/stars-rating.component';
-=======
 import { FooterComponent } from './components/partials/footer/footer.component';
 import { CatalogComponent } from './components/pages/catalog/catalog.component';
 import { LoginComponent } from './components/pages/login/login.component';
 import { RegisterComponent } from './components/pages/register/register.component';
->>>>>>> 8895f9a46b975299b83b52bff6b0ffde826f8bb5
 
 @NgModule({
   declarations: [
@@ -33,24 +34,27 @@ import { RegisterComponent } from './components/pages/register/register.componen
     TabsComponent,
     TabComponent,
     SliderComponent,
-<<<<<<< HEAD
     ComparisionComponent,
     ProductDetailsComponent,
     StarsRatingComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    SwiperModule,
-    NgbModule,
-    MatSnackBarModule,
-    BrowserAnimationsModule,
-=======
     FooterComponent,
     CatalogComponent,
     LoginComponent,
     RegisterComponent,
->>>>>>> 8895f9a46b975299b83b52bff6b0ffde826f8bb5
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+
+    SwiperModule,
+    NgbModule,
+    MatSnackBarModule,
+    MatAutocompleteModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

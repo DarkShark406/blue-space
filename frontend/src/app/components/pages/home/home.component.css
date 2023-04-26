@@ -66,7 +66,8 @@
 .object {
   height: 100%;
 }
-.object:hover {
+.object:hover,
+.category-item:hover {
   animation: jump 0.5s ease-in-out;
 }
 .sub-object .object {
@@ -141,4 +142,34 @@
   opacity: 1;
   transform: translateY(0);
   display: block;
+}
+@media (max-width: 992px) {
+  .category-list {
+    width: 100%; /* Đặt chiều rộng cho slide */
+    overflow-x: scroll; /* Thêm scroll cho category list */
+    display: flex; /* Sử dụng flexbox để căn giữa các item con */
+    justify-content: center;
+    flex-wrap: nowrap;
+    scroll-padding-left: 500px;
+  }
+
+  .category-item {
+    flex: 0 0 auto; /* Đặt chiều rộng tự động cho các item con */
+    margin: 0 10px; /* Khoảng cách giữa các item */
+    text-align: center; /* Căn giữa nội dung trong mỗi item */
+  }
+  .category-item img {
+    max-width: 100%; /* Đảm bảo ảnh không bị tràn khỏi container */
+    height: 104px; /* Đảm bảo tỷ lệ khung hình cho ảnh */
+  }
+  .object-container {
+    height: auto;
+    display: block;
+  }
+  .main-object {
+    width: 100%;
+  }
+  .sub-object {
+    width: 100%;
+  }
 }

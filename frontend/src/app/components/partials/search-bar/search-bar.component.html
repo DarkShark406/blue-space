@@ -1,3 +1,18 @@
-<div class="search-bar">
+<!-- <div class="search-bar">
   <input #searchInput type="text" placeholder="Search..." />
+</div> -->
+<div class="search-bar">
+  <input
+    matInput
+    type="text"
+    placeholder="Search"
+    [(ngModel)]="searchTerm"
+    (keyup)="onSearch()"
+  />
+  <div class="recomendation">
+    <a *ngFor="let suggestion of suggestions">
+      <img width="36px" height="36px" src="{{ suggestion.image }}" alt="" />
+      {{ suggestion.name }}
+    </a>
+  </div>
 </div>
