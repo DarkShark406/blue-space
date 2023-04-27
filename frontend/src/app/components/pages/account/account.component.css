@@ -1,0 +1,153 @@
+.container {
+  max-width: 1200px;
+  margin: 30px auto;
+}
+
+.account-content {
+  display: flex;
+  width: 100%;
+}
+
+.account-content .left {
+  width: 25%;
+}
+
+.account-content .right {
+  width: 75%;
+}
+
+.information-shop {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.information-shop .logo img {
+  width: 50px;
+  height: 50px;
+}
+
+.information-shop .name-phone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.tab {
+  margin-top: 20px;
+}
+
+.tablinks {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: none;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.tablinks .icon {
+  width: 32px;
+  height: 32px;
+}
+
+.tablinks:hover span {
+  color: blue;
+}
+
+.tab-content {
+  padding: 20px;
+}
+
+.heading {
+  font-size: 24px;
+  font-weight: bolder;
+  margin-bottom: 8px;
+}
+.sub-heading {
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.line {
+  height: 1px;
+  width: 100%;
+  margin: 16px 0;
+  background-color: #ddd;
+}
+
+.row-infor {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.row-infor .title-infor {
+  min-width: 120px;
+  text-align: right;
+  margin-right: 32px;
+}
+
+.row-infor input {
+  max-width: 400px;
+}
+
+.box-input {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.box-input .gender-type {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.row-infor input[type="password"] {
+  margin-right: 16px;
+}
+
+.row-infor .select-date {
+  min-width: 60px;
+  padding: 4px 8px;
+  color: #495057;
+  vertical-align: middle;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+.row-infor .select-date:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075),
+    0 0 5px rgba(128, 189, 255, 0.5);
+}
+
+.change-password-btn,
+.save-btn {
+  padding: 8px 24px;
+  color: #fff;
+  background-color: #2e3193;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  transition: 0.3s;
+}
+
+.change-password-btn:hover,
+.save-btn:hover {
+  opacity: 0.9;
+}
+
+.save-btn {
+  margin-left: 155px;
+}
