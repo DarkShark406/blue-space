@@ -6,6 +6,8 @@
 .heading {
   color: #2f3192;
   text-align: center;
+  font-weight: bold;
+  margin-bottom: 16px;
 }
 
 .form-row {
@@ -74,7 +76,7 @@
   bottom: -20px;
   left: 16px;
   color: red;
-  font-size: 14px;
+  font-size: 12px;
   font-style: italic;
 }
 
@@ -130,7 +132,7 @@
 
 .had-account span {
   font-style: italic;
-  color: red;
+  color: #007bff;
   font-weight: bold;
   cursor: pointer;
 }

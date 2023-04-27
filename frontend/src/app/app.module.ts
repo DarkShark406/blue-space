@@ -24,6 +24,7 @@ import { FooterComponent } from './components/partials/footer/footer.component';
 import { CatalogComponent } from './components/pages/catalog/catalog.component';
 import { LoginComponent } from './components/pages/login/login.component';
 import { RegisterComponent } from './components/pages/register/register.component';
+import { AccountComponent } from './components/pages/account/account.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { RegisterComponent } from './components/pages/register/register.componen
     CatalogComponent,
     LoginComponent,
     RegisterComponent,
+    AccountComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,8 +55,10 @@ import { RegisterComponent } from './components/pages/register/register.componen
     SwiperModule,
     NgbModule,
     MatSnackBarModule,
+
     MatAutocompleteModule,
     MatInputModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

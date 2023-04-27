@@ -1,0 +1,105 @@
+<div class="container">
+  <div class="account-content">
+    <div class="left">
+      <div class="information-shop">
+        <div class="logo">
+          <img src="" alt="" />
+        </div>
+        <div class="name-phone">
+          <span class="name">Blue Space</span>
+          <span class="phone">0123456789</span>
+        </div>
+      </div>
+      <div class="tab">
+        <button class="tablinks">
+          <img src="" alt="" class="icon" />
+          <span>Tài khoản của tôi</span>
+        </button>
+        <button class="tablinks">
+          <img src="" alt="" class="icon" />
+          <span>Lịch sử tích điểm</span>
+        </button>
+        <button class="tablinks">
+          <img src="" alt="" class="icon" />
+          <span>Đơn hàng của tôi</span>
+        </button>
+        <button class="tablinks">
+          <img src="" alt="" class="icon" />
+          <span>Thông báo của tôi</span>
+        </button>
+        <button class="tablinks">
+          <img src="" alt="" class="icon" />
+          <span>Sổ địa chỉ nhận hàng</span>
+        </button>
+        <button class="tablinks">
+          <img src="" alt="" class="icon" />
+          <span>Đánh giá sản phẩm</span>
+        </button>
+      </div>
+    </div>
+    <div class="right">
+      <div class="tab-content">
+        <div class="heading">Tài khoản của tôi</div>
+        <div class="sub-heading">Quản lý thông tin về tài khoản</div>
+        <div class="line"></div>
+        <div class="row-infor">
+          <span class="title-infor"> Họ và tên </span>
+          <div>
+            <input type="text" class="form-control" value="Nguyễn Văn tèo" />
+          </div>
+        </div>
+        <div class="row-infor">
+          <span class="title-infor">Số điện thoại</span>
+          <div>
+            <input type="text" class="form-control" value="012345679" />
+          </div>
+        </div>
+        <div class="row-infor">
+          <span class="title-infor">Giới tính</span>
+          <div class="box-input">
+            <div class="gender-type">
+              <input type="radio" name="gender" id="male" />
+              <label for="male">Nam</label>
+            </div>
+            <div class="gender-type">
+              <input type="radio" name="gender" id="female" />
+              <label for="female">Nữ</label>
+            </div>
+          </div>
+        </div>
+        <div class="row-infor">
+          <span class="title-infor">Ngày sinh</span>
+          <div>
+            <div class="box-input">
+              <select name="" id="" class="select-date">
+                <option value="{{ day }}" *ngFor="let day of days">
+                  {{ day }}
+                </option>
+              </select>
+              <select name="" id="" class="select-date">
+                <option value="{{ month }}" *ngFor="let month of months">
+                  {{ month }}
+                </option>
+              </select>
+              <select name="" id="" class="select-date">
+                <option value="{{ year }}" *ngFor="let year of years">
+                  {{ year }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row-infor">
+          <span class="title-infor">Email</span>
+          <input type="text" class="form-control" value="123@gmail.com" />
+        </div>
+        <div class="row-infor">
+          <span class="title-infor">Mật khẩu</span>
+          <input type="password" class="form-control" value="1234654798" />
+          <button class="change-password-btn">Đổi mật khẩu</button>
+        </div>
+        <button class="save-btn">Lưu thay đổi</button>
+      </div>
+    </div>
+  </div>
+</div>
