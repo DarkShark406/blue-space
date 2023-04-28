@@ -23,8 +23,15 @@
           <label for="">Tên người dùng </label>
           <span>(*)</span>
         </div>
-        <input type="text" class="form-control" />
+        <input
+          type="text"
+          class="form-control"
+          id="username-input"
+          #usernameInput
+          (input)="clearClassIsInvalid(usernameInput.id)"
+        />
         <div class="attention">*Không sử dụng khoảng trắng</div>
+        <span class="error-message">Tên tài khoản đã tồn tại</span>
       </div>
     </div>
 
@@ -34,7 +41,14 @@
           <label for="">Email </label>
           <span>(*)</span>
         </div>
-        <input type="text" class="form-control" />
+        <input
+          type="text"
+          class="form-control"
+          id="email-input"
+          #emailInput
+          (input)="clearClassIsInvalid(emailInput.id)"
+        />
+        <span class="error-message">Tên tài khoản đã tồn tại</span>
       </div>
     </div>
     <div class="form-row">
@@ -43,7 +57,14 @@
           <label for="">Mật khẩu </label>
           <span>(*)</span>
         </div>
-        <input type="password" class="form-control" id="password-input" />
+        <input
+          type="password"
+          class="form-control"
+          id="password-input"
+          #passwordInput
+          clearClassIsInvalid(passwordInput.id)
+        />
+        <span class="error-message">Tên tài khoản đã tồn tại</span>
         <div
           class="icon-eye"
           (click)="showHidePasswordInput()"
@@ -67,7 +88,14 @@
           <label for="">Xác nhận lại mật khẩu </label>
           <span>(*)</span>
         </div>
-        <input type="password" class="form-control" id="retypepassword-input" />
+        <input
+          type="password"
+          class="form-control"
+          id="retypepassword-input"
+          #retypepasswordInput
+          clearClassIsInvalid(retypepasswordInput.id)
+        />
+        <span class="error-message">Tên tài khoản đã tồn tại</span>
         <div
           class="icon-eye"
           id="eye-show-retypepassword"

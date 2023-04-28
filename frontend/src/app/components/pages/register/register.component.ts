@@ -49,4 +49,8 @@ export class RegisterComponent {
     }
     this.isShowRetypePassword = !this.isShowRetypePassword;
   }
+
+  clearClassIsInvalid(id: string) {
+    document.getElementById(id)?.classList.remove('is-invalid');
+  }
 }
