@@ -1,0 +1,46 @@
+<div class="container-login">
+  <div class="heading">Đăng nhập</div>
+  <div class="form-row">
+    <input
+      type="text"
+      name=""
+      id="inputUser"
+      #inputUser
+      (input)="clearClassIsInvalid(inputUser.id)"
+      class="form-control is-invalid"
+      placeholder="Tài khoản BlueSpace, Email hoặc số điện thoại"
+    />
+    <span class="required">*</span>
+    <div class="error-message">Bạn chưa nhập tài khoản</div>
+  </div>
+  <div class="form-row">
+    <input
+      type="password"
+      name=""
+      id="inputPassword"
+      #inputPassword
+      (change)="clearClassIsInvalid(inputPassword.id)"
+      class="form-control"
+      placeholder="Mật khẩu"
+    />
+    <span class="required">*</span>
+    <div class="error-message">Sai mật khẩu</div>
+  </div>
+  <div class="forget-password"><a href="">Quên mật khẩu</a></div>
+
+  <button class="login-btn">Đăng nhập ngay</button>
+
+  <button class="create-account-btn">Tạo tài khoản mới</button>
+
+  <div class="login-with">Đăng nhập bằng</div>
+  <div class="fb-gg">
+    <button>
+      <img src="../assets/images/icons/fb-square.png" alt="" />
+      <span>Facebook</span>
+    </button>
+    <button>
+      <img src="../assets/images/icons/gg.png" alt="" />
+      <span>Google</span>
+    </button>
+  </div>
+</div>
