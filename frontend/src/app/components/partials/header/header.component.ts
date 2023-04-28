@@ -14,7 +14,8 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
 })
 export class HeaderComponent {
   isSearchActive = false;
-
+  isAuth = false;
+  user = { name: 'Lam' };
   @ViewChild(SearchBarComponent) searchBar!: SearchBarComponent;
   toggleSearch() {
     this.isSearchActive = !this.isSearchActive;
@@ -24,4 +25,5 @@ export class HeaderComponent {
       }, 0);
     }
   }
+  logout() {}
 }

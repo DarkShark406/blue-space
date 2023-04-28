@@ -213,6 +213,63 @@ nav .logo img {
   background-color: transparent;
   border: none;
 }
+
+.menu-container {
+  position: relative;
+}
+.menu {
+  position: absolute;
+  background: whitesmoke;
+  display: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px rgb(0 0 0 / 20%);
+  z-index: 200;
+}
+.menu-container:hover .menu {
+  display: block;
+}
+.menu a {
+  width: 100%;
+  min-width: 8rem;
+  border-radius: 50px;
+}
+.user-menu > .menu-container .menu a:hover {
+  display: block;
+  color: #0156ff;
+  border: 3px solid #0156ff;
+  border-radius: 50px;
+}
+
+.user-menu .auth-menu {
+  position: relative;
+}
+.user-menu .auth-form {
+  position: absolute;
+  background: whitesmoke;
+  display: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px rgb(0 0 0 / 20%);
+  z-index: 200;
+}
+
+.auth-menu:hover .auth-form {
+  display: block;
+}
+.user-menu .auth-form button {
+  width: 100%;
+  min-width: 8rem;
+  height: 3rem;
+  border-radius: 50px;
+}
+
+.user-menu .auth-form button:hover {
+  color: #0156ff;
+  border: 3px solid #0156ff;
+  border-radius: 50px;
+}
+
 .responsive-menu {
   background-color: transparent;
   border: none;

@@ -132,7 +132,25 @@
           </button>
         </li>
         <li><i class="fa-solid fa-cart-shopping"></i></li>
-        <li><i class="fa-regular fa-circle-user"></i></li>
+        <li>
+          <ul class="user-menu">
+            <li *ngIf="!isAuth" class="auth-menu">
+              <i class="fa-regular fa-circle-user"></i>
+              <div class="auth-form">
+                <button routerLink="/auth/register">Đăng ký</button>
+                <button routerLink="/auth/login">Đăng nhập</button>
+              </div>
+            </li>
+            <li *ngIf="isAuth" class="menu-container">
+              <a routerLink="/dashboard">{{ user.name }}</a>
+              <div class="menu">
+                <a routerLink="/profile">Profile</a>
+                <a routerLink="/orders">Orders</a>
+                <a (click)="logout()">Logout</a>
+              </div>
+            </li>
+          </ul>
+        </li>
       </ul>
     </nav>
   </div>
