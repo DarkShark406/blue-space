@@ -1,6 +1,14 @@
+// Database
+import dotenv from "dotenv";
+dotenv.config();
+
+import { dbConnect } from "./src/configs/database.config";
+dbConnect();
+
 import express from "express";
 import cors from "cors";
 import productRouter from "./src/routers/product.router";
+import userRouter from "./src/routers/user.router";
 
 const app = express();
 app.use(
@@ -13,8 +21,10 @@ app.use(
 app.get("/", (req, res) => {
   res.send("Hello Server");
 });
+
 // Router
 app.use("/product", productRouter);
+app.use("/login", userRouter);
 
 // Running port
 const port = 9000;
