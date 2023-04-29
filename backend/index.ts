@@ -9,6 +9,7 @@ import express from "express";
 import cors from "cors";
 import productRouter from "./src/routers/product.router";
 import userRouter from "./src/routers/user.router";
+import categoryRouter from "./src/routers/category.router";
 
 const app = express();
 app.use(
@@ -24,6 +25,7 @@ app.get("/", (req, res) => {
 
 // Router
 app.use("/product", productRouter);
+app.use("/category", categoryRouter);
 app.use("/login", userRouter);
 
 // Running port

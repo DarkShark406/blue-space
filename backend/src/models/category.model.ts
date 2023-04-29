@@ -1,16 +1,16 @@
 import { Schema, model } from "mongoose";
 
 export interface Category {
-  CategoryId: number;
-  CategoryName: string;
-  CategoryImage: string;
+  categoryId: number;
+  categoryName: string;
+  categoryImage: string;
 }
 
 export const CategorySchema = new Schema<Category>(
   {
-    CategoryId: { type: Number, required: true },
-    CategoryName: { type: String, required: true },
-    CategoryImage: { type: String, required: true },
+    categoryId: { type: Number, required: true },
+    categoryName: { type: String, required: true },
+    categoryImage: { type: String, required: true },
   },
   {
     timestamps: true,

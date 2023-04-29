@@ -7,7 +7,7 @@ router.get("/register", async (req, res) => {
   const newUser: User = {
     id: "",
     name: "Lam",
-    email: "lelam2002",
+    email: "lelam200212",
     password: "123",
     address: "null",
     isAdmin: false,

@@ -7595,6 +7595,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn Phím Cơ Có Dây Gaming Silent Razer BlackWidow Lite",
     productPrice: 2390000,
+    categoryId: 6,
     productDiscount: 15,
     productImage: [
       "products/k2/slider1.jpg",
@@ -7628,6 +7629,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn Phím Cơ Có Dây Gaming Razer Huntsman Tournament Edition",
     productPrice: 3550000,
+    categoryId: 6,
     productDiscount: 15,
     productImage: [
       "products/k3/slider1.jpg",
@@ -7662,6 +7664,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn Phím Cơ Có Dây Gaming Corsair K68 RGB Mechanical",
     productPrice: 3100000,
+    categoryId: 6,
     productDiscount: 10,
     productImage: [
       "products/k4/slider1.jpg",
@@ -7693,6 +7696,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn Phím Bluetooth DareU EK868",
     productPrice: 1170000,
+    categoryId: 6,
     productDiscount: 0,
     productImage: [
       "products/k5/slider1.jpg",
@@ -7727,6 +7731,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn Phím Có Dây DareU EK87",
     productPrice: 650000,
+    categoryId: 6,
     productDiscount: 0,
     productImage: [
       "products/k6/slider1.jpg",
@@ -7761,6 +7766,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn Phím Bluetooth Microsoft QSZ-00017",
     productPrice: 1600000,
+    categoryId: 6,
     productDiscount: 10,
     productImage: [
       "products/k7/slider1.jpg",
@@ -7791,6 +7797,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn Phím Cơ Có Dây Gaming Rapoo V500Pro",
     productPrice: 990000,
+    categoryId: 6,
     productDiscount: 0,
     productImage: [
       "products/k8/slider1.jpg",
@@ -7825,6 +7832,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn Phím Cơ Có Dây Gaming Rapoo V500 Pro Rainbow Backlit ",
     productPrice: 800000,
+    categoryId: 6,
     productDiscount: 0,
     productImage: [
       "products/k9/slider1.jpg",
@@ -7859,6 +7867,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn Phím Cơ Có Dây Gaming Rapoo V500alloy",
     productPrice: 550000,
+    categoryId: 6,
     productDiscount: 0,
     productImage: [
       "products/k10/slider1.jpg",
@@ -7892,6 +7901,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn phím Logitech Mechanical Gaming G413 TKL SE",
     productPrice: 1600000,
+    categoryId: 6,
     productDiscount: 10,
     productImage: [
       "products/k11/slider1.jpg",
@@ -7924,6 +7934,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn phím Logitech Mechanical Gaming G413 SE",
     productPrice: 1900000,
+    categoryId: 6,
     productDiscount: 20,
     productImage: [
       "products/k12/slider1.jpg",
@@ -7957,6 +7968,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn phím Logitech G Pro X",
     productPrice: 3790000,
+    categoryId: 6,
     productDiscount: 20,
     productImage: [
       "products/k13/slider1.jpg",
@@ -7990,6 +8002,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn phím Logitech G PRO Mechanical Gaming Keyboard",
     productPrice: 3490000,
+    categoryId: 6,
     productDiscount: 25,
     productImage: [
       "products/k14/slider1.jpg",
@@ -8023,6 +8036,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn phím Logitech G913 TKL Lightspeed Wireless",
     productPrice: 5440000,
+    categoryId: 6,
     productDiscount: 20,
     productImage: [
       "products/k15/slider1.jpg",
@@ -8057,6 +8071,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn phím Logitech G Pro League Of Legends",
     productPrice: 2990000,
+    categoryId: 6,
     productDiscount: 15,
     productImage: [
       "products/k16/slider1.jpg",
@@ -8090,6 +8105,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn phím Logitech G613 Wireless",
     productPrice: 2500000,
+    categoryId: 6,
     productDiscount: 10,
     productImage: [
       "products/k17/slider1.jpg",
@@ -8123,6 +8139,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn phím không dây Logitech MX Keys Mini for Mac - Pale Gray",
     productPrice: 2690000,
+    categoryId: 6,
     productDiscount: 10,
     productImage: [
       "products/k18/slider1.jpg",
@@ -8157,6 +8174,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn phím Razer DeathStalker V2",
     productPrice: 3890000,
+    categoryId: 6,
     productDiscount: 0,
     productImage: [
       "products/k19/slider1.jpg",
@@ -8189,6 +8207,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn phím Razer Ornata V3 X",
     productPrice: 1089000,
+    categoryId: 6,
     productDiscount: 0,
     productImage: [
       "products/k20/slider1.jpg",
@@ -8221,6 +8240,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn phím Razer Ornata V3 X",
     productPrice: 1089000,
+    categoryId: 6,
     productDiscount: 0,
     productImage: [
       "products/k21/slider1.jpg",
@@ -8253,6 +8273,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn phím Razer Blackwidow V3 Pro",
     productPrice: 6000000,
+    categoryId: 6,
     productDiscount: 10,
     productImage: [
       "products/k22/slider1.jpg",
@@ -8286,6 +8307,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn phím cơ Razer Huntsman Mini Mercury",
     productPrice: 3600000,
+    categoryId: 6,
     productDiscount: 10,
     productImage: [
       "products/k23/slider1.jpg",
@@ -8318,6 +8340,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn phím Razer Blackwidow Lite",
     productPrice: 2400000,
+    categoryId: 6,
     productDiscount: 10,
     productImage: [
       "products/k24/slider1.jpg",
@@ -8352,6 +8375,7 @@ export const sample_products: Product[] = [
   {
     productName: "Bàn phím Razer Huntsman Elite",
     productPrice: 5500000,
+    categoryId: 6,
     productDiscount: 15,
     productImage: [
       "products/k25/slider1.jpg",
