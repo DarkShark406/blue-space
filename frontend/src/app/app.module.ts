@@ -25,6 +25,12 @@ import { CatalogComponent } from './components/pages/catalog/catalog.component';
 import { LoginComponent } from './components/pages/login/login.component';
 import { RegisterComponent } from './components/pages/register/register.component';
 import { AccountComponent } from './components/pages/account/account.component';
+import { AboutUsComponent } from './components/pages/about-us/about-us.component';
+import { ForgotPasswordComponent } from './components/pages/forgot-password/forgot-password.component';
+import { ListCustomersComponent } from './components/pages/list-customers/list-customers.component';
+import { OrdersComponent } from './components/pages/orders/orders.component';
+import { PolicyComponent } from './components/pages/policy/policy.component';
+import { ReportsComponent } from './components/pages/reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +49,12 @@ import { AccountComponent } from './components/pages/account/account.component';
     LoginComponent,
     RegisterComponent,
     AccountComponent,
+    AboutUsComponent,
+    ForgotPasswordComponent,
+    ListCustomersComponent,
+    OrdersComponent,
+    PolicyComponent,
+    ReportsComponent,
   ],
   imports: [
     BrowserModule,

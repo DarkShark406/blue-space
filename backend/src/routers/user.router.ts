@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { User, UserModel } from "../models/user.model";
+import { Product } from "../models/product.model";
 const router = Router();
 
 router.get("/register", async (req, res) => {
