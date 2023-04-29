@@ -25,9 +25,6 @@ export class AppComponent {
         duration: 5000000,
       });
     });
-    document.addEventListener('click', function (event) {
-      console.log(event.target); // log ra phần tử mà chuột click vào
-    });
   }
 
   products = [

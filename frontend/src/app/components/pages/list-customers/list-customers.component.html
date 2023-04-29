@@ -1,0 +1,221 @@
+<div class="container">
+  <div class="header">
+    <div class="header-left">
+      <p>Danh sách khách hàng</p>
+    </div>
+    <div class="header-right">
+      <a href="" class="icon-style"
+        ><i class="fa-solid fa-magnifying-glass" style="color: #000000"></i
+      ></a>
+      <a href="" class="icon-style"
+        ><i
+          class="fa-sharp fa-regular fa-circle-exclamation"
+          style="color: #000000"
+        ></i
+      ></a>
+      <a href="" class="icon-style" style="font-size: 24px"><span>|</span></a>
+      <a href="" class="icon-style"><p>BlueSpace</p></a>
+      <a href="" class="icon-style"><p>BS</p></a>
+      <a href="" class="icon-style"
+        ><i class="fa-regular fa-envelope"></i> Góp ý</a
+      >
+    </div>
+  </div>
+  <div class="main">
+    <div class="main-header">
+      <div class="title">
+        <h1>Danh sách khách hàng</h1>
+      </div>
+      <div class="action">
+        <!-- <button id="btn-create" onclick="document.getElementById('Create').style.display='block'"><i class="fa-solid fa-plus" style="color: #ffffff;"></i> Tạo khách hàng</button> -->
+        <button>
+          <i class="fa-solid fa-check" style="color: #ffffff"></i> Đánh dấu
+          khách hàng tiềm năng
+        </button>
+        <button>
+          <i class="fa-solid fa-minus" style="color: #ffffff"></i> Xóa
+        </button>
+      </div>
+    </div>
+    <div class="nav-main">
+      <div class="nav-items" id="all-customers" (click)="showallCustomers()">
+        <a [ngClass]="{ bold: allCustomers }">Tất cả khách hàng</a>
+      </div>
+      <div class="nav-items" (click)="showpotentialCustomers()">
+        <a [ngClass]="{ bold: potentialCustomers }">Khách hàng tiềm năng</a>
+      </div>
+      <div class="nav-items" (click)="showloyalCustomers()">
+        <a [ngClass]="{ bold: loyalCustomers }">Khách hàng thân thiết</a>
+      </div>
+    </div>
+    <div class="function">
+      <div class="filter">
+        <select id="category-select">
+          <option value="all">
+            <i class="fa-solid fa-filter"></i> Thêm điều kiện lọc
+          </option>
+          <option value="category1">Tên theo thứ tự A-Z</option>
+          <option value="category2">Tổng đơn hàng từ lớn đến bé</option>
+        </select>
+      </div>
+      <div class="search-container">
+        <form action="#">
+          <input type="text" placeholder="Tìm kiếm..." />
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+    </div>
+    <div class="main-content" *ngIf="allCustomers">
+      <table>
+        <tr>
+          <th></th>
+          <th>ID</th>
+          <th>Tên khách hàng</th>
+          <th>Địa chỉ</th>
+          <th>Số điện thoại</th>
+          <th>Email</th>
+          <th>Tổng đơn hàng</th>
+          <th>Đơn hàng gần nhất</th>
+        </tr>
+        <tr *ngFor="let customer of customers">
+          <td>
+            <input
+              type="checkbox"
+              id="option1"
+              name="option1"
+              value="option1"
+            />
+          </td>
+          <td>{{ customer.ID }}</td>
+          <td>{{ customer.Name }}</td>
+          <td>{{ customer.Address }}</td>
+          <td>0{{ customer.PhoneNumber }}</td>
+          <td>{{ customer.Email }}</td>
+          <td>{{ customer.NumberOfPO }}</td>
+          <td>{{ customer.LastOrder }}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="main-content" *ngIf="loyalCustomers">
+      <table>
+        <tr>
+          <th></th>
+          <th>ID</th>
+          <th>Tên khách hàng</th>
+          <th>Địa chỉ</th>
+          <th>Số điện thoại</th>
+          <th>Email</th>
+          <th>Tổng đơn hàng</th>
+          <th>Đơn hàng gần nhất</th>
+        </tr>
+        <tr *ngFor="let loyalcustomer of loyalcustomers">
+          <td>
+            <input
+              type="checkbox"
+              id="option1"
+              name="option1"
+              value="option1"
+            />
+          </td>
+          <td>{{ loyalcustomer.ID }}</td>
+          <td>{{ loyalcustomer.Name }}</td>
+          <td>{{ loyalcustomer.Address }}</td>
+          <td>0{{ loyalcustomer.PhoneNumber }}</td>
+          <td>{{ loyalcustomer.Email }}</td>
+          <td>{{ loyalcustomer.NumberOfPO }}</td>
+          <td>{{ loyalcustomer.LastOrder }}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="main-content" *ngIf="potentialCustomers">
+      <table>
+        <tr>
+          <th></th>
+          <th>ID</th>
+          <th>Tên khách hàng</th>
+          <th>Địa chỉ</th>
+          <th>Số điện thoại</th>
+          <th>Email</th>
+          <th>Tổng đơn hàng</th>
+          <th>Đơn hàng gần nhất</th>
+        </tr>
+        <tr *ngFor="let potentialcustomer of potentialcustomers">
+          <td>
+            <input
+              type="checkbox"
+              id="option1"
+              name="option1"
+              value="option1"
+            />
+          </td>
+          <td>{{ potentialcustomer.ID }}</td>
+          <td>{{ potentialcustomer.Name }}</td>
+          <td>{{ potentialcustomer.Address }}</td>
+          <td>0{{ potentialcustomer.PhoneNumber }}</td>
+          <td>{{ potentialcustomer.Email }}</td>
+          <td>{{ potentialcustomer.NumberOfPO }}</td>
+          <td>{{ potentialcustomer.LastOrder }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="pagination">
+    <a href="#" class="prev"><i class="fas fa-chevron-left"></i></a>
+    <a href="#" class="page">1</a>
+    <a href="#" class="page">2</a>
+    <a href="#" class="page">3</a>
+    <a href="#" class="next"><i class="fas fa-chevron-right"></i></a>
+  </div>
+
+  <!-- <div id="Create" style="display:none" >
+  <div class="modal-content" id="modal-content">
+    <div class="modal-header">
+      <h3>Thông tin khách hàng</h3>
+      <button id="btn-close" onclick="document.getElementById('Create').style.display='none'"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="fullname">Họ tên:</label>
+          <input type="text" id="fullname" name="fullname" required oninvalid="this.setCustomValidity('Vui lòng nhập họ tên của bạn')" oninput="setCustomValidity('')">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Địa chỉ email:</label>
+          <input type="email" id="email" name="email" required oninvalid="this.setCustomValidity('Vui lòng nhập địa chỉ email của bạn')" oninput="setCustomValidity('')">
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Số điện thoại:</label>
+          <input type="tel" id="phone" name="phone" required oninvalid="this.setCustomValidity('Vui lòng nhập số điện thoại của bạn')" oninput="setCustomValidity('')">
+        </div>
+
+        <div class="form-group">
+          <label for="dob">Ngày sinh:</label>
+          <input type="date" id="dob" name="dob" required oninvalid="this.setCustomValidity('Vui lòng chọn ngày sinh của bạn')" oninput="setCustomValidity('')">
+        </div>
+
+        <div class="form-group">
+          <label for="gender">Giới tính:</label>
+          <select id="gender" name="gender" required oninvalid="this.setCustomValidity('Vui lòng chọn giới tính của bạn')" oninput="setCustomValidity('')">
+            <option value="">-- Chọn giới tính --</option>
+            <option value="male">Nam</option>
+            <option value="female">Nữ</option>
+            <option value="other">Khác</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Địa chỉ:</label>
+          <textarea id="address" name="address" rows="4" required oninvalid="this.setCustomValidity('Vui lòng nhập địa chỉ của bạn')" oninput="setCustomValidity('')"></textarea>
+        </div>
+
+        <button type="submit">Lưu thông tin khách hàng</button>
+      </form>
+    </div>
+  </div>
+</div> -->
+</div>
