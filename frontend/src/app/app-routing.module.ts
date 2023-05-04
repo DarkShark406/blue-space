@@ -13,6 +13,8 @@ const routes: Routes = [
   { path: 'auth/login', component: LoginComponent },
   { path: 'auth/register', component: RegisterComponent },
   { path: 'product', component: CatalogComponent },
+  { path: 'product/:category', component: CatalogComponent },
+  { path: 'product/:category/:brand', component: CatalogComponent },
   { path: 'products/:slug', component: ProductDetailsComponent },
 ];
 
