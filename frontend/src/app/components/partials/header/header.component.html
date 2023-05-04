@@ -73,51 +73,63 @@
           /></a>
         </li>
         <li class="nav-item" *ngIf="!isSearchActive">
-          <a href="">Laptop</a>
+          <a routerLink="/product/laptop">Laptop</a>
           <ul class="sub-nav">
-            <li><a href="">Dell</a></li>
-            <li><a href="">HP</a></li>
-            <li><a href="">Lenovo</a></li>
+            <ng-container *ngFor="let brand of laptop">
+              <li>
+                <a routerLink="/product/laptop/{{ brand }}">{{ brand }}</a>
+              </li>
+            </ng-container>
           </ul>
         </li>
         <li class="nav-item" *ngIf="!isSearchActive">
-          <a href="">Điện thoại</a>
+          <a routerLink="/product/phone/">Điện thoại</a>
           <ul class="sub-nav">
-            <li><a href="">Dell</a></li>
-            <li><a href="">HP</a></li>
-            <li><a href="">Lenovo</a></li>
+            <ng-container *ngFor="let brand of phone">
+              <li>
+                <a routerLink="/product/phone/{{ brand }}">{{ brand }}</a>
+              </li>
+            </ng-container>
           </ul>
         </li>
         <li class="nav-item" *ngIf="!isSearchActive">
-          <a href="">Tablet</a>
+          <a routerLink="/product/tablet">Tablet</a>
           <ul class="sub-nav">
-            <li><a href="">Dell</a></li>
-            <li><a href="">HP</a></li>
-            <li><a href="">Lenovo</a></li>
+            <ng-container *ngFor="let brand of tablet">
+              <li>
+                <a routerLink="/product/tablet/{{ brand }}">{{ brand }}</a>
+              </li>
+            </ng-container>
           </ul>
         </li>
         <li class="nav-item" *ngIf="!isSearchActive">
-          <a href="">Tai nghe</a>
+          <a routerLink="/product/earphone">Tai nghe</a>
           <ul class="sub-nav">
-            <li><a href="">Dell</a></li>
-            <li><a href="">HP</a></li>
-            <li><a href="">Lenovo</a></li>
+            <ng-container *ngFor="let brand of earphone">
+              <li>
+                <a routerLink="/product/earphone/{{ brand }}">{{ brand }}</a>
+              </li>
+            </ng-container>
           </ul>
         </li>
         <li class="nav-item" *ngIf="!isSearchActive">
-          <a href="">Bàn phím</a>
+          <a routerLink="/product/keyboard">Bàn phím</a>
           <ul class="sub-nav">
-            <li><a href="">Dell</a></li>
-            <li><a href="">HP</a></li>
-            <li><a href="">Lenovo</a></li>
+            <ng-container *ngFor="let brand of keyboard">
+              <li>
+                <a routerLink="/product/keyboard/{{ brand }}">{{ brand }}</a>
+              </li>
+            </ng-container>
           </ul>
         </li>
         <li class="nav-item" *ngIf="!isSearchActive">
-          <a href="">Ứng dụng</a>
+          <a routerLink="/product/application">Ứng dụng</a>
           <ul class="sub-nav">
-            <li><a href="">Dell</a></li>
-            <li><a href="">HP</a></li>
-            <li><a href="">Lenovo</a></li>
+            <ng-container *ngFor="let brand of application">
+              <li>
+                <a routerLink="/product/application/{{ brand }}">{{ brand }}</a>
+              </li>
+            </ng-container>
           </ul>
         </li>
         <hr class="clear" />

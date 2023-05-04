@@ -17,6 +17,7 @@
   margin-right: 4px;
 }
 .slider {
+  z-index: 0;
   width: 45%;
 }
 
