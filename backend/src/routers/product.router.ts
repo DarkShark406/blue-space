@@ -26,18 +26,16 @@ router.get("/search/:searchTerm", async (req, res) => {
   const products = await ProductModel.find({ productName: { $regex: regex } });
   res.send(products);
 });
-router.get("/compare/:id1/:id2", async (req, res) => {
+
+router.get("/brand/:categoryId", async (req, res) => {
   try {
-    const product1 = await ProductModel.findById(req.params.id1);
-    const product2 = await ProductModel.findById(req.params.id2);
+    const { categoryId } = req.params;
 
-    if (!product1 || !product2) {
-      return res.status(404).json({ message: "Product not found" });
-    }
+    const brands = await ProductModel.distinct("productBrand", { categoryId });
 
-    res.send([product1, product2]);
+    res.json(brands);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).json({ message: "Server error" });
   }
 });
