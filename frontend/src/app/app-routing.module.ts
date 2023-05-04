@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'comparision', component: ComparisionComponent },
   { path: 'auth/login', component: LoginComponent },
   { path: 'auth/register', component: RegisterComponent },
-  { path: 'product', component: CatalogComponent },
+  { path: 'product/:category', component: CatalogComponent },
   { path: 'products/:slug', component: ProductDetailsComponent },
 ];
 

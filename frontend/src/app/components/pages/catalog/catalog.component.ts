@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ProductCategoryService } from 'src/app/services/product-category.service';
 
 @Component({
   selector: 'app-catalog',
@@ -6,6 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./catalog.component.css'],
 })
 export class CatalogComponent {
+  products: any;
+  errorMessage: string = '';
+  typeShowList = true;
+
+  constructor(private _service: ProductCategoryService) {
+    const categoryName = window.location.href.split('/').pop();
+    if (categoryName) {
+      this._service.getProductForCategory(categoryName).subscribe({
+        next: (data) => (this.products = data),
+        error: (err) => (this.errorMessage = err),
+      });
+    }
+  }
   toggleActiveClassBrandAndColor(brand: string) {
     const item = document.querySelector('#' + brand);
     if (item) {
@@ -19,8 +33,6 @@ export class CatalogComponent {
       item.parentElement?.classList.toggle('active');
     }
   }
-
-  typeShowList = true;
 
   clickGridTypeList() {
     if (!this.typeShowList) {

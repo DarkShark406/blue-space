@@ -17,7 +17,7 @@
       </div>
       <div class="filter__box">
         <div class="filter-list" id="brand">
-          <div class="title">Thương hiệu</div>
+          <div class="filter-title">Thương hiệu</div>
           <div class="brand-list">
             <div class="column">
               <div
@@ -106,7 +106,7 @@
           </div>
         </div>
         <div class="filter-list">
-          <div class="title">Màn hình</div>
+          <div class="filter-title">Màn hình</div>
           <div class="filter-item active">
             <span
               class="choice"
@@ -140,7 +140,7 @@
         </div>
 
         <div class="filter-list">
-          <div class="title">RAM</div>
+          <div class="filter-title">RAM</div>
           <div class="filter-item active">
             <span
               class="choice"
@@ -174,7 +174,7 @@
         </div>
 
         <div class="filter-list" id="price">
-          <div class="title">Giá</div>
+          <div class="filter-title">Giá</div>
           <div class="filter-item">
             <span
               class="choice"
@@ -218,7 +218,7 @@
         </div>
 
         <div class="filter-list">
-          <div class="title">Màu sắc</div>
+          <div class="filter-title">Màu sắc</div>
           <div class="filter-color">
             <span
               class="color-item active"
@@ -253,7 +253,7 @@
       </div>
 
       <div class="filter-list">
-        <div class="title">Nhu cầu</div>
+        <div class="filter-title">Nhu cầu</div>
         <div class="filter-item active">
           <span class="choice">Gaming</span>
           <span class="number">15</span>
@@ -322,7 +322,7 @@
 
       <div *ngIf="typeShowList; else horizontalList">
         <div class="grid-product-list" id="grid-list">
-          <div class="column">
+          <div *ngFor="let p of products" class="column">
             <div class="product-item">
               <div class="status">
                 <i class="fa-solid fa-circle-check"></i>
@@ -330,7 +330,7 @@
               </div>
               <div class="thumb">
                 <img
-                  src="../assets/images/catalog/Laptop Asus TUF Gaming FA507RC.png"
+                  [src]="'http://localhost:5000/images/' + p.productImage[0]"
                   alt=""
                 />
               </div>
@@ -342,352 +342,39 @@
                   <i class="fa-regular fa-star"></i>
                   <i class="fa-regular fa-star"></i>
                 </div>
-                <span class="review">Đánh giá (4)</span>
+                <span class="review">Đánh giá ({{ p.numberReview }})</span>
               </div>
-              <div class="name">Asus TUF Gaming FX506LHB-HN188W i5 10300H</div>
-              <div class="old-price">20.990.000đ</div>
-              <div class="present-price">15.890.000đ</div>
-              <div class="compare">
-                <i class="fa-solid fa-circle-plus"></i>
-                <span>So sánh</span>
+              <div class="name">{{ p.productName }}</div>
+              <div class="old-price">
+                {{ (p.productPrice - (p.productPrice % 1000000)) / 1000000 }}.{{
+                  (p.productPrice -
+                    (p.productPrice - (p.productPrice % 1000000)) -
+                    (p.productPrice % 1000)) /
+                    1000
+                }}.000đ
               </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="product-item">
-              <div class="status">
-                <i class="fa-solid fa-circle-check"></i>
-                <span>Còn hàng</span>
+              <div class="present-price">
+                {{
+                  (p.productPrice -
+                    (p.productPrice * p.productDiscount) / 100 -
+                    ((p.productPrice -
+                      (p.productPrice * p.productDiscount) / 100) %
+                      1000000)) /
+                    1000000
+                }}.{{
+                  (p.productPrice -
+                    (p.productPrice * p.productDiscount) / 100 -
+                    (p.productPrice -
+                      (p.productPrice * p.productDiscount) / 100 -
+                      ((p.productPrice -
+                        (p.productPrice * p.productDiscount) / 100) %
+                        1000000)) -
+                    ((p.productPrice -
+                      (p.productPrice * p.productDiscount) / 100) %
+                      1000)) /
+                    1000
+                }}.000đ
               </div>
-              <div class="thumb">
-                <img
-                  src="../assets/images/catalog/Laptop Asus TUF Gaming FA507RC.png"
-                  alt=""
-                />
-              </div>
-              <div class="point">
-                <div class="star-rating">
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="review">Đánh giá (4)</span>
-              </div>
-              <div class="name">Asus TUF Gaming FX506LHB-HN188W i5 10300H</div>
-              <div class="old-price">20.990.000đ</div>
-              <div class="present-price">15.890.000đ</div>
-              <div class="compare">
-                <i class="fa-solid fa-circle-plus"></i>
-                <span>So sánh</span>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="product-item">
-              <div class="status">
-                <i class="fa-solid fa-circle-check"></i>
-                <span>Còn hàng</span>
-              </div>
-              <div class="thumb">
-                <img
-                  src="../assets/images/catalog/Laptop Asus TUF Gaming FA507RC.png"
-                  alt=""
-                />
-              </div>
-              <div class="point">
-                <div class="star-rating">
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="review">Đánh giá (4)</span>
-              </div>
-              <div class="name">Asus TUF Gaming FX506LHB-HN188W i5 10300H</div>
-              <div class="old-price">20.990.000đ</div>
-              <div class="present-price">15.890.000đ</div>
-              <div class="compare">
-                <i class="fa-solid fa-circle-plus"></i>
-                <span>So sánh</span>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="product-item">
-              <div class="status">
-                <i class="fa-solid fa-circle-check"></i>
-                <span>Còn hàng</span>
-              </div>
-              <div class="thumb">
-                <img
-                  src="../assets/images/catalog/Laptop Asus TUF Gaming FA507RC.png"
-                  alt=""
-                />
-              </div>
-              <div class="point">
-                <div class="star-rating">
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="review">Đánh giá (4)</span>
-              </div>
-              <div class="name">Asus TUF Gaming FX506LHB-HN188W i5 10300H</div>
-              <div class="old-price">20.990.000đ</div>
-              <div class="present-price">15.890.000đ</div>
-              <div class="compare">
-                <i class="fa-solid fa-circle-plus"></i>
-                <span>So sánh</span>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="product-item">
-              <div class="status">
-                <i class="fa-solid fa-circle-check"></i>
-                <span>Còn hàng</span>
-              </div>
-              <div class="thumb">
-                <img
-                  src="../assets/images/catalog/Laptop Asus TUF Gaming FA507RC.png"
-                  alt=""
-                />
-              </div>
-              <div class="point">
-                <div class="star-rating">
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="review">Đánh giá (4)</span>
-              </div>
-              <div class="name">Asus TUF Gaming FX506LHB-HN188W i5 10300H</div>
-              <div class="old-price">20.990.000đ</div>
-              <div class="present-price">15.890.000đ</div>
-              <div class="compare">
-                <i class="fa-solid fa-circle-plus"></i>
-                <span>So sánh</span>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="product-item">
-              <div class="status">
-                <i class="fa-solid fa-circle-check"></i>
-                <span>Còn hàng</span>
-              </div>
-              <div class="thumb">
-                <img
-                  src="../assets/images/catalog/Laptop Asus TUF Gaming FA507RC.png"
-                  alt=""
-                />
-              </div>
-              <div class="point">
-                <div class="star-rating">
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="review">Đánh giá (4)</span>
-              </div>
-              <div class="name">Asus TUF Gaming FX506LHB-HN188W i5 10300H</div>
-              <div class="old-price">20.990.000đ</div>
-              <div class="present-price">15.890.000đ</div>
-              <div class="compare">
-                <i class="fa-solid fa-circle-plus"></i>
-                <span>So sánh</span>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="product-item">
-              <div class="status">
-                <i class="fa-solid fa-circle-check"></i>
-                <span>Còn hàng</span>
-              </div>
-              <div class="thumb">
-                <img
-                  src="../assets/images/catalog/Laptop Asus TUF Gaming FA507RC.png"
-                  alt=""
-                />
-              </div>
-              <div class="point">
-                <div class="star-rating">
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="review">Đánh giá (4)</span>
-              </div>
-              <div class="name">Asus TUF Gaming FX506LHB-HN188W i5 10300H</div>
-              <div class="old-price">20.990.000đ</div>
-              <div class="present-price">15.890.000đ</div>
-              <div class="compare">
-                <i class="fa-solid fa-circle-plus"></i>
-                <span>So sánh</span>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="product-item">
-              <div class="status">
-                <i class="fa-solid fa-circle-check"></i>
-                <span>Còn hàng</span>
-              </div>
-              <div class="thumb">
-                <img
-                  src="../assets/images/catalog/Laptop Asus TUF Gaming FA507RC.png"
-                  alt=""
-                />
-              </div>
-              <div class="point">
-                <div class="star-rating">
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="review">Đánh giá (4)</span>
-              </div>
-              <div class="name">Asus TUF Gaming FX506LHB-HN188W i5 10300H</div>
-              <div class="old-price">20.990.000đ</div>
-              <div class="present-price">15.890.000đ</div>
-              <div class="compare">
-                <i class="fa-solid fa-circle-plus"></i>
-                <span>So sánh</span>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="product-item">
-              <div class="status">
-                <i class="fa-solid fa-circle-check"></i>
-                <span>Còn hàng</span>
-              </div>
-              <div class="thumb">
-                <img
-                  src="../assets/images/catalog/Laptop Asus TUF Gaming FA507RC.png"
-                  alt=""
-                />
-              </div>
-              <div class="point">
-                <div class="star-rating">
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="review">Đánh giá (4)</span>
-              </div>
-              <div class="name">Asus TUF Gaming FX506LHB-HN188W i5 10300H</div>
-              <div class="old-price">20.990.000đ</div>
-              <div class="present-price">15.890.000đ</div>
-              <div class="compare">
-                <i class="fa-solid fa-circle-plus"></i>
-                <span>So sánh</span>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="product-item">
-              <div class="status">
-                <i class="fa-solid fa-circle-check"></i>
-                <span>Còn hàng</span>
-              </div>
-              <div class="thumb">
-                <img
-                  src="../assets/images/catalog/Laptop Asus TUF Gaming FA507RC.png"
-                  alt=""
-                />
-              </div>
-              <div class="point">
-                <div class="star-rating">
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="review">Đánh giá (4)</span>
-              </div>
-              <div class="name">Asus TUF Gaming FX506LHB-HN188W i5 10300H</div>
-              <div class="old-price">20.990.000đ</div>
-              <div class="present-price">15.890.000đ</div>
-              <div class="compare">
-                <i class="fa-solid fa-circle-plus"></i>
-                <span>So sánh</span>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="product-item">
-              <div class="status">
-                <i class="fa-solid fa-circle-check"></i>
-                <span>Còn hàng</span>
-              </div>
-              <div class="thumb">
-                <img
-                  src="../assets/images/catalog/Laptop Asus TUF Gaming FA507RC.png"
-                  alt=""
-                />
-              </div>
-              <div class="point">
-                <div class="star-rating">
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="review">Đánh giá (4)</span>
-              </div>
-              <div class="name">Asus TUF Gaming FX506LHB-HN188W i5 10300H</div>
-              <div class="old-price">20.990.000đ</div>
-              <div class="present-price">15.890.000đ</div>
-              <div class="compare">
-                <i class="fa-solid fa-circle-plus"></i>
-                <span>So sánh</span>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="product-item">
-              <div class="status">
-                <i class="fa-solid fa-circle-check"></i>
-                <span>Còn hàng</span>
-              </div>
-              <div class="thumb">
-                <img
-                  src="../assets/images/catalog/Laptop Asus TUF Gaming FA507RC.png"
-                  alt=""
-                />
-              </div>
-              <div class="point">
-                <div class="star-rating">
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="review">Đánh giá (4)</span>
-              </div>
-              <div class="name">Asus TUF Gaming FX506LHB-HN188W i5 10300H</div>
-              <div class="old-price">20.990.000đ</div>
-              <div class="present-price">15.890.000đ</div>
               <div class="compare">
                 <i class="fa-solid fa-circle-plus"></i>
                 <span>So sánh</span>
@@ -699,7 +386,7 @@
 
       <ng-template #horizontalList>
         <div class="horizontal-product-list">
-          <div class="product-item">
+          <div *ngFor="let p of products" class="product-item">
             <div class="status">
               <i class="fa-solid fa-circle-check"></i>
               <span>Còn hàng</span>
@@ -707,31 +394,76 @@
             <div class="top">
               <div class="product-item__image">
                 <img
-                  src="../assets/images/catalog/Laptop Asus TUF Gaming FA507RC.png"
+                  [src]="'http://localhost:5000/images/' + p.productImage[0]"
                   alt=""
                 />
               </div>
 
               <div class="product-item__information">
                 <div class="name">
-                  Asus TUF Gaming FX506LHB-HN188W i5 10300H
+                  {{ p.productName }}
                 </div>
                 <div class="price">
-                  <span class="old-price">20.990.000đ</span>
-                  <span class="present-price">15.890.000đ</span>
+                  <span class="old-price">
+                    {{
+                      (p.productPrice - (p.productPrice % 1000000)) / 1000000
+                    }}.{{
+                      (p.productPrice -
+                        (p.productPrice - (p.productPrice % 1000000)) -
+                        (p.productPrice % 1000)) /
+                        1000
+                    }}.000đ</span
+                  >
+                  <span class="present-price">
+                    {{
+                      (p.productPrice -
+                        (p.productPrice * p.productDiscount) / 100 -
+                        ((p.productPrice -
+                          (p.productPrice * p.productDiscount) / 100) %
+                          1000000)) /
+                        1000000
+                    }}.{{
+                      (p.productPrice -
+                        (p.productPrice * p.productDiscount) / 100 -
+                        (p.productPrice -
+                          (p.productPrice * p.productDiscount) / 100 -
+                          ((p.productPrice -
+                            (p.productPrice * p.productDiscount) / 100) %
+                            1000000)) -
+                        ((p.productPrice -
+                          (p.productPrice * p.productDiscount) / 100) %
+                          1000)) /
+                        1000
+                    }}.000đ</span
+                  >
                 </div>
                 <ul class="information-list">
-                  <li class="information-item">Màn hình: 15.6 inch</li>
-                  <li class="information-item">CPU: Intel Core i5 10300H</li>
-                  <li class="information-item">RAM: 8GB</li>
-                  <li class="information-item">Card đồ họa: GTX 1650 4GB</li>
-                  <li class="information-item">Pin: 3 Cell</li>
-                  <li class="information-item">Khối lượng: 2.3kg</li>
+                  <li class="information-item">
+                    Màn hình: {{ p.specifications.screen }}
+                  </li>
+                  <li class="information-item">
+                    CPU: {{ p.specifications.cpu }}
+                  </li>
+                  <li class="information-item">
+                    RAM: {{ p.specifications.ram }}
+                  </li>
+                  <li class="information-item">
+                    Hệ điều hành: {{ p.specifications.operatingSystem }}
+                  </li>
+                  <li class="information-item">
+                    Card đồ họa: {{ p.specifications.gpu }}
+                  </li>
+                  <li class="information-item">
+                    Khối lượng: {{ p.specifications.weight }}
+                  </li>
+                  <li class="information-item">
+                    Khích thước: {{ p.specifications.size }}
+                  </li>
                 </ul>
               </div>
 
               <div class="prodcut-item__endow">
-                <div class="title">
+                <div class="endow-title">
                   <img src="../assets/images/icons/discount.png" alt="" />
                   <span>Ưu đãi</span>
                 </div>
@@ -758,371 +490,7 @@
                   <i class="fa-regular fa-star"></i>
                   <i class="fa-regular fa-star"></i>
                 </div>
-                <span class="review">Đánh giá (4)</span>
-              </div>
-
-              <div class="buy-now-btn__details-btn">
-                <button class="buy-now-btn">
-                  <span class="material-icons-outlined"> shopping_cart </span>
-                  <span>Mua ngay</span>
-                </button>
-                <button class="details-btn">
-                  <span class="material-icons-outlined"> bar_chart </span>
-                  <span>Xem chi tiết</span>
-                </button>
-              </div>
-
-              <div class="other-function">
-                <button class="compare">
-                  <i class="fa-solid fa-circle-plus"></i>
-                  <span>So sánh</span>
-                </button>
-                <div class="mail-btn__favorite-btn">
-                  <button class="mail-btn">
-                    <span class="material-icons-outlined"> email </span>
-                  </button>
-                  <button class="favorite-btn">
-                    <span class="material-icons-outlined">
-                      favorite_border
-                    </span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="product-item">
-            <div class="status">
-              <i class="fa-solid fa-circle-check"></i>
-              <span>Còn hàng</span>
-            </div>
-            <div class="top">
-              <div class="product-item__image">
-                <img
-                  src="../assets/images/catalog/Laptop Asus TUF Gaming FA507RC.png"
-                  alt=""
-                />
-              </div>
-
-              <div class="product-item__information">
-                <div class="name">
-                  Asus TUF Gaming FX506LHB-HN188W i5 10300H
-                </div>
-                <div class="price">
-                  <span class="old-price">20.990.000đ</span>
-                  <span class="present-price">15.890.000đ</span>
-                </div>
-                <ul class="information-list">
-                  <li class="information-item">Màn hình: 15.6 inch</li>
-                  <li class="information-item">CPU: Intel Core i5 10300H</li>
-                  <li class="information-item">RAM: 8GB</li>
-                  <li class="information-item">Card đồ họa: GTX 1650 4GB</li>
-                  <li class="information-item">Pin: 3 Cell</li>
-                  <li class="information-item">Khối lượng: 2.3kg</li>
-                </ul>
-              </div>
-
-              <div class="prodcut-item__endow">
-                <div class="title">
-                  <img src="../assets/images/icons/discount.png" alt="" />
-                  <span>Ưu đãi</span>
-                </div>
-                <ul class="endow-list">
-                  <li class="endow-item">Nhập 10CHAM ưu đãi ngay 1 triệu</li>
-                  <li class="endow-item">
-                    Thanh toán online giảm ngay 3 triệu
-                  </li>
-                  <li class="endow-item">Thu cũ đổi mới hỗ trợ ngay 3 triệu</li>
-                  <li class="endow-item">Miễn phí vận chuyển toàn quốc</li>
-                  <li class="endow-item">
-                    Đổi trả trong 30 ngày nếu phát sinh lỗi của nhà sản xuất
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="bottom">
-              <div class="point">
-                <div class="star-rating">
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="review">Đánh giá (4)</span>
-              </div>
-
-              <div class="buy-now-btn__details-btn">
-                <button class="buy-now-btn">
-                  <span class="material-icons-outlined"> shopping_cart </span>
-                  <span>Mua ngay</span>
-                </button>
-                <button class="details-btn">
-                  <span class="material-icons-outlined"> bar_chart </span>
-                  <span>Xem chi tiết</span>
-                </button>
-              </div>
-
-              <div class="other-function">
-                <button class="compare">
-                  <i class="fa-solid fa-circle-plus"></i>
-                  <span>So sánh</span>
-                </button>
-                <div class="mail-btn__favorite-btn">
-                  <button class="mail-btn">
-                    <span class="material-icons-outlined"> email </span>
-                  </button>
-                  <button class="favorite-btn">
-                    <span class="material-icons-outlined">
-                      favorite_border
-                    </span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="product-item">
-            <div class="status">
-              <i class="fa-solid fa-circle-check"></i>
-              <span>Còn hàng</span>
-            </div>
-            <div class="top">
-              <div class="product-item__image">
-                <img
-                  src="../assets/images/catalog/Laptop Asus TUF Gaming FA507RC.png"
-                  alt=""
-                />
-              </div>
-
-              <div class="product-item__information">
-                <div class="name">
-                  Asus TUF Gaming FX506LHB-HN188W i5 10300H
-                </div>
-                <div class="price">
-                  <span class="old-price">20.990.000đ</span>
-                  <span class="present-price">15.890.000đ</span>
-                </div>
-                <ul class="information-list">
-                  <li class="information-item">Màn hình: 15.6 inch</li>
-                  <li class="information-item">CPU: Intel Core i5 10300H</li>
-                  <li class="information-item">RAM: 8GB</li>
-                  <li class="information-item">Card đồ họa: GTX 1650 4GB</li>
-                  <li class="information-item">Pin: 3 Cell</li>
-                  <li class="information-item">Khối lượng: 2.3kg</li>
-                </ul>
-              </div>
-
-              <div class="prodcut-item__endow">
-                <div class="title">
-                  <img src="../assets/images/icons/discount.png" alt="" />
-                  <span>Ưu đãi</span>
-                </div>
-                <ul class="endow-list">
-                  <li class="endow-item">Nhập 10CHAM ưu đãi ngay 1 triệu</li>
-                  <li class="endow-item">
-                    Thanh toán online giảm ngay 3 triệu
-                  </li>
-                  <li class="endow-item">Thu cũ đổi mới hỗ trợ ngay 3 triệu</li>
-                  <li class="endow-item">Miễn phí vận chuyển toàn quốc</li>
-                  <li class="endow-item">
-                    Đổi trả trong 30 ngày nếu phát sinh lỗi của nhà sản xuất
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="bottom">
-              <div class="point">
-                <div class="star-rating">
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="review">Đánh giá (4)</span>
-              </div>
-
-              <div class="buy-now-btn__details-btn">
-                <button class="buy-now-btn">
-                  <span class="material-icons-outlined"> shopping_cart </span>
-                  <span>Mua ngay</span>
-                </button>
-                <button class="details-btn">
-                  <span class="material-icons-outlined"> bar_chart </span>
-                  <span>Xem chi tiết</span>
-                </button>
-              </div>
-
-              <div class="other-function">
-                <button class="compare">
-                  <i class="fa-solid fa-circle-plus"></i>
-                  <span>So sánh</span>
-                </button>
-                <div class="mail-btn__favorite-btn">
-                  <button class="mail-btn">
-                    <span class="material-icons-outlined"> email </span>
-                  </button>
-                  <button class="favorite-btn">
-                    <span class="material-icons-outlined">
-                      favorite_border
-                    </span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="product-item">
-            <div class="status">
-              <i class="fa-solid fa-circle-check"></i>
-              <span>Còn hàng</span>
-            </div>
-            <div class="top">
-              <div class="product-item__image">
-                <img
-                  src="../assets/images/catalog/Laptop Asus TUF Gaming FA507RC.png"
-                  alt=""
-                />
-              </div>
-
-              <div class="product-item__information">
-                <div class="name">
-                  Asus TUF Gaming FX506LHB-HN188W i5 10300H
-                </div>
-                <div class="price">
-                  <span class="old-price">20.990.000đ</span>
-                  <span class="present-price">15.890.000đ</span>
-                </div>
-                <ul class="information-list">
-                  <li class="information-item">Màn hình: 15.6 inch</li>
-                  <li class="information-item">CPU: Intel Core i5 10300H</li>
-                  <li class="information-item">RAM: 8GB</li>
-                  <li class="information-item">Card đồ họa: GTX 1650 4GB</li>
-                  <li class="information-item">Pin: 3 Cell</li>
-                  <li class="information-item">Khối lượng: 2.3kg</li>
-                </ul>
-              </div>
-
-              <div class="prodcut-item__endow">
-                <div class="title">
-                  <img src="../assets/images/icons/discount.png" alt="" />
-                  <span>Ưu đãi</span>
-                </div>
-                <ul class="endow-list">
-                  <li class="endow-item">Nhập 10CHAM ưu đãi ngay 1 triệu</li>
-                  <li class="endow-item">
-                    Thanh toán online giảm ngay 3 triệu
-                  </li>
-                  <li class="endow-item">Thu cũ đổi mới hỗ trợ ngay 3 triệu</li>
-                  <li class="endow-item">Miễn phí vận chuyển toàn quốc</li>
-                  <li class="endow-item">
-                    Đổi trả trong 30 ngày nếu phát sinh lỗi của nhà sản xuất
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="bottom">
-              <div class="point">
-                <div class="star-rating">
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="review">Đánh giá (4)</span>
-              </div>
-
-              <div class="buy-now-btn__details-btn">
-                <button class="buy-now-btn">
-                  <span class="material-icons-outlined"> shopping_cart </span>
-                  <span>Mua ngay</span>
-                </button>
-                <button class="details-btn">
-                  <span class="material-icons-outlined"> bar_chart </span>
-                  <span>Xem chi tiết</span>
-                </button>
-              </div>
-
-              <div class="other-function">
-                <button class="compare">
-                  <i class="fa-solid fa-circle-plus"></i>
-                  <span>So sánh</span>
-                </button>
-                <div class="mail-btn__favorite-btn">
-                  <button class="mail-btn">
-                    <span class="material-icons-outlined"> email </span>
-                  </button>
-                  <button class="favorite-btn">
-                    <span class="material-icons-outlined">
-                      favorite_border
-                    </span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="product-item">
-            <div class="status">
-              <i class="fa-solid fa-circle-check"></i>
-              <span>Còn hàng</span>
-            </div>
-            <div class="top">
-              <div class="product-item__image">
-                <img
-                  src="../assets/images/catalog/Laptop Asus TUF Gaming FA507RC.png"
-                  alt=""
-                />
-              </div>
-
-              <div class="product-item__information">
-                <div class="name">
-                  Asus TUF Gaming FX506LHB-HN188W i5 10300H
-                </div>
-                <div class="price">
-                  <span class="old-price">20.990.000đ</span>
-                  <span class="present-price">15.890.000đ</span>
-                </div>
-                <ul class="information-list">
-                  <li class="information-item">Màn hình: 15.6 inch</li>
-                  <li class="information-item">CPU: Intel Core i5 10300H</li>
-                  <li class="information-item">RAM: 8GB</li>
-                  <li class="information-item">Card đồ họa: GTX 1650 4GB</li>
-                  <li class="information-item">Pin: 3 Cell</li>
-                  <li class="information-item">Khối lượng: 2.3kg</li>
-                </ul>
-              </div>
-
-              <div class="prodcut-item__endow">
-                <div class="title">
-                  <img src="../assets/images/icons/discount.png" alt="" />
-                  <span>Ưu đãi</span>
-                </div>
-                <ul class="endow-list">
-                  <li class="endow-item">Nhập 10CHAM ưu đãi ngay 1 triệu</li>
-                  <li class="endow-item">
-                    Thanh toán online giảm ngay 3 triệu
-                  </li>
-                  <li class="endow-item">Thu cũ đổi mới hỗ trợ ngay 3 triệu</li>
-                  <li class="endow-item">Miễn phí vận chuyển toàn quốc</li>
-                  <li class="endow-item">
-                    Đổi trả trong 30 ngày nếu phát sinh lỗi của nhà sản xuất
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="bottom">
-              <div class="point">
-                <div class="star-rating">
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="review">Đánh giá (4)</span>
+                <span class="review">Đánh giá ({{ p.numberReview }})</span>
               </div>
 
               <div class="buy-now-btn__details-btn">

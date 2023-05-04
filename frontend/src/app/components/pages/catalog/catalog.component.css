@@ -36,6 +36,7 @@ button {
   background-color: #f5f7ff;
   width: 234px;
   padding: 12px;
+  height: 100%;
 }
 
 .filter__heading {
@@ -69,7 +70,7 @@ button {
   margin-top: 24px;
 }
 
-.filter-list .title {
+.filter-list .filter-title {
   font-size: 14px;
   font-weight: bold;
 }
@@ -78,6 +79,11 @@ button {
   margin-top: 12px;
   display: flex;
   justify-content: space-between;
+  transition: all 0.2s ease;
+}
+
+.filter-list .filter-item:hover {
+  color: #1060ff;
 }
 
 .filter-list .filter-item.active {
@@ -86,6 +92,7 @@ button {
 
 .filter-list .filter-item .choice {
   cursor: pointer;
+  font-size: 14px;
 }
 
 .filter-color {
@@ -169,6 +176,12 @@ button {
   cursor: pointer;
   border: 2px solid transparent;
   height: 50px;
+  transition: all 0.2s ease;
+}
+
+.brand-item:hover {
+  border: 2px solid #0156ff;
+  border-radius: 10px;
 }
 
 .brand-item.active {
@@ -435,7 +448,7 @@ input[name="type-show-list"] {
 .horizontal-product-list .product-item .top .product-item__information::after {
   position: absolute;
   content: "";
-  right: 4px;
+  right: -8px;
   top: 0;
   height: 100%;
   width: 1px;
@@ -494,18 +507,18 @@ input[name="type-show-list"] {
   width: 35%;
 }
 
-.horizontal-product-list .product-item .prodcut-item__endow .title {
+.horizontal-product-list .product-item .prodcut-item__endow .endow-title {
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
-.horizontal-product-list .product-item .prodcut-item__endow .title img {
+.horizontal-product-list .product-item .prodcut-item__endow .endow-title img {
   width: 27px;
   height: 24px;
 }
 
-.horizontal-product-list .product-item .prodcut-item__endow .title span {
+.horizontal-product-list .product-item .prodcut-item__endow .endow-title span {
   font-size: 16px;
   font-weight: bold;
 }

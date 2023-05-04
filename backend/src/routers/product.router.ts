@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { Product, ProductModel } from "../models/product.model";
+import { CategoryModel } from "../models/category.model";
 const sample_products = require("../assets/data/products");
 
 const router = Router();
@@ -16,10 +17,28 @@ router.get("/seed", async (req, res) => {
 	res.send("Seed is done, Lam");
 });
 
+// Trả về danh sách sản phẩm theo categoryName
+// Ví dụ theo laptop, theo phone
+router.get("/:categoryName", async (req, res) => {
+	const categoryName = req.params["categoryName"];
+	const category = await CategoryModel.findOne({
+		categoryName: categoryName,
+	});
+
+	if (category) {
+		const categoryId = category.categoryId;
+		const data = await ProductModel.find({ categoryId: categoryId });
+		res.send(data);
+	} else {
+		res.status(404).json({ message: "Category not found" });
+	}
+});
+
 router.get("/", async (req, res) => {
 	const data = await ProductModel.find();
 	res.send(data);
 });
+
 router.get("/search/:searchTerm", async (req, res) => {
 	const searchTerm = req.params.searchTerm;
 	const regex = new RegExp(searchTerm, "i");
