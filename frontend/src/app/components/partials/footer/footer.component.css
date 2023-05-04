@@ -70,6 +70,10 @@
   flex-direction: column;
 }
 
+.infor-item .infor-item-title .icon-down {
+  display: none;
+}
+
 .infor-item-list {
   display: flex;
   flex-direction: column;
@@ -77,8 +81,10 @@
 }
 
 .infor-item-list a {
+  display: block;
   text-decoration: none;
   color: #000;
+  transition: 0.3s ease;
 }
 
 .infor-item-list a:hover {
@@ -96,7 +102,6 @@
   display: inline-block;
   width: 32px;
   width: 32px;
-  transition: 0.3s;
 }
 
 .infor-item-list .list-icon a:hover {
@@ -107,4 +112,74 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .container {
+    max-width: 80%;
+  }
+
+  .top {
+    flex-direction: column;
+  }
+
+  .right {
+    margin-top: 24px;
+    gap: 20px;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .row .col {
+    width: 100%;
+  }
+
+  .infor-item {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 12px;
+  }
+
+  .infor-item .infor-item-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 12px 0;
+  }
+
+  .infor-item .infor-item-title::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+    bottom: 0px;
+  }
+
+  .infor-item .infor-item-title h4 {
+    margin-bottom: 0;
+  }
+
+  .infor-item .infor-item-title .icon-down {
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+
+  .infor-item .infor-item-title.active .icon-down {
+    transform: rotate(180deg);
+  }
+
+  .infor-item .infor-item-list {
+    margin-top: 12px;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .infor-item .infor-item-title.active ~ .infor-item-list {
+    height: 100%;
+  }
 }
