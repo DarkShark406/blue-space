@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +7,9 @@ import { map } from 'rxjs';
 export class SearchBarService {
   constructor(private http: HttpClient) {}
 
-  getData() {
-    return this.http.get<any[]>('https://jsonplaceholder.typicode.com/users');
+  getData(searchTerm: string) {
+    return this.http.get<any[]>(
+      'http://localhost:5000/product/search/' + searchTerm
+    );
   }
 }

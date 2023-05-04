@@ -65,7 +65,7 @@ export const ProductSchema = new Schema<Product>(
     categoryId: { type: Number, required: true },
     productImage: { type: [String], required: true },
     productBrand: { type: String, required: true },
-    productRegion: { type: String, required: true },
+    productRegion: { type: String, required: false },
     ratingPoint: { type: Number, required: false },
     numberReview: { type: Number, required: false },
     warrantyPeriod: { type: Number, required: true },
