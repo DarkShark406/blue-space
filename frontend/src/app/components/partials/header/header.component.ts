@@ -16,14 +16,8 @@ export class HeaderComponent {
   isSearchActive = false;
   isAuth = false;
   user = { name: 'Lam' };
-  @ViewChild(SearchBarComponent) searchBar!: SearchBarComponent;
   toggleSearch() {
     this.isSearchActive = !this.isSearchActive;
-    if (this.isSearchActive) {
-      setTimeout(() => {
-        this.searchBar.searchInput.nativeElement.focus();
-      }, 0);
-    }
   }
   logout() {}
 }

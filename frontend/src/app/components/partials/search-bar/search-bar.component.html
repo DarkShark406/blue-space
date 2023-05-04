@@ -10,9 +10,21 @@
     (keyup)="onSearch()"
   />
   <div class="recomendation">
-    <a *ngFor="let suggestion of suggestions">
-      <img width="36px" height="36px" src="{{ suggestion.image }}" alt="" />
-      {{ suggestion.name }}
-    </a>
+    <ng-container *ngIf="suggestions != []">
+      <ng-container *ngFor="let suggestion of suggestions">
+        <a routerLink="product/{{ suggestion.id }}">
+          <img
+            width="36px"
+            height="36px"
+            src="{{ suggestion.productImage[0] }}"
+            alt=""
+          />
+          {{ suggestion.productName }}
+        </a>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="suggestions == []">
+      <a>Không tìm thấy sản phẩm bạn đang tìm kiếm :((</a>
+    </ng-container>
   </div>
 </div>
