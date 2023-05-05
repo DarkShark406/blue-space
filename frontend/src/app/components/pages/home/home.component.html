@@ -545,45 +545,55 @@
   <tabs>
     <tab tabTitle="Di Động">
       <div class="best-seller-container">
-        <img src="../assets/images/home/phone.png" alt="" />
+        <img src="../assets/images/home/phone.png" alt="" loading="lazy" />
         <ol>
-          <li>
-            <a href="">
-              <span class="product-title"
-                >Iphone 14 Promax 256GB Chính hãng (VN/A)</span
-              >
-              <span class="more">Tìm hiểu thêm</span>
-            </a>
-          </li>
-          <li>
-            <a href="">
-              <span class="product-title"
-                >Iphone 14 Promax 256GB Chính hãng (VN/A)</span
-              >
-              <span class="more">Tìm hiểu thêm</span>
-            </a>
-          </li>
-          <li>
-            <a href="">
-              <span class="product-title"
-                >Iphone 14 Promax 256GB Chính hãng (VN/A)</span
-              >
-              <span class="more">Tìm hiểu thêm</span>
-            </a>
-          </li>
-          <li>
-            <a href="">
-              <span class="product-title"
-                >Iphone 14 Promax 256GB Chính hãng (VN/A)</span
-              >
+          <li *ngFor="let p of topPhone">
+            <a href="/product/{{ p._id }}">
+              <span class="product-title">{{ p.productName }}</span>
               <span class="more">Tìm hiểu thêm</span>
             </a>
           </li>
         </ol>
       </div>
     </tab>
-    <tab tabTitle="Laptop"></tab>
-    <tab tabTitle="Phụ Kiện"></tab>
-    <tab tabTitle="Khác"></tab>
+    <tab tabTitle="Laptop">
+      <div class="best-seller-container">
+        <img src="../assets/images/home/laptop.png" alt="" loading="lazy" />
+        <ol>
+          <li *ngFor="let p of topLaptop">
+            <a href="/product/{{ p._id }}">
+              <span class="product-title">{{ p.productName }}</span>
+              <span class="more">Tìm hiểu thêm</span>
+            </a>
+          </li>
+        </ol>
+      </div>
+    </tab>
+    <tab tabTitle="Phụ Kiện">
+      <div class="best-seller-container">
+        <img src="../assets/images/home/pc.png" alt="" loading="lazy" />
+        <ol>
+          <li *ngFor="let p of topKeyboard">
+            <a href="/product/{{ p._id }}">
+              <span class="product-title">{{ p.productName }}</span>
+              <span class="more">Tìm hiểu thêm</span>
+            </a>
+          </li>
+        </ol>
+      </div>
+    </tab>
+    <tab tabTitle="Khác">
+      <div class="best-seller-container">
+        <img src="../assets/images/home/pk.png" alt="" loading="lazy" />
+        <ol>
+          <li *ngFor="let p of topEarphone">
+            <a href="/product/{{ p._id }}">
+              <span class="product-title">{{ p.productName }}</span>
+              <span class="more">Tìm hiểu thêm</span>
+            </a>
+          </li>
+        </ol>
+      </div>
+    </tab>
   </tabs>
 </div>

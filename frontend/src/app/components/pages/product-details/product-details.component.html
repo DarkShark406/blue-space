@@ -1,30 +1,41 @@
 <div class="container">
   <div class="c-row">
     <div class="product-title">
-      Laptop Asus TUF Gaming FX506LHB-HN188W i5 10300H/8GB/512GB/15.6"FHD/GTX
-      1650 4GB/Win11
+      {{ product.productName }}
     </div>
     <div class="product-rating">
       <div class="c-row">
         <stars-rating
           class="stars-rating"
-          [rating]="3.5"
+          [rating]="product.ratingPoint || 0"
           [maxRating]="5"
           [isReadOnly]="true"
         ></stars-rating>
-        <a href="">Đánh giá(4)</a>
+        <a href="">Đánh giá({{ product.numberReview }})</a>
       </div>
-      <div><a href="">Lượt mua (500)</a></div>
+      <div>
+        <a href="">Lượt mua ({{ product.numberReview }})</a>
+      </div>
     </div>
   </div>
   <div class="c-row">
     <div class="slider">
-      <slider [type]="'image'" [list]="images"></slider>
+      <slider [type]="'image'" [list]="product.productImage"></slider>
     </div>
     <div class="product-info">
       <div>
-        <span class="price">15.890.000đ</span>
-        <span class="price-discount">22.000.000đ</span>
+        <span class="price">{{
+          product.productPrice.toLocaleString("vi-VN", {
+            style: "currency",
+            currency: "VND"
+          })
+        }}</span>
+        <span class="price-discount">{{
+          (
+            product.productPrice +
+            (product.productPrice * product.productDiscount) / 100
+          ).toLocaleString("vi", { style: "currency", currency: "VND" })
+        }}</span>
       </div>
       <div class="info">
         <ul>

@@ -9,7 +9,10 @@
   <ng-container *ngIf="type == 'image'">
     <ng-container *ngFor="let image of list">
       <ng-template swiperSlide
-        ><img style="display: block" src="{{ image }}" alt=""
+        ><img
+          style="display: block"
+          src="http://localhost:5000/images/{{ image }}"
+          alt=""
       /></ng-template>
     </ng-container>
   </ng-container>

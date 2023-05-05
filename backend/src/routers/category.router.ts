@@ -15,11 +15,13 @@ router.get("/seed", async (req, res) => {
   res.send("Seed is done <3");
 });
 
+// Tất cả category
 router.get("/", async (req, res) => {
   const data = await CategoryModel.find();
   res.send(data);
 });
 
+// Brands theo từng category
 router.get("/brands-by-category", async (req, res) => {
   try {
     const results = await ProductModel.aggregate([
@@ -41,12 +43,42 @@ router.get("/brands-by-category", async (req, res) => {
           brands: { $addToSet: "$productBrand" },
         },
       },
+      {
+        $unwind: "$brands",
+      },
+      {
+        $sort: { brands: 1 },
+      },
+      {
+        $group: {
+          _id: "$_id",
+          category: { $first: "$category" },
+          brands: { $push: "$brands" },
+        },
+      },
     ]);
 
     res.send(results);
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: "Server error" });
+  }
+});
+
+// Trả về danh sách sản phẩm theo categoryName
+// Ví dụ theo laptop, theo phone
+router.get("/:categoryName", async (req, res) => {
+  const categoryName = req.params["categoryName"];
+  const category = await CategoryModel.findOne({
+    categoryName: categoryName,
+  });
+
+  if (category) {
+    const categoryId = category.categoryId;
+    const data = await ProductModel.find({ categoryId: categoryId });
+    res.send(data);
+  } else {
+    res.status(404).json({ message: "Category not found" });
   }
 });
 
