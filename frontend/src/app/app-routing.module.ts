@@ -8,14 +8,15 @@ import { RegisterComponent } from './components/pages/register/register.componen
 import { CatalogComponent } from './components/pages/catalog/catalog.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
   { path: 'comparision', component: ComparisionComponent },
   { path: 'auth/login', component: LoginComponent },
   { path: 'auth/register', component: RegisterComponent },
+  { path: 'product/:id', component: ProductDetailsComponent },
+  { path: 'product/:slug', component: ProductDetailsComponent },
   { path: 'products', component: CatalogComponent },
   { path: 'products/:category', component: CatalogComponent },
   { path: 'products/:category/:brand', component: CatalogComponent },
-  { path: 'product/:slug', component: ProductDetailsComponent },
+  { path: '', component: HomeComponent },
 ];
 
 @NgModule({
