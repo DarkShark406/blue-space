@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
 
@@ -7,18 +7,21 @@ import { ProductCategoryService } from 'src/app/services/product-category.servic
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.css'],
 })
-export class CatalogComponent {
+export class CatalogComponent implements OnInit {
   products: any;
   errorMessage: string = '';
   typeShowList = true;
+  categoryName: string = '';
 
   constructor(
     private _service: ProductCategoryService,
     private route: ActivatedRoute
-  ) {
-    const categoryName = this.route.snapshot.queryParamMap.get('category');
-    if (categoryName) {
-      this._service.getProductForCategory(categoryName).subscribe({
+  ) {}
+  ngOnInit() {
+    this.categoryName = this.route.snapshot.params['category'];
+    console.log(this.categoryName);
+    if (this.categoryName) {
+      this._service.getProductForCategory(this.categoryName).subscribe({
         next: (data) => (this.products = data),
         error: (err) => (this.errorMessage = err),
       });
@@ -28,6 +31,22 @@ export class CatalogComponent {
       });
     }
   }
+
+  // Conver price thành kiểu đơn vị tiền tệ
+  // 12600000 --> 12.600.000
+  convertNumber(price: number) {
+    const integerPart = Math.floor(price).toString();
+    const decimalPart = (price % 1).toFixed(0);
+    const integerPartWithSeparator = integerPart.replace(
+      /\B(?=(\d{3})+(?!\d))/g,
+      '.'
+    );
+
+    return decimalPart === '0'
+      ? integerPartWithSeparator
+      : `${integerPartWithSeparator}.${decimalPart}`;
+  }
+
   toggleActiveClassBrandAndColor(brand: string) {
     const item = document.querySelector('#' + brand);
     if (item) {

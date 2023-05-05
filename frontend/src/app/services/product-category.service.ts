@@ -23,6 +23,7 @@ export class ProductCategoryService {
 
   getProductForCategory(categoryName: string): Observable<any> {
     const url = 'http://localhost:5000/product/' + categoryName;
+    console.log(url);
 
     const headers = new HttpHeaders().set(
       'Content-Type',

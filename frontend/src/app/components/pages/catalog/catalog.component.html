@@ -345,35 +345,13 @@
                 <span class="review">Đánh giá ({{ p.numberReview }})</span>
               </div>
               <div class="name">{{ p.productName }}</div>
-              <div class="old-price">
-                {{ (p.productPrice - (p.productPrice % 1000000)) / 1000000 }}.{{
-                  (p.productPrice -
-                    (p.productPrice - (p.productPrice % 1000000)) -
-                    (p.productPrice % 1000)) /
-                    1000
-                }}.000đ
-              </div>
+              <div class="old-price">{{ convertNumber(p.productPrice) }}đ</div>
               <div class="present-price">
                 {{
-                  (p.productPrice -
-                    (p.productPrice * p.productDiscount) / 100 -
-                    ((p.productPrice -
-                      (p.productPrice * p.productDiscount) / 100) %
-                      1000000)) /
-                    1000000
-                }}.{{
-                  (p.productPrice -
-                    (p.productPrice * p.productDiscount) / 100 -
-                    (p.productPrice -
-                      (p.productPrice * p.productDiscount) / 100 -
-                      ((p.productPrice -
-                        (p.productPrice * p.productDiscount) / 100) %
-                        1000000)) -
-                    ((p.productPrice -
-                      (p.productPrice * p.productDiscount) / 100) %
-                      1000)) /
-                    1000
-                }}.000đ
+                  convertNumber(
+                    p.productPrice - (p.productPrice * p.productDiscount) / 100
+                  )
+                }}đ
               </div>
               <div class="compare">
                 <i class="fa-solid fa-circle-plus"></i>

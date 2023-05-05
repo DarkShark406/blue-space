@@ -344,7 +344,12 @@ input[name="type-show-list"] {
 .grid-product-list .product-item .name {
   font-size: 18px;
   margin-top: 12px;
+  min-height: 82px;
   font-weight: bold;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 
 .grid-product-list .product-item .old-price {
