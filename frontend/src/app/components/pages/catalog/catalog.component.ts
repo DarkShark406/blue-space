@@ -15,8 +15,10 @@ export class CatalogComponent {
   constructor(
     private _service: ProductCategoryService,
     private route: ActivatedRoute
-  ) {
-    const categoryName = this.route.snapshot.queryParamMap.get('category');
+  ) {}
+  ngOnInit() {
+    const categoryName = this.route.snapshot.params['category'];
+    console.log(categoryName);
     if (categoryName) {
       this._service.getProductForCategory(categoryName).subscribe({
         next: (data) => (this.products = data),
