@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
 
 @Component({
@@ -11,12 +12,19 @@ export class CatalogComponent {
   errorMessage: string = '';
   typeShowList = true;
 
-  constructor(private _service: ProductCategoryService) {
-    const categoryName = window.location.href.split('/').pop();
+  constructor(
+    private _service: ProductCategoryService,
+    private route: ActivatedRoute
+  ) {
+    const categoryName = this.route.snapshot.queryParamMap.get('category');
     if (categoryName) {
       this._service.getProductForCategory(categoryName).subscribe({
         next: (data) => (this.products = data),
         error: (err) => (this.errorMessage = err),
+      });
+    } else {
+      this._service.getAllProduct().subscribe((d) => {
+        this.products = d.slice(0, 100);
       });
     }
   }

@@ -5,7 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 
@@ -31,6 +31,8 @@ import { ListCustomersComponent } from './components/pages/list-customers/list-c
 import { OrdersComponent } from './components/pages/orders/orders.component';
 import { PolicyComponent } from './components/pages/policy/policy.component';
 import { ReportsComponent } from './components/pages/reports/reports.component';
+import { LoadingComponent } from './components/partials/loading/loading.component';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,7 @@ import { ReportsComponent } from './components/pages/reports/reports.component';
     OrdersComponent,
     PolicyComponent,
     ReportsComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +75,13 @@ import { ReportsComponent } from './components/pages/reports/reports.component';
     MatInputModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

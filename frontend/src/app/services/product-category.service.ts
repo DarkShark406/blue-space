@@ -17,6 +17,10 @@ export class ProductCategoryService {
     return throwError(() => new Error(error.message));
   }
 
+  getAllProduct() {
+    return this._http.get<Product[]>('http://localhost:5000/product/');
+  }
+
   getProductForCategory(categoryName: string): Observable<any> {
     const url = 'http://localhost:5000/product/' + categoryName;
 
