@@ -336,11 +336,11 @@
               </div>
               <div class="point">
                 <div class="star-rating">
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
+                  <stars-rating
+                    [rating]="p.ratingPoint"
+                    [maxRating]="5"
+                    [isReadOnly]="true"
+                  ></stars-rating>
                 </div>
                 <span class="review">Đánh giá ({{ p.numberReview }})</span>
               </div>
@@ -383,39 +383,19 @@
                 </div>
                 <div class="price">
                   <span class="old-price">
-                    {{
-                      (p.productPrice - (p.productPrice % 1000000)) / 1000000
-                    }}.{{
-                      (p.productPrice -
-                        (p.productPrice - (p.productPrice % 1000000)) -
-                        (p.productPrice % 1000)) /
-                        1000
-                    }}.000đ</span
+                    {{ convertNumber(p.productPrice) }}đ</span
                   >
                   <span class="present-price">
                     {{
-                      (p.productPrice -
-                        (p.productPrice * p.productDiscount) / 100 -
-                        ((p.productPrice -
-                          (p.productPrice * p.productDiscount) / 100) %
-                          1000000)) /
-                        1000000
-                    }}.{{
-                      (p.productPrice -
-                        (p.productPrice * p.productDiscount) / 100 -
-                        (p.productPrice -
-                          (p.productPrice * p.productDiscount) / 100 -
-                          ((p.productPrice -
-                            (p.productPrice * p.productDiscount) / 100) %
-                            1000000)) -
-                        ((p.productPrice -
-                          (p.productPrice * p.productDiscount) / 100) %
-                          1000)) /
-                        1000
-                    }}.000đ</span
+                      convertNumber(
+                        p.productPrice -
+                          (p.productPrice * p.productDiscount) / 100
+                      )
+                    }}đ</span
                   >
                 </div>
-                <ul class="information-list">
+                <!-- specifications của Laptop -->
+                <ul *ngIf="categoryName == 'laptop'" class="information-list">
                   <li class="information-item">
                     Màn hình: {{ p.specifications.screen }}
                   </li>
@@ -436,6 +416,128 @@
                   </li>
                   <li class="information-item">
                     Khích thước: {{ p.specifications.size }}
+                  </li>
+                </ul>
+
+                <!-- specifications của Phone và Tablet -->
+                <ul
+                  *ngIf="categoryName == 'phone' || categoryName == 'tablet'"
+                  class="information-list"
+                >
+                  <li class="information-item">
+                    Màn hình: {{ p.specifications.screen }}
+                  </li>
+                  <li class="information-item">
+                    CPU: {{ p.specifications.cpu }}
+                  </li>
+                  <li class="information-item">
+                    RAM: {{ p.specifications.ram }}
+                  </li>
+                  <li class="information-item">
+                    Camera: {{ p.specifications.camera }}
+                  </li>
+                  <li class="information-item">
+                    Hệ điều hành: {{ p.specifications.operatingSystem }}
+                  </li>
+                  <li class="information-item">
+                    Pin: {{ p.specifications.batteryCapacity }}
+                  </li>
+                  <li class="information-item">
+                    Khối lượng: {{ p.specifications.weight }}
+                  </li>
+                </ul>
+
+                <!-- specifications của Earphone -->
+                <ul *ngIf="categoryName == 'earphone'" class="information-list">
+                  <li class="information-item">
+                    Model: {{ p.specifications.model }}
+                  </li>
+                  <li class="information-item">
+                    Kiểu tai nghe: {{ p.specifications.type }}
+                  </li>
+                  <li class="information-item">
+                    Kiểu kết nối: {{ p.specifications.connection }}
+                  </li>
+                  <li class="information-item">
+                    Khoảng cách kết nối:
+                    {{ p.specifications.connectionDistance }}
+                  </li>
+                  <li class="information-item">
+                    Mircophone: {{ p.specifications.micrphone }}
+                  </li>
+                  <li class="information-item">
+                    Khối lượng: {{ p.specifications.weight }}
+                  </li>
+                </ul>
+
+                <!-- specifications của Mouse -->
+                <ul *ngIf="categoryName == 'mouse'" class="information-list">
+                  <li class="information-item">
+                    DPI: {{ p.specifications.DPI }}
+                  </li>
+                  <li class="information-item">
+                    Kiểu kết nối: {{ p.specifications.connection }}
+                  </li>
+                  <li class="information-item">
+                    Led: {{ p.specifications.led }}
+                  </li>
+                  <li class="information-item">
+                    Khối lượng: {{ p.specifications.weight }}
+                  </li>
+                  <li class="information-item">
+                    Màu:
+                    <span *ngFor="let color of p.specifications.color"
+                      >{{ color }}
+                    </span>
+                  </li>
+                </ul>
+
+                <!-- specifications của Keyboard -->
+                <ul *ngIf="categoryName == 'keyboard'" class="information-list">
+                  <li class="information-item">
+                    Model: {{ p.specifications.model }}
+                  </li>
+                  <li class="information-item">
+                    Kiểu kết nối: {{ p.specifications.connection }}
+                  </li>
+                  <li class="information-item">
+                    Khoảng cách kết nối:
+                    {{ p.specifications.connectionDistance }}
+                  </li>
+                  <li class="information-item">
+                    Switch: {{ p.specifications.switch }}
+                  </li>
+                  <li class="information-item">
+                    Kiểu bàn phím: {{ p.specifications.type }}
+                  </li>
+                  <li class="information-item">
+                    Số phím: {{ p.specifications.numberOfKeys }}
+                  </li>
+                  <li class="information-item">
+                    Led: {{ p.specifications.ledLight }}
+                  </li>
+                  <li class="information-item">
+                    Kích thước: {{ p.specifications.size }}
+                  </li>
+                </ul>
+
+                <!-- specifications của Application -->
+                <ul
+                  *ngIf="categoryName == 'application'"
+                  class="information-list"
+                >
+                  <li class="information-item">
+                    Ngôn ngữ: {{ p.specifications.language }}
+                  </li>
+                  <li class="information-item">
+                    Phần mềm: {{ p.specifications.type }}
+                  </li>
+                  <li class="information-item">
+                    Số người dùng: {{ p.specifications.numberOfUser }}
+                  </li>
+                  <li class="information-item">
+                    Tương thích với hệ điều hành:
+                    {{ p.specifications.operationSystem }}
                   </li>
                 </ul>
               </div>
@@ -462,11 +564,11 @@
             <div class="bottom">
               <div class="point">
                 <div class="star-rating">
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
+                  <stars-rating
+                    [rating]="p.ratingPoint"
+                    [maxRating]="5"
+                    [isReadOnly]="true"
+                  ></stars-rating>
                 </div>
                 <span class="review">Đánh giá ({{ p.numberReview }})</span>
               </div>
