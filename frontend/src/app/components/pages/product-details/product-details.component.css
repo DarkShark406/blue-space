@@ -25,7 +25,9 @@
   width: 55%;
   padding: 8px;
 }
-.product-info .info {
+.product-info .info ul {
+  height: 360px;
+  overflow: auto;
 }
 .product-info ul {
   background: #f5f7ff;
@@ -132,4 +134,16 @@ button:hover {
 }
 .combo-list .add-to-cart {
   text-align: right;
+}
+.container .description p {
+  font-size: 20px;
+}
+.container .description img {
+  margin: auto; /* Căn giữa theo chiều ngang */
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.container .description h2 {
+  font-size: 26px;
 }
