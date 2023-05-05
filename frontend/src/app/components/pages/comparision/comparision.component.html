@@ -1,107 +1,100 @@
 <div class="container">
   <div class="title">So sánh sản phẩm</div>
   <div class="product-container">
-    <div class="row">
-      <div class="product">
-        <div class="product-title">
-          Asus TUF Gaming FX506LHB-HN188W i5 10300H
+    <div class="row product-compare">
+      <ng-container *ngFor="let p of listProduct">
+        <div class="product">
+          <div class="product-title">
+            {{ p.productName }}
+          </div>
+          <slider class="slider" [type]="'image'" [list]="product1"></slider>
+          <div class="product-price">
+            Giá chỉ từ
+            <span class="price">{{
+              p.productPrice.toLocaleString("vi-VN", {
+                style: "currency",
+                currency: "VND"
+              })
+            }}</span>
+          </div>
+          <button class="btn-buy">Mua ngay</button>
         </div>
-        <slider class="slider" [type]="'image'" [list]="product1"></slider>
-        <div class="product-price">
-          Giá chỉ từ <span class="price">15.990.000đ</span>
-        </div>
-        <button class="btn-buy">Mua ngay</button>
-      </div>
-      <div class="product">
-        <div class="product-title">
-          Asus TUF Gaming FX506LHB-HN188W i5 10300H
-        </div>
-        <slider class="slider" [type]="'image'" [list]="product1"></slider>
-        <div class="product-price">
-          Giá chỉ từ <span class="price">15.990.000 đ</span>
-        </div>
-        <button class="btn-buy">Mua ngay</button>
-      </div>
+      </ng-container>
     </div>
     <div class="title">Thông tin chung</div>
     <div class="row">
-      <div class="general-info">
+      <div *ngFor="let p of listProduct" class="general-info">
         <div class="icon">
           <img src="../assets/images/icons/information.png" alt="" />
         </div>
-        <p>Thương hiệu Asus</p>
-        <p>Xuất xứ Trung Quốc</p>
-        <p>Năm ra mắt 2022</p>
-        <p>Bảo hành 24 tháng</p>
+        <p>Thương hiệu {{ p.productBrand }}</p>
+        <p>Xuất xứ {{ p.productRegion }}</p>
+        <p>Bảo hành {{ p.warrantyPeriod }} tháng</p>
       </div>
     </div>
     <div class="title">Kích thước (Cao x Rộng x Sâu) và trọng lượng</div>
     <div class="row">
-      <div class="size">
+      <div *ngFor="let p of listProduct" class="size">
         <div class="icon">
           <img src="../assets/images/icons/package.png" alt="package" />
         </div>
-        <p>359 x 256 x 24.9 mm</p>
-        <p>2,3 kg</p>
+        <p>{{ p.specifications.size }}</p>
+        <p>Trọng lượng {{ p.specifications.weight }}</p>
       </div>
     </div>
     <div class="title">Màn hình</div>
     <div class="row">
-      <div class="screen">
+      <div *ngFor="let p of listProduct" class="screen">
         <div class="icon">
           <img src="../assets/images/icons/devices.png" alt="devices" />
         </div>
-        <p>Anti-glare LED-backlit</p>
-        <p>1920 x 1080 Pixels</p>
+        <p>{{ p.specifications.screen }}</p>
       </div>
     </div>
     <div class="title">Bộ xử lý</div>
     <div class="row">
-      <div class="processor">
+      <div *ngFor="let p of listProduct" class="processor">
         <div class="icon">
           <img src="../assets/images/icons/processor.png" alt="processor" />
         </div>
-        <p>Intel Core i5 10300H</p>
+        <p>{{ p.specifications.cpu }}</p>
         <p>2,5 GHz - 4,5 GHz</p>
         <p>4 nhân</p>
         <p>8 luồng</p>
-        <p>Bộ nhớ đệm 8 MB</p>
       </div>
     </div>
-    <div class="title">RAM</div>
+    <div class="title">RAM & Disk</div>
     <div class="row">
-      <div class="ram">
+      <div *ngFor="let p of listProduct" class="ram">
         <div class="icon">
           <img src="../assets/images/icons/ram.png" alt="ram" />
         </div>
-        <p>8 GB</p>
-        <p>2 khe cắm rời</p>
-        <p>Còn 1 khe cắm</p>
+        <p>{{ p.specifications.ram }}</p>
+        <p>{{ p.specifications.storage }}</p>
       </div>
     </div>
     <div class="title">Card đồ họa</div>
     <div class="row">
-      <div class="gpu">
+      <div *ngFor="let p of listProduct" class="gpu">
         <div class="icon">
           <img
             src="../assets/images/icons/graphic-card.png"
             alt="graphic-card"
           />
         </div>
-        <p>Intel UHD</p>
-        <p>Bộ nhớ 4 GB GDDR6</p>
+        <p>{{ p.specifications.gpu }}</p>
       </div>
     </div>
     <div class="title">Thông tin pin và sạc</div>
     <div class="row">
-      <div class="battery">
+      <div *ngFor="let p of listProduct" class="battery">
         <div class="icon">
           <img
             src="../assets/images/icons/low-battery.png"
             alt="graphic-card"
           />
         </div>
-        <p>Bộ cấp nguồn 200 W</p>
+        <p>{{ p.specifications.batteryCapacity }}</p>
       </div>
     </div>
   </div>
