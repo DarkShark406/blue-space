@@ -12,9 +12,10 @@ const routes: Routes = [
   { path: 'comparision', component: ComparisionComponent },
   { path: 'auth/login', component: LoginComponent },
   { path: 'auth/register', component: RegisterComponent },
-  { path: 'product/:category', component: CatalogComponent },
-  { path: 'product/:category/:brand', component: CatalogComponent },
-  { path: 'products/:slug', component: ProductDetailsComponent },
+  { path: 'products', component: CatalogComponent },
+  { path: 'products/:category', component: CatalogComponent },
+  { path: 'products/:category/:brand', component: CatalogComponent },
+  { path: 'product/:slug', component: ProductDetailsComponent },
 ];
 
 @NgModule({

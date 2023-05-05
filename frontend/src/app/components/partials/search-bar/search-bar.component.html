@@ -12,11 +12,11 @@
   <div class="recomendation">
     <ng-container *ngIf="suggestions != []">
       <ng-container *ngFor="let suggestion of suggestions">
-        <a routerLink="product/{{ suggestion.id }}">
+        <a href="product/{{ suggestion.id }}">
           <img
             width="36px"
             height="36px"
-            src="{{ suggestion.productImage[0] }}"
+            src="http://localhost:5000/images/{{ suggestion.productImage[0] }}"
             alt=""
           />
           {{ suggestion.productName }}
@@ -24,7 +24,7 @@
       </ng-container>
     </ng-container>
     <ng-container *ngIf="suggestions == []">
-      <a>Không tìm thấy sản phẩm bạn đang tìm kiếm :((</a>
+      <a>Không tìm thấy sản phẩm bạn đang tìm kiếm</a>
     </ng-container>
   </div>
 </div>

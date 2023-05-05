@@ -1,12 +1,16 @@
 <div class="container">
   <div class="title">So sánh sản phẩm</div>
   <div class="product-container">
+    <div class="row product-title">
+      <ng-container *ngFor="let p of listProduct">
+        <div class="name">
+          {{ p.productName }}
+        </div>
+      </ng-container>
+    </div>
     <div class="row product-compare">
       <ng-container *ngFor="let p of listProduct">
         <div class="product">
-          <div class="product-title">
-            {{ p.productName }}
-          </div>
           <slider class="slider" [type]="'image'" [list]="product1"></slider>
           <div class="product-price">
             Giá chỉ từ
