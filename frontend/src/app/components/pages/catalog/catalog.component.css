@@ -334,6 +334,7 @@ input[name="type-show-list"] {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 16px;
 }
 
 .grid-product-list .product-item .point .review {
@@ -479,6 +480,14 @@ input[name="type-show-list"] {
   .information-list
   .information-item {
   margin: 4px 0;
+}
+
+.horizontal-product-list
+  .product-item
+  .product-item__information
+  .information-list
+  .information-item {
+  margin-left: 8px;
 }
 
 .horizontal-product-list .product-item .product-item__information .price {
