@@ -18,10 +18,13 @@ export class CatalogComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
   ngOnInit() {
+
+
     this.categoryName = this.route.snapshot.params['category'];
     console.log(this.categoryName);
     if (this.categoryName) {
       this._service.getProductForCategory(this.categoryName).subscribe({
+
         next: (data) => (this.products = data),
         error: (err) => (this.errorMessage = err),
       });
