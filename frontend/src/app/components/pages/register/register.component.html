@@ -7,34 +7,49 @@
           <label for="">Họ và tên đệm </label>
           <span>(*)</span>
         </div>
-        <input type="text" class="form-control" />
+        <input
+          type="text"
+          class="form-control"
+          id="fname"
+          [(ngModel)]="fname"
+        />
       </div>
       <div class="form-group">
         <div class="title-input">
           <label for="">Tên </label>
           <span>(*)</span>
         </div>
-        <input type="text" class="form-control" />
+        <input
+          type="text"
+          class="form-control"
+          id="lname"
+          [(ngModel)]="lname"
+        />
+        <div *ngIf="!name" class="attention">*Vui lòng nhập tên</div>
       </div>
     </div>
     <div class="form-row">
       <div class="form-group">
         <div class="title-input">
-          <label for="">Tên người dùng </label>
+          <label for="">Địa chỉ email</label>
           <span>(*)</span>
         </div>
-        <input type="text" class="form-control" />
-        <div class="attention">*Không sử dụng khoảng trắng</div>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="user.email"
+          (input)="validateEmail()"
+        />
+        <div *ngIf="!email" class="attention">*Nhập đúng định dạng email</div>
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group">
         <div class="title-input">
-          <label for="">Email </label>
-          <span>(*)</span>
+          <label for="">Địa chỉ: </label>
         </div>
-        <input type="text" class="form-control" />
+        <input type="text" class="form-control" [(ngModel)]="user.address" />
       </div>
     </div>
     <div class="form-row">
@@ -43,7 +58,12 @@
           <label for="">Mật khẩu </label>
           <span>(*)</span>
         </div>
-        <input type="password" class="form-control" id="password-input" />
+        <input
+          type="password"
+          class="form-control"
+          id="password-input"
+          [(ngModel)]="user.password"
+        />
         <div
           class="icon-eye"
           (click)="showHidePasswordInput()"
@@ -58,16 +78,18 @@
         >
           <i class="fa-solid fa-eye-slash"></i>
         </div>
-        <div class="attention">
-          *Sử dụng 8 chữ cái trở lên, có chữ cái in hoa, chữ thường và số
-        </div>
       </div>
       <div class="form-group">
         <div class="title-input">
           <label for="">Xác nhận lại mật khẩu </label>
           <span>(*)</span>
         </div>
-        <input type="password" class="form-control" id="retypepassword-input" />
+        <input
+          type="password"
+          class="form-control"
+          id="retypepassword-input"
+          [(ngModel)]="user.confirmPassword"
+        />
         <div
           class="icon-eye"
           id="eye-show-retypepassword"
@@ -82,6 +104,7 @@
         >
           <i class="fa-solid fa-eye-slash"></i>
         </div>
+        <div *ngIf="!password" class="attention">Mật khẩu không khớp</div>
       </div>
     </div>
   </div>
@@ -95,7 +118,7 @@
       <span class="attention">Chính sách bảo mật</span>
     </div>
 
-    <button class="register-btn">Đăng ký</button>
+    <button class="register-btn" (click)="register()">Đăng ký</button>
     <div class="had-account">Bạn đã có tài khoản <span>Đăng nhập</span></div>
   </div>
 </div>

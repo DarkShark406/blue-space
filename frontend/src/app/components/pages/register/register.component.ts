@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { IUserRegister } from 'src/app/interfaces/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -8,6 +11,46 @@ import { Component } from '@angular/core';
 export class RegisterComponent {
   isShowPassword = false;
   isShowRetypePassword = false;
+
+  user: IUserRegister = new IUserRegister();
+  name: boolean = true;
+  email: boolean = true;
+  password: boolean = true;
+  fname = '';
+  lname = '';
+
+  constructor(private userService: UserService, private router: Router) {}
+
+  register() {
+    this.user.name = this.fname + ' ' + this.lname;
+    this.validateBlank();
+    this.validateEmail();
+    this.validatePassword();
+    if (this.name && this.email && this.password) {
+      this.userService.register(this.user).subscribe((_) => {
+        this.router.navigateByUrl('');
+      });
+    }
+  }
+
+  validatePassword() {
+    if (
+      this.user.password != null &&
+      this.user.password == this.user.confirmPassword
+    )
+      this.password = true;
+    else this.password = false;
+  }
+
+  validateBlank() {
+    if (this.user.name == ' ') this.name = false;
+    else this.name = true;
+  }
+
+  validateEmail() {
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    this.email = pattern.test(this.user.email);
+  }
 
   showHidePasswordInput() {
     if (this.isShowPassword == false) {

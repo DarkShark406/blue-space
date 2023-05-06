@@ -33,6 +33,7 @@ import { PolicyComponent } from './components/pages/policy/policy.component';
 import { ReportsComponent } from './components/pages/reports/reports.component';
 import { LoadingComponent } from './components/partials/loading/loading.component';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { MapComponent } from './components/partials/map/map.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
     PolicyComponent,
     ReportsComponent,
     LoadingComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,
