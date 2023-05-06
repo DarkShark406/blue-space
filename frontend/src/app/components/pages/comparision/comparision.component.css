@@ -1,5 +1,6 @@
 .product-container {
 }
+
 .row {
   display: flex;
 }
@@ -7,7 +8,13 @@
   width: 50%;
   padding: 8px;
 }
-
+.go-back-btn {
+  border-color: antiquewhite;
+  border-radius: 4px;
+  padding: 8px;
+  font-weight: bold;
+  font-style: italic;
+}
 .product-container .title {
   font-size: 36px;
   text-align: left;
@@ -25,9 +32,16 @@
   z-index: 2;
   font-size: 26px;
   margin: 8px 0;
+  max-width: 100%;
 }
 .product-title .name {
+  width: 50%;
   background-color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Số hàng tối đa */
+  -webkit-box-orient: vertical;
 }
 
 .product-title .name::after {

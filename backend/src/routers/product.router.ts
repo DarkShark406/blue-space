@@ -47,6 +47,27 @@ router.get("/compare/:id1/:id2", async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 });
+// Lấy sản phẩm combo
+router.get("/combo-product/:id", async (req, res) => {
+  try {
+    // Find the product by id
+    const product = await ProductModel.findById(req.params.id);
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    // Find 3 random products with different categoryId
+    const randomProducts = await ProductModel.aggregate([
+      { $match: { categoryId: { $ne: product.categoryId } } },
+      { $sample: { size: 3 } },
+    ]);
+
+    res.send(randomProducts);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Server error" });
+  }
+});
 
 // Filter sản phẩm theo chức năng
 router.get("/filter/:categoryName", async (req, res) => {
@@ -125,7 +146,7 @@ router.get("/top-sales/:categoryName", async (req, res) => {
 });
 
 // Product by id
-router.get("/:id", async (req, res) => {
+router.get("/id/:id", async (req, res) => {
   const id = req.params.id;
   const data = await ProductModel.findById(id);
   res.send(data);
