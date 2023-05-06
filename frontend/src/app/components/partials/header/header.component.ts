@@ -8,6 +8,8 @@ import {
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { HeaderService } from 'src/app/services/header.service';
 import { NavItem } from 'src/app/interfaces/nav-item';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'header',
@@ -16,15 +18,22 @@ import { NavItem } from 'src/app/interfaces/nav-item';
 })
 export class HeaderComponent {
   isSearchActive = false;
-  isAuth = false;
-  user = { name: 'Lam' };
+  user!: User;
   laptop: any;
   phone: any;
   tablet: any;
   earphone: any;
   keyboard: any;
   application: any;
-  constructor(private headerService: HeaderService) {}
+  constructor(
+    private headerService: HeaderService,
+    private userService: UserService
+  ) {
+    userService.userObservable.subscribe((newUser) => {
+      this.user = newUser;
+    });
+    console.log(this.user);
+  }
   ngOnInit() {
     this.headerService.getNavItem().subscribe((d) => {
       this.laptop = d.find((x) => x.category == 'laptop')?.brands;
@@ -38,5 +47,10 @@ export class HeaderComponent {
   toggleSearch() {
     this.isSearchActive = !this.isSearchActive;
   }
-  logout() {}
+  logout() {
+    this.userService.logout();
+  }
+  get isAuth() {
+    return this.user.token;
+  }
 }

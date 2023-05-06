@@ -33,6 +33,7 @@ import { PolicyComponent } from './components/pages/policy/policy.component';
 import { ReportsComponent } from './components/pages/reports/reports.component';
 import { LoadingComponent } from './components/partials/loading/loading.component';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { MapComponent } from './components/partials/map/map.component';
 import { CatalogBrandComponent } from './components/pages/catalog-brand/catalog-brand.component';
 import { AdminProductComponent } from './components/pages/admin-product/admin-product.component';
 import { AdminProductCategoryComponent } from './components/pages/admin-product-category/admin-product-category.component';
@@ -69,6 +70,7 @@ import { ShoppingCartComponent } from './components/pages/shopping-cart/shopping
     PolicyComponent,
     ReportsComponent,
     LoadingComponent,
+    MapComponent,
     CatalogBrandComponent,
     AdminProductComponent,
     AdminProductCategoryComponent,

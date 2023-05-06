@@ -1,7 +1,20 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  catchError,
+  map,
+  retry,
+  tap,
+  throwError,
+} from 'rxjs';
 import { IUserLogin, IUserRegister, User } from '../interfaces/user';
-import { HttpClient } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
+
 const USER_KEY = 'User';
 
 @Injectable({
@@ -16,6 +29,7 @@ export class UserService {
   );
 
   public userObservable: Observable<User>;
+
   constructor(private http: HttpClient) {
     this.userObservable = this.userSubject.asObservable();
   }
@@ -23,11 +37,34 @@ export class UserService {
     return this.userSubject.value;
   }
 
-  login(userLogin: IUserLogin): Observable<User> {
-    return this.http.post<User>(this.USER_LOGIN_URL, userLogin);
+  login(userLogin: IUserLogin) {
+    return this.http.post<User>(this.USER_LOGIN_URL, userLogin).pipe(
+      tap({
+        next: (user) => {
+          this.setUserToLocalStorage(user);
+          this.userSubject.next(user);
+          alert(`Welcome to BlueSpace ${user.name}!\nLogin Successful!`);
+        },
+        error: (errorResponse) => {
+          alert('Username or password is invalid!\nPlease try again.');
+        },
+      })
+    );
   }
+
   register(userRegister: IUserRegister): Observable<User> {
-    return this.http.post<User>(this.USER_REGISTER_URL, userRegister);
+    return this.http.post<User>(this.USER_REGISTER_URL, userRegister).pipe(
+      tap({
+        next: (user) => {
+          this.setUserToLocalStorage(user);
+          this.userSubject.next(user);
+          alert(`Welcome to BlueSpace ${user.name}!\nRegister Successful!`);
+        },
+        error: (errorResponse) => {
+          alert('Register Failed');
+        },
+      })
+    );
   }
 
   logout() {
@@ -44,5 +81,8 @@ export class UserService {
     const userJson = localStorage.getItem(USER_KEY);
     if (userJson) return JSON.parse(userJson) as User;
     return new User();
+  }
+  handleError(error: HttpErrorResponse) {
+    return throwError(() => new Error(error.message));
   }
 }

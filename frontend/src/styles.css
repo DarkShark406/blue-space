@@ -2,7 +2,6 @@
 @import "swiper/css";
 @import "swiper/css/navigation";
 @import "swiper/css/pagination";
-
 * {
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;

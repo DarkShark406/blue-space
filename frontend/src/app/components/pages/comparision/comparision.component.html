@@ -9,7 +9,9 @@
     <div class="row product-title">
       <ng-container *ngFor="let p of listProduct">
         <div class="name">
-          {{ p.productName }}
+          <a href="/product/{{ p.id }}">
+            {{ p.productName }}
+          </a>
         </div>
       </ng-container>
     </div>
