@@ -154,11 +154,18 @@
               </div>
             </li>
             <li *ngIf="isAuth" class="menu-container">
-              <a routerLink="/dashboard">{{ user.name }}</a>
+              <a routerLink="/dashboard"
+                ><img
+                  src="../assets/images/avatar.jpg"
+                  alt="avatar"
+                  [style]="'width: 30px; height: 30px; border-radius: 4px;'"
+                />
+                <span class="blue">{{ user.name }}</span></a
+              >
               <div class="menu">
-                <a routerLink="/profile">Profile</a>
-                <a routerLink="/orders">Orders</a>
-                <a (click)="logout()">Logout</a>
+                <a routerLink="/profile">Thông tin cá nhân</a>
+                <a routerLink="/orders">Đơn hàng</a>
+                <a (click)="logout()">Đăng xuất</a>
               </div>
             </li>
           </ul>
