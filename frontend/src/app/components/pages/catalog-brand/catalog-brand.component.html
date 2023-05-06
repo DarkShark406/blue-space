@@ -844,7 +844,7 @@
                 <i class="fa-solid fa-circle-check"></i>
                 <span>Còn hàng</span>
               </div>
-              <a class="thumb" [href]="'/product/' + p.productID">
+              <a class="thumb" [href]="'/product/' + p.id">
                 <img
                   [src]="'http://localhost:5000/images/' + p.productImage[0]"
                   alt=""
@@ -860,7 +860,7 @@
                 </div>
                 <span class="review">Đánh giá ({{ p.numberReview }})</span>
               </div>
-              <a [href]="'/product/' + p.productID" class="name">{{
+              <a [href]="'/product/' + p.id" class="name">{{
                 p.productName
               }}</a>
               <div class="old-price">{{ convertNumber(p.productPrice) }}đ</div>
@@ -892,7 +892,7 @@
             </div>
             <div class="top">
               <div class="product-item__image">
-                <a [href]="'/product/' + p.productID">
+                <a [href]="'/product/' + p.id">
                   <img
                     [src]="'http://localhost:5000/images/' + p.productImage[0]"
                     alt=""
@@ -1097,24 +1097,20 @@
               </div>
 
               <div class="buy-now-btn__details-btn">
-                <button class="buy-now-btn">
+                <button class="buy-now-btn" (click)="addToCart(p, 1)">
                   <span class="material-icons-outlined"> shopping_cart </span>
                   <span><a href="">Mua ngay</a></span>
                 </button>
                 <button class="details-btn">
                   <span class="material-icons-outlined"> bar_chart </span>
-                  <span
-                    ><a [href]="'/product/' + p.productID"
-                      >Xem chi tiết</a
-                    ></span
-                  >
+                  <span><a [href]="'/product/' + p.id">Xem chi tiết</a></span>
                 </button>
               </div>
 
               <div class="other-function">
-                <button class="compare">
+                <button class="compare" (click)="openPopup(p.id)">
                   <i class="fa-solid fa-circle-plus"></i>
-                  <span><a href="">So sánh</a></span>
+                  <span><a>So sánh</a></span>
                 </button>
                 <div class="mail-btn__favorite-btn">
                   <button class="mail-btn">
@@ -1140,6 +1136,28 @@
           {{ pageNumber }}
         </button>
       </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="popUp" class="popup-container" (click)="onPopupClick($event)">
+  <div class="popup">
+    <button class="close-btn" (click)="closePopup()">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <h3>Nhập tên sản phẩm để so sánh</h3>
+    <input type="text" [(ngModel)]="searchTerm" (input)="getProductCompare()" />
+    <div class="recomendation">
+      <ng-container *ngFor="let suggestion of suggestions">
+        <div class="suggestion" (click)="compare(suggestion._id)">
+          <img
+            width="36px"
+            height="36px"
+            src="http://localhost:5000/images/{{ suggestion.productImage[0] }}"
+            alt=""
+          />
+          {{ suggestion.productName }}
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>
