@@ -1,5 +1,10 @@
 <div class="container">
   <div class="title">So sánh sản phẩm</div>
+  <div>
+    <button class="go-back-btn" (click)="goBack()">
+      Trở về sản phẩm chính
+    </button>
+  </div>
   <div class="product-container">
     <div class="row product-title">
       <ng-container *ngFor="let p of listProduct">
@@ -11,7 +16,11 @@
     <div class="row product-compare">
       <ng-container *ngFor="let p of listProduct">
         <div class="product">
-          <slider class="slider" [type]="'image'" [list]="product1"></slider>
+          <slider
+            class="slider"
+            [type]="'image'"
+            [list]="p.productImage"
+          ></slider>
           <div class="product-price">
             Giá chỉ từ
             <span class="price">{{
@@ -62,9 +71,6 @@
           <img src="../assets/images/icons/processor.png" alt="processor" />
         </div>
         <p>{{ p.specifications.cpu }}</p>
-        <p>2,5 GHz - 4,5 GHz</p>
-        <p>4 nhân</p>
-        <p>8 luồng</p>
       </div>
     </div>
     <div class="title">RAM & Disk</div>

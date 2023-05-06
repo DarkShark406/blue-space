@@ -21,6 +21,15 @@
   <div class="c-row">
     <div class="slider">
       <slider [type]="'image'" [list]="product.productImage"></slider>
+      <div class="color">
+        <label for="">Màu sắc</label>
+        <select name="" id="" (change)="getColor($event)">
+          <option value="" disabled selected hidden>--Màu sắc--</option>
+          <ng-container *ngFor="let c of product.specifications.color">
+            <option [ngValue]="c">{{ c }}</option>
+          </ng-container>
+        </select>
+      </div>
     </div>
     <div class="product-info">
       <div>
@@ -58,15 +67,19 @@
                 ><i class="fa-regular fa-envelope fa-fade"></i
               ></a>
             </button>
-            <button><i class="fa-regular fa-heart fa-beat-fade"></i></button>
-            <button><i class="fa-solid fa-plus"></i></button>
+            <button class="compare-btn" (click)="openPopup()">
+              <i class="fa-solid fa-plus"></i> So sánh
+            </button>
           </div>
           <div class="buy">
             <div class="info">
               Thanh toán online <br />
               Giảm ngay <span class="bold">3.000.000đ</span>
             </div>
-            <input type="number" value="1" />
+            <input type="number" value="1" [(ngModel)]="quantity" />
+            <button (click)="addToCart(product, quantity)">
+              Thêm giỏ hàng
+            </button>
             <button>Mua ngay</button>
           </div>
         </div>
@@ -84,20 +97,33 @@
         </button>
       </div>
       <div class="combo-list" [ngClass]="{ active: show }">
-        <div class="product">
-          <div class="img">
-            <img src="../assets/images/home/phone.png" alt="" />
+        <div class="combo-item" *ngFor="let p of comboProduct">
+          <a href="http://localhost:5001/product/{{ p._id }}">
+            <div class="product">
+              <div class="img">
+                <img
+                  src="http://localhost:5000/images/{{ p.productImage[0] }}"
+                  alt=""
+                />
+              </div>
+              <div>
+                <span>{{ p.productName }}</span>
+                <div>
+                  <span class="red">{{
+                    p.productPrice.toLocaleString("vi", {
+                      style: "currency",
+                      currency: "VND"
+                    })
+                  }}</span>
+                </div>
+              </div>
+            </div>
+          </a>
+          <div class="add-to-cart">
+            <button class="add-to-cart-btn" (click)="addToCart(p, 1)">
+              Thêm giỏ hàng
+            </button>
           </div>
-          <div>
-            <span
-              >Key-online Office Home & Student 2021 (Vĩnh viễn; cho 01
-              Windows/Mac)</span
-            >
-            <div><span class="red">2.990.000đ</span></div>
-          </div>
-        </div>
-        <div class="add-to-cart">
-          <button class="add-to-cart-btn">Thêm vào giỏ hàng</button>
         </div>
       </div>
     </div>
@@ -106,4 +132,27 @@
 
 <div class="container">
   <div class="description" [innerHTML]="product.description"></div>
+</div>
+
+<div *ngIf="popUp" class="popup-container" (click)="onPopupClick($event)">
+  <div class="popup">
+    <button class="close-btn" (click)="closePopup()">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <h3>Nhập tên sản phẩm để so sánh</h3>
+    <input type="text" [(ngModel)]="searchTerm" (input)="getProductCompare()" />
+    <div class="recomendation">
+      <ng-container *ngFor="let suggestion of suggestions">
+        <div class="suggestion" (click)="compare(suggestion._id)">
+          <img
+            width="36px"
+            height="36px"
+            src="http://localhost:5000/images/{{ suggestion.productImage[0] }}"
+            alt=""
+          />
+          {{ suggestion.productName }}
+        </div>
+      </ng-container>
+    </div>
+  </div>
 </div>
