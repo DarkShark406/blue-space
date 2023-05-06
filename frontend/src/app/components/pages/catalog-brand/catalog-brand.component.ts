@@ -4,16 +4,17 @@ import { Filter } from 'src/app/interfaces/filter';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
 
 @Component({
-  selector: 'app-catalog',
-  templateUrl: './catalog.component.html',
-  styleUrls: ['./catalog.component.css'],
+  selector: 'app-catalog-brand',
+  templateUrl: './catalog-brand.component.html',
+  styleUrls: ['./catalog-brand.component.css'],
 })
-export class CatalogComponent implements OnInit {
+export class CatalogBrandComponent implements OnInit {
   products: any;
   errorMessage: string = '';
   typeShowList = true; // Kiểu hiển thị danh sách sản phẩm: true = grid, false = horizontal
   typeSort: string = ''; // Kiểu sort: asc: tăng dần, desc: giảm dần
   categoryName: string = '';
+  brand: string = '';
 
   pageSize = 20;
   currentPage = 1;
@@ -27,12 +28,18 @@ export class CatalogComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.categoryName = this.route.snapshot.params['category'];
+    this.brand = this.route.snapshot.params['brand'];
+
+    // Set thẳng brand cho filter
+    this.filter.brand.push(this.brand);
 
     if (this.categoryName) {
-      this._service.getProductForCategory(this.categoryName).subscribe({
-        next: (data) => (this.products = data),
-        error: (err) => (this.errorMessage = err),
-      });
+      this._service
+        .getProductForCategoryAndBrand(this.categoryName, this.brand)
+        .subscribe({
+          next: (data) => (this.products = data),
+          error: (err) => (this.errorMessage = err),
+        });
 
       // Tính số trang
       const totalPages = Math.ceil(this.products.length / this.pageSize);
@@ -51,7 +58,6 @@ export class CatalogComponent implements OnInit {
 
   getPageNumbers(): number[] {
     const totalPages = Math.ceil(this.products.length / this.pageSize); // Tính số trang dựa trên số lượng sản phẩm và kích thước trang
-    if (totalPages == 0) return [];
     return Array(totalPages)
       .fill(0)
       .map((x, i) => i + 1); // Tạo một mảng các số trang từ 2 đến totalPages
@@ -152,13 +158,6 @@ export class CatalogComponent implements OnInit {
 
   // Xóa tất cả filter
   deleteFilter() {
-    const allBrandList = document.querySelectorAll('.brand-item');
-    if (allBrandList) {
-      for (let i = 0; i < allBrandList.length; i++) {
-        allBrandList[i].classList.remove('active');
-      }
-    }
-
     const allChoiceList = document.querySelectorAll('.filter-item .choice');
     if (allChoiceList) {
       for (let i = 0; i < allChoiceList.length; i++) {
@@ -179,19 +178,8 @@ export class CatalogComponent implements OnInit {
   laptopFilter() {
     // Khởi tạo lại filter
     this.filter = new Filter();
-
-    // Brand
-    const laptopBrandItemAll = document.querySelectorAll(
-      '#laptop-filter-brand .brand-item'
-    );
-    for (let i = 0; i < laptopBrandItemAll.length; i++) {
-      if (laptopBrandItemAll[i].classList.contains('active')) {
-        const value = laptopBrandItemAll[i].getAttribute('data-value');
-        if (value) {
-          this.filter.brand.push(value);
-        }
-      }
-    }
+    // Set thẳng brand cho filter
+    this.filter.brand.push(this.brand);
 
     // Screen
     const laptopScreenItemAll = document.querySelectorAll(
@@ -242,19 +230,8 @@ export class CatalogComponent implements OnInit {
   phoneTabletFilter() {
     // Khởi tạo lại filter
     this.filter = new Filter();
-
-    // Brand
-    const phoneBrandItemAll = document.querySelectorAll(
-      '#phone-filter-brand .brand-item'
-    );
-    for (let i = 0; i < phoneBrandItemAll.length; i++) {
-      if (phoneBrandItemAll[i].classList.contains('active')) {
-        const value = phoneBrandItemAll[i].getAttribute('data-value');
-        if (value) {
-          this.filter.brand.push(value);
-        }
-      }
-    }
+    // Set thẳng brand cho filter
+    this.filter.brand.push(this.brand);
 
     // Storage
     const phoneStorageItemAll = document.querySelectorAll(
@@ -305,19 +282,8 @@ export class CatalogComponent implements OnInit {
   earphoneFilter() {
     // Khởi tạo lại filter
     this.filter = new Filter();
-
-    // Brand
-    const earphoneBrandItemAll = document.querySelectorAll(
-      '#earphone-filter-brand .brand-item'
-    );
-    for (let i = 0; i < earphoneBrandItemAll.length; i++) {
-      if (earphoneBrandItemAll[i].classList.contains('active')) {
-        const value = earphoneBrandItemAll[i].getAttribute('data-value');
-        if (value) {
-          this.filter.brand.push(value);
-        }
-      }
-    }
+    // Set thẳng brand cho filter
+    this.filter.brand.push(this.brand);
 
     // Type
     const earphoneTypeItemAll = document.querySelectorAll(
@@ -355,19 +321,8 @@ export class CatalogComponent implements OnInit {
   keyboardFilter() {
     // Khởi tạo lại filter
     this.filter = new Filter();
-
-    // Brand
-    const keyboardBrandItemAll = document.querySelectorAll(
-      '#keyboard-filter-brand .brand-item'
-    );
-    for (let i = 0; i < keyboardBrandItemAll.length; i++) {
-      if (keyboardBrandItemAll[i].classList.contains('active')) {
-        const value = keyboardBrandItemAll[i].getAttribute('data-value');
-        if (value) {
-          this.filter.brand.push(value);
-        }
-      }
-    }
+    // Set thẳng brand cho filter
+    this.filter.brand.push(this.brand);
 
     // Type
     const keyboardTypeItemAll = document.querySelectorAll(
@@ -418,19 +373,8 @@ export class CatalogComponent implements OnInit {
   applicationFilter() {
     // Khởi tạo lại filter
     this.filter = new Filter();
-
-    // Brand
-    const applicationBrandItemAll = document.querySelectorAll(
-      '#application-filter-brand .brand-item'
-    );
-    for (let i = 0; i < applicationBrandItemAll.length; i++) {
-      if (applicationBrandItemAll[i].classList.contains('active')) {
-        const value = applicationBrandItemAll[i].getAttribute('data-value');
-        if (value) {
-          this.filter.brand.push(value);
-        }
-      }
-    }
+    // Set thẳng brand cho filter
+    this.filter.brand.push(this.brand);
 
     // Type
     const applicationTypeItemAll = document.querySelectorAll(
@@ -481,19 +425,8 @@ export class CatalogComponent implements OnInit {
   mouseFilter() {
     // Khởi tạo lại filter
     this.filter = new Filter();
-
-    // Brand
-    const mouseBrandItemAll = document.querySelectorAll(
-      '#mouse-filter-brand .brand-item'
-    );
-    for (let i = 0; i < mouseBrandItemAll.length; i++) {
-      if (mouseBrandItemAll[i].classList.contains('active')) {
-        const value = mouseBrandItemAll[i].getAttribute('data-value');
-        if (value) {
-          this.filter.brand.push(value);
-        }
-      }
-    }
+    // Set thẳng brand cho filter
+    this.filter.brand.push(this.brand);
 
     // Price
     const mousePriceItemAll = document.querySelectorAll(
