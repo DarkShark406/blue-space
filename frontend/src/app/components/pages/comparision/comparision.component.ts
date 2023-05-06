@@ -35,4 +35,14 @@ export class ComparisionComponent {
   goBack() {
     this.location.back();
   }
+  buyNow(product: Product, quantity: number) {
+    const item = Object.assign({}, product);
+    item.specifications = Object.assign({}, product.specifications);
+
+    item.specifications.color = [product.specifications.color[0]];
+    console.log(item);
+    console.log(quantity);
+    // Viết serivce truyền item và quantity sau đó navigate đến trang giỏ hàng
+    alert(item.productName + '\n Số lượng:' + quantity);
+  }
 }

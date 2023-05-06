@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Filter } from 'src/app/interfaces/filter';
+import { Product } from 'src/app/interfaces/product';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
+import { SearchBarService } from 'src/app/services/search-bar.service';
 
 @Component({
   selector: 'app-catalog',
@@ -23,7 +25,9 @@ export class CatalogComponent implements OnInit {
 
   constructor(
     private _service: ProductCategoryService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
+    private searchBarService: SearchBarService
   ) {}
   ngOnInit() {
     this.categoryName = this.route.snapshot.params['category'];
@@ -42,7 +46,45 @@ export class CatalogComponent implements OnInit {
       });
     }
   }
+  // Xử lý nút
+  addToCart(product: Product, quantity: number) {
+    const item = Object.assign({}, product);
+    item.specifications = Object.assign({}, product.specifications);
 
+    item.specifications.color = [product.specifications.color[0]];
+
+    console.log(item);
+    console.log(quantity);
+    // Viết serivce truyền item và quantity
+    alert(item.productName + '\n Số lượng:' + quantity);
+  }
+  suggestions: any;
+  searchTerm = '';
+  id1 = '';
+  getProductCompare() {
+    this.searchBarService.getData(this.searchTerm).subscribe((d) => {
+      this.suggestions = d.slice(0, 5);
+    });
+  }
+  compare(id: string) {
+    this.router.navigateByUrl('/comparision?id1=' + this.id1 + '&id2=' + id);
+  }
+  popUp: boolean = false;
+  onPopupClick(event: any) {
+    if (event.target.classList.contains('popup-container')) {
+      this.closePopup();
+    }
+  }
+
+  openPopup(id: string) {
+    this.id1 = id;
+    this.popUp = true;
+  }
+  closePopup() {
+    this.popUp = false;
+  }
+
+  // =========================================================================================
   getProductsForCurrentPage(): any[] {
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;

@@ -8,44 +8,44 @@ const router = Router();
 
 // Import data to DB
 router.get("/seed", async (req, res) => {
-	const productCount = await ProductModel.countDocuments();
-	if (productCount > 0) {
-		res.send("Seed is already done!");
-		return;
-	}
-	await ProductModel.create(sample_products);
+  const productCount = await ProductModel.countDocuments();
+  if (productCount > 0) {
+    res.send("Seed is already done!");
+    return;
+  }
+  await ProductModel.create(sample_products);
 
-	res.send("Seed is done, Lam");
+  res.send("Seed is done, Lam");
 });
 
 router.get("/", async (req, res) => {
-	const data = await ProductModel.find();
-	res.send(data);
+  const data = await ProductModel.find();
+  res.send(data);
 });
 
 // Search sản phẩm theo name
 router.get("/search/:searchTerm", async (req, res) => {
-	const searchTerm = req.params.searchTerm;
-	const regex = new RegExp(searchTerm, "i");
-	const products = await ProductModel.find({ productName: { $regex: regex } });
-	res.send(products);
+  const searchTerm = req.params.searchTerm;
+  const regex = new RegExp(searchTerm, "i");
+  const products = await ProductModel.find({ productName: { $regex: regex } });
+  res.send(products);
 });
 
 // Lấy 2 sản phẩm so sánh
 router.get("/compare/:id1/:id2", async (req, res) => {
-	try {
-		const product1 = await ProductModel.findById(req.params.id1);
-		const product2 = await ProductModel.findById(req.params.id2);
+  try {
+    const product1 = await ProductModel.findById(req.params.id1);
+    const product2 = await ProductModel.findById(req.params.id2);
 
-		if (!product1 || !product2) {
-			return res.status(404).json({ message: "Product not found" });
-		}
+    if (!product1 || !product2) {
+      return res.status(404).json({ message: "Product not found" });
+    }
 
-		res.json([product1, product2]);
-	} catch (error) {
-		console.log(error);
-		res.status(500).json({ message: "Server error" });
-	}
+    res.json([product1, product2]);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Server error" });
+  }
 });
 // Lấy sản phẩm combo
 router.get("/combo-product/:id", async (req, res) => {
@@ -71,233 +71,225 @@ router.get("/combo-product/:id", async (req, res) => {
 
 // Filter sản phẩm theo chức năng
 router.post("/filter/:categoryName", async (req, res) => {
-	const categoryName = req.params["categoryName"];
+  const categoryName = req.params["categoryName"];
 
-	if (categoryName == "laptop") {
-		const screen = req.body.screen;
-		const brand = req.body.brand;
-		const ram = req.body.ram;
-		const price = req.body.price;
+  if (categoryName == "laptop") {
+    const screen = req.body.screen;
+    const brand = req.body.brand;
+    const ram = req.body.ram;
+    const price = req.body.price;
 
-		const category = await CategoryModel.findOne({
-			categoryName: categoryName,
-		});
+    const category = await CategoryModel.findOne({
+      categoryName: categoryName,
+    });
 
-		if (category) {
-			const categoryId = category.categoryId;
+    if (category) {
+      const categoryId = category.categoryId;
 
-			let products = await ProductModel.find({
-				categoryId: categoryId,
-				productBrand: {
-					$regex: new RegExp(brand.join("|"), "i"),
-				},
-				"specifications.screen": {
-					$regex: new RegExp(screen.join("|"), "i"),
-				},
-				"specifications.ram": {
-					$regex: new RegExp(ram.join("|"), "i"),
-				},
-			});
+      let products = await ProductModel.find({
+        categoryId: categoryId,
+        productBrand: {
+          $regex: new RegExp(brand.join("|"), "i"),
+        },
+        "specifications.screen": {
+          $regex: new RegExp(screen.join("|"), "i"),
+        },
+        "specifications.ram": {
+          $regex: new RegExp(ram.join("|"), "i"),
+        },
+      });
 
-			if (price) {
-				const [min, max] = price.split("-").map(Number);
-				products = products.filter((product) => {
-					let productPrice = product.productPrice;
-					let productDiscount = product.productDiscount;
-					let newPrice = 0;
-					if (productDiscount) {
-						newPrice = productPrice - (productPrice * productDiscount) / 100;
-					}
-					return newPrice > min * 1000000 && newPrice < max * 1000000;
-				});
-			}
-			res.send(products);
-		}
-	}
+      if (price) {
+        const [min, max] = price.split("-").map(Number);
+        products = products.filter((product) => {
+          let productPrice = product.productPrice;
+          let productDiscount = product.productDiscount;
+          let newPrice = 0;
+          if (productDiscount) {
+            newPrice = productPrice - (productPrice * productDiscount) / 100;
+          }
+          return newPrice > min * 1000000 && newPrice < max * 1000000;
+        });
+      }
+      res.send(products);
+    }
+  }
 
-	// Filter của phone
-	if (categoryName == "phone" || categoryName == "tablet") {
-		const storage = req.body.storage;
-		const brand = req.body.brand;
-		const ram = req.body.ram;
-		const price = req.body.price;
+  // Filter của phone
+  if (categoryName == "phone" || categoryName == "tablet") {
+    const storage = req.body.storage;
+    const brand = req.body.brand;
+    const ram = req.body.ram;
+    const price = req.body.price;
 
-		const category = await CategoryModel.findOne({
-			categoryName: categoryName,
-		});
+    const category = await CategoryModel.findOne({
+      categoryName: categoryName,
+    });
 
-		if (category) {
-			const categoryId = category.categoryId;
+    if (category) {
+      const categoryId = category.categoryId;
 
-			let products = await ProductModel.find({
-				categoryId: categoryId,
-				productBrand: {
-					$regex: new RegExp(brand.join("|"), "i"),
-				},
-				"specifications.storage": {
-					$regex: new RegExp(storage.join("|"), "i"),
-				},
-				"specifications.ram": {
-					$regex: new RegExp(ram.join("|"), "i"),
-				},
-			});
+      let products = await ProductModel.find({
+        categoryId: categoryId,
+        productBrand: {
+          $regex: new RegExp(brand.join("|"), "i"),
+        },
+        "specifications.storage": {
+          $regex: new RegExp(storage.join("|"), "i"),
+        },
+        "specifications.ram": {
+          $regex: new RegExp(ram.join("|"), "i"),
+        },
+      });
 
-			if (price) {
-				const [min, max] = price.split("-").map(Number);
-				products = products.filter((product) => {
-					let productPrice = product.productPrice;
-					let productDiscount = product.productDiscount;
-					let newPrice = 0;
-					if (productDiscount) {
-						newPrice = productPrice - (productPrice * productDiscount) / 100;
-					}
+      if (price) {
+        const [min, max] = price.split("-").map(Number);
+        products = products.filter((product) => {
+          let productPrice = product.productPrice;
+          let productDiscount = product.productDiscount;
+          let newPrice = 0;
+          if (productDiscount) {
+            newPrice = productPrice - (productPrice * productDiscount) / 100;
+          }
 
-					console.log(newPrice);
-					return newPrice > min * 1000000 && newPrice < max * 1000000;
-				});
-			}
-			res.send(products);
-		}
-	}
+          return newPrice > min * 1000000 && newPrice < max * 1000000;
+        });
+      }
+      res.send(products);
+    }
+  }
 
-	// Filter của earphone và keyboard
-	if (categoryName == "earphone" || categoryName == "keyboard") {
-		const brand = req.body.brand;
-		const type = req.body.type;
-		const connection = req.body.connection; // dây, bluetooth --> nếu keyboard
-		const price = req.body.price;
+  // Filter của earphone và keyboard
+  if (categoryName == "earphone" || categoryName == "keyboard") {
+    const brand = req.body.brand;
+    const type = req.body.type;
+    const connection = req.body.connection; // dây, bluetooth --> nếu keyboard
+    const price = req.body.price;
 
-		console.log("brand: " + brand);
-		console.log("type: " + type);
-		console.log("connection: " + connection);
-		console.log("price: " + price);
+    const category = await CategoryModel.findOne({
+      categoryName: categoryName,
+    });
 
-		const category = await CategoryModel.findOne({
-			categoryName: categoryName,
-		});
+    if (category) {
+      const categoryId = category.categoryId;
 
-		if (category) {
-			const categoryId = category.categoryId;
+      let products = await ProductModel.find({
+        categoryId: categoryId,
+        productBrand: {
+          $regex: new RegExp(brand.join("|"), "i"),
+        },
+        "specifications.type": {
+          $regex: new RegExp(type.join("|"), "i"),
+        },
+        "specifications.connection": {
+          $regex: new RegExp(connection.join("|"), "i"),
+        },
+      });
 
-			let products = await ProductModel.find({
-				categoryId: categoryId,
-				productBrand: {
-					$regex: new RegExp(brand.join("|"), "i"),
-				},
-				"specifications.type": {
-					$regex: new RegExp(type.join("|"), "i"),
-				},
-				"specifications.connection": {
-					$regex: new RegExp(connection.join("|"), "i"),
-				},
-			});
+      if (price) {
+        const [min, max] = price.split("-").map(Number);
+        products = products.filter((product) => {
+          let productPrice = product.productPrice;
+          let productDiscount = product.productDiscount;
+          let newPrice = 0;
+          if (productDiscount) {
+            newPrice = productPrice - (productPrice * productDiscount) / 100;
+          }
+          return newPrice > min * 1000000 && newPrice < max * 1000000;
+        });
+      }
 
-			if (price) {
-				const [min, max] = price.split("-").map(Number);
-				products = products.filter((product) => {
-					let productPrice = product.productPrice;
-					let productDiscount = product.productDiscount;
-					let newPrice = 0;
-					if (productDiscount) {
-						newPrice = productPrice - (productPrice * productDiscount) / 100;
-					}
-					return newPrice > min * 1000000 && newPrice < max * 1000000;
-				});
-			}
+      res.send(products);
+    }
+  }
 
-			console.log(products);
-			res.send(products);
-		}
-	}
+  // Filter của mouse
+  if (categoryName == "mouse") {
+    const brand = req.body.brand;
+    const price = req.body.price;
 
-	// Filter của mouse
-	if (categoryName == "mouse") {
-		const brand = req.body.brand;
-		const price = req.body.price;
+    const category = await CategoryModel.findOne({
+      categoryName: categoryName,
+    });
 
-		const category = await CategoryModel.findOne({
-			categoryName: categoryName,
-		});
+    if (category) {
+      const categoryId = category.categoryId;
 
-		if (category) {
-			const categoryId = category.categoryId;
+      let products = await ProductModel.find({
+        categoryId: categoryId,
+        productBrand: {
+          $regex: new RegExp(brand.join("|"), "i"),
+        },
+      });
 
-			let products = await ProductModel.find({
-				categoryId: categoryId,
-				productBrand: {
-					$regex: new RegExp(brand.join("|"), "i"),
-				},
-			});
+      if (price) {
+        const [min, max] = price.split("-").map(Number);
+        products = products.filter((product) => {
+          let productPrice = product.productPrice;
+          let productDiscount = product.productDiscount;
+          let newPrice = 0;
+          if (productDiscount) {
+            newPrice = productPrice - (productPrice * productDiscount) / 100;
+          }
+          return newPrice > min * 1000000 && newPrice < max * 1000000;
+        });
+      }
+      res.send(products);
+    }
+  }
 
-			if (price) {
-				const [min, max] = price.split("-").map(Number);
-				products = products.filter((product) => {
-					let productPrice = product.productPrice;
-					let productDiscount = product.productDiscount;
-					let newPrice = 0;
-					if (productDiscount) {
-						newPrice = productPrice - (productPrice * productDiscount) / 100;
-					}
-					return newPrice > min * 1000000 && newPrice < max * 1000000;
-				});
-			}
-			res.send(products);
-		}
-	}
+  // Filter của application
+  if (categoryName == "application") {
+    const brand = req.body.brand; // Microsoft
+    const type = req.body.type; // Diệt virus
+    const language = req.body.language;
+    const price = req.body.price;
 
-	// Filter của application
-	if (categoryName == "application") {
-		const brand = req.body.brand; // Microsoft
-		const type = req.body.type; // Diệt virus
-		const language = req.body.language;
-		const price = req.body.price;
+    const category = await CategoryModel.findOne({
+      categoryName: categoryName,
+    });
 
-		const category = await CategoryModel.findOne({
-			categoryName: categoryName,
-		});
+    if (category) {
+      const categoryId = category.categoryId;
 
-		if (category) {
-			const categoryId = category.categoryId;
+      let products = await ProductModel.find({
+        categoryId: categoryId,
+        productBrand: {
+          $regex: new RegExp(brand.join("|"), "i"),
+        },
+        "specifications.type": {
+          $regex: new RegExp(type.join("|"), "i"),
+        },
+        "specifications.language": {
+          $regex: new RegExp(language.join("|"), "i"),
+        },
+      });
 
-			let products = await ProductModel.find({
-				categoryId: categoryId,
-				productBrand: {
-					$regex: new RegExp(brand.join("|"), "i"),
-				},
-				"specifications.type": {
-					$regex: new RegExp(type.join("|"), "i"),
-				},
-				"specifications.language": {
-					$regex: new RegExp(language.join("|"), "i"),
-				},
-			});
-
-			if (price) {
-				const [min, max] = price.split("-").map(Number);
-				products = products.filter((product) => {
-					let productPrice = product.productPrice;
-					let productDiscount = product.productDiscount;
-					let newPrice = 0;
-					if (productDiscount) {
-						newPrice = productPrice - (productPrice * productDiscount) / 100;
-					}
-					return newPrice > min * 1000000 && newPrice < max * 1000000;
-				});
-			}
-			res.send(products);
-		}
-	}
+      if (price) {
+        const [min, max] = price.split("-").map(Number);
+        products = products.filter((product) => {
+          let productPrice = product.productPrice;
+          let productDiscount = product.productDiscount;
+          let newPrice = 0;
+          if (productDiscount) {
+            newPrice = productPrice - (productPrice * productDiscount) / 100;
+          }
+          return newPrice > min * 1000000 && newPrice < max * 1000000;
+        });
+      }
+      res.send(products);
+    }
+  }
 });
 
 // sort sản phẩm theo tăng dần, giảm dần
 router.post("/sort/:sortType", (req, res) => {
-	const sortType = req.params["sortType"];
-	console.log(sortType);
-	let result = req.body;
+  const sortType = req.params["sortType"];
+  let result = req.body;
 
-	const data = result.sort((a: Product, b: Product) => {
-		// Lỗi khi so sánh giá mới
-		/*
+  const data = result.sort((a: Product, b: Product) => {
+    // Lỗi khi so sánh giá mới
+    /*
 		let newPriceA = 0;
 		if (a.productDiscount) {
 			newPriceA = a.productPrice - (a.productPrice * a.productDiscount) / 100;
@@ -313,61 +305,61 @@ router.post("/sort/:sortType", (req, res) => {
 			return newPriceB - newPriceA;
 		}
 		*/
-		// So sánh với giá mới bị lỗi nên so sánh qua giá thường
-		if (sortType == "asc") {
-			return a.productPrice - b.productPrice;
-		} else {
-			return b.productPrice - a.productPrice;
-		}
-	});
+    // So sánh với giá mới bị lỗi nên so sánh qua giá thường
+    if (sortType == "asc") {
+      return a.productPrice - b.productPrice;
+    } else {
+      return b.productPrice - a.productPrice;
+    }
+  });
 
-	res.send(data);
+  res.send(data);
 });
 
 // Lấy top sales theo categoryName
 router.get("/top-sales/:categoryName", async (req, res) => {
-	const categoryName = req.params.categoryName;
+  const categoryName = req.params.categoryName;
 
-	const category = await CategoryModel.findOne({ categoryName });
-	if (category) {
-		const categoryId = category.categoryId;
+  const category = await CategoryModel.findOne({ categoryName });
+  if (category) {
+    const categoryId = category.categoryId;
 
-		const products = await ProductModel.aggregate([
-			{
-				$match: {
-					categoryId: categoryId,
-				},
-			},
-			{
-				$lookup: {
-					from: "categories",
-					localField: "categoryId",
-					foreignField: "categoryId",
-					as: "category",
-				},
-			},
-			{
-				$project: {
-					_id: 1,
-					productName: 1,
-					ratingPoint: 1,
-					numberReview: 1,
-					categoryName: "$category.categoryName",
-				},
-			},
-			{
-				$unwind: "$categoryName",
-			},
-			{
-				$sort: { ratingPoint: -1, numberReview: -1 },
-			},
-			{
-				$limit: 4,
-			},
-		]);
+    const products = await ProductModel.aggregate([
+      {
+        $match: {
+          categoryId: categoryId,
+        },
+      },
+      {
+        $lookup: {
+          from: "categories",
+          localField: "categoryId",
+          foreignField: "categoryId",
+          as: "category",
+        },
+      },
+      {
+        $project: {
+          _id: 1,
+          productName: 1,
+          ratingPoint: 1,
+          numberReview: 1,
+          categoryName: "$category.categoryName",
+        },
+      },
+      {
+        $unwind: "$categoryName",
+      },
+      {
+        $sort: { ratingPoint: -1, numberReview: -1 },
+      },
+      {
+        $limit: 4,
+      },
+    ]);
 
-		res.send(products);
-	} else res.send("Not found!");
+    res.send(products);
+  } else res.send("Not found!");
 });
 
 // Product by id
