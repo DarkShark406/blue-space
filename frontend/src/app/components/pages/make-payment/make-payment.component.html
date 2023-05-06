@@ -1,0 +1,285 @@
+<div class="container">
+  <div class="header">
+    <h1>Thanh toán</h1>
+  </div>
+  <div class="content">
+    <div class="list-products">
+      <table class="table products">
+        <thead>
+          <tr>
+            <th colspan="2">Sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="item">
+            <td class="image-item">
+              <img src="./assets/images/shopping-cart/laptop.jpg" />
+            </td>
+            <td class="name-item">
+              Laptop Asus TUF Gaming FX506LHB-HN188W i5 10300H/ 8GB/ 512GB/
+              15.6"FHD/GTX 1650 4GB/Win11
+            </td>
+            <td class="price-item">15.890.000</td>
+            <td class="number-item">
+              <input
+                type="number"
+                name="number"
+                id="number"
+                value="1"
+                min="1"
+              />
+            </td>
+            <td class="into-money">15.890.000</td>
+            <td class="delete-item"><i class="fa-solid fa-trash"></i></td>
+          </tr>
+          <tr class="item">
+            <td class="image-item">
+              <img src="./assets/images/shopping-cart/anti-virus.jpg" />
+            </td>
+            <td class="name-item">
+              Phần mềm diệt virus Eset Nod32 (1u/12 tháng)
+            </td>
+            <td class="price-item">179.100</td>
+            <td class="number-item">
+              <input
+                type="number"
+                name="number-item"
+                id="number-item"
+                value="2"
+                min="1"
+              />
+            </td>
+            <td class="into-money">358.200</td>
+            <td class="delete-item"><i class="fa-solid fa-trash"></i></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="button">
+        <button class="btn-continue-shopping">Tiếp tục mua sắm</button>
+        <button class="btn-delete-all">Xóa tất cả</button>
+      </div>
+    </div>
+    <div class="content-customer-payment">
+      <div class="customer-information">
+        <h2>Thông tin khách hàng</h2>
+        <div class="form">
+          <div class="form-row">
+            <label class="label" for="full-name"
+              >Họ và tên <span class="compulsory-red">(*)</span></label
+            >
+            <input
+              type="text"
+              name="full-name"
+              id="full-name"
+              class="full-name"
+              placeholder="Nhập họ và tên"
+            />
+            <span class="error-message" id="message-fullname"
+              >Vui lòng nhập họ và tên.</span
+            >
+          </div>
+          <div class="form-row">
+            <label for="phone-number"
+              >Số điện thoại <span class="compulsory-red">(*)</span></label
+            >
+            <input
+              type="text"
+              name="phone-number"
+              id="phone-number"
+              placeholder="Nhập số điện thoại"
+              class="phone-number-input"
+            />
+            <span class="error-message" id="message-phone-number"
+              >Vui lòng nhập số điện thoại.</span
+            >
+            <span class="error-message" id="message-format-phone"
+              >Vui lòng nhập đúng định dạng SĐT.</span
+            >
+          </div>
+          <div class="form-row">
+            <label for="city"
+              >Tỉnh/Thành <span class="compulsory-red">(*)</span></label
+            >
+            <select
+              class="form-select"
+              id="city"
+              [(ngModel)]="selectedCity"
+              (ngModelChange)="onCityChange()"
+            >
+              <option value="" selected>Chọn Tỉnh/Thành</option>
+              <option *ngFor="let city of cities" [value]="city.Id">
+                {{ city.Name }}
+              </option>
+            </select>
+            <span class="error-message" id="message-city"
+              >Vui lòng chọn Tỉnh/Thành của bạn.</span
+            >
+          </div>
+          <div class="form-row">
+            <label for="districts"
+              >Quận/Huyện <span class="compulsory-red">(*)</span></label
+            >
+            <select
+              class="form-select"
+              id="districts"
+              [(ngModel)]="selectedDistrict"
+              (ngModelChange)="onDistrictChange()"
+            >
+              <option value="" selected>Chọn Quận/Huyện</option>
+              <option *ngFor="let district of districts" [value]="district.Id">
+                {{ district.Name }}
+              </option>
+            </select>
+            <span class="error-message" id="message-district"
+              >Vui lòng chọn Quận/Huyện của bạn.</span
+            >
+          </div>
+          <div class="form-row">
+            <label for="wards"
+              >Xã/Phường <span class="compulsory-red">(*)</span></label
+            >
+            <select class="form-select" id="wards" [(ngModel)]="selectedWard">
+              <option value="" selected>Chọn Xã/Phường</option>
+              <option *ngFor="let ward of wards" [value]="ward.Id">
+                {{ ward.Name }}
+              </option>
+            </select>
+            <span class="error-message" id="message-ward"
+              >Vui lòng chọn Xã/Phường của bạn.</span
+            >
+          </div>
+          <div class="form-row">
+            <label for="detail-address"
+              >Địa chỉ chi tiết <span class="compulsory-red">(*)</span></label
+            >
+            <input
+              type="text"
+              name="detail-address"
+              id="detail-address"
+              placeholder="Nhập địa chỉ chi tiết"
+            />
+            <span class="error-message" id="message-detail-address"
+              >Vui lòng nhập địa chỉ chi tiết của bạn.</span
+            >
+          </div>
+          <span class="free-shipping">Miễn phí vận chuyển</span>
+        </div>
+        <div class="select-payment-method">
+          <h4>Phương thức thanh toán</h4>
+          <div class="payment-method-row">
+            <input
+              type="radio"
+              name="payment-method"
+              class="payment-method"
+              id="payment-cod"
+            />
+            <label for="payment-cod"
+              >Thanh toán bằng tiền mặt khi nhận hàng</label
+            >
+          </div>
+          <div class="payment-method-row">
+            <input
+              type="radio"
+              name="payment-method"
+              class="payment-method"
+              id="payment-atm"
+            />
+            <label for="payment-atm"
+              >Thanh toán bằng ATM nội địa/Internet banking</label
+            >
+          </div>
+          <div class="payment-method-row">
+            <input
+              type="radio"
+              name="payment-method"
+              class="payment-method"
+              id="payment-visa-card"
+            />
+            <label for="payment-visa-card"
+              >Thanh toán bằng thẻ quốc tế (Visa, Mastercard)</label
+            >
+          </div>
+          <div class="payment-method-row">
+            <input
+              type="radio"
+              name="payment-method"
+              class="payment-method"
+              id="payment-momo"
+            />
+            <label for="payment-momo">Thanh toán qua ví Momo</label>
+          </div>
+          <div class="payment-method-row">
+            <input
+              type="radio"
+              name="payment-method"
+              class="payment-method"
+              id="payment-zalopay"
+            />
+            <label for="payment-zalopay">Thanh toán qua ví Zalopay</label>
+          </div>
+          <span class="error-message" id="message-payment-method"
+            >Vui lòng chọn phương thức thanh toán.</span
+          >
+        </div>
+        <div class="code-promotion">
+          <div class="form-row">
+            <label for="promo-code">Mã khuyến mãi (nếu có)</label>
+            <input
+              type="text"
+              name="promo-code"
+              id="promo-code"
+              placeholder="Nhập mã khuyến mãi"
+            />
+            <button class="apply-promo-code">Áp dụng mã</button>
+          </div>
+        </div>
+      </div>
+      <div class="total-payment">
+        <div class="total-payment-row">
+          <span class="lable-total-money">Tổng tiền</span>
+          <span class="total-money">16.248.200</span>
+        </div>
+        <div class="total-payment-row">
+          <span class="lable-discount">Giảm giá</span>
+          <span class="discount">3.000.000</span>
+        </div>
+        <div class="total-payment-row">
+          <span class="lable-total-amount-paid">Tiền cần thanh toán</span>
+          <span class="total-amount-paid">13.248.200</span>
+        </div>
+      </div>
+      <button class="make-payment">Thanh toán</button>
+    </div>
+  </div>
+  <!-- The Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-heading">
+        <span class="icon-tick"
+          ><i
+            class="fa-solid fa-circle-check fa-2xl"
+            style="color: #02bc7d; width: 50px; height: 50px"
+          ></i
+        ></span>
+        <span class="thanks-for"> Cảm ơn bạn đã sử dụng dịch vụ </span>
+      </div>
+      <div class="modal-body">
+        <span class="notify-mayment">
+          Đơn hàng đã được
+          <span class="payment-method">Thanh toán bằng ví Momo</span>
+        </span>
+        <span class="notify-total-payment"
+          >Số tiền đã thanh toán là
+          <span class="total-amount-paid"> 13.248.200</span
+          ><span class="VND">đ</span></span
+        >
+        <button class="close-popup">Đóng</button>
+        <span class="auto-close">Tự động đóng sau 10 giây</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+<div class="container">
+  <div class="header">
+    <h1>Giỏ hàng</h1>
+  </div>
+  <div class="content">
+    <div class="list-products">
+      <table class="table products">
+        <thead>
+          <tr>
+            <th colspan="2">Sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="item">
+            <td class="image-item">
+              <img src="./assets/images/shopping-cart/laptop.jpg" />
+            </td>
+            <td class="name-item">
+              Laptop Asus TUF Gaming FX506LHB-HN188W i5 10300H/ 8GB/ 512GB/
+              15.6"FHD/GTX 1650 4GB/Win11
+            </td>
+            <td class="price-item">15.890.000</td>
+            <td class="number-item">
+              <input
+                type="number"
+                name="number"
+                id="number"
+                value="1"
+                min="1"
+              />
+            </td>
+            <td class="into-money">15.890.000</td>
+            <td class="delete-item"><i class="fa-solid fa-trash"></i></td>
+          </tr>
+          <tr class="item">
+            <td class="image-item">
+              <img src="./assets/images/shopping-cart/anti-virus.jpg" />
+            </td>
+            <td class="name-item">
+              Phần mềm diệt virus Eset Nod32 (1u/12 tháng)
+            </td>
+            <td class="price-item">179.100</td>
+            <td class="number-item">
+              <input
+                type="number"
+                name="number-item"
+                id="number-item"
+                value="2"
+                min="1"
+              />
+            </td>
+            <td class="into-money">358.200</td>
+            <td class="delete-item"><i class="fa-solid fa-trash"></i></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="button">
+        <button class="btn-continue-shopping">Tiếp tục mua sắm</button>
+        <button class="btn-delete-all">Xóa tất cả</button>
+      </div>
+    </div>
+    <div>
+      <div class="content-customer-payment">
+        <div class="total-pay-temporary">
+          <span class="label">Tổng tiền tạm tính: </span>
+          <span class="number-money">16.248.200đ</span>
+        </div>
+        <div class="btn-make-payment">
+          <button
+            class="make-payment"
+            id="btn-make-payment"
+            (click)="onClickMakePayment()"
+          >
+            Thanh toán
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-heading">
+        <i class="fa-solid fa-bell fa-2xl" style="color: #02bc7d"></i>
+        <span class="modal-content-heading"
+          >Bạn có muốn đăng nhập để được nhận thêm nhiều ưu đãi?</span
+        >
+      </div>
+
+      <div class="btn-action">
+        <button class="btn-login">Đăng nhập</button>
+        <button class="btn-continue-payment" [routerLink]="'/make-payment'">
+          Không, tiếp tục thanh toán
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

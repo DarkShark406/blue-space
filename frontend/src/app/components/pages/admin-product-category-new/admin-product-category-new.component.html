@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="header">
+    <div class="header-left">
+      <p>Tạo nhóm sản phẩm mới</p>
+    </div>
+    <div class="header-right">
+      <a href="" class="icon-style"
+        ><i class="fa-solid fa-magnifying-glass" style="color: #000000"></i
+      ></a>
+      <a href="" class="icon-style"><i class="fa-solid fa-exclamation"></i></a>
+      <a href="" class="icon-style" style="font-size: 24px"><span>|</span></a>
+      <a href="" class="icon-style"><p>BlueSpace</p></a>
+      <a href="" class="icon-style"><p>BS</p></a>
+      <a href="" class="icon-style"
+        ><i class="fa-regular fa-envelope"></i> Góp ý</a
+      >
+    </div>
+  </div>
+  <div class="heading">
+    <span class="heading-tilte">Tạo nhóm sản phẩm mới</span>
+    <div class="button">
+      <button class="btn-back-product" [routerLink]="'/admin-product-category'">
+        <i class="fa-solid fa-arrow-left"></i> Danh sách tất cả nhóm sản phẩm
+      </button>
+    </div>
+  </div>
+  <div class="content">
+    <div class="title">
+      <span class="title-product-category"> Thông tin nhóm sản phẩm </span>
+    </div>
+    <div class="create-product-category">
+      <div class="form-row">
+        <label for="category-id">ID<span class="required">*</span></label>
+        <input
+          type="text"
+          id="category-id"
+          #CategoryId
+          (input)="clearClassInvalid(CategoryId.id)"
+          [(ngModel)]="category.categoryId"
+          placeholder="Nhập ID"
+        />
+      </div>
+      <div class="form-row">
+        <label for="category-name"
+          >Tên nhóm<span class="required">*</span></label
+        >
+        <input
+          type="text"
+          id="category-name"
+          #CategoryName
+          (input)="clearClassInvalid(CategoryName.id)"
+          [(ngModel)]="category.categoryName"
+          placeholder="Nhập tên nhóm"
+        />
+      </div>
+      <div class="form-row">
+        <label for="category-image"
+          >Hình ảnh<span class="required">*</span></label
+        >
+        <input
+          type="file"
+          id="category-image"
+          placeholder="Tải hình ảnh nhóm"
+        />
+      </div>
+    </div>
+    <div class="button-save-category">
+      <button class="btn-save" (click)="onSubmit()">Lưu nhóm mới</button>
+    </div>
+  </div>
+</div>

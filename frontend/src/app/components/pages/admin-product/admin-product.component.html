@@ -1,0 +1,182 @@
+<div class="container">
+  <div class="header">
+    <div class="header-left">
+      <p>Danh sách sản phẩm</p>
+    </div>
+    <div class="header-right">
+      <a href="" class="icon-style"
+        ><i class="fa-solid fa-magnifying-glass" style="color: #000000"></i
+      ></a>
+      <a href="" class="icon-style"><i class="fa-solid fa-exclamation"></i></a>
+      <a href="" class="icon-style" style="font-size: 24px"><span>|</span></a>
+      <a href="" class="icon-style"><p>BlueSpace</p></a>
+      <a href="" class="icon-style"><p>BS</p></a>
+      <a href="" class="icon-style"
+        ><i class="fa-regular fa-envelope"></i> Góp ý</a
+      >
+    </div>
+  </div>
+  <div class="heading">
+    <span class="heading-tilte">Danh sách sản phẩm</span>
+    <div class="button">
+      <button class="btn-create-product" [routerLink]="'/admin-product-new'">
+        <i class="fa-solid fa-circle-plus"></i> Tạo sản phẩm
+      </button>
+
+      <button class="btn-delete"><i class="fa-solid fa-minus"></i> Xóa</button>
+    </div>
+  </div>
+  <div class="content">
+    <div class="nav-main">
+      <div class="nav-items" id="all-customers">
+        <a>Tất cả sản phẩm</a>
+      </div>
+      <div class="nav-items">
+        <a>Laptop</a>
+      </div>
+      <div class="nav-items">
+        <a>Điện thoại</a>
+      </div>
+      <div class="nav-items">
+        <a>Tablet</a>
+      </div>
+      <div class="nav-items">
+        <a>Bàn phím</a>
+      </div>
+      <div class="nav-items">
+        <a>Tai nghe</a>
+      </div>
+      <div class="nav-items">
+        <a>Ứng dụng</a>
+      </div>
+      <div class="nav-items">
+        <a>Chuột</a>
+      </div>
+    </div>
+    <div class="function">
+      <div class="filter">
+        <select id="category-select">
+          <option value="all">
+            <i class="fa-solid fa-filter"></i> Thêm điều kiện lọc
+          </option>
+          <option value="category1">Tên theo thứ tự A-Z</option>
+          <option value="category2">Sản phẩm có giá từ nhỏ đến lớn</option>
+          <option value="category2">Sản phẩm có giá từ lớn đến nhỏ</option>
+        </select>
+      </div>
+      <div class="search-container">
+        <form action="#">
+          <input type="text" placeholder="Tìm kiếm..." />
+          <button type="submit" class="btn-search">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+    <table class="table">
+      <thead>
+        <td></td>
+        <td>ID</td>
+        <td></td>
+        <td>Tên sản phẩm</td>
+        <td>Loại sản phẩm</td>
+        <td>Thương hiệu</td>
+        <td>Giá</td>
+        <td colspan="3"></td>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="checkbox" name="" id="" /></td>
+          <td class="product-id">011</td>
+          <td class="product-image">
+            <img
+              src="./assets/images/shopping-cart/laptop.jpg"
+              style="width: 100px"
+            />
+          </td>
+          <td class="product-name">
+            Asus TUF Gaming FX506LHB-HN188W i5 10300H
+          </td>
+          <td class="product-category">Laptop</td>
+          <td class="product-brand">Asus</td>
+          <td class="product-price">18.350.00đ</td>
+          <td>
+            <button class="btn-detail" [routerLink]="'/admin-product-detail'">
+              Chi tiết
+            </button>
+          </td>
+          <td>
+            <button class="btn-update" [routerLink]="'/admin-product-update'">
+              Chỉnh sửa
+            </button>
+          </td>
+          <td>
+            <button class="btn-remove">Xóa</button>
+          </td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="" id="" /></td>
+          <td class="product-id">011</td>
+          <td class="product-image">
+            <img
+              src="./assets/images/shopping-cart/laptop.jpg"
+              style="width: 100px"
+            />
+          </td>
+          <td class="product-name">
+            Asus TUF Gaming FX506LHB-HN188W i5 10300H
+          </td>
+          <td class="product-category">Laptop</td>
+          <td class="product-brand">Asus</td>
+          <td class="product-price">18.350.00đ</td>
+          <td>
+            <button class="btn-detail">Chi tiết</button>
+          </td>
+          <td>
+            <button class="btn-update">Chỉnh sửa</button>
+          </td>
+          <td>
+            <button class="btn-remove">Xóa</button>
+            <!-- (click)="saveSelectedProduct(id)" -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pagination">
+    <a href="#" class="prev"><i class="fas fa-chevron-left"></i></a>
+    <a href="#" class="page">1</a>
+    <a href="#" class="page">2</a>
+    <a href="#" class="page">3</a>
+    <a href="#" class="next"><i class="fas fa-chevron-right"></i></a>
+  </div>
+</div>
+
+<!-- Confirm delete course -->
+<div id="delete-course-modal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Xóa sản phẩm?</h5>
+    </div>
+    <div class="modal-body">Bạn chắc chắn muốn xóa sản phẩm này?</div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        data-dismiss="modal"
+        (click)="hideModal()"
+      >
+        Hủy
+      </button>
+      <button
+        id="btn-delete-course"
+        type="button"
+        class="btn btn-danger"
+        (click)="deleteProduct()"
+      >
+        Xóa sản phẩm
+      </button>
+    </div>
+  </div>
+</div>

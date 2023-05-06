@@ -1,0 +1,363 @@
+<div class="container">
+  <div class="header">
+    <div class="header-left">
+      <p>Thông tin chi tiết sản phẩm</p>
+    </div>
+    <div class="header-right">
+      <a href="" class="icon-style"
+        ><i class="fa-solid fa-magnifying-glass" style="color: #000000"></i
+      ></a>
+      <a href="" class="icon-style"><i class="fa-solid fa-exclamation"></i></a>
+      <a href="" class="icon-style" style="font-size: 24px"><span>|</span></a>
+      <a href="" class="icon-style"><p>BlueSpace</p></a>
+      <a href="" class="icon-style"><p>BS</p></a>
+      <a href="" class="icon-style"
+        ><i class="fa-regular fa-envelope"></i> Góp ý</a
+      >
+    </div>
+  </div>
+  <div class="heading">
+    <span class="heading-tilte">Thông tin chi tiết sản phẩm</span>
+    <div class="button">
+      <button class="btn-back-product" [routerLink]="'/admin-product'">
+        <i class="fa-solid fa-arrow-left"></i> Danh sách tất cả sản phẩm
+      </button>
+    </div>
+  </div>
+
+  <div class="content">
+    <table class="">
+      <tr class="product-image">
+        <td colspan="2">
+          <img src="./assets/images/shopping-cart/laptop.jpg" />
+          <img src="./assets/images/shopping-cart/laptop.jpg" />
+          <img src="./assets/images/shopping-cart/laptop.jpg" />
+        </td>
+      </tr>
+      <tr class="detail-product">
+        <td class="detail-product-general">
+          <tr>
+            <td class="title-product-general" colspan="2">Thông tin chung</td>
+          </tr>
+          <tr>
+            <td class="row-name">Mã sản phẩm</td>
+            <td>001</td>
+          </tr>
+          <tr>
+            <td class="row-name">Tên sản phẩm</td>
+            <td>Asus TUF Gaming FX506LHB-HN188W i5 10300H</td>
+          </tr>
+          <tr>
+            <td class="row-name">Loại sản phẩm</td>
+            <td [(ngModel)]="typeProduct">Laptop</td>
+          </tr>
+          <tr>
+            <td class="row-name">Thương hiệu</td>
+            <td>Asus</td>
+          </tr>
+          <tr>
+            <td class="row-name">Giá</td>
+            <td>18.350.00đ</td>
+          </tr>
+          <tr>
+            <td class="row-name">Giảm giá</td>
+            <td>18%</td>
+          </tr>
+          <tr>
+            <td class="row-name">Xuất xứ</td>
+            <td>productRegion</td>
+          </tr>
+          <tr>
+            <td class="row-name">Thời gian bảo hành</td>
+            <td>12 tháng</td>
+          </tr>
+          <tr>
+            <td class="row-name">Nhãn</td>
+            <td>Chơi Game, Văn phòng</td>
+          </tr>
+
+          <tr>
+            <td class="row-name">Số đánh giá</td>
+            <td>234</td>
+          </tr>
+          <tr>
+            <td class="row-name">Số điểm</td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td class="row-name">Mô tả sản phẩm</td>
+            <td>Mô tả sản phẩm là cái kia</td>
+          </tr>
+        </td>
+
+        <td class="detail-product-category">
+          <tr>
+            <td class="title-product-detail">Thông tin chi tiết</td>
+          </tr>
+          <table *ngIf="typeProduct == 'Laptop'" class="detail-laptop-product">
+            <tr>
+              <td class="row-name">CPU</td>
+              <td>Intel core i5 10300H cpu</td>
+            </tr>
+            <tr>
+              <td class="row-name">Màn hình</td>
+              <td>15,6 inch screen</td>
+            </tr>
+            <tr>
+              <td class="row-name">Ổ cứng</td>
+              <td>SSD 512GB storage</td>
+            </tr>
+            <tr>
+              <td class="row-name">RAM</td>
+              <td>8 GB (1 thanh 8 GB), DDR4, 2933 MHz ram</td>
+            </tr>
+            <tr>
+              <td class="row-name">Đồ họa</td>
+              <td>NVIDIA GeForce GTX 1650 4GB; Intel UHD Graphics gpu</td>
+            </tr>
+            <tr>
+              <td class="row-name">Hệ điều hành</td>
+              <td>Windown operatingSystem</td>
+            </tr>
+            <tr>
+              <td class="row-name">Pin</td>
+              <td>Khoảng 10 tiếng battery-capacity</td>
+            </tr>
+            <tr>
+              <td class="row-name">Bàn phím</td>
+              <td>keyboard</td>
+            </tr>
+            <tr>
+              <td class="row-name">Bluetooth</td>
+              <td>bluetooth</td>
+            </tr>
+            <tr>
+              <td class="row-name">Camera</td>
+              <td>camera</td>
+            </tr>
+            <tr>
+              <td class="row-name">Khối lượng</td>
+              <td>2,3 kg weight</td>
+            </tr>
+            <tr>
+              <td class="row-name">Kích thước</td>
+              <td>359 x 256 x 24.9 mm size</td>
+            </tr>
+            <tr>
+              <td class="row-name">Màu sắc</td>
+              <td>Xanh, Đen</td>
+            </tr>
+            <tr>
+              <td class="row-name">Vật liệu</td>
+              <td>Nhựa</td>
+            </tr>
+          </table>
+          <table *ngIf="typeProduct == 'Phone'" class="detail-phone-product">
+            <tr>
+              <td class="row-name">CPU</td>
+              <td>cpu</td>
+            </tr>
+            <tr>
+              <td class="row-name">Màn hình</td>
+              <td>screen</td>
+            </tr>
+            <tr>
+              <td class="row-name">Ổ cứng</td>
+              <td>storage</td>
+            </tr>
+            <tr>
+              <td class="row-name">RAM</td>
+              <td>ram</td>
+            </tr>
+            <tr>
+              <td class="row-name">Số nhân CPU</td>
+              <td>core</td>
+            </tr>
+            <tr>
+              <td class="row-name">Hệ điều hành</td>
+              <td>IOS operatingSystem</td>
+            </tr>
+            <tr>
+              <td class="row-name">Pin</td>
+              <td>Khoảng 10 tiếng battery-capacity</td>
+            </tr>
+            <tr>
+              <td class="row-name">Số lượng SIM</td>
+              <td>sim-slot</td>
+            </tr>
+            <tr>
+              <td class="row-name">Bluetooth</td>
+              <td>bluetooth</td>
+            </tr>
+            <tr>
+              <td class="row-name">Camera</td>
+              <td>camera</td>
+            </tr>
+            <tr>
+              <td class="row-name">Khối lượng</td>
+              <td>weight</td>
+            </tr>
+            <tr>
+              <td class="row-name">Màu sắc</td>
+              <td>color</td>
+            </tr>
+            <tr>
+              <td class="row-name">Vật liệu</td>
+              <td>material</td>
+            </tr>
+            <tr>
+              <td class="row-name">Cáp sạc</td>
+              <td>cable</td>
+            </tr>
+            <tr>
+              <td class="row-name">Tai nghe</td>
+              <td>earphone</td>
+            </tr>
+          </table>
+          <!-- <table *ngIf="typeProduct == 'Tablet'" class="detail-tablet-product"></table> -->
+          <table *ngIf="typeProduct == 'Mouse'" class="detail-mouse-product">
+            <tr>
+              <td class="row-name">Độ phân giải</td>
+              <td>DPI</td>
+            </tr>
+            <tr>
+              <td class="row-name">Độ dài, Cách kết nối</td>
+              <td>connection</td>
+            </tr>
+            <tr>
+              <td class="row-name">Trọng lượng</td>
+              <td>battery-capacity</td>
+            </tr>
+            <tr>
+              <td class="row-name">RAM</td>
+              <td>weight</td>
+            </tr>
+            <tr>
+              <td class="row-name">Đèn LED</td>
+              <td>led</td>
+            </tr>
+            <tr>
+              <td class="row-name">Màu sắc</td>
+              <td>color</td>
+            </tr>
+          </table>
+          <table
+            *ngIf="typeProduct == 'Keyboard'"
+            class="detail-keyboard-product"
+          >
+            <tr>
+              <td class="row-name">Model</td>
+              <td>model</td>
+            </tr>
+            <tr>
+              <td class="row-name">Kiểu kết nối</td>
+              <td>connection</td>
+            </tr>
+            <tr>
+              <td class="row-name">Phạm vi kết nối</td>
+              <td>connectionDistance</td>
+            </tr>
+            <tr>
+              <td class="row-name">Loại switch</td>
+              <td>switch</td>
+            </tr>
+            <tr>
+              <td class="row-name">Kiểu bàn phím</td>
+              <td>type</td>
+            </tr>
+            <tr>
+              <td class="row-name">Số phím</td>
+              <td>numberOfKeys</td>
+            </tr>
+            <tr>
+              <td class="row-name">Đèn LED</td>
+              <td>ledLight</td>
+            </tr>
+            <tr>
+              <td class="row-name">Chất liệu keycaps</td>
+              <td>materialKeycaps</td>
+            </tr>
+            <tr>
+              <td class="row-name">Tính năng khác</td>
+              <td>otherFunction</td>
+            </tr>
+            <tr>
+              <td class="row-name">Kích thước</td>
+              <td>size</td>
+            </tr>
+          </table>
+          <table
+            *ngIf="typeProduct == 'Earphone'"
+            class="detail-earphone-product"
+          >
+            <tr>
+              <td class="row-name">Model</td>
+              <td>model</td>
+            </tr>
+            <tr>
+              <td class="row-name">Kiểu tai nghe</td>
+              <td>type</td>
+            </tr>
+            <tr>
+              <td class="row-name">Thời lượng pin</td>
+              <td>batteryTime</td>
+            </tr>
+            <tr>
+              <td class="row-name">Kết nối</td>
+              <td>connection</td>
+            </tr>
+            <tr>
+              <td class="row-name">Phạm vi kết nối</td>
+              <td>connectionDistance</td>
+            </tr>
+            <tr>
+              <td class="row-name">Tần số</td>
+              <td>frequency</td>
+            </tr>
+            <tr>
+              <td class="row-name">Trở kháng</td>
+              <td>impedance</td>
+            </tr>
+            <tr>
+              <td class="row-name">Tương thích</td>
+              <td>compatible</td>
+            </tr>
+            <tr>
+              <td class="row-name">Micro</td>
+              <td>micrphone</td>
+            </tr>
+            <tr>
+              <td class="row-name">Kích thước</td>
+              <td>size</td>
+            </tr>
+            <tr>
+              <td class="row-name">Color</td>
+              <td>color</td>
+            </tr>
+          </table>
+          <table
+            *ngIf="typeProduct == 'Application'"
+            class="detail-application-product"
+          >
+            <tr>
+              <td class="row-name">Ngôn ngữ</td>
+              <td>language</td>
+            </tr>
+            <tr>
+              <td class="row-name">Loại phần mềm</td>
+              <td>type</td>
+            </tr>
+            <tr>
+              <td class="row-name">Số thiết bị sử dụng</td>
+              <td>numberOfUser</td>
+            </tr>
+            <tr>
+              <td class="row-name">Hệ điều hành</td>
+              <td>operationSystem</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

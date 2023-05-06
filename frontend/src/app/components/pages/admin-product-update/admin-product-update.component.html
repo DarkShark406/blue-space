@@ -1,0 +1,1494 @@
+<div class="container">
+  <div class="header">
+    <div class="header-left">
+      <p>Chỉnh sửa thông tin chi tiết sản phẩm</p>
+    </div>
+    <div class="header-right">
+      <a href="" class="icon-style"
+        ><i class="fa-solid fa-magnifying-glass" style="color: #000000"></i
+      ></a>
+      <a href="" class="icon-style"><i class="fa-solid fa-exclamation"></i></a>
+      <a href="" class="icon-style" style="font-size: 24px"><span>|</span></a>
+      <a href="" class="icon-style"><p>BlueSpace</p></a>
+      <a href="" class="icon-style"><p>BS</p></a>
+      <a href="" class="icon-style"
+        ><i class="fa-regular fa-envelope"></i> Góp ý</a
+      >
+    </div>
+  </div>
+  <div class="heading">
+    <span class="heading-tilte">Chỉnh sửa thông tin sản phẩm</span>
+    <div class="button">
+      <button class="btn-back-product" [routerLink]="'/admin-product'">
+        <i class="fa-solid fa-arrow-left"></i> Danh sách tất cả sản phẩm
+      </button>
+    </div>
+  </div>
+  <div class="content">
+    <div class="general-information">
+      <div class="title-product-general">
+        <span class="title">Thông tin chung</span>
+      </div>
+      <div class="form-row">
+        <label for="product-category"
+          >Loại sản phẩm<span class="required">*</span></label
+        >
+        <input
+          type="text"
+          id="product-category"
+          class="form-select"
+          #productCategory
+          (input)="clearClassInvalid(productCategory.id)"
+          id="product-category"
+          [(ngModel)]="product.categoryId"
+        />
+      </div>
+      <div class="content-table">
+        <div class="create-product-general">
+          <div class="form-row">
+            <label for="product-name"
+              >Tên sản phẩm<span class="required">*</span></label
+            >
+            <input
+              type="text"
+              id="product-name"
+              #productName
+              (input)="clearClassInvalid(productName.id)"
+              [(ngModel)]="product.productName"
+              placeholder="Nhập tên sản phẩm"
+            />
+          </div>
+          <div class="form-row">
+            <label for="product-brand"
+              >Thương hiệu<span class="required">*</span></label
+            >
+            <input
+              type="text"
+              id="product-brand"
+              #ProductBrand
+              (input)="clearClassInvalid(ProductBrand.id)"
+              [(ngModel)]="product.productBrand"
+              placeholder="Nhập tên thương hiệu"
+            />
+          </div>
+          <div class="form-row">
+            <label for="product-price"
+              >Giá sản phẩm<span class="required">*</span></label
+            >
+            <input
+              type="number"
+              id="product-price"
+              #ProductPrice
+              (input)="clearClassInvalid(ProductPrice.id)"
+              [(ngModel)]="product.productPrice"
+              value="0"
+              placeholder="Nhập giá sản phẩm"
+            />
+          </div>
+          <div class="form-row">
+            <label for="product-discount"
+              >Giảm giá<span class="required">*</span></label
+            >
+            <input
+              type="number"
+              name=""
+              id="product-discount"
+              #ProductDiscount
+              (input)="clearClassInvalid(ProductDiscount.id)"
+              [(ngModel)]="product.productDiscount"
+              value="0"
+              placeholder="Nhập % sẽ giảm"
+            />
+          </div>
+          <div class="form-row">
+            <label for="product-region"
+              >Xuất xứ<span class="required">*</span></label
+            >
+            <input
+              type="text"
+              id="product-region"
+              #ProductRegion
+              (input)="clearClassInvalid(ProductRegion.id)"
+              [(ngModel)]="product.productRegion"
+              placeholder="Nhập nơi xuất xứ"
+            />
+          </div>
+          <div class="form-row">
+            <label for="warranty-period"
+              >Thời gian bảo hành
+              <span class="note">(tháng)<span class="required">*</span></span>
+            </label>
+            <input
+              type="number"
+              name=""
+              id="warranty-period"
+              #WarrantyPeriod
+              (input)="clearClassInvalid(WarrantyPeriod.id)"
+              [(ngModel)]="product.warrantyPeriod"
+              value="0"
+              placeholder="Nhập số tháng bảo hành"
+            />
+          </div>
+          <div class="form-row">
+            <label for="product-tags"
+              >Nhãn của sản phẩm<span class="required">*</span></label
+            >
+            <input
+              type=""
+              name=""
+              id="product-tags"
+              #ProductTags
+              (input)="clearClassInvalid(ProductTags.id)"
+              placeholder="Nhập từng tag của sản phẩm cách nhau bằng dấu (,)"
+            />
+          </div>
+          <div class="form-row">
+            <label for="number-review">Số đánh giá</label>
+            <input
+              type="number"
+              name=""
+              id="number-review"
+              [(ngModel)]="product.numberReview"
+              value="0"
+            />
+          </div>
+          <div class="form-row">
+            <label for="rating-point">Số điểm</label>
+            <input
+              type="number"
+              name=""
+              id="rating-point"
+              [(ngModel)]="product.ratingPoint"
+              value="0"
+            />
+          </div>
+        </div>
+        <div class="upload-image-product">
+          <label for="product-image">Tải hình ảnh</label>
+          <input
+            id="product-image"
+            type="file"
+            class="upload-image"
+            #ProductImage
+            (input)="clearClassInvalid(ProductImage.id)"
+            [(ngModel)]="product.productImage"
+          />
+        </div>
+        <div class="decription-product">
+          <label for="product-description"
+            >Mô tả sản phẩm<span class="required">*</span></label
+          >
+          <input
+            name=""
+            id="product-description"
+            #ProductDecription
+            (input)="clearClassInvalid(ProductDecription.id)"
+            [(ngModel)]="product.description"
+          />
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="individual-information">
+        <div class="title-product-detail">
+          <span class="title">Thông tin chi tiết của loại sản phẩm</span>
+        </div>
+        <div *ngIf="product.categoryId == 1" class="create-laptop-product">
+          <div class="column">
+            <div class="infor-item">
+              <label for="cpu">CPU<span class="required">*</span></label>
+              <input
+                type="text"
+                name=""
+                id="cpu"
+                #laptopCPU
+                (input)="clearClassInvalid(laptopCPU.id)"
+                [(ngModel)]="product.specifications.cpu"
+                placeholder="Nhập thông số CPU"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="screen"
+                >Màn hình<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="screen"
+                #laptopScreen
+                (input)="clearClassInvalid(laptopScreen.id)"
+                [(ngModel)]="product.specifications.screen"
+                placeholder="Nhập thông số màn hình"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="storage">Ổ cứng<span class="required">*</span></label>
+              <input
+                type="text"
+                name=""
+                id="storage"
+                #laptopStorage
+                (input)="clearClassInvalid(laptopStorage.id)"
+                [(ngModel)]="product.specifications.storage"
+                placeholder="Nhập thông số ổ cứng"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="ram">RAM<span class="required">*</span></label>
+              <input
+                type="text"
+                name=""
+                id="ram"
+                #laptopRam
+                (input)="clearClassInvalid(laptopRam.id)"
+                [(ngModel)]="product.specifications.ram"
+                placeholder="Nhập thông số của RAM"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="gpu">Đồ họa<span class="required">*</span></label>
+              <input
+                type="text"
+                name=""
+                id="gpu"
+                #laptopGPU
+                (input)="clearClassInvalid(laptopGPU.id)"
+                [(ngModel)]="product.specifications.gpu"
+                placeholder="Nhập thông số đồ họa"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="operatingSystem"
+                >Hệ điều hành<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="operatingSystem"
+                #laptopOperatingSystem
+                (input)="clearClassInvalid(laptopOperatingSystem.id)"
+                [(ngModel)]="product.specifications.operatingSystem"
+                placeholder="Nhập hệ điều hành"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="battery-capacity"
+                >Pin<span class="required">*</span></label
+              >
+
+              <input
+                type="text"
+                name=""
+                id="battery-capacity"
+                #laptopBatteryCapacity
+                (input)="clearClassInvalid(laptopBatteryCapacity.id)"
+                [(ngModel)]="product.specifications.batteryCapacity"
+                placeholder="Nhập dung lượng pin"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="keyboard"
+                >Bàn phím<span class="required">*</span></label
+              >
+
+              <input
+                type="text"
+                name=""
+                id="keyboard"
+                #laptopKeyboard
+                (input)="clearClassInvalid(laptopKeyboard.id)"
+                [(ngModel)]="product.specifications.keyboard"
+                placeholder="Nhập thông số bàn phím"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="bluetooth"
+                >Bluetooth<span class="required">*</span></label
+              >
+
+              <input
+                type="text"
+                name=""
+                id="bluetooth"
+                #laptopBluetooth
+                (input)="clearClassInvalid(laptopBluetooth.id)"
+                [(ngModel)]="product.specifications.bluetooth"
+                placeholder="Nhập thông số bluetooth"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="camera">Camera<span class="required">*</span></label>
+              <input
+                type="text"
+                name=""
+                id="camera"
+                #laptopCamera
+                (input)="clearClassInvalid(laptopCamera.id)"
+                [(ngModel)]="product.specifications.camera"
+                placeholder="Nhập thông số của camera"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="weight"
+                >Khối lượng<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                id="weight"
+                #laptopWeight
+                (input)="clearClassInvalid(laptopWeight.id)"
+                [(ngModel)]="product.specifications.weight"
+                placeholder="Nhập khối lượng"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="size"
+                >Kích thước<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                id="size"
+                #laptopSize
+                (input)="clearClassInvalid(laptopSize.id)"
+                [(ngModel)]="product.specifications.size"
+                placeholder="Nhập size"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="color">Màu sắc<span class="required">*</span></label>
+              <input
+                type=""
+                id="color"
+                #laptopColor
+                (input)="clearClassInvalid(laptopColor.id)"
+                placeholder="Nhập từng màu cách nhau bằng dấu (,)"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="material"
+                >Vật liệu<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                id="material"
+                #laptopMaterial
+                (input)="clearClassInvalid(laptopMaterial.id)"
+                [(ngModel)]="product.specifications.material"
+                placeholder="Nhập thông tin vật liệu"
+              />
+            </div>
+          </div>
+        </div>
+        <div *ngIf="product.categoryId == 2" class="create-phone-product">
+          <div class="column">
+            <div class="infor-item">
+              <label for="cpu">CPU<span class="required">*</span></label>
+              <input
+                type="text"
+                name=""
+                id="cpu"
+                #phoneCPU
+                (input)="clearClassInvalid(phoneCPU.id)"
+                [(ngModel)]="product.specifications.cpu"
+                placeholder="Nhập thông số CPU"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="screen"
+                >Màn hình<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="screen"
+                #phoneScreen
+                (input)="clearClassInvalid(phoneScreen.id)"
+                [(ngModel)]="product.specifications.screen"
+                placeholder="Nhập thông số màn hình"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="storage">Ổ cứng<span class="required">*</span></label>
+              <input
+                type="text"
+                name=""
+                id="storage"
+                #phoneStorage
+                (input)="clearClassInvalid(phoneStorage.id)"
+                [(ngModel)]="product.specifications.storage"
+                placeholder="Nhập thông số ổ cứng"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="ram">RAM<span class="required">*</span></label>
+              <input
+                type="text"
+                name=""
+                id="ram"
+                #phoneRam
+                (input)="clearClassInvalid(phoneRam.id)"
+                [(ngModel)]="product.specifications.ram"
+                placeholder="Nhập thông số của RAM"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="core"
+                >Số nhân CPU<span class="required">*</span></label
+              >
+              <input
+                type="number"
+                name=""
+                id="core"
+                #phoneCore
+                (input)="clearClassInvalid(phoneCore.id)"
+                [(ngModel)]="product.specifications.core"
+                placeholder="Nhập thông số Số nhân CPU"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="operatingSystem"
+                >Hệ điều hành<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="operatingSystem"
+                #phoneOperatingSystem
+                (input)="clearClassInvalid(phoneOperatingSystem.id)"
+                [(ngModel)]="product.specifications.operatingSystem"
+                placeholder="Nhập hệ điều hành"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="batteryCapacity"
+                >Pin<span class="required">*</span></label
+              >
+
+              <input
+                type="text"
+                name=""
+                id="batteryCapacity"
+                #phoneBatteryCapacity
+                (input)="clearClassInvalid(phoneBatteryCapacity.id)"
+                [(ngModel)]="product.specifications.batteryCapacity"
+                placeholder="Nhập dung lượng pin"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="simSlot"
+                >Số lượng SIM<span class="required">*</span></label
+              >
+
+              <input
+                type="number"
+                name=""
+                id="simSlot"
+                #phoneSimSlot
+                (input)="clearClassInvalid(phoneSimSlot.id)"
+                [(ngModel)]="product.specifications.simSlot"
+                placeholder="Nhập số lượng sim"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="bluetooth"
+                >Bluetooth<span class="required">*</span></label
+              >
+
+              <input
+                type="text"
+                name=""
+                id="bluetooth"
+                #phoneBluetooth
+                (input)="clearClassInvalid(phoneBluetooth.id)"
+                [(ngModel)]="product.specifications.bluetooth"
+                placeholder="Nhập thông số bluetooth"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="camera">Camera<span class="required">*</span></label>
+              <input
+                type="text"
+                name=""
+                id="camera"
+                #phoneCamera
+                (input)="clearClassInvalid(phoneCamera.id)"
+                [(ngModel)]="product.specifications.camera"
+                placeholder="Nhập thông số của camera"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="weight"
+                >Khối lượng<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                id="weight"
+                #phoneWeight
+                (input)="clearClassInvalid(phoneWeight.id)"
+                [(ngModel)]="product.specifications.weight"
+                placeholder="Nhập khối lượng"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="color">Màu sắc<span class="required">*</span></label>
+              <input
+                type=""
+                id="color"
+                #phoneColor
+                (input)="clearClassInvalid(phoneColor.id)"
+                placeholder="Nhập từng màu cách nhau bằng dấu (,)"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="material"
+                >Vật liệu<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                id="material"
+                #phoneMaterial
+                (input)="clearClassInvalid(phoneMaterial.id)"
+                [(ngModel)]="product.specifications.material"
+                placeholder="Nhập thông tin vật liệu"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for=""
+                >Có cáp sạc không<span class="required">*</span></label
+              >
+              <div class="radio">
+                <div>
+                  <input
+                    class="input-radio"
+                    type="radio"
+                    name="cable"
+                    id="cable-yes"
+                  />
+                  <label class="label-radio" for="cable-yes">Có</label>
+                </div>
+                <div>
+                  <input
+                    class="input-radio"
+                    type="radio"
+                    name="cable"
+                    id="cable-no"
+                  />
+                  <label class="label-radio" for="cable-no">Không</label>
+                </div>
+              </div>
+              <span class="error-message" id="cable-error-message"
+                >Chọn có hoặc không
+              </span>
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for=""
+                >Có tai nghe không<span class="required">*</span></label
+              >
+              <div class="radio">
+                <div>
+                  <input
+                    class="input-radio"
+                    type="radio"
+                    name="earphone"
+                    id="earphone-yes"
+                  />
+                  <label class="label-radio" for="earphone-yes">Có</label>
+                </div>
+                <div>
+                  <input
+                    class="input-radio"
+                    type="radio"
+                    name="earphone"
+                    id="earphone-no"
+                  />
+                  <label class="label-radio" for="earphone-no">Không</label>
+                </div>
+              </div>
+              <span class="error-message" id="earphone-error-message"
+                >Chọn có hoặc không
+              </span>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="product.categoryId == 3" class="create-tablet-product">
+          <div class="column">
+            <div class="infor-item">
+              <label for="cpu">CPU<span class="required">*</span></label>
+              <input
+                type="text"
+                name=""
+                id="cpu"
+                #tabletCPU
+                (input)="clearClassInvalid(tabletCPU.id)"
+                [(ngModel)]="product.specifications.cpu"
+                placeholder="Nhập thông số CPU"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="screen"
+                >Màn hình<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="screen"
+                #tabletScreen
+                (input)="clearClassInvalid(tabletScreen.id)"
+                [(ngModel)]="product.specifications.screen"
+                placeholder="Nhập thông số màn hình"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="storage">Ổ cứng<span class="required">*</span></label>
+              <input
+                type="text"
+                name=""
+                id="storage"
+                #tabletStorage
+                (input)="clearClassInvalid(tabletStorage.id)"
+                [(ngModel)]="product.specifications.storage"
+                placeholder="Nhập thông số ổ cứng"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="ram">RAM<span class="required">*</span></label>
+              <input
+                type="text"
+                name=""
+                id="ram"
+                #tabletRAM
+                (input)="clearClassInvalid(tabletRAM.id)"
+                [(ngModel)]="product.specifications.ram"
+                placeholder="Nhập thông số của RAM"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="core"
+                >Số nhân CPU<span class="required">*</span></label
+              >
+              <input
+                type="number"
+                name=""
+                id="core"
+                #tabletCore
+                (input)="clearClassInvalid(tabletCore.id)"
+                [(ngModel)]="product.specifications.core"
+                placeholder="Nhập thông số Số nhân CPU"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="operatingSystem"
+                >Hệ điều hành<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="operatingSystem"
+                #tabletOperatingSystem
+                (input)="clearClassInvalid(tabletOperatingSystem.id)"
+                [(ngModel)]="product.specifications.operatingSystem"
+                placeholder="Nhập hệ điều hành"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="battery-capacity"
+                >Pin<span class="required">*</span></label
+              >
+
+              <input
+                type="text"
+                name=""
+                id="battery-capacity"
+                #tabletBatteryCapacity
+                (input)="clearClassInvalid(tabletBatteryCapacity.id)"
+                [(ngModel)]="product.specifications.batteryCapacity"
+                placeholder="Nhập dung lượng pin"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="sim-slot"
+                >Số lượng SIM<span class="required">*</span></label
+              >
+
+              <input
+                type="number"
+                name=""
+                id="sim-slot"
+                #tabletSimSlot
+                (input)="clearClassInvalid(tabletSimSlot.id)"
+                [(ngModel)]="product.specifications.simSlot"
+                placeholder="Nhập số lượng sim"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="bluetooth"
+                >Bluetooth<span class="required">*</span></label
+              >
+
+              <input
+                type="text"
+                name=""
+                id="bluetooth"
+                #tabletBluetooth
+                (input)="clearClassInvalid(tabletBluetooth.id)"
+                [(ngModel)]="product.specifications.bluetooth"
+                placeholder="Nhập thông số bluetooth"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="camera">Camera<span class="required">*</span></label>
+              <input
+                type="text"
+                name=""
+                id="camera"
+                #tabletCamera
+                (input)="clearClassInvalid(tabletCamera.id)"
+                [(ngModel)]="product.specifications.camera"
+                placeholder="Nhập thông số của camera"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="weight"
+                >Khối lượng<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                id="weight"
+                #tabletWeight
+                (input)="clearClassInvalid(tabletWeight.id)"
+                [(ngModel)]="product.specifications.weight"
+                placeholder="Nhập khối lượng"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="color">Màu sắc<span class="required">*</span></label>
+              <input
+                type=""
+                id="color"
+                #tabletColor
+                (input)="clearClassInvalid(tabletColor.id)"
+                placeholder="Nhập từng màu cách nhau bằng dấu (,)"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="material"
+                >Vật liệu<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                id="material"
+                #tabletMaterial
+                (input)="clearClassInvalid(tabletMaterial.id)"
+                [(ngModel)]="product.specifications.material"
+                placeholder="Nhập thông tin vật liệu"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for=""
+                >Có cáp sạc không<span class="required">*</span></label
+              >
+              <div class="radio">
+                <div>
+                  <input
+                    class="input-radio"
+                    type="radio"
+                    name="cable"
+                    id="cable-yes"
+                  />
+                  <label class="label-radio" for="cable-yes">Có</label>
+                </div>
+                <div>
+                  <input
+                    class="input-radio"
+                    type="radio"
+                    name="cable"
+                    id="cable-no"
+                  />
+                  <label class="label-radio" for="cable-no">Không</label>
+                </div>
+              </div>
+            </div>
+            <span class="error-message" id="cable-error-message"
+              >Chọn có hoặc không
+            </span>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for=""
+                >Có bút cảm ứng không<span class="required">*</span></label
+              >
+              <div class="radio">
+                <div>
+                  <input
+                    class="input-radio"
+                    type="radio"
+                    name="pen"
+                    id="pen-yes"
+                  />
+                  <label class="label-radio" for="pen-yes">Có</label>
+                </div>
+                <div>
+                  <input
+                    class="input-radio"
+                    type="radio"
+                    name="pen"
+                    id="pen-no"
+                  />
+                  <label class="label-radio" for="pen-no">Không</label>
+                </div>
+              </div>
+              <span class="error-message" id="pen-error-message"
+                >Chọn có hoặc không
+              </span>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="product.categoryId == 4" class="create-earphone-product">
+          <div class="column">
+            <div class="infor-item">
+              <label for="model">Model<span class="required">*</span></label>
+              <input
+                type="text"
+                name=""
+                id="model"
+                #earphoneModel
+                (input)="clearClassInvalid(earphoneModel.id)"
+                [(ngModel)]="product.specifications.model"
+                placeholder="Nhập thông số model"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="type"
+                >Kiểu tai nghe<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="type"
+                #earphoneType
+                (input)="clearClassInvalid(earphoneType.id)"
+                [(ngModel)]="product.specifications.type"
+                placeholder="Nhập kiểu tai nghe"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="weight"
+                >Khối lượng<span class="required">*</span></label
+              >
+              <input
+                weight="text"
+                name=""
+                id="weight"
+                #earphoneWeight
+                (input)="clearClassInvalid(earphoneWeight.id)"
+                [(ngModel)]="product.specifications.weight"
+                placeholder="Nhập khối lượng"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="batteryTime"
+                >Thời lượng pin<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="batteryTime"
+                #earphoneBatteryTime
+                (input)="clearClassInvalid(earphoneBatteryTime.id)"
+                [(ngModel)]="product.specifications.batteryTime"
+                placeholder="Nhập thời lượng pin"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="connection"
+                >Kết nối<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="connection"
+                #earphoneConnection
+                (input)="clearClassInvalid(earphoneConnection.id)"
+                [(ngModel)]="product.specifications.connection"
+                placeholder="Nhập loại kết nối"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="connectionDistance"
+                >Phạm vi kết nối<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="connectionDistance"
+                #earphoneConnectionDistance
+                (input)="clearClassInvalid(earphoneConnectionDistance.id)"
+                [(ngModel)]="product.specifications.connectionDistance"
+                placeholder="Nhập phạm vi kết nối"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="frequency"
+                >Tần số<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="frequency"
+                #earphoneFrequency
+                (input)="clearClassInvalid(earphoneFrequency.id)"
+                [(ngModel)]="product.specifications.frequency"
+                placeholder="Nhập tần số tai nghe"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="impedance"
+                >Trở kháng<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="impedance"
+                #earphoneImpedance
+                (input)="clearClassInvalid(earphoneImpedance.id)"
+                [(ngModel)]="product.specifications.impedance"
+                placeholder="Nhập trở kháng"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="compatible"
+                >Tương thích<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="compatible"
+                #earphoneCompatible
+                (input)="clearClassInvalid(earphoneCompatible.id)"
+                [(ngModel)]="product.specifications.compatible"
+                placeholder="Nhập thiết bị tương thích"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="micrphone"
+                >Micro<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="micrphone"
+                #earphoneMicrphone
+                (input)="clearClassInvalid(earphoneMicrphone.id)"
+                [(ngModel)]="product.specifications.micrphone"
+                placeholder="Nhập có hoặc không"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="size"
+                >Kích thước<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="size"
+                #earphoneSize
+                (input)="clearClassInvalid(earphoneSize.id)"
+                [(ngModel)]="product.specifications.size"
+                placeholder="Nhập thông số kích thước"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="color">Color<span class="required">*</span></label>
+              <input
+                type=""
+                name=""
+                id="color"
+                #earphoneColor
+                (input)="clearClassInvalid(earphoneColor.id)"
+                placeholder="Nhập từng màu cách nhau bằng dấu (,)"
+              />
+            </div>
+          </div>
+        </div>
+        <div *ngIf="product.categoryId == 5" class="create-mouse-product">
+          <div class="column">
+            <div class="infor-item">
+              <label for="DPI"
+                >Độ phân giải<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="DPI"
+                #mouseDPI
+                (input)="clearClassInvalid(mouseDPI.id)"
+                [(ngModel)]="product.specifications.DPI"
+                placeholder="Nhập thông tin độ phân giải"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="connection"
+                >Độ dài, Cách kết nối<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="connection"
+                #mouseConnection
+                (input)="clearClassInvalid(mouseConnection.id)"
+                [(ngModel)]="product.specifications.connection"
+                placeholder="Nhập độ dài, cách kết nối"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="batteryCapacity"
+                >Thời lượng pin<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="batteryCapacity"
+                #mouseBatteryCapacity
+                (input)="clearClassInvalid(mouseBatteryCapacity.id)"
+                [(ngModel)]="product.specifications.batteryCapacity"
+                placeholder="Nhập thời lượng pin"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="weight"
+                >Trọng lượng<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="weight"
+                #mouseWeight
+                (input)="clearClassInvalid(mouseWeight.id)"
+                [(ngModel)]="product.specifications.weight"
+                placeholder="Nhập trọng lượng"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="led">Đèn LED<span class="required">*</span></label>
+              <input
+                type="text"
+                name=""
+                id="led"
+                #mouseLed
+                (input)="clearClassInvalid(mouseLed.id)"
+                [(ngModel)]="product.specifications.led"
+                placeholder="Nhập thông tin đèn led"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="color">Màu sắc<span class="required">*</span></label>
+              <input
+                type=""
+                name=""
+                id="color"
+                #mouseColor
+                (input)="clearClassInvalid(mouseColor.id)"
+                placeholder="Nhập từng màu cách nhau bằng dấu (,)"
+              />
+            </div>
+          </div>
+        </div>
+        <div *ngIf="product.categoryId == 6" class="create-keyboard-product">
+          <div class="column">
+            <div class="infor-item">
+              <label for="model">Model<span class="required">*</span></label>
+              <input
+                type="text"
+                name=""
+                id="model"
+                #keyboardModel
+                (input)="clearClassInvalid(keyboardModel.id)"
+                [(ngModel)]="product.specifications.model"
+                placeholder="Nhập thông tin model"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="connection"
+                >Kiểu kết nối<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="connection"
+                #keyboardConnection
+                (input)="clearClassInvalid(keyboardConnection.id)"
+                [(ngModel)]="product.specifications.connection"
+                placeholder="Nhập kiểu kết nối"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="connectionDistance"
+                >Phạm vi kết nối<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="connectionDistance"
+                #keyboardConnectionDistance
+                (input)="clearClassInvalid(keyboardConnectionDistance.id)"
+                [(ngModel)]="product.specifications.connectionDistance"
+                placeholder="Nhập phạm vi kết nối"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="model"
+                >Loại switch<span class="required">*</span></label
+              >
+              <input
+                type="switch"
+                name=""
+                id="switch"
+                #keyboardSwitch
+                (input)="clearClassInvalid(keyboardSwitch.id)"
+                [(ngModel)]="product.specifications.switch"
+                placeholder="Nhập loại switch"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="type"
+                >Kiểu bàn phím<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="type"
+                #keyboardType
+                (input)="clearClassInvalid(keyboardType.id)"
+                [(ngModel)]="product.specifications.type"
+                placeholder="Nhập kiểu bàn phím"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="numberOfKeys"
+                >Số phím<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="numberOfKeys"
+                #keyboardNumberOfKeys
+                (input)="clearClassInvalid(keyboardNumberOfKeys.id)"
+                [(ngModel)]="product.specifications.numberOfKeys"
+                placeholder="Nhập số phím"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="ledLight"
+                >Đèn LED<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="ledLight"
+                #keyboardLedLight
+                (input)="clearClassInvalid(keyboardLedLight.id)"
+                [(ngModel)]="product.specifications.ledLight"
+                placeholder="Nhập thông tin đèn led"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="materialKeycaps"
+                >Chất liệu keycaps<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="materialKeycaps"
+                #keyboardMaterialKeycaps
+                (input)="clearClassInvalid(keyboardMaterialKeycaps.id)"
+                [(ngModel)]="product.specifications.materialKeycaps"
+                placeholder="Nhập thông tin chất liệu"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="otherFunction"
+                >Tính năng khác<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="otherFunction"
+                #keyboardOtherFunction
+                (input)="clearClassInvalid(keyboardOtherFunction.id)"
+                [(ngModel)]="product.specifications.otherFunction"
+                placeholder="Nhập tính năng khác"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="size"
+                >Kích thước<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="size"
+                #keyboardSize
+                (input)="clearClassInvalid(keyboardSize.id)"
+                [(ngModel)]="product.specifications.size"
+                placeholder="Nhập thông tin size"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="product.categoryId == 7" class="create-application-product">
+          <div class="column">
+            <div class="infor-item">
+              <label for="language"
+                >Ngôn ngữ<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="language"
+                #appLanguage
+                (input)="clearClassInvalid(appLanguage.id)"
+                [(ngModel)]="product.specifications.language"
+                placeholder="Nhập ngôn ngữ"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="type"
+                >Loại phần mềm<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="type"
+                #appType
+                (input)="clearClassInvalid(appType.id)"
+                [(ngModel)]="product.specifications.type"
+                placeholder="Nhập loại phần mềm"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="numberOfUser"
+                >Số thiết bị sử dụng<span class="required">*</span></label
+              >
+              <input
+                type="number"
+                name=""
+                id="numberOfUser"
+                #appNumberOfUser
+                (input)="clearClassInvalid(appNumberOfUser.id)"
+                [(ngModel)]="product.specifications.numberOfUser"
+                placeholder="Nhập số thiết bị sử dụng"
+              />
+            </div>
+          </div>
+          <div class="column">
+            <div class="infor-item">
+              <label for="operationSystem"
+                >Hệ điều hành<span class="required">*</span></label
+              >
+              <input
+                type="text"
+                name=""
+                id="operationSystem"
+                #appOperationSystem
+                (input)="clearClassInvalid(appOperationSystem.id)"
+                [(ngModel)]="product.specifications.operationSystem"
+                placeholder="Nhập hệ điều hành"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-save">
+        <button
+          *ngIf="product.categoryId == 1"
+          class="btn-save-product"
+          (click)="onSubmitLaptop()"
+        >
+          Lưu sản phẩm
+        </button>
+
+        <button
+          *ngIf="product.categoryId == 2"
+          class="btn-save-product"
+          (click)="onSubmitPhone()"
+        >
+          Lưu sản phẩm
+        </button>
+
+        <button
+          *ngIf="product.categoryId == 3"
+          class="btn-save-product"
+          (click)="onSubmitTabet()"
+        >
+          Lưu sản phẩm
+        </button>
+
+        <button
+          *ngIf="product.categoryId == 4"
+          class="btn-save-product"
+          (click)="onSubmitEarphone()"
+        >
+          Lưu sản phẩm
+        </button>
+        <button
+          *ngIf="product.categoryId == 5"
+          class="btn-save-product"
+          (click)="onSubmitMouse()"
+        >
+          Lưu sản phẩm
+        </button>
+        <button
+          *ngIf="product.categoryId == 6"
+          class="btn-save-product"
+          (click)="onSubmitKeyboard()"
+        >
+          Lưu sản phẩm
+        </button>
+
+        <button
+          *ngIf="product.categoryId == 7"
+          class="btn-save-product"
+          (click)="onSubmitApplication()"
+        >
+          Lưu sản phẩm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

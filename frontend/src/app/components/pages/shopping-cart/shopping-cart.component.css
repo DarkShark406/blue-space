@@ -1,0 +1,211 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.header h1 {
+  margin-bottom: 12px;
+}
+
+.content {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.list-products {
+  width: 65%;
+}
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  background-color: transparent;
+  border-collapse: collapse;
+}
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+  text-align: inherit;
+  padding: 12px;
+}
+
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.image-item {
+  width: 10%;
+}
+
+.image-item img {
+  width: 100px;
+}
+
+.name-item {
+  width: 40%;
+}
+
+.price-item,
+.into-money {
+  font-weight: bold;
+}
+
+input[type="number"] {
+  height: 35px;
+  width: 55px;
+  text-align: center;
+  border: 1px solid #f5f7ff;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #f5f7ff;
+}
+
+input[type="number"]:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  opacity: 0.5;
+}
+
+.delete-item {
+  cursor: pointer;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.btn-continue-shopping,
+.btn-delete-all {
+  width: 180px;
+  height: 37px;
+  border-radius: 50px;
+}
+
+.btn-continue-shopping {
+  background-color: white;
+  color: #a2a6b0;
+  border: #a2a6b0 2px solid;
+}
+
+.btn-continue-shopping:hover {
+  cursor: pointer;
+  animation: jump 0.5s ease-in-out;
+}
+
+.btn-delete-all {
+  background-color: black;
+  color: white;
+}
+
+.btn-delete-all:hover {
+  cursor: pointer;
+  animation: jump 0.5s ease-in-out;
+}
+
+.total-pay-temporary .label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.total-pay-temporary .number-money {
+  font-weight: bold;
+  color: red;
+}
+
+.content-customer-payment {
+  width: 300px;
+  background-color: #f5f7ff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.1),
+    0 2px 6px 2px rgba(60, 64, 67, 0.15);
+  padding: 10px;
+}
+
+.make-payment {
+  color: #f5f7ff;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 50px;
+  border: #0156ff 2px solid;
+  background-color: #0156ff;
+  font-weight: bold;
+  width: 100%;
+}
+
+.make-payment:hover {
+  cursor: pointer;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  padding-top: 150px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(217, 217, 217, 0.8);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  width: 40%;
+  padding: 20px 40px;
+  border-radius: 30px;
+}
+
+.modal-heading {
+  display: flex;
+  flex-direction: column;
+}
+
+.fa-solid.fa-bell.fa-2xl {
+  color: #02bc7d;
+  width: 50px;
+  height: 50px;
+}
+
+.modal-content-heading {
+  text-align: center;
+  font-size: 22px;
+  margin-top: 12px;
+}
+
+.btn-action {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 16px;
+}
+
+.btn-login,
+.btn-continue-payment {
+  background-color: #0156ff;
+  border: #0156ff;
+  border-radius: 10px;
+  width: 200px;
+  height: 40px;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-login:hover,
+.btn-continue-payment:hover {
+  background-color: #dee2e6;
+  color: #0156ff;
+}
