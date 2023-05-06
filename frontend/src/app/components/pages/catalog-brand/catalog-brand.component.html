@@ -16,101 +16,6 @@
 
       <!-- start Filter laptop -->
       <div class="filter__box" *ngIf="categoryName == 'laptop'">
-        <div class="filter-list" id="laptop-filter-brand">
-          <div class="filter-title">Thương hiệu</div>
-          <div class="brand-list">
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(dellaptop.id)"
-                #dellaptop
-                id="dellaptop"
-                class="brand-item"
-                data-value="Dell"
-              >
-                <img
-                  src="../assets/images/brand/logo-dell.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(asuslaptop.id)"
-                #asuslaptop
-                id="asuslaptop"
-                class="brand-item"
-                data-value="Asus"
-              >
-                <img
-                  src="../assets/images/brand/logo-asus.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(acerlaptop.id)"
-                #acerlaptop
-                id="acerlaptop"
-                class="brand-item"
-                data-value="Acer"
-              >
-                <img
-                  src="../assets/images/brand/logo-acer.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(lenovolaptop.id)"
-                #lenovolaptop
-                id="lenovolaptop"
-                class="brand-item"
-                data-value="lenovo"
-              >
-                <img
-                  src="../assets/images/brand/logo-lenovo.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(msilaptop.id)"
-                #msilaptop
-                id="msilaptop"
-                class="brand-item"
-                data-value="msi"
-              >
-                <img
-                  src="../assets/images/brand/logo-msi.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(hplaptop.id)"
-                #hplaptop
-                id="hplaptop"
-                class="brand-item"
-                data-value="hp"
-              >
-                <img
-                  src="../assets/images/brand/logo-hp.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="filter-list" id="laptop-filter-screen">
           <div class="filter-title">Màn hình</div>
           <div class="filter-item" data-value="13">
@@ -264,86 +169,6 @@
         class="filter__box"
         *ngIf="categoryName == 'phone' || categoryName == 'tablet'"
       >
-        <div class="filter-list" id="phone-filter-brand">
-          <div class="filter-title">Thương hiệu</div>
-          <div class="brand-list">
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(applephone.id)"
-                #applephone
-                id="applephone"
-                class="brand-item"
-                data-value="Apple"
-              >
-                <img
-                  src="../assets/images/brand/logo-iphone.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(samsungphone.id)"
-                #samsungphone
-                id="samsungphone"
-                class="brand-item"
-                data-value="Samsung"
-              >
-                <img
-                  src="../assets/images/brand/logo-samsung.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(oppophone.id)"
-                #oppophone
-                id="oppophone"
-                class="brand-item"
-                data-value="Oppo"
-              >
-                <img
-                  src="../assets/images/brand/logo-oppo.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(vivophone.id)"
-                #vivophone
-                id="vivophone"
-                class="brand-item"
-                data-value="Vivo"
-              >
-                <img
-                  src="../assets/images/brand/logo-vivo.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(xiaomiphone.id)"
-                #xiaomiphone
-                id="xiaomiphone"
-                class="brand-item"
-                data-value="xiaomi"
-              >
-                <img
-                  src="../assets/images/brand/logo-xiaomi.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="filter-list" id="phone-filter-storage">
           <div class="filter-title">Bộ nhớ trong</div>
           <div class="filter-item" data-value="32">
@@ -503,86 +328,6 @@
 
       <!-- Start filter earphone -->
       <div class="filter__box" *ngIf="categoryName == 'earphone'">
-        <div class="filter-list" id="earphone-filter-brand">
-          <div class="filter-title">Thương hiệu</div>
-          <div class="brand-list">
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(logitechEarphone.id)"
-                #logitechEarphone
-                id="logitechEarphone"
-                class="brand-item"
-                data-value="logitech"
-              >
-                <img
-                  src="../assets/images/brand/logo-logitech.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(hyperxEarphone.id)"
-                #hyperxEarphone
-                id="hyperxEarphone"
-                class="brand-item"
-                data-value="hyperx"
-              >
-                <img
-                  src="../assets/images/brand/logo-hyperx.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(razerEarphone.id)"
-                #razerEarphone
-                id="razerEarphone"
-                class="brand-item"
-                data-value="razer"
-              >
-                <img
-                  src="../assets/images/brand/logo-razer.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(corsair.id)"
-                #corsair
-                id="corsair"
-                class="brand-item"
-                data-value="corsair"
-              >
-                <img
-                  src="../assets/images/brand/logo-corsair.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(sonyEarphone.id)"
-                #sonyEarphone
-                id="sonyEarphone"
-                class="brand-item"
-                data-value="sony"
-              >
-                <img
-                  src="../assets/images/brand/logo-sony.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="filter-list" id="earphone-filter-type">
           <div class="filter-title">Kiểu tai nghe</div>
           <div class="filter-item" data-value="Over-ear">
@@ -693,71 +438,6 @@
 
       <!-- Start filter keyboard -->
       <div class="filter__box" *ngIf="categoryName == 'keyboard'">
-        <div class="filter-list" id="keyboard-filter-brand">
-          <div class="filter-title">Thương hiệu</div>
-          <div class="brand-list">
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(corsairKeyboard.id)"
-                #corsairKeyboard
-                id="corsairKeyboard"
-                class="brand-item"
-                data-value="corsair"
-              >
-                <img
-                  src="../assets/images/brand/logo-corsair.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(razerKeyboard.id)"
-                #razerKeyboard
-                id="razerKeyboard"
-                class="brand-item"
-                data-value="razer"
-              >
-                <img
-                  src="../assets/images/brand/logo-razer.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(dareuKeyboard.id)"
-                #dareuKeyboard
-                id="dareuKeyboard"
-                class="brand-item"
-                data-value="dareu"
-              >
-                <img
-                  src="../assets/images/brand/logo-dareu.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(logitechKeyboard.id)"
-                #logitechKeyboard
-                id="logitechKeyboard"
-                class="brand-item"
-                data-value="logitech"
-              >
-                <img
-                  src="../assets/images/brand/logo-logitech.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="filter-list" id="keyboard-filter-type">
           <div class="filter-title">Kiểu bàn phím</div>
           <div class="filter-item" data-value="Tenkeyless">
@@ -889,60 +569,6 @@
 
       <!-- Start filter application -->
       <div class="filter__box" *ngIf="categoryName == 'application'">
-        <div class="filter-list" id="application-filter-brand">
-          <div class="filter-title">Thương hiệu</div>
-          <div class="brand-list">
-            <div class="column">
-              <div
-                (click)="
-                  toggleActiveClassBrandAndColor(microsoftApplication.id)
-                "
-                #microsoftApplication
-                id="microsoftApplication"
-                class="brand-item"
-                data-value="microsoft"
-              >
-                <img
-                  src="../assets/images/brand/logo-microsoft.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-            <div class="column">
-              <div
-                (click)="
-                  toggleActiveClassBrandAndColor(kasperskyApplication.id)
-                "
-                #kasperskyApplication
-                id="kasperskyApplication"
-                class="brand-item"
-                data-value="kaspersky"
-              >
-                <img
-                  src="../assets/images/brand/logo-kaspersky.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(fptApplication.id)"
-                #fptApplication
-                id="fptApplication"
-                class="brand-item"
-                data-value="fpt"
-              >
-                <img
-                  src="../assets/images/brand/logo-fpt.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="filter-list" id="application-filter-type">
           <div class="filter-title">Kiểu phần mềm</div>
           <div class="filter-item" data-value="Diệt Virus">
@@ -1093,74 +719,8 @@
       </div>
       <!-- End filter Application -->
 
-      <!-- Start filter application -->
+      <!-- Start filter mouse -->
       <div class="filter__box" *ngIf="categoryName == 'mouse'">
-        <div class="filter-list" id="mouse-filter-brand">
-          <div class="filter-title">Thương hiệu</div>
-          <div class="brand-list">
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(rapooMouse.id)"
-                #rapooMouse
-                id="rapooMouse"
-                class="brand-item"
-                data-value="rapoo"
-              >
-                <img
-                  src="../assets/images/brand/logo-rapoo.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(corsairMouse.id)"
-                #corsairMouse
-                id="corsairMouse"
-                class="brand-item"
-                data-value="corsair"
-              >
-                <img
-                  src="../assets/images/brand/logo-corsair.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(asusMouse.id)"
-                #asusMouse
-                id="asusMouse"
-                class="brand-item"
-                data-value="asus"
-              >
-                <img
-                  src="../assets/images/brand/logo-asus.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-            <div class="column">
-              <div
-                (click)="toggleActiveClassBrandAndColor(logitechMouse.id)"
-                #logitechMouse
-                id="logitechMouse"
-                class="brand-item"
-                data-value="logitech"
-              >
-                <img
-                  src="../assets/images/brand/logo-logitech.png"
-                  alt=""
-                  class="brand-img"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div class="filter-list filter-list-price" id="mouse-filter-price">
           <div class="filter-title">Giá</div>
           <div class="filter-item" data-value="0-0.3">
@@ -1245,7 +805,7 @@
           Áp dụng
         </button>
       </div>
-      <!-- End filter Application -->
+      <!-- End filter mouse -->
     </div>
 
     <div class="show-product">
