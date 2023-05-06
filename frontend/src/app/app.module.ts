@@ -33,6 +33,7 @@ import { PolicyComponent } from './components/pages/policy/policy.component';
 import { ReportsComponent } from './components/pages/reports/reports.component';
 import { LoadingComponent } from './components/partials/loading/loading.component';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { MapComponent } from './components/partials/map/map.component';
 import { CatalogBrandComponent } from './components/pages/catalog-brand/catalog-brand.component';
 
 @NgModule({
@@ -59,6 +60,7 @@ import { CatalogBrandComponent } from './components/pages/catalog-brand/catalog-
     PolicyComponent,
     ReportsComponent,
     LoadingComponent,
+    MapComponent,
     CatalogBrandComponent,
   ],
   imports: [

@@ -30,7 +30,7 @@ router.post("/login", async (req, res) => {
   if (user && (await bcrypt.compare(password, user.password))) {
     res.send(generateTokenReponse(user));
   } else {
-    res.status(HTTP_BAD_REQUEST).send("Username or password is invalid!");
+    res.send("Username or password is invalid!");
   }
 });
 

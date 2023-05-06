@@ -7,15 +7,16 @@ export class User {
   address!: string;
   isAdmin!: boolean;
   cart!: Product[];
+  token!: string;
 }
-export interface IUserLogin {
-  email: string;
-  password: string;
+export class IUserLogin {
+  email!: string;
+  password!: string;
 }
-export interface IUserRegister {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  address: string;
+export class IUserRegister {
+  name!: string;
+  email!: string;
+  password!: string;
+  confirmPassword!: string;
+  address!: string;
 }
