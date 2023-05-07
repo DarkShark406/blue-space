@@ -1,3 +1,4 @@
+import { Cart } from './cart';
 import { Product } from './product';
 
 export class User {
@@ -6,7 +7,7 @@ export class User {
   name!: string;
   address!: string;
   isAdmin!: boolean;
-  cart!: Product[];
+  cart!: Cart;
   token!: string;
 }
 export class IUserLogin {

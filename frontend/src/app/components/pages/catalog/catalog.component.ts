@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Filter } from 'src/app/interfaces/filter';
 import { Product } from 'src/app/interfaces/product';
+import { CartProductService } from 'src/app/services/cart-product.service';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
 import { SearchBarService } from 'src/app/services/search-bar.service';
 
@@ -27,6 +28,7 @@ export class CatalogComponent implements OnInit {
     private _service: ProductCategoryService,
     private route: ActivatedRoute,
     private router: Router,
+    private cartService: CartProductService,
     private searchBarService: SearchBarService
   ) {}
   ngOnInit() {
@@ -51,12 +53,15 @@ export class CatalogComponent implements OnInit {
     const item = Object.assign({}, product);
     item.specifications = Object.assign({}, product.specifications);
 
-    item.specifications.color = [product.specifications.color[0]];
+    if (item.specifications.color != undefined) {
+      item.specifications.color = [product.specifications.color[0]];
+    }
 
     console.log(item);
     console.log(quantity);
     // Viết serivce truyền item và quantity
     alert(item.productName + '\n Số lượng:' + quantity);
+    this.cartService.addProductToCart(item, quantity);
   }
   suggestions: any;
   searchTerm = '';

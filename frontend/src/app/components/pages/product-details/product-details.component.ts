@@ -4,6 +4,8 @@ import { Product } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product.service';
 import { SearchBarComponent } from '../../partials/search-bar/search-bar.component';
 import { SearchBarService } from 'src/app/services/search-bar.service';
+import { Cart, CartItem } from 'src/app/interfaces/cart';
+import { CartProductService } from 'src/app/services/cart-product.service';
 
 @Component({
   selector: 'app-product-details',
@@ -62,6 +64,7 @@ export class ProductDetailsComponent {
     private route: ActivatedRoute,
     private productSerivce: ProductService,
     private searchBarService: SearchBarService,
+    private cartService: CartProductService,
     private router: Router
   ) {}
   ngOnInit() {
@@ -75,17 +78,23 @@ export class ProductDetailsComponent {
   }
 
   addToCart(product: Product, quantity: number) {
+    console.log('vào hàm add to cart');
     const item = Object.assign({}, product);
+    console.log(item.specifications.color);
     item.specifications = Object.assign({}, product.specifications);
-    if (this.selectedColor != '') {
-      item.specifications.color = [this.selectedColor];
-    } else {
-      item.specifications.color = [product.specifications.color[0]];
+    if (item.specifications.color != undefined) {
+      if (this.selectedColor != '') {
+        item.specifications.color = [this.selectedColor];
+      } else {
+        item.specifications.color = [product.specifications.color[0]];
+      }
     }
     console.log(item);
     console.log(quantity);
     // Viết serivce truyền item và quantity
     alert(item.productName + '\n Số lượng:' + quantity);
+
+    this.cartService.addProductToCart(item, quantity);
   }
   getColor(event: any) {
     this.selectedColor = event.target.value;
