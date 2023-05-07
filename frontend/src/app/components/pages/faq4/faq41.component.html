@@ -1,0 +1,74 @@
+<!-- <p>faq41 works!</p> -->
+
+<div class="container">
+    <table>
+        <td class="left">
+            <div class="container-question">
+                <div class="faq-content faq-small-title">
+                    <h3>Hỏi đáp cùng Blue Space</h3>
+                </div>
+                    <hr class="faq-blur">
+                <div class="user-form">
+                    <div class="form-group">
+                        <textarea name="form-input" placeholder="Nhập nội dung câu hỏi của bạn" class="form-input" rows="3"></textarea>
+                        <div><button type="submit" class="button-input" >GỬI BÌNH LUẬN</button></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="question">
+                        <span class="user-question">10 câu hỏi</span>
+                        <div>
+                            <span>Sắp xếp theo</span>
+                            <select name="arrange" class="dropdown">
+                                <option value="Moinhat">Mới nhất</option>
+                                <option value="Huuichnhat">Hữu ích nhất</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="user-block">
+                        <div *ngFor="let f1 of faq41">
+                            <div class="answer">
+                                <img src="./assets/User.png" class="avatar">
+                                <div>
+                                    <b>{{f1.UserName}}</b>
+                                    <br>
+                                    <span>{{f1.Question}}</span>
+                                    <div class="time-like-reply">
+                                        <span>12 giờ trước</span>
+                                        <i>*</i>
+                                        <a href="Like" class="link">Thích</a>
+                                        <i>*</i>
+                                        <a href="Reply" class="link">Trả lời</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="reply">
+                                <img src="./assets/User.png" class="avatar">
+                                <div class="reply-none">
+                                    <b>{{f1.Account}}</b>
+                                    <br>
+                                    <span>Chào {{f1.UserName}},<br>
+                                        {{f1.Reply}}<br>
+                                        Thân mến!</span>
+                                    <div class="time-like-reply">
+                                        <span>Time</span>
+                                        <i>*</i>
+                                        <a href="Like" class="link">Thích</a>
+                                        <i>*</i>
+                                        <a href="Reply" class="link">Trả lời</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
+        <td class="topright"></td>
+    </table>
+</div>
