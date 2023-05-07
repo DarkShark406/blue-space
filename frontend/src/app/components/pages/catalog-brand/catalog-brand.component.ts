@@ -64,11 +64,10 @@ export class CatalogBrandComponent implements OnInit {
       item.specifications.color = [product.specifications.color[0]];
     }
 
-    console.log(item);
-    console.log(quantity);
-    // Viết serivce truyền item và quantity
-    alert(item.productName + '\n Số lượng:' + quantity);
     this.cartService.addProductToCart(item, quantity);
+
+    // Chuyển qua trang shopping cart
+    this.router.navigate(['shopping-cart']);
   }
   suggestions: any;
   searchTerm = '';
@@ -272,6 +271,12 @@ export class CatalogBrandComponent implements OnInit {
       next: (data) => (this.products = data),
     });
     console.log(this.filter);
+
+    // Set sort về trạng thái ban đầu
+    const selectElement = document.getElementById('sort') as HTMLSelectElement;
+    if (selectElement) {
+      selectElement.selectedIndex = -1;
+    }
   }
 
   // 2. Button filter Phone or Tablet
@@ -324,6 +329,12 @@ export class CatalogBrandComponent implements OnInit {
       next: (data) => (this.products = data),
     });
     console.log(this.filter);
+
+    // Set sort về trạng thái ban đầu
+    const selectElement = document.getElementById('sort') as HTMLSelectElement;
+    if (selectElement) {
+      selectElement.selectedIndex = -1;
+    }
   }
 
   // 3. Button filter earphone
@@ -363,6 +374,12 @@ export class CatalogBrandComponent implements OnInit {
       next: (data) => (this.products = data),
     });
     console.log(this.filter);
+
+    // Set sort về trạng thái ban đầu
+    const selectElement = document.getElementById('sort') as HTMLSelectElement;
+    if (selectElement) {
+      selectElement.selectedIndex = -1;
+    }
   }
 
   // 4. Button filter keyboard
@@ -415,6 +432,12 @@ export class CatalogBrandComponent implements OnInit {
       next: (data) => (this.products = data),
     });
     console.log(this.filter);
+
+    // Set sort về trạng thái ban đầu
+    const selectElement = document.getElementById('sort') as HTMLSelectElement;
+    if (selectElement) {
+      selectElement.selectedIndex = -1;
+    }
   }
 
   // 5. Button filter application
@@ -467,6 +490,12 @@ export class CatalogBrandComponent implements OnInit {
       next: (data) => (this.products = data),
     });
     console.log(this.filter);
+
+    // Set sort về trạng thái ban đầu
+    const selectElement = document.getElementById('sort') as HTMLSelectElement;
+    if (selectElement) {
+      selectElement.selectedIndex = -1;
+    }
   }
 
   // 6. Button filter mouse
@@ -493,6 +522,12 @@ export class CatalogBrandComponent implements OnInit {
       next: (data) => (this.products = data),
     });
     console.log(this.filter);
+
+    // Set sort về trạng thái ban đầu
+    const selectElement = document.getElementById('sort') as HTMLSelectElement;
+    if (selectElement) {
+      selectElement.selectedIndex = -1;
+    }
   }
 
   // --------------- Sort sản phẩm ----------------

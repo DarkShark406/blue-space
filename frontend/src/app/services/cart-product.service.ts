@@ -8,6 +8,60 @@ import { Cart, CartItem } from '../interfaces/cart';
 export class CartProductService {
   constructor() {}
 
+  getCart() {
+    let cartResult = new Cart();
+
+    // Lấy dữ liệu từ cart
+    const userLS = localStorage.getItem('user');
+    if (userLS != null) {
+      let user = JSON.parse(userLS);
+
+      // Kiểm tra xem có cart đang sử dụng hay không
+      const cartLS = localStorage.getItem('cart');
+      if (cartLS != null) {
+        // Nếu có thì gộp các sản phẩm ở cart user và cart lại
+        let cart = JSON.parse(cartLS);
+
+        cartResult.items = [...user.cart.items];
+
+        cart.items.forEach((item: CartItem) => {
+          const existingItemIndex = cartResult.items.findIndex(
+            (cartResultItem) => cartResultItem.product.id == item.product.id
+          );
+
+          // Nếu tìm thấy phần tử có id trùng
+          if (existingItemIndex !== -1) {
+            // So sánh và cập nhật quantity nếu quantity mới lớn hơn
+            if (item.quantity > cartResult.items[existingItemIndex].quantity) {
+              cartResult.items[existingItemIndex].quantity = item.quantity;
+            }
+          } else {
+            cartResult.items.push(item);
+          }
+        });
+        // Loại bỏ luôn cart trước khi mà đăng nhập
+        // Khi đăng nhập rồi thì chỉ sử dụng cart của user
+        localStorage.removeItem('cart');
+      } else {
+        // Không có cart đang sử dụng thì cart = cart của user
+        cartResult = user.cart;
+      }
+    } else {
+      // Không thì lấy cart của LS
+      const cartLS = localStorage.getItem('cart');
+      if (cartLS != null) {
+        const cart = JSON.parse(cartLS);
+        cartResult = cart;
+      }
+    }
+
+    return cartResult;
+  }
+
+  getNumberProduct() {
+    return this.getCart().items.length;
+  }
+
   addProductToCart(item: Product, quantity: number) {
     // Lấy ra user trên local storage
     const userLS = localStorage.getItem('user');
@@ -54,5 +108,11 @@ export class CartProductService {
         localStorage.setItem('cart', JSON.stringify(cart));
       }
     }
+  }
+
+  deleteCartItem(cart: Cart, item: CartItem) {
+    return cart.items.filter((cartItem) => {
+      return cartItem.product.id != item.product.id;
+    });
   }
 }

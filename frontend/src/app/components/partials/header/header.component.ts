@@ -10,6 +10,7 @@ import { HeaderService } from 'src/app/services/header.service';
 import { NavItem } from 'src/app/interfaces/nav-item';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/interfaces/user';
+import { CartProductService } from 'src/app/services/cart-product.service';
 
 @Component({
   selector: 'header',
@@ -25,14 +26,19 @@ export class HeaderComponent {
   earphone: any;
   keyboard: any;
   application: any;
+
+  numberProductInCart: number = 0;
   constructor(
     private headerService: HeaderService,
-    private userService: UserService
+    private userService: UserService,
+    private cartService: CartProductService
   ) {
     userService.userObservable.subscribe((newUser) => {
       this.user = newUser;
     });
     console.log(this.user);
+
+    this.numberProductInCart = this.cartService.getNumberProduct();
   }
   ngOnInit() {
     this.headerService.getNavItem().subscribe((d) => {
