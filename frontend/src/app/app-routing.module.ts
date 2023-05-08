@@ -17,6 +17,7 @@ import { AuthGuard } from './auth/guard/auth.guard';
 import { PolicyComponent } from './components/pages/policy/policy.component';
 import { AboutUsComponent } from './components/pages/about-us/about-us.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
+import { MyOrdersComponent } from './components/pages/my-orders/my-orders.component';
 import { FAQSecurityComponent } from './components/pages/faq-security/faq-security.component';
 import { FAQReturnComponent } from './components/pages/faq-return/faq-return.component';
 import { FAQWarrantyComponent } from './components/pages/faq-warranty/faq-warranty.component';
@@ -33,7 +34,7 @@ const routes: Routes = [
   { path: 'products/:category/:brand', component: CatalogBrandComponent },
   { path: 'products/:category', component: CatalogComponent },
   { path: 'products/:category/:brand', component: CatalogComponent },
-  { path: 'orders', component: OrdersComponent },
+  { path: 'orders', component: MyOrdersComponent },
   { path: 'profile', component: AccountComponent, canActivate: [AuthGuard] },
   { path: 'forget-password', component: ForgotPasswordComponent },
   { path: 'policy', component: PolicyComponent },

@@ -46,8 +46,8 @@ export class PaypalButtonComponent {
           self.orderService.pay(this.order).subscribe({
             next: (orderId) => {
               this.cartService.clearCart();
-              this.router.navigateByUrl('/track/' + orderId);
-              window.alert('Payment Saved Successfully');
+              this.router.navigateByUrl('/orders');
+              alert('Payment Saved Successfully');
             },
             error: (error) => {
               window.alert('Payment Save Failed');

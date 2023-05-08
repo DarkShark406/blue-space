@@ -354,3 +354,15 @@ input[type="radio"] {
 .auto-close {
   font-size: 12px;
 }
+
+input[type="checkbox"] {
+  -webkit-transform: scale(1.5);
+  -moz-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  transform: scale(1.5);
+  margin-right: 4px;
+}
+
+.invalid-input {
+  border-color: red;
+}

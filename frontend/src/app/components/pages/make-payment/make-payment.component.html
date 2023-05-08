@@ -100,6 +100,7 @@
               id="full-name"
               class="full-name"
               placeholder="Nhập họ và tên"
+              [(ngModel)]="fullname"
             />
             <span class="error-message" id="message-fullname"
               >Vui lòng nhập họ và tên.</span
@@ -115,6 +116,7 @@
               id="phone-number"
               placeholder="Nhập số điện thoại"
               class="phone-number-input"
+              [(ngModel)]="phone"
             />
             <span class="error-message" id="message-phone-number"
               >Vui lòng nhập số điện thoại.</span
@@ -184,6 +186,7 @@
               name="detail-address"
               id="detail-address"
               placeholder="Nhập địa chỉ chi tiết"
+              [(ngModel)]="street"
             />
             <span class="error-message" id="message-detail-address"
               >Vui lòng nhập địa chỉ chi tiết của bạn.</span
@@ -191,64 +194,7 @@
           </div>
           <span class="free-shipping">Miễn phí vận chuyển</span>
         </div>
-        <div class="select-payment-method">
-          <h4>Phương thức thanh toán</h4>
-          <!-- <div class="payment-method-row">
-            <input
-              type="radio"
-              name="payment-method"
-              class="payment-method"
-              id="payment-cod"
-            />
-            <label for="payment-cod"
-              >Thanh toán bằng tiền mặt khi nhận hàng</label
-            >
-          </div>
-          <div class="payment-method-row">
-            <input
-              type="radio"
-              name="payment-method"
-              class="payment-method"
-              id="payment-atm"
-            />
-            <label for="payment-atm"
-              >Thanh toán bằng ATM nội địa/Internet banking</label
-            >
-          </div>
-          <div class="payment-method-row">
-            <input
-              type="radio"
-              name="payment-method"
-              class="payment-method"
-              id="payment-visa-card"
-            />
-            <label for="payment-visa-card"
-              >Thanh toán bằng thẻ quốc tế (Visa, Mastercard)</label
-            >
-          </div>
-          <div class="payment-method-row">
-            <input
-              type="radio"
-              name="payment-method"
-              class="payment-method"
-              id="payment-momo"
-            />
-            <label for="payment-momo">Thanh toán qua ví Momo</label>
-          </div>
-          <div class="payment-method-row">
-            <input
-              type="radio"
-              name="payment-method"
-              class="payment-method"
-              id="payment-zalopay"
-            />
-            <label for="payment-zalopay">Thanh toán qua ví Zalopay</label>
-          </div>
-          <span class="error-message" id="message-payment-method"
-            >Vui lòng chọn phương thức thanh toán.</span
-          > -->
-          <paypal-button></paypal-button>
-        </div>
+
         <div class="code-promotion">
           <div class="form-row">
             <label for="promo-code">Mã khuyến mãi (nếu có)</label>
@@ -260,6 +206,20 @@
             />
             <button class="apply-promo-code">Áp dụng mã</button>
           </div>
+        </div>
+        <div class="confirm-order">
+          <!-- <input
+            type="checkbox"
+            id="confirm-checkbox"
+            name="confirm-checkbox"
+            class="make-payment"
+            [(ngModel)]="confirmCheckbox"
+            (change)="createOrder()"
+          /> -->
+          <button (click)="createOrder()">Xác nhận</button>
+          <label for="confirm-checkbox" class="bold red"
+            >Tôi đã kiểm tra thông tin trên</label
+          >
         </div>
       </div>
       <div class="total-payment">
@@ -274,18 +234,28 @@
         </div>
         <div class="total-payment-row">
           <span class="lable-discount">Giảm giá</span>
-          <span class="discount">3.000.000</span>
+          <span class="discount">{{
+            discount.toLocaleString("vi", {
+              style: "currency",
+              currency: "VND"
+            })
+          }}</span>
         </div>
         <div class="total-payment-row">
           <span class="lable-total-amount-paid">Tiền cần thanh toán</span>
           <span class="total-amount-paid"></span>
         </div>
       </div>
-      <button class="make-payment">Thanh toán</button>
+      <div class="select-payment-method">
+        <h4>Phương thức thanh toán</h4>
+
+        <paypal-button [order]="order"></paypal-button>
+      </div>
+      <!-- <button class="make-payment">Thanh toán</button> -->
     </div>
   </div>
   <!-- The Modal -->
-  <div id="modal" class="modal">
+  <div #modalElement id="modal" class="modal">
     <div class="modal-content">
       <div class="modal-heading">
         <span class="icon-tick"
