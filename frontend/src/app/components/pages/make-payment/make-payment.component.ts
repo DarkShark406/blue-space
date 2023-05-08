@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Cart, CartItem } from 'src/app/interfaces/cart';
+import { Order } from 'src/app/interfaces/order';
 import { CartProductService } from 'src/app/services/cart-product.service';
+import { OrderService } from 'src/app/services/order.service';
+import { UserService } from 'src/app/services/user.service';
 
 interface City {
   Id: string;
@@ -26,185 +30,104 @@ interface Ward {
   styleUrls: ['./make-payment.component.css'],
 })
 export class MakePaymentComponent {
-  ngOnInit() {
-    const openButton = document.querySelector(
-      '.make-payment'
-    ) as HTMLButtonElement;
-
-    const closeButton = document.querySelector(
-      '.close-popup'
-    ) as HTMLButtonElement;
-
-    const modal = document.querySelector('.modal') as HTMLElement;
-
-    const messageFullname = document.getElementById(
-      'message-fullname'
-    ) as HTMLInputElement;
-    const inputFullName = document.getElementById(
+  validateForm() {
+    let isValid = true;
+    let fullnameInput = document.getElementById(
       'full-name'
     ) as HTMLInputElement;
-
-    const messagePhonenumber = document.getElementById(
-      'message-phone-number'
-    ) as HTMLInputElement;
-    const inputPhonenumber = document.getElementById(
+    let phoneInput = document.getElementById(
       'phone-number'
     ) as HTMLInputElement;
-
-    const messageCity = document.getElementById(
-      'message-city'
-    ) as HTMLInputElement;
-    const selectCity = document.getElementById('city') as HTMLInputElement;
-
-    const messageDistrict = document.getElementById(
-      'message-district'
-    ) as HTMLInputElement;
-    const selectDistrict = document.getElementById(
+    let citySelect = document.getElementById('city') as HTMLSelectElement;
+    let districtSelect = document.getElementById(
       'districts'
-    ) as HTMLInputElement;
-
-    const messageWard = document.getElementById(
-      'message-ward'
-    ) as HTMLInputElement;
-    const selectWard = document.getElementById('wards') as HTMLInputElement;
-
-    const messageDetailAddress = document.getElementById(
-      'message-detail-address'
-    ) as HTMLInputElement;
-    const inputDetailAddress = document.getElementById(
+    ) as HTMLSelectElement;
+    let wardSelect = document.getElementById('wards') as HTMLSelectElement;
+    let streetInput = document.getElementById(
       'detail-address'
     ) as HTMLInputElement;
+    let errorMessageFullname = document.getElementById(
+      'message-fullname'
+    ) as HTMLElement;
+    let errorMessagePhone = document.getElementById(
+      'message-phone-number'
+    ) as HTMLElement;
+    let errorMessageCity = document.getElementById(
+      'message-city'
+    ) as HTMLElement;
+    let errorMessageDistrict = document.getElementById(
+      'message-district'
+    ) as HTMLElement;
+    let errorMessageWard = document.getElementById(
+      'message-ward'
+    ) as HTMLElement;
+    let errorMessageStreet = document.getElementById(
+      'message-detail-address'
+    ) as HTMLElement;
 
-    const messagePaymentMethod = document.getElementById(
-      'message-payment-method'
-    ) as HTMLInputElement;
-    const selectPaymentCOD = document.getElementById(
-      'payment-cod'
-    ) as HTMLInputElement;
-    const selectPaymentATM = document.getElementById(
-      'payment-atm'
-    ) as HTMLInputElement;
-    const selectPaymentVisaCard = document.getElementById(
-      'payment-visa-card'
-    ) as HTMLInputElement;
-    const selectPaymentMomo = document.getElementById(
-      'payment-momo'
-    ) as HTMLInputElement;
-    const selectPaymentZalopay = document.getElementById(
-      'payment-zalopay'
-    ) as HTMLInputElement;
+    // Validate full name
+    if (this.fullname.trim() === '') {
+      fullnameInput.classList.add('invalid-input');
+      errorMessageFullname.style.display = 'block';
+      isValid = false;
+    } else {
+      fullnameInput.classList.remove('invalid-input');
+      errorMessageFullname.style.display = 'none';
+    }
 
-    // const messageFormatPhone = document.getElementById(
-    //   'message-format-phone'
-    // ) as HTMLInputElement;
+    // Validate phone number
+    let phoneRegex = /^[0-9]{10}$/;
+    if (!phoneRegex.test(this.phone)) {
+      phoneInput.classList.add('invalid-input');
+      errorMessagePhone.style.display = 'block';
+      isValid = false;
+    } else {
+      phoneInput.classList.remove('invalid-input');
+      errorMessagePhone.style.display = 'none';
+    }
 
-    // Remove ERROR
-    inputFullName.oninput = function () {
-      messageFullname.style.display = 'none';
-    };
-    inputPhonenumber.oninput = function () {
-      messagePhonenumber.style.display = 'none';
-    };
-    selectCity.oninput = function () {
-      messageCity.style.display = 'none';
-    };
-    selectDistrict.oninput = function () {
-      messageDistrict.style.display = 'none';
-    };
-    selectWard.oninput = function () {
-      messageWard.style.display = 'none';
-    };
-    inputDetailAddress.oninput = function () {
-      messageDetailAddress.style.display = 'none';
-    };
+    // Validate city
+    if (this.selectedCity === '') {
+      citySelect.classList.add('invalid-input');
+      errorMessageCity.style.display = 'block';
+      isValid = false;
+    } else {
+      citySelect.classList.remove('invalid-input');
+      errorMessageCity.style.display = 'none';
+    }
 
-    selectPaymentCOD.onchange = function () {
-      messagePaymentMethod.style.display = 'none';
-    };
-    selectPaymentATM.onchange = function () {
-      messagePaymentMethod.style.display = 'none';
-    };
-    selectPaymentVisaCard.onchange = function () {
-      messagePaymentMethod.style.display = 'none';
-    };
-    selectPaymentMomo.onchange = function () {
-      messagePaymentMethod.style.display = 'none';
-    };
-    selectPaymentZalopay.onchange = function () {
-      messagePaymentMethod.style.display = 'none';
-    };
+    // Validate district
+    if (this.selectedDistrict === '') {
+      districtSelect.classList.add('invalid-input');
+      errorMessageDistrict.style.display = 'block';
+      isValid = false;
+    } else {
+      districtSelect.classList.remove('invalid-input');
+      errorMessageDistrict.style.display = 'none';
+    }
 
-    // Mở modal khi click vào button Thanh toán
-    openButton.addEventListener('click', () => {
-      if (inputFullName.value === '') {
-        alert('Bạn chưa nhập Họ và tên.');
-        messageFullname.style.display = 'block';
-        inputFullName.focus();
-        return;
-      }
-      if (inputPhonenumber.value === '') {
-        alert('Bạn chưa nhập Số điện thoại.');
-        messagePhonenumber.style.display = 'block';
-        inputPhonenumber.focus();
-        return;
-      }
-      if (selectCity.value === '') {
-        alert('Bạn chưa chọn Tỉnh/thành phố.');
-        messageCity.style.display = 'block';
-        selectCity.focus();
-        return;
-      }
-      if (selectDistrict.value === '') {
-        alert('Bạn chưa chọn Quận/Huyện.');
-        messageDistrict.style.display = 'block';
-        selectDistrict.focus();
-        return;
-      }
-      if (selectWard.value === '') {
-        alert('Bạn chưa chọn Xã/Phường.');
-        messageWard.style.display = 'block';
-        selectWard.focus();
-        return;
-      }
-      if (inputDetailAddress.value === '') {
-        alert('Bạn chưa nhập địa chỉ chi tiết.');
-        messageDetailAddress.style.display = 'block';
-        inputDetailAddress.focus();
-        return;
-      }
-      if (
-        selectPaymentCOD.checked == false &&
-        selectPaymentATM.checked == false &&
-        selectPaymentVisaCard.checked == false &&
-        selectPaymentMomo.checked == false &&
-        selectPaymentZalopay.checked == false
-      ) {
-        alert('Bạn chưa chọn phương thức thanh toán.');
-        messagePaymentMethod.style.display = 'block';
-        return;
-      } else {
-        modal.style.display = 'block';
-      }
-    });
+    // Validate ward
+    if (this.selectedWard === '') {
+      wardSelect.classList.add('invalid-input');
+      errorMessageWard.style.display = 'block';
+      isValid = false;
+    } else {
+      wardSelect.classList.remove('invalid-input');
+      errorMessageWard.style.display = 'none';
+    }
 
-    // Đóng modal khi click vào button đóng
-    closeButton.addEventListener('click', () => {
-      modal.style.display = 'none';
-    });
+    // Validate street
+    if (this.street.trim() === '') {
+      streetInput.classList.add('invalid-input');
+      errorMessageStreet.style.display = 'block';
+      isValid = false;
+    } else {
+      streetInput.classList.remove('invalid-input');
+      errorMessageStreet.style.display = 'none';
+    }
 
-    // Đóng modal khi click bên ngoài
-    window.addEventListener('click', (event) => {
-      if (event.target === modal) {
-        modal.style.display = 'none';
-      }
-    });
-
-    // Tự đóng modal sau 10 giây
-    setTimeout(() => {
-      modal.style.display = 'none';
-    }, 10000);
+    return isValid;
   }
-
   // Chọn địa chỉ
   cities: City[] = [];
   districts: District[] = [];
@@ -215,7 +138,12 @@ export class MakePaymentComponent {
 
   cart = new Cart();
 
-  constructor(private cartService: CartProductService) {
+  constructor(
+    private cartService: CartProductService,
+    private orderService: OrderService,
+    private userService: UserService,
+    private router: Router
+  ) {
     // Xử lý select tỉnh, huyện xã
     const Parameter: AxiosRequestConfig = {
       url: 'https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json',
@@ -277,5 +205,40 @@ export class MakePaymentComponent {
     this.cart.items = [];
     this.calculateTotalMoney();
     this.cartService.saveCartToLocalStorage(this.cart);
+  }
+
+  order: Order = new Order();
+  fullname = '';
+  phone = '';
+  street = '';
+  discount = 0;
+
+  createOrder() {
+    if (this.validateForm()) {
+      this.order.items = this.cart.items;
+      this.order.totalPrice = Math.round(
+        (this.cart.totalPrice - this.discount) / 23000
+      );
+      this.order.name = this.fullname;
+      this.order.phone = this.phone;
+
+      this.order.city = this.selectedCity;
+      this.order.district = this.selectedDistrict;
+      this.order.ward = this.selectedWard;
+      this.order.street = this.street;
+
+      this.orderService.create(this.order).subscribe({
+        next: () => {},
+        error: (errorResponse) => {
+          alert(errorResponse.error);
+        },
+      });
+      // this.orderService.getNewOrderForCurrentUser().subscribe({
+      //   next: (order) => {
+      //     this.order = order;
+      //   },
+      //   error: () => {},
+      // });
+    }
   }
 }

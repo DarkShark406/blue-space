@@ -49,6 +49,7 @@ import { BrandProductComponent } from './components/pages/brand-product/brand-pr
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { PaypalButtonComponent } from './components/partials/paypal-button/paypal-button.component';
+import { MyOrdersComponent } from './components/pages/my-orders/my-orders.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import { PaypalButtonComponent } from './components/partials/paypal-button/paypa
     BrandProductComponent,
     ContactComponent,
     PaypalButtonComponent,
+    MyOrdersComponent,
   ],
   imports: [
     BrowserModule,

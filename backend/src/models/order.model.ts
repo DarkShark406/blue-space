@@ -19,7 +19,11 @@ export class Order {
   items!: OrderItem[];
   totalPrice!: number;
   name!: string;
-  address!: string;
+  phone!: string;
+  city!: string;
+  district!: string;
+  ward!: string;
+  street!: string;
   paymentId!: string;
   status!: OrderStatus;
   user!: Types.ObjectId;
@@ -30,7 +34,11 @@ export class Order {
 const orderSchema = new Schema<Order>(
   {
     name: { type: String, required: true },
-    address: { type: String, required: true },
+    phone: { type: String, required: true },
+    city: { type: String, required: true },
+    district: { type: String, required: true },
+    ward: { type: String, required: true },
+    street: { type: String, required: true },
     paymentId: { type: String },
     totalPrice: { type: Number, required: true },
     items: { type: [OrderItemSchema], required: true },

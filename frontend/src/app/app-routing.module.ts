@@ -17,6 +17,7 @@ import { AuthGuard } from './auth/guard/auth.guard';
 import { PolicyComponent } from './components/pages/policy/policy.component';
 import { AboutUsComponent } from './components/pages/about-us/about-us.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
+import { MyOrdersComponent } from './components/pages/my-orders/my-orders.component';
 
 const routes: Routes = [
   { path: 'comparision', component: ComparisionComponent },
@@ -29,7 +30,7 @@ const routes: Routes = [
   { path: 'products/:category/:brand', component: CatalogBrandComponent },
   { path: 'products/:category', component: CatalogComponent },
   { path: 'products/:category/:brand', component: CatalogComponent },
-  { path: 'orders', component: OrdersComponent },
+  { path: 'orders', component: MyOrdersComponent },
   { path: 'profile', component: AccountComponent, canActivate: [AuthGuard] },
   { path: 'forget-password', component: ForgotPasswordComponent },
   { path: 'policy', component: PolicyComponent },

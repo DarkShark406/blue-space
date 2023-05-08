@@ -100,6 +100,7 @@
               id="full-name"
               class="full-name"
               placeholder="Nhập họ và tên"
+              [(ngModel)]="fullname"
             />
             <span class="error-message" id="message-fullname"
               >Vui lòng nhập họ và tên.</span
@@ -115,6 +116,7 @@
               id="phone-number"
               placeholder="Nhập số điện thoại"
               class="phone-number-input"
+              [(ngModel)]="phone"
             />
             <span class="error-message" id="message-phone-number"
               >Vui lòng nhập số điện thoại.</span
@@ -184,6 +186,7 @@
               name="detail-address"
               id="detail-address"
               placeholder="Nhập địa chỉ chi tiết"
+              [(ngModel)]="street"
             />
             <span class="error-message" id="message-detail-address"
               >Vui lòng nhập địa chỉ chi tiết của bạn.</span
@@ -204,6 +207,20 @@
             <button class="apply-promo-code">Áp dụng mã</button>
           </div>
         </div>
+        <div class="confirm-order">
+          <!-- <input
+            type="checkbox"
+            id="confirm-checkbox"
+            name="confirm-checkbox"
+            class="make-payment"
+            [(ngModel)]="confirmCheckbox"
+            (change)="createOrder()"
+          /> -->
+          <button (click)="createOrder()">Xác nhận</button>
+          <label for="confirm-checkbox" class="bold red"
+            >Tôi đã kiểm tra thông tin trên</label
+          >
+        </div>
       </div>
       <div class="total-payment">
         <div class="total-payment-row">
@@ -217,7 +234,12 @@
         </div>
         <div class="total-payment-row">
           <span class="lable-discount">Giảm giá</span>
-          <span class="discount">3.000.000</span>
+          <span class="discount">{{
+            discount.toLocaleString("vi", {
+              style: "currency",
+              currency: "VND"
+            })
+          }}</span>
         </div>
         <div class="total-payment-row">
           <span class="lable-total-amount-paid">Tiền cần thanh toán</span>
@@ -227,13 +249,13 @@
       <div class="select-payment-method">
         <h4>Phương thức thanh toán</h4>
 
-        <paypal-button></paypal-button>
+        <paypal-button [order]="order"></paypal-button>
       </div>
       <!-- <button class="make-payment">Thanh toán</button> -->
     </div>
   </div>
   <!-- The Modal -->
-  <div id="modal" class="modal">
+  <div #modalElement id="modal" class="modal">
     <div class="modal-content">
       <div class="modal-heading">
         <span class="icon-tick"
