@@ -87,7 +87,7 @@
       </div>
     </div>
     <div>
-      <div class="content-customer-payment">
+      <div *ngIf="cart.items.length != 0" class="content-customer-payment">
         <div class="total-pay-temporary">
           <span class="label">Tổng tiền tạm tính: </span>
           <span class="number-money">{{

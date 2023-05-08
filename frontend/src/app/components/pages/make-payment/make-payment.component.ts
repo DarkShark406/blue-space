@@ -136,6 +136,7 @@ export class MakePaymentComponent {
 
     // Mở modal khi click vào button Thanh toán
     openButton.addEventListener('click', () => {
+      console.log('vào nút thanh toán');
       if (inputFullName.value === '') {
         alert('Bạn chưa nhập Họ và tên.');
         messageFullname.style.display = 'block';
