@@ -1,40 +1,40 @@
-*{
+* {
   padding: 0;
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   text-align: justify;
 }
-.aboutus-title{
+.aboutus-title {
   font-size: 24px;
   font-weight: bold;
   margin-left: 150px;
   margin-top: 20px;
   margin-bottom: 20px;
 }
-.aboutus-content{
-   /* position: relative;
+.aboutus-content {
+  /* position: relative;
    display: flex; */
   background-color: black;
   color: white;
   width: 100%;
 }
 
-.icon img{
+.icon img {
   width: 30px;
   height: 27px;
 }
-.des-title{
+.des-title {
   font-weight: bold;
   font-size: 30px;
   line-height: 50px;
 }
 
-.description{
+.description {
   /* position: relative; */
   display: flex;
   /* justify-content: center; */
 }
-.description:nth-child(even){
+.description:nth-child(even) {
   position: relative;
   flex-direction: row-reverse;
   justify-content: center;
@@ -43,34 +43,36 @@
   color: black;
 }
 
-.img:nth-child(even){
-margin-left: 150px;
+.img:nth-child(even) {
+  margin-left: 150px;
 }
 .description p {
   font-size: 14px;
   line-height: 30px;
 }
-.img{
+.img {
   height: 400px;
   display: flex;
   margin-right: 150px;
 }
-.img img{
+.img img {
   width: 350px;
   height: 300px;
   margin: auto;
   display: block;
 }
-.description-main{
+.description-main {
   margin: auto;
   margin-left: 150px;
 
   margin-right: 150px;
-
 }
 
-.description-main p{
+.description-main p {
   padding-top: 20px;
 }
 
-
+.swiper {
+  height: 200px;
+  background-color: aqua;
+}

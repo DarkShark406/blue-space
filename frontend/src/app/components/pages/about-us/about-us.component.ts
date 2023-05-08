@@ -9,8 +9,9 @@ import { AboutUsService } from 'src/app/services/about-us.service';
 })
 export class AboutUsComponent {
   aboutus: any;
-
-  constructor(private _cservice: AboutUsService) {
+  comment = ['1', '2'];
+  constructor(private _cservice: AboutUsService) {}
+  ngOnInit() {
     this._cservice.getAboutUs().subscribe({
       next: (data) => {
         this.aboutus = data;

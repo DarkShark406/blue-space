@@ -16,6 +16,7 @@ import { BrandProductComponent } from './components/pages/brand-product/brand-pr
 import { AuthGuard } from './auth/guard/auth.guard';
 import { PolicyComponent } from './components/pages/policy/policy.component';
 import { AboutUsComponent } from './components/pages/about-us/about-us.component';
+import { ContactComponent } from './components/pages/contact/contact.component';
 
 const routes: Routes = [
   { path: 'comparision', component: ComparisionComponent },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'forget-password', component: ForgotPasswordComponent },
   { path: 'policy', component: PolicyComponent },
   { path: 'about-us', component: AboutUsComponent },
+  { path: 'contact', component: ContactComponent },
   {
     path: 'make-payment',
     component: MakePaymentComponent,

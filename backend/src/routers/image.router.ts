@@ -1,5 +1,5 @@
 import { Router } from "express";
-const aboutus = require("../assets/data/aboutus");
+import { data } from "../assets/data/aboutus";
 const path = require("path");
 
 const router = Router();
@@ -20,7 +20,7 @@ router.get("/products/:productId/:imageName", (req, res) => {
 });
 
 router.get("/about-us", async (req, res) => {
-  res.send(aboutus);
+  res.send(data);
 });
 
 export default router;

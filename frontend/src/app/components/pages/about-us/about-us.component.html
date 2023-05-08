@@ -3,25 +3,18 @@
   <div class="aboutus-title">
     <p>Về chúng tôi</p>
   </div>
-  <div class="aboutus-content"  >
-      <div class="description" *ngFor="let a of aboutus">
-
-        <div class="description-main">
-          <div class="icon" *ngIf="a.icon != ''">
-            <img src="{{a.icon}}" alt="">
-          </div>
-            <span class="des-title">{{a.title}}</span>
-            <p [innerHTML] = "a.description"></p>
+  <div class="aboutus-content">
+    <div class="description" *ngFor="let a of aboutus">
+      <div class="description-main">
+        <div class="icon" *ngIf="a.icon != ''">
+          <img src="{{ a.icon }}" alt="" />
         </div>
-        <div class="img">
-          <img src="{{a.image}}" alt="">
-        </div>
-
+        <span class="des-title">{{ a.title }}</span>
+        <p [innerHTML]="a.description"></p>
       </div>
-  </div>
-  <div class="slider">
-
+      <div class="img">
+        <img src="{{ a.image }}" alt="" />
+      </div>
+    </div>
   </div>
 </div>
-
-
