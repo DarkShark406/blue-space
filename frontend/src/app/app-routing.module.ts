@@ -17,6 +17,10 @@ import { AuthGuard } from './auth/guard/auth.guard';
 import { PolicyComponent } from './components/pages/policy/policy.component';
 import { AboutUsComponent } from './components/pages/about-us/about-us.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
+import { FAQSecurityComponent } from './components/pages/faq-security/faq-security.component';
+import { FAQReturnComponent } from './components/pages/faq-return/faq-return.component';
+import { FAQWarrantyComponent } from './components/pages/faq-warranty/faq-warranty.component';
+import { FAQMoreComponent } from './components/pages/faq-more/faq-more.component';
 
 const routes: Routes = [
   { path: 'comparision', component: ComparisionComponent },
@@ -41,6 +45,10 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'shopping-cart', component: ShoppingCartComponent },
+  { path: 'policy/security', component: FAQSecurityComponent },
+  { path: 'policy/return', component: FAQReturnComponent },
+  { path: 'policy/warranty', component: FAQWarrantyComponent },
+  { path: 'policy/more', component: FAQMoreComponent },
   { path: '', component: HomeComponent },
 ];
 

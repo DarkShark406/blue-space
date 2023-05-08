@@ -1,0 +1,26 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.faq3-title {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 80px;
+  padding-bottom: 30px;
+}
+
+.faq3-body {
+  padding-top: 10px;
+  text-align: justify;
+}
+
+.faq3-small-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.faq3-content {
+  line-height: 40px;
+}

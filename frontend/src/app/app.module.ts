@@ -49,6 +49,10 @@ import { BrandProductComponent } from './components/pages/brand-product/brand-pr
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { PaypalButtonComponent } from './components/partials/paypal-button/paypal-button.component';
+import { FAQSecurityComponent } from './components/pages/faq-security/faq-security.component';
+import { FAQReturnComponent } from './components/pages/faq-return/faq-return.component';
+import { FAQWarrantyComponent } from './components/pages/faq-warranty/faq-warranty.component';
+import { FAQMoreComponent } from './components/pages/faq-more/faq-more.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +93,10 @@ import { PaypalButtonComponent } from './components/partials/paypal-button/paypa
     BrandProductComponent,
     ContactComponent,
     PaypalButtonComponent,
+    FAQSecurityComponent,
+    FAQReturnComponent,
+    FAQWarrantyComponent,
+    FAQMoreComponent,
   ],
   imports: [
     BrowserModule,
