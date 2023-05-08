@@ -47,6 +47,8 @@ import { NavAdminComponent } from './components/partials/nav-admin/nav-admin.com
 import { ShoppingCartComponent } from './components/pages/shopping-cart/shopping-cart.component';
 import { BrandProductComponent } from './components/pages/brand-product/brand-product.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { ContactComponent } from './components/pages/contact/contact.component';
+import { PaypalButtonComponent } from './components/partials/paypal-button/paypal-button.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +87,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     NavAdminComponent,
     ShoppingCartComponent,
     BrandProductComponent,
+    ContactComponent,
+    PaypalButtonComponent,
   ],
   imports: [
     BrowserModule,
