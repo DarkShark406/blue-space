@@ -4,7 +4,9 @@
   display: flex;
   flex-direction: column;
 }
-
+map {
+  position: relative;
+}
 .header h1 {
   margin-bottom: 12px;
 }
@@ -117,6 +119,7 @@ input[type="number"]::-webkit-inner-spin-button {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
+  margin-bottom: 8px;
 }
 
 .btn-continue-shopping,

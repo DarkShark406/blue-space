@@ -14,17 +14,17 @@ export const OrderItemSchema = new Schema<OrderItem>({
   quantity: { type: Number, required: true },
 });
 
-export interface Order {
-  id: string;
-  items: OrderItem[];
-  totalPrice: number;
-  name: string;
-  address: string;
-  paymentId: string;
-  status: OrderStatus;
-  user: Types.ObjectId;
-  createdAt: Date;
-  updatedAt: Date;
+export class Order {
+  id!: string;
+  items!: OrderItem[];
+  totalPrice!: number;
+  name!: string;
+  address!: string;
+  paymentId!: string;
+  status!: OrderStatus;
+  user!: Types.ObjectId;
+  createdAt!: Date;
+  updatedAt!: Date;
 }
 
 const orderSchema = new Schema<Order>(
