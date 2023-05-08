@@ -116,14 +116,14 @@
       <div class="modal-heading">
         <i class="fa-solid fa-bell fa-2xl" style="color: #02bc7d"></i>
         <span class="modal-content-heading"
-          >Bạn có muốn đăng nhập để được nhận thêm nhiều ưu đãi?</span
+          >Bạn phải đăng nhập để thanh toán đơn hàng!</span
         >
       </div>
 
       <div class="btn-action">
-        <button class="btn-login">Đăng nhập</button>
-        <button class="btn-continue-payment" [routerLink]="'/make-payment'">
-          Không, tiếp tục thanh toán
+        <a href="/auth/login" class="btn-login">Đăng nhập</a>
+        <button (click)="closeModel()" class="btn-continue-payment">
+          Không, tiếp tục mua sắm
         </button>
       </div>
     </div>

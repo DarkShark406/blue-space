@@ -49,11 +49,22 @@ export class HeaderComponent {
       this.keyboard = d.find((x) => x.category == 'keyboard')?.brands;
       this.application = d.find((x) => x.category == 'application')?.brands;
     });
+
+    // Gọi ở header để khi đăng nhập ở bất cứ trang nào thì vẫn k bị mất giỏ hàng đã làm
+    this.cartService.getCart();
   }
   toggleSearch() {
     this.isSearchActive = !this.isSearchActive;
   }
   logout() {
+    this.cartService.saveCartToUser().subscribe(
+      (response) => {
+        alert('thành công');
+      },
+      (error) => {
+        alert('thất bại');
+      }
+    );
     this.userService.logout();
   }
   get isAuth() {

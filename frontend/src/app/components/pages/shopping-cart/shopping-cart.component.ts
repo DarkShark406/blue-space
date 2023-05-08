@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Cart, CartItem } from 'src/app/interfaces/cart';
 import { CartProductService } from 'src/app/services/cart-product.service';
 
@@ -7,13 +8,16 @@ import { CartProductService } from 'src/app/services/cart-product.service';
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.css'],
 })
-export class ShoppingCartComponent {
+export class ShoppingCartComponent implements OnInit {
   cart = new Cart();
 
-  constructor(private cartService: CartProductService) {
-    this.cart = this.cartService.getCart();
+  constructor(
+    private cartService: CartProductService,
+    private router: Router
+  ) {}
 
-    console.log(this.cart);
+  ngOnInit(): void {
+    this.cart = this.cartService.getCart();
     this.calculateTotalMoney();
   }
 
@@ -24,39 +28,38 @@ export class ShoppingCartComponent {
       this.cart.totalPrice +=
         this.cart.items[i].price * this.cart.items[i].quantity;
     }
-    this.saveCartToLocalStorage();
+    this.cartService.saveCartToLocalStorage(this.cart);
   }
 
   onClickMakePayment() {
+    const userLS = localStorage.getItem('User');
+    if (userLS == null) {
+      // Bật modal
+      const popupLogIn = document.getElementById('modal') as HTMLDivElement;
+      popupLogIn.style.display = 'block';
+    } else {
+      this.router.navigate(['make-payment']);
+    }
+  }
+
+  closeModel() {
     const popupLogIn = document.getElementById('modal') as HTMLDivElement;
-    popupLogIn.style.display = 'block';
+    popupLogIn.style.display = 'none';
   }
 
   deleteCartItem(item: CartItem) {
     this.cart.items = this.cartService.deleteCartItem(this.cart, item);
     this.calculateTotalMoney();
-    this.saveCartToLocalStorage();
+    this.cartService.saveCartToLocalStorage(this.cart);
   }
 
   saveCartToLocalStorage() {
-    const userLS = localStorage.getItem('user');
-    if (userLS != null) {
-      let user = JSON.parse(userLS);
-      user.cart = this.cart;
-      localStorage.setItem('user', JSON.stringify(user));
-    } else {
-      const cartLS = localStorage.getItem('cart');
-      if (cartLS != null) {
-        let cart = JSON.parse(cartLS);
-        cart = this.cart;
-        localStorage.setItem('cart', JSON.stringify(cart));
-      }
-    }
+    this.cartService.saveCartToLocalStorage(this.cart);
   }
 
   deleteAllCart() {
     this.cart.items = [];
     this.calculateTotalMoney();
-    this.saveCartToLocalStorage();
+    this.cartService.saveCartToLocalStorage(this.cart);
   }
 }

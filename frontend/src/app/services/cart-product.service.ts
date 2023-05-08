@@ -1,18 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../interfaces/product';
 import { Cart, CartItem } from '../interfaces/cart';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
+import { Observable, catchError, map, retry, throwError } from 'rxjs';
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartProductService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   getCart() {
+    console.log('load lấy cart');
     let cartResult = new Cart();
 
     // Lấy dữ liệu từ cart
-    const userLS = localStorage.getItem('user');
+    const userLS = localStorage.getItem('User');
     if (userLS != null) {
       let user = JSON.parse(userLS);
 
@@ -43,7 +51,7 @@ export class CartProductService {
         // Khi đăng nhập rồi thì chỉ sử dụng cart của user
         localStorage.removeItem('cart');
       } else {
-        // Không có cart đang sử dụng thì cart = cart của user
+        // Không có cart đang sử dụng thì cart = luôn cart của user
         cartResult = user.cart;
       }
     } else {
@@ -63,24 +71,30 @@ export class CartProductService {
   }
 
   addProductToCart(item: Product, quantity: number) {
+    console.log('id của sp: ' + item.id);
     // Lấy ra user trên local storage
-    const userLS = localStorage.getItem('user');
+    const userLS = localStorage.getItem('User');
     if (userLS != null) {
       // Nếu có thì lưu sp vào cart của user
       const user = JSON.parse(userLS);
 
+      console.log(user.cart.items);
+
       const existingIndexItem = user.cart.items.findIndex((cartItem: any) => {
-        return cartItem.id == item.id;
+        return cartItem.product.id == item.id;
       });
 
       if (existingIndexItem != -1) {
+        console.log('trùng nên push vào');
         user.cart.items[existingIndexItem].quantity += quantity;
       } else {
+        console.log('sản phẩm mới');
         user.cart.items.push(new CartItem(item));
         user.cart.items[user.cart.items.length - 1].quantity = quantity;
       }
+      console.log(user);
       // Lưu user vào lại local storage
-      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('User', JSON.stringify(user));
     }
     // Nếu không thì lưu vào cart trên local storage
     else {
@@ -108,6 +122,48 @@ export class CartProductService {
         localStorage.setItem('cart', JSON.stringify(cart));
       }
     }
+  }
+
+  saveCartToLocalStorage(cartOnline: Cart) {
+    const userLS = localStorage.getItem('User');
+    if (userLS != null) {
+      let user = JSON.parse(userLS);
+      user.cart = cartOnline;
+      localStorage.setItem('User', JSON.stringify(user));
+    } else {
+      const cartLS = localStorage.getItem('cart');
+      if (cartLS != null) {
+        let cart = JSON.parse(cartLS);
+        cart = cartOnline;
+        localStorage.setItem('cart', JSON.stringify(cart));
+      }
+    }
+  }
+
+  handleError(error: HttpErrorResponse) {
+    return throwError(() => new Error(error.message));
+  }
+
+  // Lưu cart trên local storage về lại db user
+  saveCartToUser(): Observable<any> {
+    const url = 'http://localhost:5000/auth/save-cart';
+    const headers = new HttpHeaders().set(
+      'Content-Type',
+      'application/json;charset=utf-8'
+    );
+    const requestOptions: Object = { headers: headers, responseType: 'text' };
+
+    let user = new User();
+    const userLS = localStorage.getItem('User');
+    if (userLS != null) {
+      user = JSON.parse(userLS);
+    }
+
+    return this.http.post<any>(url, JSON.stringify(user), requestOptions).pipe(
+      map((res) => JSON.parse(res) as User),
+      retry(3),
+      catchError(this.handleError)
+    );
   }
 
   deleteCartItem(cart: Cart, item: CartItem) {
