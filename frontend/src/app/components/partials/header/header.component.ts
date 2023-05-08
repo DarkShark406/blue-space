@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -31,7 +32,8 @@ export class HeaderComponent {
   constructor(
     private headerService: HeaderService,
     private userService: UserService,
-    private cartService: CartProductService
+    private cartService: CartProductService,
+    private cdr: ChangeDetectorRef
   ) {
     userService.userObservable.subscribe((newUser) => {
       this.user = newUser;
