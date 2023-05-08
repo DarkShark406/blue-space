@@ -37,8 +37,6 @@ export class HeaderComponent {
       this.user = newUser;
     });
     console.log(this.user);
-
-    this.numberProductInCart = this.cartService.getNumberProduct();
   }
   ngOnInit() {
     this.headerService.getNavItem().subscribe((d) => {
@@ -49,9 +47,6 @@ export class HeaderComponent {
       this.keyboard = d.find((x) => x.category == 'keyboard')?.brands;
       this.application = d.find((x) => x.category == 'application')?.brands;
     });
-
-    // Gọi ở header để khi đăng nhập ở bất cứ trang nào thì vẫn k bị mất giỏ hàng đã làm
-    this.cartService.getCart();
   }
   toggleSearch() {
     this.isSearchActive = !this.isSearchActive;

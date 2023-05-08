@@ -27,6 +27,7 @@ export class CartProductService {
       // Kiểm tra xem có cart đang sử dụng hay không
       const cartLS = localStorage.getItem('cart');
       if (cartLS != null) {
+        console.log('có cart ');
         // Nếu có thì gộp các sản phẩm ở cart user và cart lại
         let cart = JSON.parse(cartLS);
 
