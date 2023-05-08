@@ -4,6 +4,7 @@ import { Product } from "../models/product.model";
 import { HTTP_BAD_REQUEST } from "../constants/http_status";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { Cart } from "../models/cart.model";
 
 const router = Router();
 
@@ -18,7 +19,7 @@ router.get("/seed", async (req, res) => {
     password: encryptedPassword,
     address,
     isAdmin: false,
-    cart: [],
+    cart: new Cart(),
   };
   const dbUser = await UserModel.create(newUser);
   res.send(generateTokenReponse(dbUser));
@@ -51,7 +52,7 @@ router.post("/register", async (req, res) => {
     password: encryptedPassword,
     address,
     isAdmin: false,
-    cart: [],
+    cart: new Cart(),
   };
 
   const dbUser = await UserModel.create(newUser);
