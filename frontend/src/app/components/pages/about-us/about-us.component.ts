@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AboutUsService } from 'src/app/services/about-us.service';
 // import { AboutUsService } from '../about-us.service';
 
 @Component({
@@ -9,9 +10,11 @@ import { Component } from '@angular/core';
 export class AboutUsComponent {
   aboutus: any;
 
-  // constructor(private _cservice: AboutUsService){
-  //   this._cservice.getAboutUs().subscribe({
-  //     next:(data)=>{this.aboutus=data}
-  //   })
-  // }
+  constructor(private _cservice: AboutUsService) {
+    this._cservice.getAboutUs().subscribe({
+      next: (data) => {
+        this.aboutus = data;
+      },
+    });
+  }
 }

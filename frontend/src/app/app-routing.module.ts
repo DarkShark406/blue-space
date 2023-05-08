@@ -14,6 +14,7 @@ import { MakePaymentComponent } from './components/pages/make-payment/make-payme
 import { ShoppingCartComponent } from './components/pages/shopping-cart/shopping-cart.component';
 import { BrandProductComponent } from './components/pages/brand-product/brand-product.component';
 import { AuthGuard } from './auth/guard/auth.guard';
+import { PolicyComponent } from './components/pages/policy/policy.component';
 
 const routes: Routes = [
   { path: 'comparision', component: ComparisionComponent },
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'orders', component: OrdersComponent },
   { path: 'profile', component: AccountComponent, canActivate: [AuthGuard] },
   { path: 'forget-password', component: ForgotPasswordComponent },
+  { path: 'policy', component: PolicyComponent },
   {
     path: 'make-payment',
     component: MakePaymentComponent,
