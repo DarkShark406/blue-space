@@ -105,7 +105,7 @@ export class MakePaymentComponent {
       districtSelect.classList.remove('invalid-input');
       errorMessageDistrict.style.display = 'none';
     }
-
+    
     // Validate ward
     if (this.selectedWard === '') {
       wardSelect.classList.add('invalid-input');
