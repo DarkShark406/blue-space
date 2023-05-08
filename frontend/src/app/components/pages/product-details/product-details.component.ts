@@ -57,7 +57,7 @@ export class ProductDetailsComponent {
   };
 
   product: Product = new Product();
-  comboProduct: any;
+  comboProduct: Product[] = [];
   selectedColor: string = '';
   quantity: number = 1;
   constructor(
