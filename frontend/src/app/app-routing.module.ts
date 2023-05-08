@@ -13,6 +13,7 @@ import { CatalogBrandComponent } from './components/pages/catalog-brand/catalog-
 import { MakePaymentComponent } from './components/pages/make-payment/make-payment.component';
 import { ShoppingCartComponent } from './components/pages/shopping-cart/shopping-cart.component';
 import { BrandProductComponent } from './components/pages/brand-product/brand-product.component';
+import { AuthGuard } from './auth/guard/auth.guard';
 
 const routes: Routes = [
   { path: 'comparision', component: ComparisionComponent },
@@ -26,9 +27,13 @@ const routes: Routes = [
   { path: 'products/:category', component: CatalogComponent },
   { path: 'products/:category/:brand', component: CatalogComponent },
   { path: 'orders', component: OrdersComponent },
-  { path: 'profile', component: AccountComponent },
+  { path: 'profile', component: AccountComponent, canActivate: [AuthGuard] },
   { path: 'forget-password', component: ForgotPasswordComponent },
-  { path: 'make-payment', component: MakePaymentComponent },
+  {
+    path: 'make-payment',
+    component: MakePaymentComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: '', component: HomeComponent },
 ];

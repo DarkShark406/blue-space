@@ -46,6 +46,7 @@ import { MakePaymentComponent } from './components/pages/make-payment/make-payme
 import { NavAdminComponent } from './components/partials/nav-admin/nav-admin.component';
 import { ShoppingCartComponent } from './components/pages/shopping-cart/shopping-cart.component';
 import { BrandProductComponent } from './components/pages/brand-product/brand-product.component';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -107,6 +108,7 @@ import { BrandProductComponent } from './components/pages/brand-product/brand-pr
       useClass: LoadingInterceptor,
       multi: true,
     },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

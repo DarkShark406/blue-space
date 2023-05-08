@@ -11,6 +11,7 @@ import productRouter from "./src/routers/product.router";
 import userRouter from "./src/routers/user.router";
 import categoryRouter from "./src/routers/category.router";
 import imageRouter from "./src/routers/image.router";
+import orderRouter from "./src/routers/order.router";
 import bodyParser from "body-parser";
 
 const app = express();
@@ -34,6 +35,7 @@ app.use("/product", productRouter);
 app.use("/category", categoryRouter);
 app.use("/auth", userRouter);
 app.use("/images", imageRouter);
+app.use("/orders", orderRouter);
 
 // Running port
 const port = 5000;
