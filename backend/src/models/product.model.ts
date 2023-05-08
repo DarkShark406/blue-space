@@ -42,6 +42,7 @@ interface ISpecifications {
 }
 
 export class Product {
+  id!: string;
   productName?: string;
   categoryId?: number;
   productPrice!: number;
@@ -83,5 +84,8 @@ export const ProductSchema = new Schema<Product>(
     },
   }
 );
+ProductSchema.virtual("id").get(function () {
+  return this._id.toHexString();
+});
 
 export const ProductModel = model<Product>("product", ProductSchema);

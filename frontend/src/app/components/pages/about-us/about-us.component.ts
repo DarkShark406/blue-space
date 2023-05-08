@@ -16,5 +16,6 @@ export class AboutUsComponent {
         this.aboutus = data;
       },
     });
+    console.log(this.aboutus);
   }
 }
