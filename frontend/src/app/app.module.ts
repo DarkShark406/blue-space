@@ -45,6 +45,7 @@ import { AdminProductUpdateComponent } from './components/pages/admin-product-up
 import { MakePaymentComponent } from './components/pages/make-payment/make-payment.component';
 import { NavAdminComponent } from './components/partials/nav-admin/nav-admin.component';
 import { ShoppingCartComponent } from './components/pages/shopping-cart/shopping-cart.component';
+import { BrandProductComponent } from './components/pages/brand-product/brand-product.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { ShoppingCartComponent } from './components/pages/shopping-cart/shopping
     MakePaymentComponent,
     NavAdminComponent,
     ShoppingCartComponent,
+    BrandProductComponent,
   ],
   imports: [
     BrowserModule,

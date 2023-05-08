@@ -34,16 +34,16 @@
     <div class="product-info">
       <div>
         <span class="price">{{
-          product.productPrice.toLocaleString("vi-VN", {
+          (
+            product.productPrice -
+            (product.productPrice * product.productDiscount) / 100
+          ).toLocaleString("vi", { style: "currency", currency: "VND" })
+        }}</span>
+        <span class="price-discount">{{
+          product.productPrice.toLocaleString("vi", {
             style: "currency",
             currency: "VND"
           })
-        }}</span>
-        <span class="price-discount">{{
-          (
-            product.productPrice +
-            (product.productPrice * product.productDiscount) / 100
-          ).toLocaleString("vi", { style: "currency", currency: "VND" })
         }}</span>
       </div>
       <div class="info">

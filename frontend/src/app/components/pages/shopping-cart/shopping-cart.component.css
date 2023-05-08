@@ -1,6 +1,6 @@
 .container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 30px auto;
   display: flex;
   flex-direction: column;
 }
@@ -38,6 +38,7 @@
 .table td {
   padding: 12px;
   border-bottom: 1px solid #dee2e6;
+  vertical-align: middle;
 }
 
 .image-item {
@@ -46,10 +47,23 @@
 
 .image-item img {
   width: 100px;
+  transition: 0.3s;
+}
+
+.image-item img:hover {
+  transform: scale(1.15);
 }
 
 .name-item {
   width: 40%;
+}
+
+.text-link {
+  transition: 0.3s;
+}
+
+.text-link:hover {
+  color: #0156ff;
 }
 
 .price-item,
@@ -79,6 +93,28 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .delete-item {
   cursor: pointer;
+  transition: 0.2s;
+  padding: 12px 8px;
+}
+
+.delete-item:hover {
+  background-color: #444;
+  color: #fff;
+}
+
+.cart-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 0;
+  font-size: 24px;
+  font-weight: bold;
+  border: 1px solid #444;
+  margin: 20px 0;
+}
+
+.cart-empty img {
+  height: 340px;
 }
 
 .button {

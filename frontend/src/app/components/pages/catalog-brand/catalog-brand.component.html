@@ -3,7 +3,7 @@
     <img src="../assets/images/catalog/banner.png" alt="" />
   </div>
 
-  <div class="number-product">Laptop Asus (35)</div>
+  <div class="number-product">Số lượng sản phẩm ({{ products.length }})</div>
 
   <div class="main-content">
     <div class="filter">
@@ -1099,18 +1099,22 @@
               <div class="buy-now-btn__details-btn">
                 <button class="buy-now-btn" (click)="addToCart(p, 1)">
                   <span class="material-icons-outlined"> shopping_cart </span>
-                  <span><a href="">Mua ngay</a></span>
+                  <span><a class="btn-text" href="">Mua ngay</a></span>
                 </button>
                 <button class="details-btn">
                   <span class="material-icons-outlined"> bar_chart </span>
-                  <span><a [href]="'/product/' + p.id">Xem chi tiết</a></span>
+                  <span
+                    ><a class="btn-text" [href]="'/product/' + p.id"
+                      >Xem chi tiết</a
+                    ></span
+                  >
                 </button>
               </div>
 
               <div class="other-function">
                 <button class="compare" (click)="openPopup(p.id)">
                   <i class="fa-solid fa-circle-plus"></i>
-                  <span><a>So sánh</a></span>
+                  <span><a class="btn-text">So sánh</a></span>
                 </button>
                 <div class="mail-btn__favorite-btn">
                   <button class="mail-btn">

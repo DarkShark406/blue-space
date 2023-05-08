@@ -33,6 +33,12 @@ export class ProductCategoryService {
     return this._http.get<any>(url);
   }
 
+  getProductForBrand(brand: string) {
+    const url = 'http://localhost:5000/product/brand/' + brand;
+
+    return this._http.get<any>(url);
+  }
+
   filterProduct(categoryName: string, filter: any): Observable<any> {
     const url = 'http://localhost:5000/product/filter/' + categoryName;
     const headers = new HttpHeaders().set(

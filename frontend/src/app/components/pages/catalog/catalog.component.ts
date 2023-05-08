@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Filter } from 'src/app/interfaces/filter';
 import { Product } from 'src/app/interfaces/product';
+import { CartProductService } from 'src/app/services/cart-product.service';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
 import { SearchBarService } from 'src/app/services/search-bar.service';
 
@@ -27,6 +28,7 @@ export class CatalogComponent implements OnInit {
     private _service: ProductCategoryService,
     private route: ActivatedRoute,
     private router: Router,
+    private cartService: CartProductService,
     private searchBarService: SearchBarService
   ) {}
   ngOnInit() {
@@ -46,17 +48,19 @@ export class CatalogComponent implements OnInit {
       });
     }
   }
-  // Xử lý nút
+
   addToCart(product: Product, quantity: number) {
     const item = Object.assign({}, product);
     item.specifications = Object.assign({}, product.specifications);
 
-    item.specifications.color = [product.specifications.color[0]];
+    if (item.specifications.color != undefined) {
+      item.specifications.color = [product.specifications.color[0]];
+    }
 
-    console.log(item);
-    console.log(quantity);
-    // Viết serivce truyền item và quantity
-    alert(item.productName + '\n Số lượng:' + quantity);
+    this.cartService.addProductToCart(item, quantity);
+
+    // Chuyển qua trang shopping cart
+    this.router.navigate(['shopping-cart']);
   }
   suggestions: any;
   searchTerm = '';
@@ -158,7 +162,9 @@ export class CatalogComponent implements OnInit {
     choicePriceElement?.parentElement?.classList.add('active');
   }
 
-  // Chế độ hiển thị sản phẩm
+  // -------------- Chế độ hiển thị sản phẩm ----------
+
+  // Grid
   clickGridTypeList() {
     if (!this.typeShowList) {
       this.typeShowList = !this.typeShowList;
@@ -175,7 +181,7 @@ export class CatalogComponent implements OnInit {
     }
   }
 
-  // Chế độ hiển thị sản phẩm
+  // Horizontal
   clickHorizontalTypeList() {
     if (this.typeShowList) {
       this.typeShowList = !this.typeShowList;
@@ -278,6 +284,12 @@ export class CatalogComponent implements OnInit {
       next: (data) => (this.products = data),
     });
     console.log(this.filter);
+
+    // Set sort về trạng thái ban đầu
+    const selectElement = document.getElementById('sort') as HTMLSelectElement;
+    if (selectElement) {
+      selectElement.selectedIndex = -1;
+    }
   }
 
   // 2. Button filter Phone or Tablet
@@ -341,6 +353,12 @@ export class CatalogComponent implements OnInit {
       next: (data) => (this.products = data),
     });
     console.log(this.filter);
+
+    // Set sort về trạng thái ban đầu
+    const selectElement = document.getElementById('sort') as HTMLSelectElement;
+    if (selectElement) {
+      selectElement.selectedIndex = -1;
+    }
   }
 
   // 3. Button filter earphone
@@ -391,6 +409,12 @@ export class CatalogComponent implements OnInit {
       next: (data) => (this.products = data),
     });
     console.log(this.filter);
+
+    // Set sort về trạng thái ban đầu
+    const selectElement = document.getElementById('sort') as HTMLSelectElement;
+    if (selectElement) {
+      selectElement.selectedIndex = -1;
+    }
   }
 
   // 4. Button filter keyboard
@@ -454,6 +478,12 @@ export class CatalogComponent implements OnInit {
       next: (data) => (this.products = data),
     });
     console.log(this.filter);
+
+    // Set sort về trạng thái ban đầu
+    const selectElement = document.getElementById('sort') as HTMLSelectElement;
+    if (selectElement) {
+      selectElement.selectedIndex = -1;
+    }
   }
 
   // 5. Button filter application
@@ -517,6 +547,12 @@ export class CatalogComponent implements OnInit {
       next: (data) => (this.products = data),
     });
     console.log(this.filter);
+
+    // Set sort về trạng thái ban đầu
+    const selectElement = document.getElementById('sort') as HTMLSelectElement;
+    if (selectElement) {
+      selectElement.selectedIndex = -1;
+    }
   }
 
   // 6. Button filter mouse
@@ -554,12 +590,22 @@ export class CatalogComponent implements OnInit {
       next: (data) => (this.products = data),
     });
     console.log(this.filter);
+
+    // Set sort về trạng thái ban đầu
+    const selectElement = document.getElementById('sort') as HTMLSelectElement;
+    if (selectElement) {
+      selectElement.selectedIndex = -1;
+    }
   }
 
   // --------------- Sort sản phẩm ----------------
   sortProduct() {
     this._service.sortProducts(this.typeSort, this.products).subscribe({
       next: (data) => (this.products = data),
+      error: (err) =>
+        alert(
+          'Đang có quá nhiều sản phẩm. Hãy dùng chức năng lọc để lọc trước một ít'
+        ),
     });
   }
 }

@@ -11,6 +11,8 @@ import { AccountComponent } from './components/pages/account/account.component';
 import { ForgotPasswordComponent } from './components/pages/forgot-password/forgot-password.component';
 import { CatalogBrandComponent } from './components/pages/catalog-brand/catalog-brand.component';
 import { MakePaymentComponent } from './components/pages/make-payment/make-payment.component';
+import { ShoppingCartComponent } from './components/pages/shopping-cart/shopping-cart.component';
+import { BrandProductComponent } from './components/pages/brand-product/brand-product.component';
 
 const routes: Routes = [
   { path: 'comparision', component: ComparisionComponent },
@@ -19,6 +21,7 @@ const routes: Routes = [
   { path: 'product/:id', component: ProductDetailsComponent },
   { path: 'product/:slug', component: ProductDetailsComponent },
   { path: 'products', component: CatalogComponent },
+  { path: 'products/brand/:brand', component: BrandProductComponent },
   { path: 'products/:category/:brand', component: CatalogBrandComponent },
   { path: 'products/:category', component: CatalogComponent },
   { path: 'products/:category/:brand', component: CatalogComponent },
@@ -26,6 +29,7 @@ const routes: Routes = [
   { path: 'profile', component: AccountComponent },
   { path: 'forget-password', component: ForgotPasswordComponent },
   { path: 'make-payment', component: MakePaymentComponent },
+  { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: '', component: HomeComponent },
 ];
 
