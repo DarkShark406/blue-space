@@ -89,11 +89,9 @@ export class ProductDetailsComponent {
         item.specifications.color = [product.specifications.color[0]];
       }
     }
-    console.log(item);
-    console.log(quantity);
     // Viết serivce truyền item và quantity
-    alert(item.productName + '\n Số lượng:' + quantity);
-
+    alert(item.productName + '\n Số lượng:' + quantity + '\n' + item.id);
+    console.log(item);
     this.cartService.addProductToCart(item, quantity);
   }
   getColor(event: any) {
