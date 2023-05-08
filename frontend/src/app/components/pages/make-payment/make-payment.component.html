@@ -265,7 +265,12 @@
       <div class="total-payment">
         <div class="total-payment-row">
           <span class="lable-total-money">Tổng tiền</span>
-          <span class="total-money">16.248.200</span>
+          <span class="total-money">{{
+            cart.totalPrice.toLocaleString("vi", {
+              style: "currency",
+              currency: "VND"
+            })
+          }}</span>
         </div>
         <div class="total-payment-row">
           <span class="lable-discount">Giảm giá</span>
@@ -273,7 +278,7 @@
         </div>
         <div class="total-payment-row">
           <span class="lable-total-amount-paid">Tiền cần thanh toán</span>
-          <span class="total-amount-paid">13.248.200</span>
+          <span class="total-amount-paid"></span>
         </div>
       </div>
       <button class="make-payment">Thanh toán</button>

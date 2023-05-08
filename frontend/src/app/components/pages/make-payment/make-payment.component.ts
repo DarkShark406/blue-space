@@ -254,19 +254,7 @@ export class MakePaymentComponent {
   }
 
   saveCartToLocalStorage() {
-    const userLS = localStorage.getItem('user');
-    if (userLS != null) {
-      let user = JSON.parse(userLS);
-      user.cart = this.cart;
-      localStorage.setItem('user', JSON.stringify(user));
-    } else {
-      const cartLS = localStorage.getItem('cart');
-      if (cartLS != null) {
-        let cart = JSON.parse(cartLS);
-        cart = this.cart;
-        localStorage.setItem('cart', JSON.stringify(cart));
-      }
-    }
+    this.cartService.saveCartToLocalStorage(this.cart);
   }
 
   calculateTotalMoney() {
@@ -276,18 +264,18 @@ export class MakePaymentComponent {
       this.cart.totalPrice +=
         this.cart.items[i].price * this.cart.items[i].quantity;
     }
-    this.saveCartToLocalStorage();
+    this.cartService.saveCartToLocalStorage(this.cart);
   }
 
   deleteCartItem(item: CartItem) {
     this.cart.items = this.cartService.deleteCartItem(this.cart, item);
     this.calculateTotalMoney();
-    this.saveCartToLocalStorage();
+    this.cartService.saveCartToLocalStorage(this.cart);
   }
 
   deleteAllCart() {
     this.cart.items = [];
     this.calculateTotalMoney();
-    this.saveCartToLocalStorage();
+    this.cartService.saveCartToLocalStorage(this.cart);
   }
 }

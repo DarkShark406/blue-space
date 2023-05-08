@@ -94,6 +94,13 @@ export class ProductDetailsComponent {
     console.log(item);
     this.cartService.addProductToCart(item, quantity);
   }
+
+  buyNow(product: Product, quantity: number) {
+    this.addToCart(product, quantity);
+
+    this.router.navigate(['make-payment']);
+  }
+
   getColor(event: any) {
     this.selectedColor = event.target.value;
     console.log(this.selectedColor); // In ra giá trị đang được chọn

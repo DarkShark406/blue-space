@@ -7,7 +7,7 @@
   color: #2f3192;
   text-align: center;
   font-weight: bold;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
 
 .form-row {
@@ -37,6 +37,20 @@
   color: red;
 }
 
+.form-group .error-message {
+  position: absolute;
+  top: 14px;
+  right: 30px;
+  font-size: 13px;
+  color: #dc3545;
+  font-style: italic;
+  display: none;
+}
+
+.form-group .form-control.is-invalid ~ .error-message {
+  display: inline-block;
+}
+
 .form-group .form-control {
   display: block;
   width: 100%;
@@ -48,7 +62,16 @@
   background-clip: padding-box;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
-  transition: border-color 0.15s;
+  transition: 0.15s;
+}
+
+.form-group .form-control.is-invalid {
+  border-color: #dc3545;
+}
+
+.form-group .form-control.is-invalid:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
 }
 
 .form-group .form-control:focus {
@@ -62,7 +85,7 @@
 .form-group .icon-eye {
   position: absolute;
   right: 28px;
-  bottom: 20px;
+  bottom: 16px;
   display: none;
   cursor: pointer;
 }

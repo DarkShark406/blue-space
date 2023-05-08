@@ -318,7 +318,7 @@ export class CatalogComponent implements OnInit {
       if (phoneStorageItemAll[i].classList.contains('active')) {
         const value = phoneStorageItemAll[i].getAttribute('data-value');
         if (value) {
-          this.filter.screen.push(value);
+          this.filter.storage.push(value);
         }
       }
     }
