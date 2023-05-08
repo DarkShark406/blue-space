@@ -156,6 +156,8 @@ export class MakePaymentComponent {
     });
 
     this.cart = this.cartService.getCart();
+
+    this.calculateTotalMoney();
   }
 
   onCityChange() {
