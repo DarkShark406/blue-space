@@ -10,6 +10,7 @@ import { OrdersComponent } from './components/pages/orders/orders.component';
 import { AccountComponent } from './components/pages/account/account.component';
 import { ForgotPasswordComponent } from './components/pages/forgot-password/forgot-password.component';
 import { CatalogBrandComponent } from './components/pages/catalog-brand/catalog-brand.component';
+import { MakePaymentComponent } from './components/pages/make-payment/make-payment.component';
 
 const routes: Routes = [
   { path: 'comparision', component: ComparisionComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'orders', component: OrdersComponent },
   { path: 'profile', component: AccountComponent },
   { path: 'forget-password', component: ForgotPasswordComponent },
+  { path: 'make-payment', component: MakePaymentComponent },
   { path: '', component: HomeComponent },
 ];
 
