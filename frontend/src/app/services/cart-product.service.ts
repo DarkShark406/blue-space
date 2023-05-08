@@ -115,4 +115,13 @@ export class CartProductService {
       return cartItem.product.id != item.product.id;
     });
   }
+  clearCart() {
+    const user = JSON.parse(localStorage.getItem('user') || '');
+
+    const newCart = new Cart();
+
+    user.cart = newCart;
+
+    localStorage.setItem('user', JSON.stringify(user));
+  }
 }

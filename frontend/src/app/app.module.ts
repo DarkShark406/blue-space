@@ -48,6 +48,7 @@ import { ShoppingCartComponent } from './components/pages/shopping-cart/shopping
 import { BrandProductComponent } from './components/pages/brand-product/brand-product.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { ContactComponent } from './components/pages/contact/contact.component';
+import { PaypalButtonComponent } from './components/partials/paypal-button/paypal-button.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import { ContactComponent } from './components/pages/contact/contact.component';
     ShoppingCartComponent,
     BrandProductComponent,
     ContactComponent,
+    PaypalButtonComponent,
   ],
   imports: [
     BrowserModule,
