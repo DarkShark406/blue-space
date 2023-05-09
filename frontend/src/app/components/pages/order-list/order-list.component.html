@@ -1,0 +1,99 @@
+<div class="container">
+  <h2>Danh sách đơn hàng</h2>
+  <!-- <table>
+    <tr class="order-line">
+      <td>
+        <tr class="order-line-head">
+          <td class="order-id">#ID: 123212432141234213</td>
+          <td colspan="2" class="order-date">Ngày: 16/8/2002</td>
+        </tr>
+        <tr class="order-item">
+          <td></td>
+          <td colspan="2">Sản phẩm A</td>
+        </tr>
+        <tr class="order-item">
+          <td></td>
+          <td colspan="2">Sản phẩm B</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class="order-total">Tổng tiền:8$</td>
+          <td class="order-status" [ngClass]="{ payed: true }">
+            Trạng thái: Đã thanh toán
+          </td>
+        </tr>
+      </td>
+    </tr>
+    <tr class="order-line">
+      <td>
+        <tr>
+          <td class="order-id">#ID: 123212432141234213</td>
+          <td colspan="2" class="order-date">Ngày: 16/8/2002</td>
+        </tr>
+        <tr class="order-item">
+          <td></td>
+          <td colspan="2">Sản phẩm A</td>
+        </tr>
+        <tr class="order-item">
+          <td></td>
+          <td colspan="2">Sản phẩm B</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class="order-total">Tổng tiền:8$</td>
+          <td class="order-status" [ngClass]="{ payed: false }">
+            Trạng thái: Chưa thanh toán
+          </td>
+        </tr>
+      </td>
+    </tr>
+  </table> -->
+  <table class="order-table">
+    <tbody>
+      <tr class="order-line">
+        <td>
+          <table>
+            <tbody>
+              <tr class="order-line-head">
+                <td class="order-id">#ID: 123212432141234213</td>
+                <td class="order-date">Ngày: 16/8/2002</td>
+              </tr>
+              <tr class="order-item">
+                <td colspan="2">Sản phẩm A</td>
+              </tr>
+              <tr class="order-item">
+                <td colspan="2">Sản phẩm B</td>
+              </tr>
+              <tr class="order-line-footer">
+                <td class="order-total">Tổng tiền: 8$</td>
+                <td class="order-status payed">Đã thanh toán</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr class="order-line">
+        <td>
+          <table>
+            <tbody>
+              <tr class="order-line-head">
+                <td class="order-id">#ID: 123212432141234213</td>
+                <td class="order-date">Ngày: 16/8/2002</td>
+              </tr>
+              <tr class="order-item">
+                <td colspan="2">Sản phẩm A</td>
+              </tr>
+              <tr class="order-item">
+                <td colspan="2">Sản phẩm B</td>
+              </tr>
+              <tr class="order-line-footer">
+                <td class="order-total">Tổng tiền: 8$</td>
+                <td class="order-status not-payed">Chưa thanh toán</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
