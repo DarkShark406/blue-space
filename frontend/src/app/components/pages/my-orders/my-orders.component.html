@@ -52,7 +52,7 @@
             {{ item.product.productName }}
           </a>
         </td>
-        <td>
+        <td class="bold">
           {{
             item.product.productPrice.toLocaleString("vi", {
               style: "currency",
@@ -60,22 +60,16 @@
             })
           }}
         </td>
-        <td>
-          {{ item.quantity }}
-        </td>
-        <td>
-          {{
-            item.price.toLocaleString("vi", {
-              style: "currency",
-              currency: "VND"
-            })
-          }}
-        </td>
+        <td class="quantity">x {{ item.quantity }}</td>
+        <td></td>
       </tr>
       <tr>
-        <td colspan="3"></td>
-        <td>
+        <td colspan="2"></td>
+        <td colspan="2" *ngIf="order.status == 'PAYED'">
           <strong> Đã thanh toán: </strong>
+        </td>
+        <td colspan="2" class="red" *ngIf="order.status != 'PAYED'">
+          <strong> Chưa thanh toán: </strong>
         </td>
         <td>
           <strong
@@ -88,6 +82,11 @@
             }}
           </strong>
         </td>
+      </tr>
+      <tr *ngIf="order.status != 'PAYED'">
+        <td></td>
+        <td colspan="2"><paypal-button [order]="order"></paypal-button></td>
+        <td></td>
       </tr>
     </table>
   </div>

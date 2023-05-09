@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Order } from 'src/app/interfaces/order';
+import { CartProductService } from 'src/app/services/cart-product.service';
 import { OrderService } from 'src/app/services/order.service';
 
 @Component({
@@ -17,7 +18,8 @@ export class MyOrdersComponent {
   ward: any;
   constructor(
     private activatedRoute: ActivatedRoute,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private cartService: CartProductService
   ) {
     this.id = this.activatedRoute.snapshot.params['orderId'];
   }

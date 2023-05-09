@@ -57,6 +57,10 @@ router.get("/newOrderForCurrentUser", async (req: any, res) => {
   if (order) res.send(order);
   else res.status(HTTP_BAD_REQUEST).send();
 });
+router.get("/listOrder", async (req: any, res) => {
+  const list = await OrderModel.find({ user: req.user.id });
+  res.send(list);
+});
 
 async function getNewOrderForCurrentUser(req: any) {
   return await OrderModel.findOne({

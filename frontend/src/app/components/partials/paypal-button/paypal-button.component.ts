@@ -46,6 +46,9 @@ export class PaypalButtonComponent {
           self.orderService.pay(this.order).subscribe({
             next: (OrderId) => {
               this.router.navigate(['/orders/' + OrderId]);
+              setTimeout(() => {
+                window.location.reload();
+              }, 1);
             },
             error: (error) => {
               window.alert('Payment Save Failed');

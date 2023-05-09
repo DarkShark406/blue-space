@@ -23,6 +23,10 @@ export class OrderService {
     return this.http.get<Order>(this.url + 'track/' + id);
   }
 
+  getListOrder() {
+    return this.http.get<Order[]>(this.url + 'listOrder');
+  }
+
   getAddress() {
     return this.http.get<any>('http://localhost:5000/images/address');
   }

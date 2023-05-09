@@ -33,7 +33,7 @@ td img {
   /* display: flex; */
   justify-content: center;
   flex-wrap: wrap;
-  width: 800px;
+  width: 1000px;
 }
 .order {
   margin: 0 auto;
@@ -90,4 +90,7 @@ td img {
 .order-list-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.quantity {
+  text-align: center;
 }

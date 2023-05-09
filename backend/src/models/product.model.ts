@@ -44,6 +44,7 @@ interface ISpecifications {
 export class Product {
   id!: string;
   productName?: string;
+  productID?: string;
   categoryId?: number;
   productPrice!: number;
   productDiscount?: number;
@@ -62,6 +63,7 @@ export const ProductSchema = new Schema<Product>(
   {
     productName: { type: String, required: true },
     productPrice: { type: Number, required: true },
+    productID: { type: String, required: true },
     productDiscount: { type: Number, required: true },
     categoryId: { type: Number, required: true },
     productImage: { type: [String], required: true },
