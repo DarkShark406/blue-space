@@ -31,26 +31,10 @@
       <div class="nav-items" id="all-customers">
         <a>Tất cả sản phẩm</a>
       </div>
-      <div class="nav-items">
-        <a>Laptop</a>
-      </div>
-      <div class="nav-items">
-        <a>Điện thoại</a>
-      </div>
-      <div class="nav-items">
-        <a>Tablet</a>
-      </div>
-      <div class="nav-items">
-        <a>Bàn phím</a>
-      </div>
-      <div class="nav-items">
-        <a>Tai nghe</a>
-      </div>
-      <div class="nav-items">
-        <a>Ứng dụng</a>
-      </div>
-      <div class="nav-items">
-        <a>Chuột</a>
+      <div *ngFor="let cateogry of categories" class="nav-items">
+        <a [routerLink]="'/products/' + cateogry.categoryName">{{
+          cateogry.categoryName
+        }}</a>
       </div>
     </div>
     <div class="function">
@@ -76,7 +60,6 @@
     <table class="table">
       <thead>
         <td></td>
-        <td>ID</td>
         <td></td>
         <td>Tên sản phẩm</td>
         <td>Loại sản phẩm</td>
@@ -85,59 +68,42 @@
         <td colspan="3"></td>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let p of products">
           <td><input type="checkbox" name="" id="" /></td>
-          <td class="product-id">011</td>
           <td class="product-image">
             <img
-              src="./assets/images/shopping-cart/laptop.jpg"
+              [src]="'http://localhost:5000/images/' + p.productImage[0]"
               style="width: 100px"
             />
           </td>
           <td class="product-name">
-            Asus TUF Gaming FX506LHB-HN188W i5 10300H
+            {{ p.productName }}
           </td>
           <td class="product-category">Laptop</td>
-          <td class="product-brand">Asus</td>
-          <td class="product-price">18.350.00đ</td>
+          <td class="product-brand">{{ p.productBrand }}</td>
+          <td class="product-price">
+            {{
+              p.productPrice.toLocaleString("vi", {
+                style: "currency",
+                currency: "VND"
+              })
+            }}
+          </td>
           <td>
-            <button class="btn-detail" [routerLink]="'/admin-product-detail'">
+            <button
+              class="btn-detail"
+              [routerLink]="'/product/details/' + p.id"
+            >
               Chi tiết
             </button>
           </td>
           <td>
-            <button class="btn-update" [routerLink]="'/admin-product-update'">
+            <button class="btn-update" [routerLink]="'/product/update/' + p.id">
               Chỉnh sửa
             </button>
           </td>
           <td>
             <button class="btn-remove">Xóa</button>
-          </td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" name="" id="" /></td>
-          <td class="product-id">011</td>
-          <td class="product-image">
-            <img
-              src="./assets/images/shopping-cart/laptop.jpg"
-              style="width: 100px"
-            />
-          </td>
-          <td class="product-name">
-            Asus TUF Gaming FX506LHB-HN188W i5 10300H
-          </td>
-          <td class="product-category">Laptop</td>
-          <td class="product-brand">Asus</td>
-          <td class="product-price">18.350.00đ</td>
-          <td>
-            <button class="btn-detail">Chi tiết</button>
-          </td>
-          <td>
-            <button class="btn-update">Chỉnh sửa</button>
-          </td>
-          <td>
-            <button class="btn-remove">Xóa</button>
-            <!-- (click)="saveSelectedProduct(id)" -->
           </td>
         </tr>
       </tbody>

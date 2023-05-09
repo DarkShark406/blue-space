@@ -12,7 +12,16 @@ export class AdminProductComponent {
 
   selectedProduct: string = '';
 
+  categories: any;
+
   constructor(private _service: AdminProductService) {
+    // Get all category
+    this._service.getCategories().subscribe({
+      next: (data) => (this.categories = data),
+      error: (err) => (this.errMessage = err),
+    });
+
+    // Get all products
     this._service.getProducts().subscribe({
       next: (data) => (this.products = data),
       error: (err) => (this.errMessage = err),
