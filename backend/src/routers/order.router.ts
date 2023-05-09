@@ -52,10 +52,14 @@ router.post("/pay", async (req: any, res) => {
   res.send(order._id);
 });
 
-router.get("/newOrderForCurrentUser", async (req: any, res) => {
-  const order = await getNewOrderForCurrentUser(req);
-  if (order) res.send(order);
-  else res.status(HTTP_BAD_REQUEST).send();
+// router.get("/newOrderForCurrentUser", async (req: any, res) => {
+//   const order = await getNewOrderForCurrentUser(req);
+//   if (order) res.send(order);
+//   else res.status(HTTP_BAD_REQUEST).send();
+// });
+router.get("/listOrder", async (req: any, res) => {
+  const list = await OrderModel.find({ user: req.user.id });
+  res.send(list);
 });
 
 async function getNewOrderForCurrentUser(req: any) {

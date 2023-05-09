@@ -216,10 +216,10 @@
             [(ngModel)]="confirmCheckbox"
             (change)="createOrder()"
           /> -->
-          <button (click)="createOrder()">Xác nhận</button>
-          <label for="confirm-checkbox" class="bold red"
-            >Tôi đã kiểm tra thông tin trên</label
-          >
+          <button class="confirm-order-btn" (click)="createOrder()">
+            Xác nhận
+          </button>
+          <label class="bold red">Tôi đã kiểm tra thông tin trên</label>
         </div>
       </div>
       <div class="total-payment">

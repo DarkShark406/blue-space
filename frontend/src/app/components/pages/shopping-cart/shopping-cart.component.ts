@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cart, CartItem } from 'src/app/interfaces/cart';
 import { CartProductService } from 'src/app/services/cart-product.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -13,7 +14,8 @@ export class ShoppingCartComponent implements OnInit {
 
   constructor(
     private cartService: CartProductService,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -61,5 +63,8 @@ export class ShoppingCartComponent implements OnInit {
     this.cart.items = [];
     this.calculateTotalMoney();
     this.cartService.saveCartToLocalStorage(this.cart);
+  }
+  back() {
+    this.location.back();
   }
 }

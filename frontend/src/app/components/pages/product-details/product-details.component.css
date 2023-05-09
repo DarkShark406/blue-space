@@ -123,14 +123,14 @@ input[type="number"]::-webkit-outer-spin-button {
   border: 1px solid #000;
 }
 .combo .combo-list {
-  opacity: 0;
   height: 0;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  z-index: -1;
 }
 
 .combo .combo-list.active {
   height: auto;
-  opacity: 1;
+  z-index: 1;
 }
 
 .combo-list .product {
@@ -221,4 +221,57 @@ input[type="number"]::-webkit-outer-spin-button {
 .popup .suggestion:hover {
   background-color: rgba(0, 0, 0, 0.25);
   font-weight: 600;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.success-modal {
+  background-color: #ffffff;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  max-width: 500px;
+}
+
+.success-modal i {
+  font-size: 48px;
+  color: #4caf50;
+}
+
+.success-modal h3 {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.continue-shopping,
+.view-cart {
+  background-color: #4caf50;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.continue-shopping:hover,
+.view-cart:hover {
+  background-color: #ffffff;
+  color: #4caf50;
+  border: 1px solid #4caf50;
 }

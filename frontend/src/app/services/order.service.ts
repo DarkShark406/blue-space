@@ -13,14 +13,18 @@ export class OrderService {
   create(order: Order) {
     return this.http.post<Order>(this.url + 'create', order);
   }
-  getNewOrderForCurrentUser(): Observable<Order> {
-    return this.http.get<Order>(this.url + '/newOrderForCurrentUser');
-  }
+  // getNewOrderForCurrentUser(): Observable<Order> {
+  //   return this.http.get<Order>(this.url + '/newOrderForCurrentUser');
+  // }
   pay(order: Order): Observable<string> {
     return this.http.post<string>(this.url + 'pay', order);
   }
   trackOrderById(id: string) {
     return this.http.get<Order>(this.url + 'track/' + id);
+  }
+
+  getListOrder() {
+    return this.http.get<Order[]>(this.url + 'listOrder');
   }
 
   getAddress() {

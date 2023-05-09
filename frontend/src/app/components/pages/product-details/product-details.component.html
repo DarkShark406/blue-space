@@ -97,34 +97,36 @@
         </button>
       </div>
       <div class="combo-list" [ngClass]="{ active: show }">
-        <div class="combo-item" *ngFor="let p of comboProduct">
-          <a href="http://localhost:5001/product/{{ p.id }}">
-            <div class="product">
-              <div class="img">
-                <img
-                  src="http://localhost:5000/images/{{ p.productImage[0] }}"
-                  alt=""
-                />
-              </div>
-              <div>
-                <span>{{ p.productName }}</span>
+        <ng-container *ngIf="show">
+          <div class="combo-item" *ngFor="let p of comboProduct">
+            <a href="http://localhost:5001/product/{{ p.id }}">
+              <div class="product">
+                <div class="img">
+                  <img
+                    src="http://localhost:5000/images/{{ p.productImage[0] }}"
+                    alt=""
+                  />
+                </div>
                 <div>
-                  <span class="red">{{
-                    p.productPrice.toLocaleString("vi", {
-                      style: "currency",
-                      currency: "VND"
-                    })
-                  }}</span>
+                  <span>{{ p.productName }}</span>
+                  <div>
+                    <span class="red">{{
+                      p.productPrice.toLocaleString("vi", {
+                        style: "currency",
+                        currency: "VND"
+                      })
+                    }}</span>
+                  </div>
                 </div>
               </div>
+            </a>
+            <div class="add-to-cart">
+              <button class="add-to-cart-btn" (click)="addToCart(p, 1)">
+                Thêm giỏ hàng
+              </button>
             </div>
-          </a>
-          <div class="add-to-cart">
-            <button class="add-to-cart-btn" (click)="addToCart(p, 1)">
-              Thêm giỏ hàng
-            </button>
           </div>
-        </div>
+        </ng-container>
       </div>
     </div>
   </div>
@@ -154,5 +156,16 @@
         </div>
       </ng-container>
     </div>
+  </div>
+</div>
+
+<div *ngIf="modal" class="modal-overlay" (click)="onModalClick($event)">
+  <div class="success-modal">
+    <i class="fas fa-check-circle"></i>
+    <h3>Thêm sản phẩm vào giỏ hàng thành công!</h3>
+    <button class="continue-shopping" (click)="closeModal()">
+      Tiếp tục mua sắm
+    </button>
+    <a routerLink="/shopping-cart" class="view-cart">Xem giỏ hàng</a>
   </div>
 </div>

@@ -366,3 +366,29 @@ input[type="checkbox"] {
 .invalid-input {
   border-color: red;
 }
+
+.confirm-order-btn {
+  background-color: #4caf50; /* màu nền của nút */
+  border: none; /* bỏ viền */
+  color: white; /* màu chữ */
+  padding: 10px 20px; /* độ rộng và chiều cao của nút */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 0;
+  cursor: pointer; /* con trỏ chuột khi hover vào */
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 1px -2px rgba(0, 0, 0, 0.12),
+    0 1px 5px 0 rgba(0, 0, 0, 0.14); /* đổ bóng cho nút */
+  transition: box-shadow 0.2s ease-in-out; /* hiệu ứng transition */
+}
+
+.confirm-order-btn:hover {
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 4px -2px rgba(0, 0, 0, 0.12),
+    0 3px 14px 2px rgba(0, 0, 0, 0.14); /* đổ bóng lớn hơn khi hover vào */
+}
+
+.confirm-order-btn:active {
+  box-shadow: none; /* bỏ đổ bóng khi nút được nhấn */
+  transform: translateY(1px); /* di chuyển nút xuống 1px khi nhấn */
+}

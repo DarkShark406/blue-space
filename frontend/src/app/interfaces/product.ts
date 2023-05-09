@@ -43,6 +43,7 @@ export class Product {
   id!: string;
   constructor(
     public productName: string = '',
+    public productID: string = '',
     public categoryId: number = 0,
     public productPrice: number = 0,
     public productDiscount: number = 0,

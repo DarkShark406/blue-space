@@ -68,6 +68,7 @@
 .object {
   height: 100%;
 }
+
 .object:hover,
 .category-item:hover {
   animation: jump 0.5s ease-in-out;
@@ -79,6 +80,7 @@
 }
 .object img {
   width: 80%;
+  min-height: 50%;
 }
 .object-link {
   display: block;
