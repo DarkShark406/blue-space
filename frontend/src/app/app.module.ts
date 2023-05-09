@@ -35,15 +35,8 @@ import { LoadingComponent } from './components/partials/loading/loading.componen
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { MapComponent } from './components/partials/map/map.component';
 import { CatalogBrandComponent } from './components/pages/catalog-brand/catalog-brand.component';
-import { AdminProductComponent } from './components/pages/admin-product/admin-product.component';
-import { AdminProductCategoryComponent } from './components/pages/admin-product-category/admin-product-category.component';
-import { AdminProductCategoryNewComponent } from './components/pages/admin-product-category-new/admin-product-category-new.component';
-import { AdminProductCategoryUpdateComponent } from './components/pages/admin-product-category-update/admin-product-category-update.component';
-import { AdminProductDetailComponent } from './components/pages/admin-product-detail/admin-product-detail.component';
-import { AdminProductNewComponent } from './components/pages/admin-product-new/admin-product-new.component';
-import { AdminProductUpdateComponent } from './components/pages/admin-product-update/admin-product-update.component';
+
 import { MakePaymentComponent } from './components/pages/make-payment/make-payment.component';
-import { NavAdminComponent } from './components/partials/nav-admin/nav-admin.component';
 import { ShoppingCartComponent } from './components/pages/shopping-cart/shopping-cart.component';
 import { BrandProductComponent } from './components/pages/brand-product/brand-product.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
@@ -80,15 +73,8 @@ import { FAQMoreComponent } from './components/pages/faq-more/faq-more.component
     LoadingComponent,
     MapComponent,
     CatalogBrandComponent,
-    AdminProductComponent,
-    AdminProductCategoryComponent,
-    AdminProductCategoryNewComponent,
-    AdminProductCategoryUpdateComponent,
-    AdminProductDetailComponent,
-    AdminProductNewComponent,
-    AdminProductUpdateComponent,
+
     MakePaymentComponent,
-    NavAdminComponent,
     ShoppingCartComponent,
     BrandProductComponent,
     ContactComponent,

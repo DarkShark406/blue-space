@@ -6,26 +6,29 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, retry, throwError } from 'rxjs';
 import { Product } from '../interfaces/product';
+import { Category } from '../interfaces/category';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminProductService {
-  constructor(private _http: HttpClient) {}
+  constructor(private http: HttpClient) {}
+
+  getCategories(): Observable<any> {
+    const url = 'http://localhost:5000/category';
+
+    return this.http.get<any>(url);
+  }
+
   getProducts(): Observable<any> {
-    const headers = new HttpHeaders().set(
-      'Content-Type',
-      'text/plan;charset=utf-8'
-    );
-    const requestOptions: Object = {
-      headers: headers,
-      responseType: 'text',
-    };
-    return this._http.get<any>('/products', requestOptions).pipe(
-      map((res) => JSON.parse(res) as Array<Product>),
-      retry(3),
-      catchError(this.handleError)
-    );
+    const url = 'http://localhost:5000/product';
+
+    return this.http.get<Product[]>(url);
+  }
+
+  getProductById(id: string) {
+    const url = 'http://localhost:5000/product';
+    return this.http.get<Product>(url + '/id/' + id);
   }
 
   handleError(error: HttpErrorResponse) {
@@ -43,7 +46,7 @@ export class AdminProductService {
       responseType: 'text',
     };
 
-    return this._http.get<any>('/products/' + productId, requestOptions).pipe(
+    return this.http.get<any>('/products/' + productId, requestOptions).pipe(
       map((res) => JSON.parse(res) as Product),
       retry(3),
       catchError(this.handleError)
@@ -56,7 +59,7 @@ export class AdminProductService {
       'application/json;charset=utf-8'
     );
     const requestOptions: Object = { headers: headers, responseType: 'text' };
-    return this._http
+    return this.http
       .post<any>('/products', JSON.stringify(aProduct), requestOptions)
       .pipe(
         map((res) => JSON.parse(res) as Array<Product>),
@@ -71,7 +74,7 @@ export class AdminProductService {
       'application/json;charset=utf-8'
     );
     const requestOptions: Object = { headers: headers, responseType: 'text' };
-    return this._http
+    return this.http
       .put<any>('/products', JSON.stringify(aProduct), requestOptions)
       .pipe(
         map((res) => JSON.parse(res) as Array<Product>),
@@ -86,12 +89,10 @@ export class AdminProductService {
       'application/json;charset=utf-8'
     );
     const requestOptions: Object = { headers: headers, responseType: 'text' };
-    return this._http
-      .delete<any>('/products/' + productId, requestOptions)
-      .pipe(
-        map((res) => JSON.parse(res) as Array<Product>),
-        retry(3),
-        catchError(this.handleError)
-      );
+    return this.http.delete<any>('/products/' + productId, requestOptions).pipe(
+      map((res) => JSON.parse(res) as Array<Product>),
+      retry(3),
+      catchError(this.handleError)
+    );
   }
 }

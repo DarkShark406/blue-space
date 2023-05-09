@@ -16,10 +16,10 @@ import bodyParser from "body-parser";
 
 const app = express();
 app.use(
-  cors({
-    credentials: true,
-    origin: ["http://localhost:5001"],
-  })
+	cors({
+		credentials: true,
+		origin: ["http://localhost:5001", "http://localhost:4200"],
+	})
 );
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-  res.send("Hello Server");
+	res.send("Hello Server");
 });
 
 // Router
@@ -40,5 +40,5 @@ app.use("/orders", orderRouter);
 // Running port
 const port = 5000;
 app.listen(port, () => {
-  console.log("Webserver running at http://localhost:" + port);
+	console.log("Webserver running at http://localhost:" + port);
 });
