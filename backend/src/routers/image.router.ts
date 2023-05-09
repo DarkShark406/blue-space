@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { data } from "../assets/data/aboutus";
+import { address } from "../assets/data/address";
 const path = require("path");
 
 const router = Router();
@@ -21,6 +22,9 @@ router.get("/products/:productId/:imageName", (req, res) => {
 
 router.get("/about-us", async (req, res) => {
   res.send(data);
+});
+router.get("/address", async (req, res) => {
+  res.send(address);
 });
 
 export default router;

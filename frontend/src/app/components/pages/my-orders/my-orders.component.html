@@ -1,1 +1,100 @@
-<p>my-orders works!</p>
+<div class="container">
+  <div class="order">
+    <div class="content" *ngIf="order">
+      <div class="details">
+        <h3>Đơn hàng #{{ order.id }}</h3>
+        <div>
+          <strong>Date:</strong> {{ order.createdAt | date : "medium" }}
+        </div>
+        <div><strong>Name:</strong> {{ order.name }}</div>
+        <div>
+          <strong>Address:</strong>
+          {{
+            order.street +
+              ", " +
+              ward.Name +
+              ", " +
+              district.Name +
+              ", " +
+              city.Name
+          }}
+        </div>
+        <div><strong>Status:</strong> {{ order.status }}</div>
+        <div *ngIf="order.paymentId">
+          <strong>Payment ID:</strong> {{ order.paymentId }}
+        </div>
+      </div>
+    </div>
+    <table>
+      <tr>
+        <td colspan="5">
+          <h3>Order Items:</h3>
+        </td>
+      </tr>
+      <tr>
+        <th></th>
+      </tr>
+      <tr *ngFor="let item of order.items">
+        <td>
+          <a href="/product/{{ item.product.id }}">
+            <img
+              width="60px"
+              height="60px"
+              [src]="
+                'http://localhost:5000/images/' + item.product.productImage[0]
+              "
+              alt=""
+            />
+          </a>
+        </td>
+        <td>
+          <a href="/product/{{ item.product.id }}">
+            {{ item.product.productName }}
+          </a>
+        </td>
+        <td>
+          {{
+            item.product.productPrice.toLocaleString("vi", {
+              style: "currency",
+              currency: "VND"
+            })
+          }}
+        </td>
+        <td>
+          {{ item.quantity }}
+        </td>
+        <td>
+          {{
+            item.price.toLocaleString("vi", {
+              style: "currency",
+              currency: "VND"
+            })
+          }}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3"></td>
+        <td>
+          <strong> Đã thanh toán: </strong>
+        </td>
+        <td>
+          <strong
+            >{{ order.totalPrice | currency }}~
+            {{
+              (order.totalPrice * 23000).toLocaleString("vi", {
+                style: "currency",
+                currency: "VND"
+              })
+            }}
+          </strong>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="navigation">
+    <button class="continue-btn" [routerLink]="'/'">Tiếp tục mua sắm</button>
+    <button class="order-list-btn" [routerLink]="'/orders'">
+      Đơn hàng của tôi
+    </button>
+  </div>
+</div>

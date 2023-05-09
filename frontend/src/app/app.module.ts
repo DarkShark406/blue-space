@@ -28,7 +28,7 @@ import { AccountComponent } from './components/pages/account/account.component';
 import { AboutUsComponent } from './components/pages/about-us/about-us.component';
 import { ForgotPasswordComponent } from './components/pages/forgot-password/forgot-password.component';
 import { ListCustomersComponent } from './components/pages/list-customers/list-customers.component';
-import { OrdersComponent } from './components/pages/orders/orders.component';
+import { MyOrdersComponent } from './components/pages/my-orders/my-orders.component';
 import { PolicyComponent } from './components/pages/policy/policy.component';
 import { ReportsComponent } from './components/pages/reports/reports.component';
 import { LoadingComponent } from './components/partials/loading/loading.component';
@@ -46,6 +46,7 @@ import { FAQSecurityComponent } from './components/pages/faq-security/faq-securi
 import { FAQReturnComponent } from './components/pages/faq-return/faq-return.component';
 import { FAQWarrantyComponent } from './components/pages/faq-warranty/faq-warranty.component';
 import { FAQMoreComponent } from './components/pages/faq-more/faq-more.component';
+import { OrderListComponent } from './components/pages/order-list/order-list.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,7 @@ import { FAQMoreComponent } from './components/pages/faq-more/faq-more.component
     AboutUsComponent,
     ForgotPasswordComponent,
     ListCustomersComponent,
-    OrdersComponent,
+    MyOrdersComponent,
     PolicyComponent,
     ReportsComponent,
     LoadingComponent,
@@ -83,6 +84,7 @@ import { FAQMoreComponent } from './components/pages/faq-more/faq-more.component
     FAQReturnComponent,
     FAQWarrantyComponent,
     FAQMoreComponent,
+    OrderListComponent,
   ],
   imports: [
     BrowserModule,
