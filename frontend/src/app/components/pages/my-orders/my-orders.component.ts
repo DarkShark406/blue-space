@@ -36,5 +36,7 @@ export class MyOrdersComponent {
         );
       });
     });
+    this.cartService.clearCart();
+    this.cartService.saveCartToUser();
   }
 }

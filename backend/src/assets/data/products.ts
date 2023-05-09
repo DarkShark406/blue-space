@@ -1,6 +1,6 @@
 import { Product } from "../../models/product.model";
 
-export const sample_products: Product[] = [
+export const sample_products = [
   {
     productName:
       "Laptop Lenovo Ideapad 3 15IAU7 i3 1215U/8GB/256GB/Win11 (82RK005LVN)",

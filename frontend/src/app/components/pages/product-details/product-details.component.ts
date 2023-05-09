@@ -78,9 +78,7 @@ export class ProductDetailsComponent {
   }
 
   addToCart(product: Product, quantity: number) {
-    console.log('vào hàm add to cart');
     const item = Object.assign({}, product);
-    console.log(item.specifications.color);
     item.specifications = Object.assign({}, product.specifications);
     if (item.specifications.color != undefined) {
       if (this.selectedColor != '') {
@@ -90,9 +88,8 @@ export class ProductDetailsComponent {
       }
     }
     // Viết serivce truyền item và quantity
-    alert(item.productName + '\n Số lượng:' + quantity + '\n' + item.id);
-    console.log(item);
     this.cartService.addProductToCart(item, quantity);
+    this.modal = true;
   }
 
   buyNow(product: Product, quantity: number) {
@@ -103,7 +100,6 @@ export class ProductDetailsComponent {
 
   getColor(event: any) {
     this.selectedColor = event.target.value;
-    console.log(this.selectedColor); // In ra giá trị đang được chọn
   }
   suggestions: any;
   searchTerm = '';
@@ -123,12 +119,23 @@ export class ProductDetailsComponent {
       this.closePopup();
     }
   }
-
   openPopup() {
     this.popUp = true;
   }
   closePopup() {
     this.popUp = false;
+  }
+  modal: boolean = false;
+  onModalClick(event: any) {
+    if (event.target.classList.contains('modal-overlay')) {
+      this.closeModal();
+    }
+  }
+  openModal() {
+    this.modal = true;
+  }
+  closeModal() {
+    this.modal = false;
   }
 
   show = false;

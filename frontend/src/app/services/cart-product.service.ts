@@ -173,12 +173,12 @@ export class CartProductService {
     });
   }
   clearCart() {
-    const user = JSON.parse(localStorage.getItem('user') || '');
-
+    const user = JSON.parse(localStorage.getItem('User') || '');
+    console.log(user);
     const newCart = new Cart();
 
     user.cart = newCart;
 
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('User', JSON.stringify(user));
   }
 }
