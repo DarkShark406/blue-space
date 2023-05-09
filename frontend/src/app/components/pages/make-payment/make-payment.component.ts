@@ -156,10 +156,6 @@ export class MakePaymentComponent {
     });
 
     this.cart = this.cartService.getCart();
-<<<<<<< HEAD
-=======
-
->>>>>>> d6692aec34f38e6acde139cd7ea78822711133ff
     this.calculateTotalMoney();
   }
 
