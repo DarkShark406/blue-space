@@ -30,7 +30,6 @@ import { ForgotPasswordComponent } from './components/pages/forgot-password/forg
 import { ListCustomersComponent } from './components/pages/list-customers/list-customers.component';
 import { MyOrdersComponent } from './components/pages/my-orders/my-orders.component';
 import { PolicyComponent } from './components/pages/policy/policy.component';
-import { ReportsComponent } from './components/pages/reports/reports.component';
 import { LoadingComponent } from './components/partials/loading/loading.component';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { MapComponent } from './components/partials/map/map.component';
@@ -47,6 +46,7 @@ import { FAQReturnComponent } from './components/pages/faq-return/faq-return.com
 import { FAQWarrantyComponent } from './components/pages/faq-warranty/faq-warranty.component';
 import { FAQMoreComponent } from './components/pages/faq-more/faq-more.component';
 import { OrderListComponent } from './components/pages/order-list/order-list.component';
+import { ChangePasswordComponent } from './components/pages/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +70,6 @@ import { OrderListComponent } from './components/pages/order-list/order-list.com
     ListCustomersComponent,
     MyOrdersComponent,
     PolicyComponent,
-    ReportsComponent,
     LoadingComponent,
     MapComponent,
     CatalogBrandComponent,
@@ -85,6 +84,7 @@ import { OrderListComponent } from './components/pages/order-list/order-list.com
     FAQWarrantyComponent,
     FAQMoreComponent,
     OrderListComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

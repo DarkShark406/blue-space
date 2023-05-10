@@ -65,6 +65,6 @@ export class ShoppingCartComponent implements OnInit {
     this.cartService.saveCartToLocalStorage(this.cart);
   }
   back() {
-    this.location.back();
+    this.router.navigateByUrl('/products');
   }
 }

@@ -22,6 +22,7 @@ import { FAQReturnComponent } from './components/pages/faq-return/faq-return.com
 import { FAQWarrantyComponent } from './components/pages/faq-warranty/faq-warranty.component';
 import { FAQMoreComponent } from './components/pages/faq-more/faq-more.component';
 import { OrderListComponent } from './components/pages/order-list/order-list.component';
+import { ChangePasswordComponent } from './components/pages/change-password/change-password.component';
 
 const routes: Routes = [
   { path: 'comparision', component: ComparisionComponent },
@@ -39,6 +40,11 @@ const routes: Routes = [
   { path: 'about-us', component: AboutUsComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'profile', component: AccountComponent, canActivate: [AuthGuard] },
+  {
+    path: 'change-password',
+    component: ChangePasswordComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'orders', component: OrderListComponent, canActivate: [AuthGuard] },
   {
     path: 'orders/:orderId',
