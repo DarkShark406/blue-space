@@ -1,43 +1,15 @@
 <div class="container">
-  <div class="account-content">
-    <div class="left">
-      <div class="information-shop">
-        <div class="logo">
-          <img src="../assets/images/logo/logo_BS.png" alt="" />
-        </div>
-        <div class="name-phone">
-          <span class="name">Blue Space</span>
-          <span class="phone">0123456789</span>
-        </div>
-      </div>
-      <div class="tab">
-        <button class="tablinks">
-          <img src="" alt="" class="icon" />
-          <span>Tài khoản của tôi</span>
-        </button>
-        <button class="tablinks">
-          <img src="" alt="" class="icon" />
-          <span>Lịch sử tích điểm</span>
-        </button>
-        <button class="tablinks">
-          <img src="" alt="" class="icon" />
-          <span>Đơn hàng của tôi</span>
-        </button>
-        <button class="tablinks">
-          <img src="" alt="" class="icon" />
-          <span>Thông báo của tôi</span>
-        </button>
-        <button class="tablinks">
-          <img src="" alt="" class="icon" />
-          <span>Sổ địa chỉ nhận hàng</span>
-        </button>
-        <button class="tablinks">
-          <img src="" alt="" class="icon" />
-          <span>Đánh giá sản phẩm</span>
-        </button>
-      </div>
+  <div class="information-shop">
+    <div class="logo">
+      <img src="../assets/images/logo/logo_BS.png" alt="" />
     </div>
-    <div class="right">
+    <div class="name-phone">
+      <span class="name bold blue">Blue Space</span>
+      <span class="phone italic">0123456789</span>
+    </div>
+  </div>
+  <tabs class="tabs">
+    <tab class="tab" [tabTitle]="'Tài khoản của tôi'">
       <div class="tab-content">
         <div class="heading">Tài khoản của tôi</div>
         <div class="sub-heading">Quản lý thông tin về tài khoản</div>
@@ -45,63 +17,168 @@
         <div class="row-infor">
           <span class="title-infor"> Họ và tên </span>
           <div>
-            <input type="text" class="form-control" value="Nguyễn Văn tèo" />
+            <input
+              type="text"
+              class="form-control"
+              value="{{ user.name }}"
+              [(ngModel)]="newName"
+            />
           </div>
         </div>
         <div class="row-infor">
-          <span class="title-infor">Số điện thoại</span>
+          <span class="title-infor">Địa chỉ: </span>
           <div>
-            <input type="text" class="form-control" value="012345679" />
+            <input
+              type="text"
+              class="form-control"
+              value="{{ user.address }}"
+              [(ngModel)]="newAddress"
+            />
           </div>
         </div>
-        <div class="row-infor">
-          <span class="title-infor">Giới tính</span>
-          <div class="box-input">
-            <div class="gender-type">
-              <input type="radio" name="gender" id="male" />
-              <label for="male">Nam</label>
-            </div>
-            <div class="gender-type">
-              <input type="radio" name="gender" id="female" />
-              <label for="female">Nữ</label>
-            </div>
-          </div>
-        </div>
-        <div class="row-infor">
-          <span class="title-infor">Ngày sinh</span>
-          <div>
-            <div class="box-input">
-              <select name="" id="" class="select-date">
-                <option value="{{ day }}" *ngFor="let day of days">
-                  {{ day }}
-                </option>
-              </select>
-              <select name="" id="" class="select-date">
-                <option value="{{ month }}" *ngFor="let month of months">
-                  {{ month }}
-                </option>
-              </select>
-              <select name="" id="" class="select-date">
-                <option value="{{ year }}" *ngFor="let year of years">
-                  {{ year }}
-                </option>
-              </select>
-            </div>
-          </div>
-        </div>
+
         <div class="row-infor">
           <span class="title-infor">Email</span>
-          <input type="text" class="form-control" value="123@gmail.com" />
+          <input
+            type="text"
+            class="form-control"
+            value="{{ user.email }}"
+            disabled
+          />
         </div>
         <div class="row-infor">
           <span class="title-infor">Mật khẩu</span>
-          <input type="password" class="form-control" value="1234654798" />
+          <input
+            type="password"
+            class="form-control"
+            value="1234654798"
+            disabled
+          />
           <button routerLink="/change-password" class="change-password-btn">
             Đổi mật khẩu
           </button>
         </div>
-        <button class="save-btn">Lưu thay đổi</button>
+        <button class="save-btn" (click)="saveChangeToUser()">
+          Lưu thay đổi
+        </button>
       </div>
-    </div>
+    </tab>
+    <tab class="tab" [tabTitle]="'Đơn hàng của tôi'"
+      ><app-order-list></app-order-list>
+    </tab>
+    <tab class="tab" [tabTitle]="'Lịch sử tích điểm'">
+      <div class="container">
+        <h1 class="title">Chương trình tích điểm</h1>
+        <form>
+          <label for="name">Họ tên:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            [value]="user.name"
+            disabled
+            class="form-control"
+          />
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            disabled
+            [value]="user.email"
+            class="form-control"
+          />
+          <label for="phone">Địa chỉ:</label>
+          <input
+            type="text"
+            id="phone"
+            name="phone"
+            disabled
+            [value]="user.address"
+            class="form-control"
+          />
+          <label for="points">Số điểm hiện có:</label>
+          <input
+            type="number"
+            id="points"
+            name="points"
+            disabled
+            value="999"
+            class="form-control"
+          />
+        </form>
+      </div>
+    </tab>
+    <tab class="tab" [tabTitle]="'Thông báo của tôi'">
+      <div class="notification">
+        <div class="notification-header">
+          <h1>Thông báo quan trọng</h1>
+          <button class="close-btn">&times;</button>
+        </div>
+        <div class="notification-body">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit
+            mauris vel urna vestibulum, ac commodo mauris ultrices. Sed at
+            scelerisque magna. Morbi vitae risus sed enim elementum ultricies.
+            Vestibulum auctor eget libero in bibendum. Phasellus eu mollis
+            purus, non dignissim arcu. Donec dignissim est ac tellus venenatis
+            condimentum. Aenean faucibus volutpat leo, quis lobortis turpis
+            venenatis id. Sed lobortis aliquet elit at efficitur.
+          </p>
+        </div>
+      </div>
+    </tab>
+    <tab class="tab" [tabTitle]="'Đánh giá sản phẩm'">
+      <div class="comment-container">
+        <div class="review">
+          <div class="user-info">
+            <img
+              class="avatar"
+              src="http://localhost:5000/images/products/p1/slider1.jpg"
+              alt="User Avatar"
+            />
+            <span class="date">11/05/2023</span>
+          </div>
+          <div class="rating">
+            <stars-rating
+              [rating]="5"
+              [maxRating]="5"
+              [isReadOnly]="true"
+            ></stars-rating>
+          </div>
+          <p class="comment">
+            Sản phẩm này tôi mới mua, cho tạm 5 sao. Mau hư thì sẽ không trở lại
+            nữa
+          </p>
+        </div>
+        <div class="review">
+          <div class="user-info">
+            <img
+              class="avatar"
+              src="http://localhost:5000/images/products/p3/slider1.jpg"
+              alt="User Avatar"
+            />
+            <span class="date">11/05/2023</span>
+          </div>
+          <div class="rating">
+            <stars-rating
+              [rating]="5"
+              [maxRating]="5"
+              [isReadOnly]="true"
+            ></stars-rating>
+          </div>
+          <p class="comment">
+            Sản phẩm này tôi mới mua, cho tạm 5 sao. Mau hư thì sẽ không trở lại
+            nữa
+          </p>
+        </div>
+      </div>
+    </tab>
+  </tabs>
+</div>
+<div id="notification" style="display: none">
+  <div class="modal">
+    <p>Lưu thông tin thành công</p>
+    <button (click)="turnOff()">Ok</button>
   </div>
 </div>
