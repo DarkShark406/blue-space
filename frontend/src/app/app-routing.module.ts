@@ -35,7 +35,11 @@ const routes: Routes = [
   { path: 'products/:category/:brand', component: CatalogBrandComponent },
   { path: 'products/:category', component: CatalogComponent },
   { path: 'products/:category/:brand', component: CatalogComponent },
-  { path: 'forget-password', component: ForgotPasswordComponent },
+  {
+    path: 'forget-password',
+    component: ForgotPasswordComponent,
+    canDeactivate: [AuthGuard],
+  },
   { path: 'policy', component: PolicyComponent },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'contact', component: ContactComponent },
@@ -43,7 +47,6 @@ const routes: Routes = [
   {
     path: 'change-password',
     component: ChangePasswordComponent,
-    canActivate: [AuthGuard],
   },
   { path: 'orders', component: OrderListComponent, canActivate: [AuthGuard] },
   {

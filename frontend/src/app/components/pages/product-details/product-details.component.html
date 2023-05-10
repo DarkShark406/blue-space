@@ -76,7 +76,7 @@
               Thanh toán online <br />
               Giảm ngay <span class="bold">3.000.000đ</span>
             </div>
-            <input type="number" value="1" [(ngModel)]="quantity" />
+            <input type="number" value="1" min="1" [(ngModel)]="quantity" />
             <button (click)="addToCart(product, quantity)">
               Thêm giỏ hàng
             </button>
