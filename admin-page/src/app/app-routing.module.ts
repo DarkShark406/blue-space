@@ -38,6 +38,11 @@ const routes: Routes = [
     component: AdminOrderComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'order/details/:id',
+    component: AdminOrderComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
