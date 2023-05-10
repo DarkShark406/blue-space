@@ -19,11 +19,13 @@
   <div class="heading">
     <span class="heading-tilte">Danh sách sản phẩm</span>
     <div class="button">
-      <button class="btn-create-product" [routerLink]="'/admin-product-new'">
+      <button class="btn-create-product" [routerLink]="'/product/new'">
         <i class="fa-solid fa-circle-plus"></i> Tạo sản phẩm
       </button>
 
-      <button class="btn-delete"><i class="fa-solid fa-minus"></i> Xóa</button>
+      <button class="btn-delete" (click)="clickMultiDeleteProductBtn()">
+        <i class="fa-solid fa-minus"></i> Xóa
+      </button>
     </div>
   </div>
   <div class="content">
@@ -59,17 +61,25 @@
     </div>
     <table class="table">
       <thead>
-        <td></td>
-        <td></td>
-        <td>Tên sản phẩm</td>
-        <td>Loại sản phẩm</td>
-        <td>Thương hiệu</td>
-        <td>Giá</td>
-        <td colspan="3"></td>
+        <th></th>
+        <th></th>
+        <th>Tên sản phẩm</th>
+        <th>Loại sản phẩm</th>
+        <th>Thương hiệu</th>
+        <th>Giá</th>
+        <th colspan="3"></th>
       </thead>
       <tbody>
-        <tr *ngFor="let p of products">
-          <td><input type="checkbox" name="" id="" /></td>
+        <tr *ngFor="let p of getProductsForCurrentPage()">
+          <td>
+            <input
+              type="checkbox"
+              name=""
+              id=""
+              [value]="p.id"
+              (change)="saveMultiSelectedProduct(p, $event)"
+            />
+          </td>
           <td class="product-image">
             <img
               [src]="'http://localhost:5000/images/' + p.productImage[0]"
@@ -103,18 +113,28 @@
             </button>
           </td>
           <td>
-            <button class="btn-remove">Xóa</button>
+            <button class="btn-remove" (click)="clickOneDeleteProductBtn(p)">
+              Xóa
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
   <div class="pagination">
-    <a href="#" class="prev"><i class="fas fa-chevron-left"></i></a>
-    <a href="#" class="page">1</a>
-    <a href="#" class="page">2</a>
-    <a href="#" class="page">3</a>
-    <a href="#" class="next"><i class="fas fa-chevron-right"></i></a>
+    <button (click)="prevPage()" class="prev">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button
+      *ngFor="let page of getPageNumbers()"
+      (click)="goToPage(page, $event)"
+      class="page"
+    >
+      {{ page }}
+    </button>
+    <button (click)="nextPage()" class="next">
+      <i class="fas fa-chevron-right"></i>
+    </button>
   </div>
 </div>
 
@@ -139,7 +159,7 @@
         id="btn-delete-course"
         type="button"
         class="btn btn-danger"
-        (click)="deleteProduct()"
+        (click)="confirmDeleteProduct()"
       >
         Xóa sản phẩm
       </button>

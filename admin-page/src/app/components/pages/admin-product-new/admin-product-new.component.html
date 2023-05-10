@@ -16,10 +16,15 @@
       >
     </div>
   </div>
+  <div>
+    <button type="button" class="btn btn-link" (click)="goBack()">
+      Go Back
+    </button>
+  </div>
   <div class="heading">
     <span class="heading-tilte">Tạo mới sản phẩm</span>
     <div class="button">
-      <button class="btn-back-product" [routerLink]="'/admin-product'">
+      <button class="btn-back-product" [routerLink]="'/'">
         <i class="fa-solid fa-arrow-left"></i> Danh sách tất cả sản phẩm
       </button>
     </div>
@@ -53,6 +58,19 @@
       </div>
       <div class="content-table">
         <div class="create-product-general">
+          <div class="form-row">
+            <label for="product-name"
+              >Mã sản phẩm<span class="required">*</span></label
+            >
+            <input
+              type="text"
+              id="product-id"
+              #productID
+              (input)="clearClassInvalid(productID.id)"
+              [(ngModel)]="product.productID"
+              placeholder="Nhập mã sản phẩm"
+            />
+          </div>
           <div class="form-row">
             <label for="product-name"
               >Tên sản phẩm<span class="required">*</span></label
@@ -90,6 +108,8 @@
               (input)="clearClassInvalid(ProductPrice.id)"
               [(ngModel)]="product.productPrice"
               value="0"
+              min="0"
+              max="100000000"
               placeholder="Nhập giá sản phẩm"
             />
           </div>
@@ -177,11 +197,38 @@
             id="product-image"
             type="file"
             class="upload-image"
-            #ProductImage
-            (input)="clearClassInvalid(ProductImage.id)"
-            [(ngModel)]="product.productImage"
+            #fileUpload
+            (input)="clearClassInvalid(fileUpload.id)"
+            (change)="onFileSelected($event)"
+            multiple
           />
+
+          <div class="file-upload">
+            {{ fileNameImages || "No file uploaded yet." }}
+            <button
+              mat-mini-fab
+              color="primary"
+              class="upload-btn"
+              (click)="fileUpload.click()"
+            >
+              Upload
+            </button>
+          </div>
+          <div class="delete-images-btn">
+            <button (click)="deleteImages()">Xóa ảnh</button>
+          </div>
         </div>
+        <div *ngIf="fileNameImages">
+          <div *ngFor="let item of fileNameImages">
+            <img
+              width="200px"
+              src=""
+              alt=""
+              [src]="'http://localhost:5000/images/temp/' + item"
+            />
+          </div>
+        </div>
+
         <div class="decription-product">
           <label for="product-description"
             >Mô tả sản phẩm<span class="required">*</span></label
@@ -1161,7 +1208,7 @@
               <input
                 type="text"
                 name=""
-                id="batteryCapacity"
+                id="batteryCapacityMouse"
                 #mouseBatteryCapacity
                 (input)="clearClassInvalid(mouseBatteryCapacity.id)"
                 [(ngModel)]="product.specifications.batteryCapacity"
@@ -1497,6 +1544,23 @@
           Lưu sản phẩm
         </button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal đêm ngược -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Chờ một chút để upload hình ảnh nhé</h2>
+    </div>
+    <div class="modal-body">
+      <div id="countdown"></div>
+    </div>
+    <div class="modal-footer">
+      <button (click)="sentImageToHTxML()" id="closeModalBtn" disabled>
+        OK
+      </button>
     </div>
   </div>
 </div>

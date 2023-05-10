@@ -2,17 +2,11 @@
   padding: 0;
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  text-align: justify;
 }
 .container {
   width: 75%;
   float: right;
 }
-
-/* .container {
-  max-width: 1200px;
-  margin: 0 auto;
-} */
 
 .header {
   display: flex;
@@ -25,6 +19,7 @@
   width: 50%;
   color: #7f7f7f;
 }
+
 .header-right {
   display: flex;
   align-items: center;
@@ -33,13 +28,16 @@
   width: 50%;
   margin-top: 10px;
 }
+
 .header-right .icon-style {
   padding-right: 20px;
 }
+
 .header-right a {
   text-decoration: none;
   color: black;
 }
+
 .header-right a:nth-child(5) {
   display: inline-block;
   padding: 5px;
@@ -50,10 +48,14 @@
   margin-right: 20px;
 }
 
+/* .container {
+  max-width: 1200px;
+  margin: 0 auto;
+} */
+
 .heading {
   display: flex;
   justify-content: space-between;
-  /* margin: 20px 0; */
   padding: 30px;
 }
 
@@ -62,27 +64,9 @@
   font-weight: bold;
 }
 
-.btn-create-product,
-.btn-delete {
-  background-color: #2e3193;
-  border: none;
-  color: white;
-  padding: 8px 15px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 6px;
-  cursor: pointer;
-}
-
-.btn-create-product:hover,
-.btn-delete:hover {
+button:hover {
   background-color: #d9d9d9;
-  color: white;
-  cursor: pointer;
 }
-
 .nav-main {
   display: flex;
   overflow: hidden;
@@ -91,6 +75,8 @@
 }
 .nav-items {
   border-bottom: 2px solid #d9d9d9;
+  text-transform: capitalize;
+  margin-right: 20px;
 }
 .nav-items:hover {
   border-bottom-color: #2e3193;
@@ -157,6 +143,28 @@
   padding: 4px;
 }
 
+/* Table */
+.btn-create-product,
+.btn-delete {
+  background-color: #2e3193;
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 6px;
+  cursor: pointer;
+}
+
+.btn-create-product:hover,
+.btn-delete:hover {
+  background-color: #d9d9d9;
+  color: white;
+  cursor: pointer;
+}
+
 .table {
   width: 100%;
   max-width: 100%;
@@ -176,13 +184,15 @@
   padding: 5px;
 }
 
-.category-image {
-  width: 30%;
-  text-align: center;
+.table .product-image img {
+  max-width: 100px;
+  height: 100px;
+  object-fit: contain;
+  transition: 0.25s;
 }
 
-.category-name {
-  width: 40%;
+.table .product-image img:hover {
+  transform: scale(1.1);
 }
 
 .btn-detail,
@@ -203,6 +213,56 @@
   background-color: #d9d9d9;
   color: white;
   cursor: pointer;
+}
+
+.pagination {
+  width: 75%;
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+}
+
+.pagination button {
+  cursor: pointer;
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: solid #ccc;
+  text-align: center;
+  line-height: 32px;
+  text-decoration: none;
+  color: #000;
+  margin: 0 4px;
+  transition: all background-color 0.3s ease;
+}
+
+.pagination button.prev i,
+.pagination button.next i {
+  font-size: 16px;
+}
+
+.pagination button.prev:hover,
+.pagination button.next:hover {
+  background-color: #eee;
+  border: solid white;
+}
+.pagination button.page {
+  font-weight: bold;
+}
+.pagination button.page.active {
+  background-color: #4caf50;
+  color: #fff;
+}
+.pagination button.page:hover {
+  background-color: #eee;
+  border: solid white;
+}
+.pagination button.disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 /* Modal */
@@ -259,4 +319,30 @@
   background-color: #d9d9d9;
   color: white;
   cursor: pointer;
+}
+
+/* Delete Modal */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal.show {
+  display: block;
+}
+
+.modal-content {
+  width: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }

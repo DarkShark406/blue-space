@@ -20,6 +20,12 @@ export class AdminProductService {
     return this.http.get<any>(url);
   }
 
+  getCategoryById(id: number) {
+    const url = 'http://localhost:5000/category';
+    console.log(url + '/id/' + id);
+    return this.http.get<Category>(url + '/id/' + id);
+  }
+
   getProducts(): Observable<any> {
     const url = 'http://localhost:5000/product';
 
@@ -31,51 +37,43 @@ export class AdminProductService {
     return this.http.get<Product>(url + '/id/' + id);
   }
 
+  getProductForCategory(categoryName: string) {
+    const url = 'http://localhost:5000/category/' + categoryName;
+
+    return this.http.get<any>(url);
+  }
+
   handleError(error: HttpErrorResponse) {
     return throwError(() => new Error(error.message));
   }
 
-  getProductDetails(productId: string): Observable<any> {
-    const headers = new HttpHeaders().set(
-      'Content-Type',
-      'text/plain;charset=utf8'
-    );
-
-    const requestOptions: Object = {
-      headers: headers,
-      responseType: 'text',
-    };
-
-    return this.http.get<any>('/products/' + productId, requestOptions).pipe(
-      map((res) => JSON.parse(res) as Product),
-      retry(3),
-      catchError(this.handleError)
-    );
-  }
-
   postProduct(aProduct: any): Observable<any> {
+    console.log(aProduct);
+    const url = 'http://localhost:5000/product/new';
     const headers = new HttpHeaders().set(
       'Content-Type',
       'application/json;charset=utf-8'
     );
     const requestOptions: Object = { headers: headers, responseType: 'text' };
+
     return this.http
-      .post<any>('/products', JSON.stringify(aProduct), requestOptions)
+      .post<any>(url, JSON.stringify(aProduct), requestOptions)
       .pipe(
-        map((res) => JSON.parse(res) as Array<Product>),
+        map((res) => JSON.parse(res) as Product),
         retry(3),
         catchError(this.handleError)
       );
   }
 
   putProduct(aProduct: any): Observable<any> {
+    const url = 'http://localhost:5000/product/update';
     const headers = new HttpHeaders().set(
       'Content-Type',
       'application/json;charset=utf-8'
     );
     const requestOptions: Object = { headers: headers, responseType: 'text' };
     return this.http
-      .put<any>('/products', JSON.stringify(aProduct), requestOptions)
+      .put<any>(url, JSON.stringify(aProduct), requestOptions)
       .pipe(
         map((res) => JSON.parse(res) as Array<Product>),
         retry(3),
@@ -84,15 +82,33 @@ export class AdminProductService {
   }
 
   deleteProduct(productId: string): Observable<any> {
+    const url = 'http://localhost:5000/product/delete/' + productId;
+    console.log(url);
     const headers = new HttpHeaders().set(
       'Content-Type',
       'application/json;charset=utf-8'
     );
     const requestOptions: Object = { headers: headers, responseType: 'text' };
-    return this.http.delete<any>('/products/' + productId, requestOptions).pipe(
+    return this.http.delete<any>(url, requestOptions).pipe(
       map((res) => JSON.parse(res) as Array<Product>),
       retry(3),
       catchError(this.handleError)
+    );
+  }
+
+  deleteImagesProductByID(productId: string) {
+    const url = 'http://localhost:5000/images/delete/' + productId;
+    console.log(url);
+    this.http.delete<boolean>(url).subscribe(
+      (response) => {
+        if (response === true) {
+          console.log('Đã xóa');
+        }
+      },
+      (error) => {
+        console.error(error);
+        console.log('Có lỗi xảy ra');
+      }
     );
   }
 }

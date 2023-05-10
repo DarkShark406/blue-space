@@ -42,6 +42,7 @@ interface ISpecifications {
 export class Product {
   id!: string;
   constructor(
+    public productID: string = '',
     public productName: string = '',
     public categoryId: number = 0,
     public productPrice: number = 0,
