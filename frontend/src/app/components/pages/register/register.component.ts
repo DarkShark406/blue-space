@@ -21,7 +21,9 @@ export class RegisterComponent {
 
   constructor(private userService: UserService, private router: Router) {}
   ngOnInit() {
-    if (this.userService.currentUser) this.router.navigateByUrl('/');
+    if (this.userService.currentUser.id != undefined) {
+      this.router.navigateByUrl('/');
+    }
   }
   register() {
     this.user.name = this.fname + ' ' + this.lname;

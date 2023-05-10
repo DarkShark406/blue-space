@@ -15,7 +15,9 @@ export class ForgotPasswordComponent {
 
   constructor(private userService: UserService, private router: Router) {}
   ngOnInit() {
-    if (this.userService.currentUser) this.router.navigateByUrl('/');
+    if (this.userService.currentUser.id != undefined) {
+      this.router.navigateByUrl('/');
+    }
   }
   submit() {
     this.userService
@@ -35,5 +37,8 @@ export class ForgotPasswordComponent {
   validateEmail() {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     this.valid = emailRegex.test(this.emailValue);
+  }
+  gotoChangePassword() {
+    this.router.navigateByUrl('/change-password');
   }
 }
