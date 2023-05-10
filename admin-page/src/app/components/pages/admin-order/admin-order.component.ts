@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AdminOrderService } from 'src/app/services/admin-order.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -11,7 +12,8 @@ export class AdminOrderComponent {
   orders: any;
   constructor(
     private orderService: AdminOrderService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
     // this.orderService.getOrders().subscribe((d) => {
     //   this.orders = d;
@@ -21,5 +23,9 @@ export class AdminOrderComponent {
     this.orderService.getOrders().subscribe((d) => {
       this.orders = d;
     });
+  }
+
+  viewDetails(id: string) {
+    this.router.navigate(['orders', 'details', id]);
   }
 }
