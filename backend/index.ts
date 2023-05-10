@@ -18,19 +18,19 @@ import fileUpload from "express-fileupload";
 
 const app = express();
 app.use(
-	cors({
-		credentials: true,
-		origin: ["http://localhost:5001", "http://localhost:4200"],
-	})
+  cors({
+    credentials: true,
+    origin: ["http://localhost:5001", "http://localhost:4200"],
+  })
 );
 
 app.use(
-	fileUpload({
-		limits: {
-			fieldSize: 10000000,
-		},
-		abortOnLimit: true,
-	})
+  fileUpload({
+    limits: {
+      fieldSize: 10000000,
+    },
+    abortOnLimit: true,
+  })
 );
 
 app.use(bodyParser.json());
@@ -39,7 +39,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-	res.send("Hello Server");
+  res.send("Hello Server");
 });
 
 // Router
@@ -52,5 +52,5 @@ app.use("/orders", orderRouter);
 // Running port
 const port = 5000;
 app.listen(port, () => {
-	console.log("Webserver running at http://localhost:" + port);
+  console.log("Webserver running at http://localhost:" + port);
 });
