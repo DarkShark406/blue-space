@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminOrderService } from 'src/app/services/admin-order.service';
 import { UserService } from 'src/app/services/user.service';
@@ -8,10 +8,11 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './admin-order.component.html',
   styleUrls: ['./admin-order.component.css'],
 })
-export class AdminOrderComponent {
+export class AdminOrderComponent implements OnInit {
   orders: any;
   constructor(
     private orderService: AdminOrderService,
+
     private userService: UserService,
     private router: Router
   ) {
