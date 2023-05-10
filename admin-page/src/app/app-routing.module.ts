@@ -21,7 +21,7 @@ const routes: Routes = [
     component: AdminProductUpdateComponent,
   },
   {
-    path: 'products/:category',
+    path: 'products/:categoryName',
     component: AdminProductCategoryComponent,
   },
 ];

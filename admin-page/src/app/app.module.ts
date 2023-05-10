@@ -12,6 +12,7 @@ import { AdminProductUpdateComponent } from './components/pages/admin-product-up
 import { NavAdminComponent } from './components/partials/nav-admin/nav-admin.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminCategoryComponent } from './components/pages/admin-category/admin-category.component';
+import { SliderComponent } from './components/partials/slider/slider.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AdminCategoryComponent } from './components/pages/admin-category/admin-
     AdminProductUpdateComponent,
     NavAdminComponent,
     AdminCategoryComponent,
+    SliderComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

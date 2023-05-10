@@ -14,6 +14,8 @@ import imageRouter from "./src/routers/image.router";
 import orderRouter from "./src/routers/order.router";
 import bodyParser from "body-parser";
 
+import fileUpload from "express-fileupload";
+
 const app = express();
 app.use(
 	cors({
@@ -21,6 +23,16 @@ app.use(
 		origin: ["http://localhost:5001", "http://localhost:4200"],
 	})
 );
+
+app.use(
+	fileUpload({
+		limits: {
+			fieldSize: 10000000,
+		},
+		abortOnLimit: true,
+	})
+);
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

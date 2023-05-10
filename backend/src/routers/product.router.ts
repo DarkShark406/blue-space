@@ -18,9 +18,39 @@ router.get("/seed", async (req, res) => {
   res.send("Seed is done, Lam");
 });
 
+// Get all products
 router.get("/", async (req, res) => {
   const data = await ProductModel.find();
   res.send(data);
+});
+
+// Create new product
+router.post("/new", async (req, res) => {
+	const newProduct = req.body;
+	await ProductModel.create(newProduct);
+
+	res.send(newProduct);
+});
+
+// update sản phẩm
+router.put("/update", async (req, res) => {
+	const id = req.body.id;
+	const idObject = new mongoose.Types.ObjectId(id);
+
+	const result = await ProductModel.findByIdAndUpdate(idObject, req.body);
+
+	res.send(result);
+});
+
+// Delete product by id
+router.delete("/delete/:id", async (req, res) => {
+	console.log("vào delete sản phẩm");
+	const id = req.params["id"];
+	const idObject = new mongoose.Types.ObjectId(id);
+
+	const result = await ProductModel.findByIdAndDelete(idObject);
+
+	res.send(result);
 });
 
 // Lấy sản phẩm theo brand
