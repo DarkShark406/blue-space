@@ -1,1 +1,97 @@
-<p>admin-order-detail works!</p>
+<div class="container">
+  <button (click)="goBack()" type="button" class="btn btn-link mt-4">
+    Quay lại
+  </button>
+
+  <h2 class="mt-4">Chi tiết đơn hàng</h2>
+
+  <h2 class="mt-4">Mã đơn hàng: {{ order.id }}</h2>
+
+  <table class="table table-bordered mt-4">
+    <tr>
+      <td>Tên khách hàng</td>
+      <td>{{ order.name }}</td>
+    </tr>
+    <tr>
+      <td>Số điện thoại</td>
+      <td>{{ order.phone }}</td>
+    </tr>
+    <tr>
+      <td>Địa chỉ</td>
+      <td>
+        {{
+          order.street +
+            ", " +
+            ward.Name +
+            ", " +
+            district.Name +
+            ", " +
+            city.Name
+        }}
+      </td>
+    </tr>
+    <tr>
+      <td>Phương thức thanh toán</td>
+      <td>{{ order.paymentId }}</td>
+    </tr>
+    <tr>
+      <td>Ngày tạo đơn hàng</td>
+      <td>{{ order.createdAt }}</td>
+    </tr>
+    <tr>
+      <td>Tình trạng đơn hàng</td>
+      <td>
+        <span *ngIf="order.status == 'PAYED'" style="color: #28a745">
+          {{ order.status }}
+        </span>
+        <span *ngIf="order.status == 'NEW'" style="color: #007bff">
+          {{ order.status }}
+        </span>
+      </td>
+    </tr>
+  </table>
+
+  <h2 class="mt-4">Danh sách sản phẩm</h2>
+
+  <table class="table table-bordered table-hover mt-4">
+    <thead>
+      <th scope="col">Tên sản phẩm</th>
+      <th scope="col">Đơn giá</th>
+      <th scope="col">Số lượng</th>
+      <th scope="col">Thành tiền</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of order.items">
+        <td>{{ item.product.productName }}</td>
+        <td style="text-align: right">
+          {{
+            item.price.toLocaleString("vi", {
+              style: "currency",
+              currency: "VND"
+            })
+          }}
+        </td>
+        <td style="text-align: right">{{ item.quantity }}</td>
+        <td style="text-align: right">
+          {{
+            (item.quantity * item.price).toLocaleString("vi", {
+              style: "currency",
+              currency: "VND"
+            })
+          }}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" style="text-align: right">Tổng thanh toán</td>
+        <td style="text-align: right; font-weight: bold; color: #dc3545">
+          {{
+            calculateTotalPrice().toLocaleString("vi", {
+              style: "currency",
+              currency: "VND"
+            })
+          }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
