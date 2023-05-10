@@ -28,9 +28,13 @@ export class UserService {
     return this.http.post<User>(this.USER_LOGIN_URL, userLogin).pipe(
       tap({
         next: (user) => {
-          this.setUserToLocalStorage(user);
-          this.userSubject.next(user);
-          alert(`Welcome to BlueSpace ${user.name}!\nLogin Successful!`);
+          if (user.isAdmin == true) {
+            this.setUserToLocalStorage(user);
+            this.userSubject.next(user);
+            alert(`Welcome to BlueSpace ${user.name}!\nLogin Successful!`);
+          } else {
+            alert('Bạn không phải là ADMIN');
+          }
         },
         error: (errorResponse) => {
           alert('Username or password is invalid!\nPlease try again.');
