@@ -15,6 +15,216 @@
       </div>
 
       <!-- start Filter laptop -->
+      <div class="filter__box" *ngIf="!categoryName">
+        <div class="filter-list" id="allproduct-filter-brand">
+          <div class="filter-title">Thương hiệu</div>
+          <div class="brand-list">
+            <div class="column">
+              <div
+                (click)="toggleActiveClassBrandAndColor(allproductdell.id)"
+                #allproductdell
+                id="allproductdell"
+                class="brand-item"
+                data-value="Dell"
+              >
+                <img
+                  src="../assets/images/brand/logo-dell.png"
+                  alt=""
+                  class="brand-img"
+                />
+              </div>
+            </div>
+            <div class="column">
+              <div
+                (click)="toggleActiveClassBrandAndColor(allproductasus.id)"
+                #allproductasus
+                id="allproductasus"
+                class="brand-item"
+                data-value="Asus"
+              >
+                <img
+                  src="../assets/images/brand/logo-asus.png"
+                  alt=""
+                  class="brand-img"
+                />
+              </div>
+            </div>
+            <div class="column">
+              <div
+                (click)="toggleActiveClassBrandAndColor(allproductacer.id)"
+                #allproductacer
+                id="allproductacer"
+                class="brand-item"
+                data-value="Acer"
+              >
+                <img
+                  src="../assets/images/brand/logo-acer.png"
+                  alt=""
+                  class="brand-img"
+                />
+              </div>
+            </div>
+            <div class="column">
+              <div
+                (click)="toggleActiveClassBrandAndColor(iphoneallproduct.id)"
+                #iphoneallproduct
+                id="iphoneallproduct"
+                class="brand-item"
+                data-value="apple"
+              >
+                <img
+                  src="../assets/images/brand/logo-iphone.png"
+                  alt=""
+                  class="brand-img"
+                />
+              </div>
+            </div>
+            <div class="column">
+              <div
+                (click)="toggleActiveClassBrandAndColor(logitechallproduct.id)"
+                #logitechallproduct
+                id="logitechallproduct"
+                class="brand-item"
+                data-value="logitech"
+              >
+                <img
+                  src="../assets/images/brand/logo-logitech.png"
+                  alt=""
+                  class="brand-img"
+                />
+              </div>
+            </div>
+            <div class="column">
+              <div
+                (click)="toggleActiveClassBrandAndColor(samsungallproduct.id)"
+                #samsungallproduct
+                id="samsungallproduct"
+                class="brand-item"
+                data-value="samsung"
+              >
+                <img
+                  src="../assets/images/brand/logo-samsung.png"
+                  alt=""
+                  class="brand-img"
+                />
+              </div>
+            </div>
+            <div class="column">
+              <div
+                (click)="toggleActiveClassBrandAndColor(xiaomiallproduct.id)"
+                #xiaomiallproduct
+                id="xiaomiallproduct"
+                class="brand-item"
+                data-value="xiaomi"
+              >
+                <img
+                  src="../assets/images/brand/logo-xiaomi.png"
+                  alt=""
+                  class="brand-img"
+                />
+              </div>
+            </div>
+            <div class="column">
+              <div
+                (click)="toggleActiveClassBrandAndColor(corsairallproduct.id)"
+                #corsairallproduct
+                id="corsairallproduct"
+                class="brand-item"
+                data-value="corsair"
+              >
+                <img
+                  src="../assets/images/brand/logo-corsair.png"
+                  alt=""
+                  class="brand-img"
+                />
+              </div>
+            </div>
+            <div class="column">
+              <div
+                (click)="toggleActiveClassBrandAndColor(microsoftallproduct.id)"
+                #microsoftallproduct
+                id="microsoftallproduct"
+                class="brand-item"
+                data-value="microsoft"
+              >
+                <img
+                  src="../assets/images/brand/logo-microsoft.png"
+                  alt=""
+                  class="brand-img"
+                />
+              </div>
+            </div>
+            <div class="column">
+              <div
+                (click)="toggleActiveClassBrandAndColor(kasperskyallproduct.id)"
+                #kasperskyallproduct
+                id="kasperskyallproduct"
+                class="brand-item"
+                data-value="kaspersky"
+              >
+                <img
+                  src="../assets/images/brand/logo-kaspersky.png"
+                  alt=""
+                  class="brand-img"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-list filter-list-price" id="allproduct-filter-price">
+          <div class="filter-title">Giá</div>
+          <div class="filter-item" data-value="0-5">
+            <span
+              class="choice"
+              id="under5allproduct"
+              (click)="addActiveClassPrice(under5allproduct.id)"
+              #under5allproduct
+              >Dưới 5.000.000đ</span
+            >
+          </div>
+          <div class="filter-item" data-value="5-15">
+            <span
+              class="choice"
+              id="from5to15allproduct"
+              (click)="addActiveClassPrice(from5to15allproduct.id)"
+              #from5to15allproduct
+              >5.000.000 - 15.000.000đ</span
+            >
+          </div>
+          <div class="filter-item" data-value="15-35">
+            <span
+              class="choice"
+              id="from15to35allproduct"
+              (click)="addActiveClassPrice(from15to35allproduct.id)"
+              #from15to35allproduct
+              >15.000.000 - 35.000.000đ</span
+            >
+          </div>
+          <div class="filter-item" data-value="35-100">
+            <span
+              class="choice"
+              id="over35allproduct"
+              (click)="addActiveClassPrice(over35allproduct.id)"
+              #over35allproduct
+              >Trên 35.000.000đ</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="filter__filter-btn-box"
+        id="laptop-filter-btn"
+        *ngIf="!categoryName"
+      >
+        <button class="filter__apply-filter-btn" (click)="allproductFilter()">
+          Áp dụng
+        </button>
+      </div>
+      <!-- End filter top-->
+
+      <!-- start Filter laptop -->
       <div class="filter__box" *ngIf="categoryName == 'laptop'">
         <div class="filter-list" id="laptop-filter-brand">
           <div class="filter-title">Thương hiệu</div>

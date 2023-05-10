@@ -598,6 +598,49 @@ export class CatalogComponent implements OnInit {
     }
   }
 
+  // 7. Button filter all product
+  allproductFilter() {
+    // Khởi tạo lại filter
+    this.filter = new Filter();
+
+    // Brand
+    const allproductBrandItemAll = document.querySelectorAll(
+      '#allproduct-filter-brand .brand-item'
+    );
+    for (let i = 0; i < allproductBrandItemAll.length; i++) {
+      if (allproductBrandItemAll[i].classList.contains('active')) {
+        const value = allproductBrandItemAll[i].getAttribute('data-value');
+        if (value) {
+          this.filter.brand.push(value);
+        }
+      }
+    }
+
+    // Price
+    const allproductPriceItemAll = document.querySelectorAll(
+      '#allproduct-filter-price .filter-item'
+    );
+    for (let i = 0; i < allproductPriceItemAll.length; i++) {
+      if (allproductPriceItemAll[i].classList.contains('active')) {
+        const value = allproductPriceItemAll[i].getAttribute('data-value');
+        if (value) {
+          this.filter.price = value;
+        }
+      }
+    }
+
+    this._service.filterAllProduct(this.filter).subscribe({
+      next: (data) => (this.products = data),
+    });
+    console.log(this.filter);
+
+    // Set sort về trạng thái ban đầu
+    const selectElement = document.getElementById('sort') as HTMLSelectElement;
+    if (selectElement) {
+      selectElement.selectedIndex = -1;
+    }
+  }
+
   // --------------- Sort sản phẩm ----------------
   sortProduct() {
     this._service.sortProducts(this.typeSort, this.products).subscribe({
