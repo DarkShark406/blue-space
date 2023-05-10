@@ -61,12 +61,10 @@ export class AdminProductNewComponent {
     ) as HTMLInputElement;
     const files = productImage.files;
     this.fileUpload = files;
-    console.log(this.fileUpload);
     if (files) {
       const formData = new FormData();
       for (let i = 0; i < files.length; i++) {
         formData.append('files', files[i]);
-        console.log(formData);
       }
 
       const upload$ = this.http
@@ -112,12 +110,10 @@ export class AdminProductNewComponent {
   onFileSelected(event: any) {
     const files = event.target.files;
     this.fileUpload = files;
-    console.log(this.fileUpload);
     if (files) {
       const formData = new FormData();
       for (let i = 0; i < files.length; i++) {
         formData.append('files', files[i]);
-        console.log(formData);
       }
 
       const upload$ = this.http
