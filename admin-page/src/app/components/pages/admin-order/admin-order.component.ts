@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminOrderService } from 'src/app/services/admin-order.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-admin-order',
@@ -9,9 +10,18 @@ import { AdminOrderService } from 'src/app/services/admin-order.service';
 })
 export class AdminOrderComponent {
   orders: any;
-  constructor(private orderService: AdminOrderService, private router: Router) {
-    this.orderService.getOrders().subscribe({
-      next: (data) => (this.orders = data),
+  constructor(
+    private orderService: AdminOrderService,
+    private userService: UserService,
+    private router: Router
+  ) {
+    // this.orderService.getOrders().subscribe((d) => {
+    //   this.orders = d;
+    // });
+  }
+  ngOnInit() {
+    this.orderService.getOrders().subscribe((d) => {
+      this.orders = d;
     });
   }
 

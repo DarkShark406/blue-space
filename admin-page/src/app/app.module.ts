@@ -10,7 +10,7 @@ import { AdminProductDetailComponent } from './components/pages/admin-product-de
 import { AdminProductNewComponent } from './components/pages/admin-product-new/admin-product-new.component';
 import { AdminProductUpdateComponent } from './components/pages/admin-product-update/admin-product-update.component';
 import { NavAdminComponent } from './components/partials/nav-admin/nav-admin.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminCategoryComponent } from './components/pages/admin-category/admin-category.component';
 import { SliderComponent } from './components/partials/slider/slider.component';
 import { AdminLoginComponent } from './components/pages/admin-login/admin-login.component';
@@ -18,6 +18,7 @@ import { AdminLoginComponent } from './components/pages/admin-login/admin-login.
 import { SwiperModule } from 'swiper/angular';
 import { AdminOrderComponent } from './components/pages/admin-order/admin-order.component';
 import { AdminOrderDetailComponent } from './components/pages/admin-order-detail/admin-order-detail.component';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,9 @@ import { AdminOrderDetailComponent } from './components/pages/admin-order-detail
     HttpClientModule,
     SwiperModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
