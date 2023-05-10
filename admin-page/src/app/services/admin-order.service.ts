@@ -10,6 +10,6 @@ export class AdminOrderService {
 
   getOrders() {
     const url = 'http://localhost:5000/orders';
-    return this.http.get<Order>(url);
+    return this.http.get<Order[]>(url);
   }
 }
