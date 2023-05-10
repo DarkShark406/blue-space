@@ -1,17 +1,11 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { HeaderService } from 'src/app/services/header.service';
 import { NavItem } from 'src/app/interfaces/nav-item';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/interfaces/user';
 import { CartProductService } from 'src/app/services/cart-product.service';
+import { Cart } from 'src/app/interfaces/cart';
 
 @Component({
   selector: 'header',
@@ -27,19 +21,19 @@ export class HeaderComponent {
   earphone: any;
   keyboard: any;
   application: any;
+  cart: Cart = new Cart();
 
   numberProductInCart: number = 0;
   constructor(
     private headerService: HeaderService,
     private userService: UserService,
-    private cartService: CartProductService,
-    private cdr: ChangeDetectorRef
+    private cartService: CartProductService
   ) {
     userService.userObservable.subscribe((newUser) => {
       this.user = newUser;
     });
-    console.log(this.user);
   }
+
   ngOnInit() {
     this.headerService.getNavItem().subscribe((d) => {
       this.laptop = d.find((x) => x.category == 'laptop')?.brands;
@@ -50,6 +44,7 @@ export class HeaderComponent {
       this.application = d.find((x) => x.category == 'application')?.brands;
     });
   }
+
   toggleSearch() {
     this.isSearchActive = !this.isSearchActive;
   }
