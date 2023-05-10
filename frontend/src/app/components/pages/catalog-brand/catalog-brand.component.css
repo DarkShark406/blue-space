@@ -378,6 +378,9 @@ input[name="type-show-list"] {
   align-items: center;
   gap: 8px;
 }
+.grid-product-list .product-item .compare a {
+  cursor: pointer;
+}
 
 .horizontal-product-list {
   margin-top: 16px;

@@ -1,22 +1,21 @@
 import { Component } from '@angular/core';
-import { IUserLogin, User } from 'src/app/interfaces/user';
-import { UserService } from 'src/app/services/user.service';
-import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { IUserLogin } from 'src/app/interfaces/user';
+import { UserService } from 'src/app/services/user.service';
+
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  selector: 'app-admin-login',
+  templateUrl: './admin-login.component.html',
+  styleUrls: ['./admin-login.component.css'],
 })
-export class LoginComponent {
+export class AdminLoginComponent {
   user: IUserLogin = new IUserLogin();
   returnUrl = '';
   message = '';
   constructor(private userService: UserService, private router: Router) {}
   ngOnInit() {
-    if (this.userService.currentUser.id != undefined) {
+    if (this.userService.currentUser.isAdmin == true)
       this.router.navigateByUrl('/');
-    }
   }
   login() {
     this.userService
@@ -25,7 +24,9 @@ export class LoginComponent {
         password: this.user.password,
       })
       .subscribe(() => {
-        this.router.navigateByUrl('/');
+        setTimeout(() => {
+          location.reload();
+        }, 10);
       });
   }
 

@@ -1,0 +1,33 @@
+<div class="container-login">
+  <div class="heading">Đăng nhập</div>
+  <div class="form-row">
+    <input
+      type="text"
+      name=""
+      id="inputUser"
+      [(ngModel)]="user.email"
+      #inputUser
+      (input)="clearClassIsInvalid(inputUser.id)"
+      class="form-control is-invalid"
+      placeholder="Tài khoản BlueSpace, Email hoặc số điện thoại"
+    />
+    <span class="required">*</span>
+    <div class="error-message">Mời bạn nhập tài khoản</div>
+  </div>
+  <div class="form-row">
+    <input
+      type="password"
+      name=""
+      id="inputPassword"
+      [(ngModel)]="user.password"
+      #inputPassword
+      (change)="clearClassIsInvalid(inputPassword.id)"
+      class="form-control"
+      placeholder="Mật khẩu"
+    />
+    <span class="required">*</span>
+    <div class="error-message">Sai mật khẩu</div>
+  </div>
+
+  <button class="login-btn" (click)="login()">Đăng nhập ngay</button>
+</div>

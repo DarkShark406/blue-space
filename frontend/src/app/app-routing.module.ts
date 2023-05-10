@@ -38,7 +38,6 @@ const routes: Routes = [
   {
     path: 'forget-password',
     component: ForgotPasswordComponent,
-    canDeactivate: [AuthGuard],
   },
   { path: 'policy', component: PolicyComponent },
   { path: 'about-us', component: AboutUsComponent },

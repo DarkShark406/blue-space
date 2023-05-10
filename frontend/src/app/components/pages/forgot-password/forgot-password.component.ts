@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -12,8 +13,12 @@ export class ForgotPasswordComponent {
   emailValue: any;
   message: any;
 
-  constructor(private userService: UserService) {}
-
+  constructor(private userService: UserService, private router: Router) {}
+  ngOnInit() {
+    if (this.userService.currentUser.id != undefined) {
+      this.router.navigateByUrl('/');
+    }
+  }
   submit() {
     this.userService
       .generateNewPassword(this.emailValue)
@@ -32,5 +37,8 @@ export class ForgotPasswordComponent {
   validateEmail() {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     this.valid = emailRegex.test(this.emailValue);
+  }
+  gotoChangePassword() {
+    this.router.navigateByUrl('/change-password');
   }
 }

@@ -30,7 +30,6 @@ router.get("/seed", async (req, res) => {
 });
 
 router.post("/save-cart", async (req, res) => {
-  console.log("Gọi vào save user cart");
   const idUser = req.body.id;
   const cartUser = req.body.cart;
   const idObject = new mongoose.Types.ObjectId(idUser);
