@@ -1,0 +1,55 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.order-table {
+  margin: 0 auto;
+  max-width: 800px;
+}
+.order-line td table tbody {
+  border-bottom: 1px solid purple;
+}
+
+.order-line {
+  background-color: #f7f7f7;
+}
+
+.order-line:hover {
+  background-color: #ddd;
+}
+
+.order-line-head td {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.order-item td {
+  padding-left: 20px;
+}
+
+.order-line-footer td {
+  font-weight: bold;
+}
+
+.order-total {
+  text-align: right;
+  padding-right: 8px;
+  color: darkgoldenrod;
+}
+
+.order-status {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 3px;
+  white-space: nowrap;
+  width: 25%;
+  background-color: #f44336;
+}
+
+.order-status.payed {
+  background-color: #4caf50;
+}

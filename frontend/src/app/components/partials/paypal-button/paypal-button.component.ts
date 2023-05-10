@@ -44,10 +44,11 @@ export class PaypalButtonComponent {
           const payment = await actions.order.capture();
           this.order.paymentId = payment.id;
           self.orderService.pay(this.order).subscribe({
-            next: (orderId) => {
-              this.cartService.clearCart();
-              this.router.navigateByUrl('/orders');
-              alert('Payment Saved Successfully');
+            next: (OrderId) => {
+              this.router.navigate(['/orders/' + OrderId]);
+              setTimeout(() => {
+                window.location.reload();
+              }, 1);
             },
             error: (error) => {
               window.alert('Payment Save Failed');

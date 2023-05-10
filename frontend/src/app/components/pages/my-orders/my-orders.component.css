@@ -1,0 +1,96 @@
+.container {
+}
+table {
+  width: 100%;
+  border: 1px solid #eeeeee;
+  margin-top: 1rem;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+}
+
+h3 {
+  margin-top: 0.5rem;
+  color: grey;
+}
+
+a:hover {
+  opacity: 0.9;
+}
+
+td {
+  height: 3rem;
+}
+
+td img {
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+  border-radius: 100rem;
+}
+
+.container {
+  margin-top: 1rem;
+  /* display: flex; */
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 1000px;
+}
+.order {
+  margin: 0 auto;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 35rem;
+  margin-right: 1rem;
+}
+
+.details {
+  margin-bottom: 1rem;
+}
+
+.details > div {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}
+
+.details strong {
+  display: inline-block;
+  width: 20%;
+}
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.continue-btn,
+.order-list-btn {
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 10px;
+  padding: 12px 24px;
+  transition: all 0.3s ease-in-out;
+}
+
+.continue-btn {
+  background-color: #00bfa5;
+}
+
+.order-list-btn {
+  background-color: #ffb900;
+}
+
+.continue-btn:hover,
+.order-list-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.quantity {
+  text-align: center;
+}

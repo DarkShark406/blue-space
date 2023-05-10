@@ -1,0 +1,42 @@
+<div class="container">
+  <h2>Danh sách đơn hàng</h2>
+
+  <table class="order-table">
+    <tbody>
+      <tr class="order-line" *ngFor="let order of orders">
+        <td>
+          <table>
+            <tbody>
+              <tr class="order-line-head">
+                <td class="order-id">
+                  <a href="/orders/{{ order.id }}">#ID: {{ order.id }}</a>
+                </td>
+                <td class="order-date">Ngày: {{ order.createdAt | date }}</td>
+              </tr>
+              <tr *ngFor="let item of order.items" class="order-item">
+                <td colspan="2">{{ item.product.productName }}</td>
+              </tr>
+              <tr class="order-line-footer">
+                <td class="order-total">
+                  Tổng tiền: {{ order.totalPrice | currency }}~
+                  {{
+                    (order.totalPrice * 23000).toLocaleString("vi", {
+                      style: "currency",
+                      currency: "VND"
+                    })
+                  }}
+                </td>
+                <td class="order-status payed" *ngIf="order.status === 'PAYED'">
+                  Đã thanh toán
+                </td>
+                <td class="order-status" *ngIf="order.status !== 'PAYED'">
+                  Chưa thanh toán
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

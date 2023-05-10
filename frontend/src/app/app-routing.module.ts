@@ -6,7 +6,6 @@ import { ProductDetailsComponent } from './components/pages/product-details/prod
 import { LoginComponent } from './components/pages/login/login.component';
 import { RegisterComponent } from './components/pages/register/register.component';
 import { CatalogComponent } from './components/pages/catalog/catalog.component';
-import { OrdersComponent } from './components/pages/orders/orders.component';
 import { AccountComponent } from './components/pages/account/account.component';
 import { ForgotPasswordComponent } from './components/pages/forgot-password/forgot-password.component';
 import { CatalogBrandComponent } from './components/pages/catalog-brand/catalog-brand.component';
@@ -22,6 +21,8 @@ import { FAQSecurityComponent } from './components/pages/faq-security/faq-securi
 import { FAQReturnComponent } from './components/pages/faq-return/faq-return.component';
 import { FAQWarrantyComponent } from './components/pages/faq-warranty/faq-warranty.component';
 import { FAQMoreComponent } from './components/pages/faq-more/faq-more.component';
+import { OrderListComponent } from './components/pages/order-list/order-list.component';
+import { ChangePasswordComponent } from './components/pages/change-password/change-password.component';
 
 const routes: Routes = [
   { path: 'comparision', component: ComparisionComponent },
@@ -34,12 +35,22 @@ const routes: Routes = [
   { path: 'products/:category/:brand', component: CatalogBrandComponent },
   { path: 'products/:category', component: CatalogComponent },
   { path: 'products/:category/:brand', component: CatalogComponent },
-  { path: 'orders', component: MyOrdersComponent },
-  { path: 'profile', component: AccountComponent, canActivate: [AuthGuard] },
   { path: 'forget-password', component: ForgotPasswordComponent },
   { path: 'policy', component: PolicyComponent },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'profile', component: AccountComponent, canActivate: [AuthGuard] },
+  {
+    path: 'change-password',
+    component: ChangePasswordComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'orders', component: OrderListComponent, canActivate: [AuthGuard] },
+  {
+    path: 'orders/:orderId',
+    component: MyOrdersComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'make-payment',
     component: MakePaymentComponent,

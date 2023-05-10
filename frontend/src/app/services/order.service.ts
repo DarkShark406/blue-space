@@ -13,13 +13,21 @@ export class OrderService {
   create(order: Order) {
     return this.http.post<Order>(this.url + 'create', order);
   }
-  getNewOrderForCurrentUser(): Observable<Order> {
-    return this.http.get<Order>(this.url + '/newOrderForCurrentUser');
-  }
+  // getNewOrderForCurrentUser(): Observable<Order> {
+  //   return this.http.get<Order>(this.url + '/newOrderForCurrentUser');
+  // }
   pay(order: Order): Observable<string> {
     return this.http.post<string>(this.url + 'pay', order);
   }
-  trackOrderById(id: number): Observable<Order> {
+  trackOrderById(id: string) {
     return this.http.get<Order>(this.url + 'track/' + id);
+  }
+
+  getListOrder() {
+    return this.http.get<Order[]>(this.url + 'listOrder');
+  }
+
+  getAddress() {
+    return this.http.get<any>('http://localhost:5000/images/address');
   }
 }

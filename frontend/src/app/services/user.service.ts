@@ -21,8 +21,10 @@ const USER_KEY = 'User';
   providedIn: 'root',
 })
 export class UserService {
+  USER_URL = 'http://localhost:5000/auth/';
   USER_LOGIN_URL = 'http://localhost:5000/auth/login';
   USER_REGISTER_URL = 'http://localhost:5000/auth/register';
+  CHANGE_PASSWORD_URL = 'http://localhost:5000/orders/change-password';
 
   private userSubject = new BehaviorSubject<User>(
     this.getUserFromLocalStorage()
@@ -71,6 +73,17 @@ export class UserService {
     this.userSubject.next(new User());
     localStorage.removeItem(USER_KEY);
     window.location.reload();
+  }
+
+  generateNewPassword(email: string) {
+    return this.http.put<any>(this.USER_URL + 'forget-password', { email });
+  }
+  changePassword(newPass: string, currentPass: string) {
+    const body = {
+      currentPassword: currentPass,
+      newPassword: newPass,
+    };
+    return this.http.put<any>(this.USER_URL + 'change-password', body);
   }
 
   private setUserToLocalStorage(user: User) {

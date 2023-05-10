@@ -105,7 +105,7 @@ export class MakePaymentComponent {
       districtSelect.classList.remove('invalid-input');
       errorMessageDistrict.style.display = 'none';
     }
-    
+
     // Validate ward
     if (this.selectedWard === '') {
       wardSelect.classList.add('invalid-input');
@@ -156,7 +156,6 @@ export class MakePaymentComponent {
     });
 
     this.cart = this.cartService.getCart();
-
     this.calculateTotalMoney();
   }
 
@@ -228,9 +227,10 @@ export class MakePaymentComponent {
       this.order.district = this.selectedDistrict;
       this.order.ward = this.selectedWard;
       this.order.street = this.street;
-
       this.orderService.create(this.order).subscribe({
-        next: () => {},
+        next: () => {
+          alert('Xác nhận đơn hàng thành công \n Vui lòng thanh toán bên dưới');
+        },
         error: (errorResponse) => {
           alert(errorResponse.error);
         },
@@ -241,6 +241,8 @@ export class MakePaymentComponent {
       //   },
       //   error: () => {},
       // });
+    } else {
+      alert('Vui lòng kiểm tra lại thông tin');
     }
   }
 }
