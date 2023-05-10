@@ -1,6 +1,6 @@
 <div class="container" *ngIf="isAdmin">
   <div class="logo">
-    <img src="./assets/images/logo.png" alt="" width="250px" />
+    <img src="../assets/images/logo.png" alt="" width="250px" />
   </div>
   <div class="nav-admin">
     <div class="nav-left">
@@ -27,7 +27,7 @@
           <span class="icon"
             ><i class="fa-solid fa-tag" style="color: #fff"></i
           ></span>
-          <a class="nav-li"
+          <a class="nav-li" href=""
             >Sản phẩm
             <span class="nav-right"
               ><i
@@ -37,7 +37,9 @@
           ></a>
           <ul>
             <li><a routerLink="/admin-product">Tất sản phẩm</a></li>
-            <li><a routerLink="/admin-product-category">Nhóm sản phẩm</a></li>
+            <li>
+              <a routerLink="/admin-product-category">Nhóm sản phẩm</a>
+            </li>
           </ul>
         </li>
         <li class="nav-item">
@@ -70,6 +72,10 @@
           ></span>
           <a class="nav-li" routerLink="/policy">Chính sách bảo mật</a>
         </li>
+        <li class="nav-item">
+          <span class="icon"></span>
+          <a href="" class="nav-li" (click)="logout()">Đăng xuất</a>
+        </li>
       </ul>
     </div>
     <!-- <div class="nav-right">
@@ -82,5 +88,4 @@
       </ul>
     </div> -->
   </div>
-  <button (click)="logout()">Đăng xuất</button>
 </div>

@@ -7,6 +7,7 @@ import { AdminProductCategoryComponent } from './components/pages/admin-product-
 import { AdminProductUpdateComponent } from './components/pages/admin-product-update/admin-product-update.component';
 import { AdminLoginComponent } from './components/pages/admin-login/admin-login.component';
 import { AuthGuard } from './auth/guard/auth.guard';
+import { AdminOrderComponent } from './components/pages/admin-order/admin-order.component';
 
 const routes: Routes = [
   { path: 'login', component: AdminLoginComponent },
@@ -30,6 +31,11 @@ const routes: Routes = [
   {
     path: 'products/:categoryName',
     component: AdminProductCategoryComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'order',
+    component: AdminOrderComponent,
     canActivate: [AuthGuard],
   },
 ];
