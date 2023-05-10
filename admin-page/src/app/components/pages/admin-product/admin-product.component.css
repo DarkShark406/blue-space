@@ -2,7 +2,6 @@
   padding: 0;
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  text-align: justify;
 }
 .container {
   width: 75%;
@@ -185,6 +184,17 @@ button:hover {
   padding: 5px;
 }
 
+.table .product-image img {
+  max-width: 100px;
+  height: 100px;
+  object-fit: contain;
+  transition: 0.25s;
+}
+
+.table .product-image img:hover {
+  transform: scale(1.1);
+}
+
 .btn-detail,
 .btn-update,
 .btn-remove {
@@ -208,14 +218,14 @@ button:hover {
 .pagination {
   width: 75%;
   margin-top: 30px;
-  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
   bottom: 0;
 }
 
-.pagination a {
+.pagination button {
+  cursor: pointer;
   display: inline-block;
   width: 32px;
   height: 32px;
@@ -229,28 +239,28 @@ button:hover {
   transition: all background-color 0.3s ease;
 }
 
-.pagination a.prev i,
-.pagination a.next i {
+.pagination button.prev i,
+.pagination button.next i {
   font-size: 16px;
 }
 
-.pagination a.prev:hover,
-.pagination a.next:hover {
+.pagination button.prev:hover,
+.pagination button.next:hover {
   background-color: #eee;
   border: solid white;
 }
-.pagination a.page {
+.pagination button.page {
   font-weight: bold;
 }
-.pagination a.page.active {
+.pagination button.page.active {
   background-color: #4caf50;
   color: #fff;
 }
-.pagination a.page:hover {
+.pagination button.page:hover {
   background-color: #eee;
   border: solid white;
 }
-.pagination a.disabled {
+.pagination button.disabled {
   opacity: 0.5;
   pointer-events: none;
 }
@@ -309,4 +319,30 @@ button:hover {
   background-color: #d9d9d9;
   color: white;
   cursor: pointer;
+}
+
+/* Delete Modal */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal.show {
+  display: block;
+}
+
+.modal-content {
+  width: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }

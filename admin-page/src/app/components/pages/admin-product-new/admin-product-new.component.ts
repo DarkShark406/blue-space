@@ -1,7 +1,10 @@
-import { Component, ElementRef } from '@angular/core';
+import { HttpClient, HttpEventType } from '@angular/common/http';
+import { Component, ElementRef, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription, finalize } from 'rxjs';
 import { Product } from 'src/app/interfaces/product';
 import { AdminProductService } from 'src/app/services/admin-product.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-admin-product-new',
@@ -15,7 +18,12 @@ export class AdminProductNewComponent {
   errMessage: string = '';
   isValidSubmit = true;
 
-  constructor(private _service: AdminProductService, private router: Router) {
+  constructor(
+    private _service: AdminProductService,
+    private router: Router,
+    private http: HttpClient,
+    private location: Location
+  ) {
     this._service.getProducts().subscribe({
       next: (data) => {
         this.products = data;
@@ -24,8 +32,20 @@ export class AdminProductNewComponent {
         this.errMessage;
       },
     });
+
+    this.deleteImages();
   }
+
+  goBack() {
+    this.location.back();
+  }
+
   postProduct() {
+    for (let i = 0; i < this.fileNameImages.length; i++) {
+      this.product.productImage.push(
+        'products/' + this.product.productID + '/' + this.fileNameImages[i]
+      );
+    }
     this._service.postProduct(this.product).subscribe({
       next: (data) => {
         this.products = data;
@@ -34,7 +54,41 @@ export class AdminProductNewComponent {
         this.errMessage = err;
       },
     });
-    this.router.navigate(['admin-product']);
+
+    // Up hình vào products image
+    const productImage = document.getElementById(
+      'product-image'
+    ) as HTMLInputElement;
+    const files = productImage.files;
+    this.fileUpload = files;
+    console.log(this.fileUpload);
+    if (files) {
+      const formData = new FormData();
+      for (let i = 0; i < files.length; i++) {
+        formData.append('files', files[i]);
+        console.log(formData);
+      }
+
+      const upload$ = this.http
+        .post(
+          'http://localhost:5000/images/upload/' + this.product.productID,
+          formData,
+          {
+            reportProgress: true,
+            observe: 'events',
+            responseType: 'text',
+          }
+        )
+        .pipe(finalize(() => this.reset()));
+      this.uploadSub = upload$.subscribe((event) => {
+        if (event.type == HttpEventType.UploadProgress) {
+          this.uploadProgress = Math.round(100 * (event.loaded / event.total!));
+        }
+      });
+    }
+
+    // Về lại trang danh sách sản phẩm
+    this.router.navigate(['']);
   }
 
   // Thông báo invalid
@@ -47,164 +101,235 @@ export class AdminProductNewComponent {
     document.getElementById(id)?.focus();
   }
 
-  // thông tin chi tiết laptop
-  onSubmitLaptop() {
+  // --------------------Xử lý upload file images-----------
+  fileNameImages: Array<string> = []; // Lưu tên hình
+
+  fileUpload: any; // Lưu các file up load
+  @Input() requiredFileType: any;
+  uploadProgress: number = 0;
+  uploadSub: Subscription = new Subscription();
+
+  onFileSelected(event: any) {
+    const files = event.target.files;
+    this.fileUpload = files;
+    console.log(this.fileUpload);
+    if (files) {
+      const formData = new FormData();
+      for (let i = 0; i < files.length; i++) {
+        formData.append('files', files[i]);
+        console.log(formData);
+      }
+
+      const upload$ = this.http
+        .post('http://localhost:5000/images/upload-temp', formData, {
+          reportProgress: true,
+          observe: 'events',
+          responseType: 'text',
+        })
+        .pipe(finalize(() => this.reset()));
+      this.uploadSub = upload$.subscribe((event) => {
+        if (event.type == HttpEventType.UploadProgress) {
+          this.uploadProgress = Math.round(100 * (event.loaded / event.total!));
+        }
+      });
+    }
+
+    this.openModal();
+  }
+
+  // Xóa ảnh
+  deleteImages() {
+    this.http
+      .delete<boolean>('http://localhost:5000/images/delete-temp')
+      .subscribe(
+        (response) => {
+          if (response === true) {
+            console.log('Đã xóa');
+          }
+        },
+        (error) => {
+          console.error(error);
+          console.log('Có lỗi xảy ra');
+        }
+      );
+    this.fileNameImages = [];
+  }
+
+  cancelUpload() {
+    this.uploadSub.unsubscribe();
+    this.reset();
+  }
+
+  reset() {
+    this.uploadProgress = 0;
+    this.uploadSub = new Subscription();
+  }
+
+  sentImageToHTxML() {
+    console.log(this.fileNameImages);
+    for (let i = 0; i < this.fileUpload.length; i++) {
+      this.fileNameImages.push(this.fileUpload[i].name);
+    }
+  }
+
+  // ------------------- Xử lý modal đếm ngược -------------
+  openModal() {
+    const modal = document.getElementById('modal');
+    if (modal) {
+      modal.style.display = 'block';
+
+      // Đếm ngược từ 3
+      var count = 2;
+      var countdownElement = document.getElementById('countdown');
+
+      var countdownInterval = setInterval(function () {
+        if (countdownElement) {
+          countdownElement.textContent = count.toString();
+          count--;
+          if (count < 0) {
+            clearInterval(countdownInterval);
+            document
+              .getElementById('closeModalBtn')
+              ?.removeAttribute('disabled');
+          }
+        }
+      }, 1000);
+
+      document
+        .getElementById('closeModalBtn')
+        ?.addEventListener('click', function () {
+          modal.style.display = 'none';
+        });
+    }
+  }
+
+  // ------------------- Xử lý submit ----------------------
+
+  checkMainValue() {
     // Tags
     const productTagsInput = document.getElementById(
       'product-tags'
     ) as HTMLInputElement;
     const productTagsValue = productTagsInput.value.trim();
 
-    // Color
-    const colorInput = document.getElementById('color') as HTMLInputElement;
-    const colorValue = colorInput.value.trim();
-
     if (this.product.categoryId == 0) {
-      alert('Thiếu thông tin');
       this.addClassInvalid('product-category');
       this.isValidSubmit = false;
-      return;
+    }
+    if (this.product.productID == '') {
+      this.addClassInvalid('product-id');
+      this.isValidSubmit = false;
     }
     if (this.product.productName == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('product-name');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.productBrand == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('product-brand');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.productPrice == 0) {
-      alert('Thiếu thông tin');
       this.addClassInvalid('product-price');
       this.isValidSubmit = false;
-      return;
     }
-    if (this.product.productDiscount == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-discount');
-      this.isValidSubmit = false;
-      return;
-    }
+
     if (this.product.productRegion == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('product-region');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.warrantyPeriod == 0) {
-      alert('Thiếu thông tin');
       this.addClassInvalid('warranty-period');
       this.isValidSubmit = false;
-      return;
     }
     if (productTagsValue == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('product-tags');
       this.isValidSubmit = false;
-      return;
     } else {
       this.product.productTags = productTagsValue.split(',');
       console.log(this.product.productTags);
     }
 
-    // if (this.product.productImage == '') {
-    //   alert('Thiếu thông tin');
-    //   this.addClassInvalid('product-image');
-    //   this.isValidSubmit = false;
-    //   return;
-    // }
     if (this.product.description == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('description');
+      this.addClassInvalid('product-description');
       this.isValidSubmit = false;
-      return;
     }
+    if (this.fileNameImages.length == 0) {
+      this.isValidSubmit = false;
+      alert('Cần có hình minh họa');
+    }
+  }
+
+  // thông tin chi tiết laptop
+  onSubmitLaptop() {
+    console.log('submit laptop');
+
+    // Color
+    const colorInput = document.getElementById('color') as HTMLInputElement;
+    const colorValue = colorInput.value.trim();
+
+    this.checkMainValue();
+
     if (this.product.specifications.cpu == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('cpu');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.screen == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('screen');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.storage == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('storage');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.ram == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('ram');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.operatingSystem == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('operatingSystem');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.batteryCapacity == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('battery-capacity');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.keyboard == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('keyboard');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.bluetooth == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('bluetooth');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.camera == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('camera');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.weight == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('weight');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.size == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('size');
       this.isValidSubmit = false;
-      return;
     }
     if (colorValue == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('color');
       this.isValidSubmit = false;
-      return;
     } else {
       this.product.specifications.color = colorValue.split(',');
       console.log(this.product.specifications.color);
     }
     if (this.product.specifications.material == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('material');
       this.isValidSubmit = false;
-      return;
     } else this.isValidSubmit == true;
-    alert('Lưu thành công');
+
+    if (this.isValidSubmit) {
+      this.postProduct();
+    } else {
+      alert('Nhập thiếu thông tin');
+    }
   }
 
   //thông tin chi tiết Phone
@@ -243,170 +368,77 @@ export class AdminProductNewComponent {
       messageErroCable.style.display = 'none';
     };
 
-    const productTagsInput = document.getElementById(
-      'product-tags'
-    ) as HTMLInputElement;
+    this.checkMainValue();
 
-    const productTagsValue = productTagsInput.value.trim();
-
-    if (this.product.categoryId == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-category');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productName == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-name');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productBrand == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-brand');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productPrice == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-price');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productDiscount == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-discount');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productRegion == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-region');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.warrantyPeriod == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('warranty-period');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (productTagsValue == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-tags');
-      this.isValidSubmit = false;
-      return;
-    } else {
-      this.product.productTags = productTagsValue.split(',');
-      console.log(this.product.productTags);
-    }
-
-    // if (this.product.productImage == '') {
-    //   alert('Thiếu thông tin');
-    //   this.addClassInvalid('product-image');
-    //   this.isValidSubmit = false;
-    //   return;
-    // }
-    if (this.product.description == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('description');
-      this.isValidSubmit = false;
-      return;
-    }
     if (this.product.specifications.cpu == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('cpu');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.screen == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('screen');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.storage == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('storage');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.ram == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('ram');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.core == 0) {
-      alert('Thiếu thông tin');
       this.addClassInvalid('core');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.operatingSystem == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('core');
+      this.addClassInvalid('operatingSystem');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.batteryCapacity == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('batteryCapacity');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.simSlot == 0) {
-      alert('Thiếu thông tin');
       this.addClassInvalid('simSlot');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.bluetooth == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('bluetooth');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.camera == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('camera');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.weight == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('weight');
       this.isValidSubmit = false;
-      return;
     }
     if (colorValue == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('color');
       this.isValidSubmit = false;
-      return;
     } else {
       this.product.specifications.color = colorValue.split(',');
       console.log(this.product.specifications.color);
     }
     if (this.product.specifications.material == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('material');
       this.isValidSubmit = false;
-      return;
     }
     if (cableYes.checked == false && cableNo.checked == false) {
-      alert('Thiếu thông tin');
       messageErroCable.style.display = 'block';
       this.isValidSubmit = false;
-      return;
     }
     if (earphoneYes.checked == false && earphoneNo.checked == false) {
-      alert('Thiếu thông tin');
       messageErroEarphone.style.display = 'block';
       this.isValidSubmit = false;
-      return;
     } else this.isValidSubmit == true;
-    alert('Lưu thành công');
+
+    if (this.isValidSubmit) {
+      this.postProduct();
+    } else {
+      alert('Nhập thiếu thông tin');
+    }
   }
 
   //thông tin chi tiết Tablet
@@ -440,171 +472,76 @@ export class AdminProductNewComponent {
     const colorInput = document.getElementById('color') as HTMLInputElement;
     const colorValue = colorInput.value.trim();
 
-    // Tags
-    const productTagsInput = document.getElementById(
-      'product-tags'
-    ) as HTMLInputElement;
-
-    const productTagsValue = productTagsInput.value.trim();
-
-    if (this.product.categoryId == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-category');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productName == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-name');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productBrand == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-brand');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productPrice == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-price');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productDiscount == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-discount');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productRegion == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-region');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.warrantyPeriod == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('warranty-period');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (productTagsValue == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-tags');
-      this.isValidSubmit = false;
-      return;
-    } else {
-      this.product.productTags = productTagsValue.split(',');
-      console.log(this.product.productTags);
-    }
-
-    // if (this.product.productImage == '') {
-    //   alert('Thiếu thông tin');
-    //   this.addClassInvalid('product-image');
-    //   this.isValidSubmit = false;
-    //   return;
-    // }
-    if (this.product.description == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('description');
-      this.isValidSubmit = false;
-      return;
-    }
+    this.checkMainValue();
     if (this.product.specifications.cpu == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('cpu');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.screen == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('screen');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.storage == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('storage');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.ram == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('ram');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.core == 0) {
-      alert('Thiếu thông tin');
       this.addClassInvalid('core');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.operatingSystem == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('core');
+      this.addClassInvalid('operatingSystem');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.batteryCapacity == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('batteryCapacity');
+      this.addClassInvalid('battery-capacity');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.simSlot == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('simSlot');
+      this.addClassInvalid('sim-slot');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.bluetooth == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('bluetooth');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.camera == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('camera');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.weight == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('weight');
       this.isValidSubmit = false;
-      return;
     }
     if (colorValue == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('color');
       this.isValidSubmit = false;
-      return;
     } else {
       this.product.specifications.color = colorValue.split(',');
       console.log(this.product.specifications.color);
     }
     if (this.product.specifications.material == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('material');
       this.isValidSubmit = false;
-      return;
     }
     if (cableYes.checked == false && cableNo.checked == false) {
-      alert('Thiếu thông tin');
       messageErroCable.style.display = 'block';
       this.isValidSubmit = false;
-      return;
     }
     if (penYes.checked == false && penNo.checked == false) {
-      alert('Thiếu thông tin');
       messageErroPen.style.display = 'block';
       this.isValidSubmit = false;
-      return;
     } else this.isValidSubmit == true;
-    alert('Lưu thành công');
+
+    if (this.isValidSubmit) {
+      this.postProduct();
+    } else {
+      alert('Nhập thiếu thông tin');
+    }
   }
 
   //thông tin chi tiết earphone
@@ -613,153 +550,66 @@ export class AdminProductNewComponent {
     const colorInput = document.getElementById('color') as HTMLInputElement;
     const colorValue = colorInput.value.trim();
 
-    //  Tags
-    const productTagsInput = document.getElementById(
-      'product-tags'
-    ) as HTMLInputElement;
-    const productTagsValue = productTagsInput.value.trim();
+    this.checkMainValue();
 
-    if (this.product.categoryId == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-category');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productName == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-name');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productBrand == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-brand');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productPrice == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-price');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productDiscount == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-discount');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productRegion == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-region');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.warrantyPeriod == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('warranty-period');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (productTagsValue == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-tags');
-      this.isValidSubmit = false;
-      return;
-    } else {
-      this.product.productTags = productTagsValue.split(',');
-      console.log(this.product.productTags);
-    }
-
-    // if (this.product.productImage == '') {
-    //   alert('Thiếu thông tin');
-    //   this.addClassInvalid('product-image');
-    //   this.isValidSubmit = false;
-    //   return;
-    // }
-    if (this.product.description == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('description');
-      this.isValidSubmit = false;
-      return;
-    }
     if (this.product.specifications.model == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('model');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.type == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('type');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.weight == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('weight');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.batteryTime == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('batteryTime');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.connection == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('connection');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.connectionDistance == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('connectionDistance');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.frequency == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('frequency');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.impedance == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('impedance');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.compatible == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('compatible');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.micrphone == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('micrphone');
       this.isValidSubmit = false;
-      return;
     }
     if (colorValue == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('color');
       this.isValidSubmit = false;
-      return;
     } else {
       this.product.specifications.color = colorValue.split(',');
       console.log(this.product.specifications.color);
     }
 
     if (this.product.specifications.size == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('size');
       this.isValidSubmit = false;
-      return;
     } else this.isValidSubmit == true;
-    alert('Lưu thành công');
+
+    if (this.isValidSubmit) {
+      this.postProduct();
+    } else {
+      alert('Nhập thiếu thông tin');
+    }
   }
 
   //thông tin chi tiết mouse
@@ -768,350 +618,118 @@ export class AdminProductNewComponent {
     const colorInput = document.getElementById('color') as HTMLInputElement;
     const colorValue = colorInput.value.trim();
 
-    // Tags
-    const productTagsInput = document.getElementById(
-      'product-tags'
-    ) as HTMLInputElement;
-
-    const productTagsValue = productTagsInput.value.trim();
-
-    if (this.product.categoryId == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-category');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productName == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-name');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productBrand == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-brand');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productPrice == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-price');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productDiscount == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-discount');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productRegion == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-region');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.warrantyPeriod == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('warranty-period');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (productTagsValue == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-tags');
-      this.isValidSubmit = false;
-      return;
-    } else {
-      this.product.productTags = productTagsValue.split(',');
-      console.log(this.product.productTags);
-    }
-
-    // if (this.product.productImage == '') {
-    //   alert('Thiếu thông tin');
-    //   this.addClassInvalid('product-image');
-    //   this.isValidSubmit = false;
-    //   return;
-    // }
-    if (this.product.description == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('description');
-      this.isValidSubmit = false;
-      return;
-    }
+    this.checkMainValue();
     if (this.product.specifications.DPI == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('DPI');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.connection == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('connection');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.batteryCapacity == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('batteryCapacity');
+      this.addClassInvalid('batteryCapacityMouse');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.weight == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('weight');
       this.isValidSubmit = false;
-      return;
     }
     if (colorValue == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('color');
       this.isValidSubmit = false;
-      return;
     } else {
       this.product.specifications.color = colorValue.split(',');
       console.log(this.product.specifications.color);
     }
     if (this.product.specifications.led == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('led');
       this.isValidSubmit = false;
-      return;
     } else this.isValidSubmit == true;
-    alert('Lưu thành công');
+
+    if (this.isValidSubmit) {
+      this.postProduct();
+    } else {
+      alert('Nhập thiếu thông tin');
+    }
   }
 
   //thông tin chi tiết keyboard
   onSubmitKeyboard() {
-    const productTagsInput = document.getElementById(
-      'product-tags'
-    ) as HTMLInputElement;
-
-    const productTagsValue = productTagsInput.value.trim();
-
-    if (this.product.categoryId == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-category');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productName == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-name');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productBrand == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-brand');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productPrice == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-price');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productDiscount == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-discount');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productRegion == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-region');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.warrantyPeriod == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('warranty-period');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (productTagsValue == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-tags');
-      this.isValidSubmit = false;
-      return;
-    } else {
-      this.product.productTags = productTagsValue.split(',');
-      console.log(this.product.productTags);
-    }
-
-    // if (this.product.productImage == '') {
-    //   alert('Thiếu thông tin');
-    //   this.addClassInvalid('product-image');
-    //   this.isValidSubmit = false;
-    //   return;
-    // }
-    if (this.product.description == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('description');
-      this.isValidSubmit = false;
-      return;
-    }
+    this.checkMainValue();
     if (this.product.specifications.model == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('model');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.connection == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('connection');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.connectionDistance == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('connectionDistance');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.switch == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('switch');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.type == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('type');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.numberOfKeys == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('numberOfKeys');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.ledLight == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('ledLight');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.materialKeycaps == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('materialKeycaps');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.otherFunction == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('otherFunction');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.size == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('material');
+      this.addClassInvalid('size');
       this.isValidSubmit = false;
-      return;
-    } else this.isValidSubmit == true;
-    alert('Lưu thành công');
+    }
+
+    if (this.isValidSubmit) {
+      this.postProduct();
+    } else {
+      alert('Nhập thiếu thông tin');
+    }
   }
 
   //thông tin chi tiết application
   onSubmitApplication() {
-    const productTagsInput = document.getElementById(
-      'product-tags'
-    ) as HTMLInputElement;
+    this.checkMainValue();
 
-    const productTagsValue = productTagsInput.value.trim();
-
-    if (this.product.categoryId == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-category');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productName == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-name');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productBrand == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-brand');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productPrice == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-price');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productDiscount == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-discount');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.productRegion == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-region');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (this.product.warrantyPeriod == 0) {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('warranty-period');
-      this.isValidSubmit = false;
-      return;
-    }
-    if (productTagsValue == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('product-tags');
-      this.isValidSubmit = false;
-      return;
-    } else {
-      this.product.productTags = productTagsValue.split(',');
-      console.log(this.product.productTags);
-    }
-
-    // if (this.product.productImage == '') {
-    //   alert('Thiếu thông tin');
-    //   this.addClassInvalid('product-image');
-    //   this.isValidSubmit = false;
-    //   return;
-    // }
-    if (this.product.description == '') {
-      alert('Thiếu thông tin');
-      this.addClassInvalid('description');
-      this.isValidSubmit = false;
-      return;
-    }
     if (this.product.specifications.language == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('language');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.type == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('type');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.numberOfUser == 0) {
-      alert('Thiếu thông tin');
       this.addClassInvalid('numberOfUser');
       this.isValidSubmit = false;
-      return;
     }
     if (this.product.specifications.operationSystem == '') {
-      alert('Thiếu thông tin');
       this.addClassInvalid('operationSystem');
       this.isValidSubmit = false;
-      return;
     } else this.isValidSubmit == true;
-    alert('Lưu thành công');
+
+    if (this.isValidSubmit) {
+      this.postProduct();
+    } else {
+      alert('Nhập thiếu thông tin');
+    }
   }
 }
