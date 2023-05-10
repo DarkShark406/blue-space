@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AccountComponent {
   days = [
@@ -19,4 +21,27 @@ export class AccountComponent {
     1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009,
     2010, 2011, 2012, 2013, 2014, 2015,
   ];
+  user: any;
+  newName = '';
+  newAddress = '';
+
+  constructor(private userService: UserService) {
+    this.user = userService.currentUser;
+    this.newName = this.user.name;
+    this.newAddress = this.user.address;
+  }
+  saveChangeToUser() {
+    this.userService
+      .saveChange(this.newName, this.newAddress)
+      .subscribe((d) => {
+        const notification = document.getElementById(
+          'notification'
+        ) as HTMLElement;
+        notification.style.display = 'block';
+      });
+  }
+  turnOff() {
+    const notification = document.getElementById('notification') as HTMLElement;
+    notification.style.display = 'none';
+  }
 }

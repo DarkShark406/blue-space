@@ -140,6 +140,21 @@ router.put("/change-password", auth, async (req: any, res) => {
   res.json("Đổi mật khẩu thành công. Mời đăng nhập lại!");
 });
 
+// Update Account
+router.put("/user/update", auth, async (req: any, res) => {
+  const { newName, newAddress } = req.body;
+
+  const userchange = await UserModel.findOne({ email: req.user.email });
+  if (!userchange) {
+    return res.json("User not found");
+  }
+  userchange.name = newName;
+  userchange.address = newAddress;
+  await userchange.save();
+  console.log(userchange.name);
+  res.send(generateTokenReponse(userchange));
+});
+
 const generateTokenReponse = (user: User) => {
   const token = jwt.sign(
     {
