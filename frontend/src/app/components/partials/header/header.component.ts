@@ -67,9 +67,7 @@ export class HeaderComponent {
     let numberItem = 0;
     const userLS = localStorage.getItem('User');
     if (userLS != null) {
-      console.log('có user');
       const user = JSON.parse(userLS);
-      console.log(user);
       numberItem = user.cart.items.length;
     } else {
       const cartLS = localStorage.getItem('cart');

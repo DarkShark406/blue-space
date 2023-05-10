@@ -4,20 +4,44 @@
   <table class="table table-hover mt-4">
     <thead>
       <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Tên khách hàng</th>
-        <th scope="col">Phương thức thanh toán</th>
-        <th scope="col">Tình trạng đơn hàng</th>
-        <th scope="col">Ngày tạo đơn hàng</th>
-        <th scope="col"></th>
+        <th style="text-align: center; vertical-align: middle" scope="col">
+          Id
+        </th>
+        <th style="text-align: center; vertical-align: middle" scope="col">
+          Tên khách hàng
+        </th>
+        <th style="text-align: center; vertical-align: middle" scope="col">
+          Tổng hóa đơn
+        </th>
+        <th style="text-align: center; vertical-align: middle" scope="col">
+          Tình trạng đơn hàng
+        </th>
+        <th style="text-align: center; vertical-align: middle" scope="col">
+          Ngày tạo đơn hàng
+        </th>
+        <th style="text-align: center; vertical-align: middle" scope="col"></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let order of orders">
         <th scope="row">{{ order.id }}</th>
         <td>{{ order.name }}</td>
-        <td>{{ order.paymentId }}</td>
-        <td>{{ order.status }}</td>
+        <td>
+          {{
+            (order.totalPrice * 23000).toLocaleString("vi", {
+              style: "currency",
+              currency: "VND"
+            })
+          }}
+        </td>
+        <td style="text-align: center">
+          <span *ngIf="order.status == 'PAYED'" style="color: #28a745">
+            {{ order.status }}
+          </span>
+          <span *ngIf="order.status == 'NEW'" style="color: #007bff">
+            {{ order.status }}
+          </span>
+        </td>
         <td>{{ order.createdAt | date : "medium" }}</td>
         <td>
           <button

@@ -56,6 +56,23 @@ export class ProductCategoryService {
       );
   }
 
+  filterAllProduct(filter: any): Observable<any> {
+    const url = 'http://localhost:5000/product/filter/';
+    const headers = new HttpHeaders().set(
+      'Content-Type',
+      'application/json;charset=utf-8'
+    );
+    const requestOptions: Object = { headers: headers, responseType: 'text' };
+
+    return this._http
+      .post<any>(url, JSON.stringify(filter), requestOptions)
+      .pipe(
+        map((res) => JSON.parse(res) as Array<Product>),
+        retry(3),
+        catchError(this.handleError)
+      );
+  }
+
   sortProducts(typeSort: string, products: any) {
     const url = 'http://localhost:5000/product/sort/' + typeSort;
 
