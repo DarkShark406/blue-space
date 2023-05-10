@@ -1,1 +1,26 @@
-<p>slider works!</p>
+<swiper
+  [keyboard]="true"
+  [navigation]="true"
+  [pagination]="{ clickable: true }"
+  [scrollbar]="{ draggable: true }"
+  [loop]="true"
+  [autoplay]="{ delay: 5000, disableOnInteraction: false }"
+>
+  <ng-container *ngIf="type == 'image'">
+    <ng-container *ngFor="let image of list">
+      <ng-template swiperSlide
+        ><img
+          style="display: block"
+          src="http://localhost:5000/images/{{ image }}"
+          alt=""
+      /></ng-template>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="type == 'text'">
+    <ng-container *ngFor="let content of list">
+      <ng-template swiperSlide>
+        <div [innerHTML]="content"></div>
+      </ng-template>
+    </ng-container>
+  </ng-container>
+</swiper>

@@ -27,16 +27,12 @@ export class AdminProductUpdateComponent {
     // Get id of product
     this.product.id = this.route.snapshot.params['id'];
 
-    console.log(this.product.categoryId);
-
     this._service.getProductById(this.product.id).subscribe({
       next: (data) => (this.product = data),
       error: (err) => (this.errMessage = err),
     });
 
     this.deleteImages();
-
-    console.log(this.product);
   }
 
   goBack() {
@@ -64,12 +60,10 @@ export class AdminProductUpdateComponent {
     ) as HTMLInputElement;
     const files = productImage.files;
     this.fileUpload = files;
-    console.log(this.fileUpload);
     if (files) {
       const formData = new FormData();
       for (let i = 0; i < files.length; i++) {
         formData.append('files', files[i]);
-        console.log(formData);
       }
 
       const upload$ = this.http
@@ -115,12 +109,10 @@ export class AdminProductUpdateComponent {
   onFileSelected(event: any) {
     const files = event.target.files;
     this.fileUpload = files;
-    console.log(this.fileUpload);
     if (files) {
       const formData = new FormData();
       for (let i = 0; i < files.length; i++) {
         formData.append('files', files[i]);
-        console.log(formData);
       }
 
       const upload$ = this.http
@@ -171,7 +163,6 @@ export class AdminProductUpdateComponent {
   }
 
   sentImageToHTxML() {
-    console.log(this.fileNameImages);
     for (let i = 0; i < this.fileUpload.length; i++) {
       this.fileNameImages.push(this.fileUpload[i].name);
     }

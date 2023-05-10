@@ -15,6 +15,8 @@ import { AdminCategoryComponent } from './components/pages/admin-category/admin-
 import { SliderComponent } from './components/partials/slider/slider.component';
 import { AdminLoginComponent } from './components/pages/admin-login/admin-login.component';
 
+import { SwiperModule } from 'swiper/angular';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,13 @@ import { AdminLoginComponent } from './components/pages/admin-login/admin-login.
     SliderComponent,
     AdminLoginComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    SwiperModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
