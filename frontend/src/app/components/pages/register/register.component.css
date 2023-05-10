@@ -153,13 +153,13 @@
   color: #bdbbbb;
 }
 
-.had-account span {
+.had-account a {
   font-style: italic;
   color: #007bff;
   font-weight: bold;
   cursor: pointer;
 }
 
-.had-account span:hover {
+.had-account a:hover {
   text-decoration: underline;
 }

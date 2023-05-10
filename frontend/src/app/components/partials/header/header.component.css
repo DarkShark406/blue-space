@@ -255,6 +255,7 @@ nav .logo img {
   width: 100%;
   min-width: 16rem;
   border-radius: 50px;
+  cursor: pointer;
 }
 .user-menu > .menu-container .menu a:hover {
   display: block;
