@@ -4,6 +4,7 @@ import { Cart } from 'src/app/interfaces/cart';
 import { Customer } from 'src/app/interfaces/customer';
 import { Order } from 'src/app/interfaces/order';
 import { AdminCustomerService } from 'src/app/services/admin-customer.service';
+import { AdminOrderService } from 'src/app/services/admin-order.service';
 
 @Component({
   selector: 'app-admin-customer',
@@ -13,9 +14,11 @@ import { AdminCustomerService } from 'src/app/services/admin-customer.service';
 export class AdminCustomerComponent implements OnInit {
   customers: Customer[] = [];
   ordersOfCustomer: Order[] = [];
+  cusOrders: any;
 
   constructor(
     private customerService: AdminCustomerService,
+    private orderService: AdminOrderService,
     private router: Router
   ) {}
 
@@ -28,10 +31,4 @@ export class AdminCustomerComponent implements OnInit {
   viewDetails(id: string) {
     this.router.navigate(['customers', 'details', id]);
   }
-
-  getTotalOrdersNumber(id: string) {
-    return this.customerService.getNumberOrderByCustomerId(id).subscribe();
-  }
-
-  getTotalOrderPrice(cart: Cart) {}
 }

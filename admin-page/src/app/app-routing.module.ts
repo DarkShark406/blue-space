@@ -10,6 +10,7 @@ import { AuthGuard } from './auth/guard/auth.guard';
 import { AdminOrderComponent } from './components/pages/admin-order/admin-order.component';
 import { AdminOrderDetailComponent } from './components/pages/admin-order-detail/admin-order-detail.component';
 import { AdminCustomerComponent } from './components/pages/admin-customer/admin-customer.component';
+import { AdminCustomerDetailComponent } from './components/pages/admin-customer-detail/admin-customer-detail.component';
 
 const routes: Routes = [
   { path: 'login', component: AdminLoginComponent },
@@ -48,6 +49,11 @@ const routes: Routes = [
   {
     path: 'customers',
     component: AdminCustomerComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'customers/details/:id',
+    component: AdminCustomerDetailComponent,
     canActivate: [AuthGuard],
   },
 ];
