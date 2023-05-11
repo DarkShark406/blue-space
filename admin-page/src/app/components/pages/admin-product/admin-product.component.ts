@@ -165,4 +165,12 @@ export class AdminProductComponent {
       error: (err) => (this.errMessage = err),
     });
   }
+
+  // Sort list sản phẩm
+  sortAllProduct(sortType: string) {
+    this._service.getProductBySort(sortType).subscribe({
+      next: (data) => (this.products = data),
+      error: (err) => (this.errMessage = err),
+    });
+  }
 }

@@ -1817,3 +1817,19 @@
     </div>
   </div>
 </div>
+
+<!-- Modal Error sort -->
+<div
+  (click)="clickOutSideModalContent($event)"
+  id="modal-error-sort"
+  class="modal"
+>
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <p>
+      Đang có quá nhiều sản phẩm. <br />
+      Hãy dùng chức năng lọc để lọc trước một ít
+    </p>
+    <button (click)="closeModal()">OK</button>
+  </div>
+</div>

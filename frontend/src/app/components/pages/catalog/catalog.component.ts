@@ -645,10 +645,28 @@ export class CatalogComponent implements OnInit {
   sortProduct() {
     this._service.sortProducts(this.typeSort, this.products).subscribe({
       next: (data) => (this.products = data),
-      error: (err) =>
-        alert(
-          'Đang có quá nhiều sản phẩm. Hãy dùng chức năng lọc để lọc trước một ít'
-        ),
+      error: (err) => this.openModal(),
     });
+  }
+
+  // Modal error sort
+  openModal() {
+    var modal = document.getElementById('modal-error-sort');
+    if (modal) {
+      modal.style.display = 'block';
+    }
+  }
+
+  closeModal() {
+    var modal = document.getElementById('modal-error-sort');
+    if (modal) {
+      modal.style.display = 'none';
+    }
+  }
+
+  clickOutSideModalContent(event: any) {
+    if (event.target == document.getElementById('modal-error-sort')) {
+      this.closeModal();
+    }
   }
 }

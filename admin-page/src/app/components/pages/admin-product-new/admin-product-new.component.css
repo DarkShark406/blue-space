@@ -6,7 +6,7 @@
 }
 .container {
   width: 70%;
-  float: right;
+  margin-left: 350px;
 }
 
 .btn-link {

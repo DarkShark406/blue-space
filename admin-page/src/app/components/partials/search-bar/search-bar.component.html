@@ -1,0 +1,33 @@
+<!-- <div class="search-bar">
+  <input #searchInput type="text" placeholder="Search..." />
+</div> -->
+<div class="search-bar">
+  <input
+    matInput
+    type="text"
+    placeholder="Search"
+    [(ngModel)]="searchTerm"
+    (keyup)="onSearch()"
+  />
+  <button (click)="sendSuggestProduct()" type="submit" class="btn-search">
+    <i class="fa fa-search"></i>
+  </button>
+  <div class="recomendation">
+    <ng-container *ngIf="suggestions != []">
+      <ng-container *ngFor="let suggestion of suggestions">
+        <a href="product/details/{{ suggestion.id }}">
+          <img
+            width="40px"
+            height="40px"
+            src="http://localhost:5000/images/{{ suggestion.productImage[0] }}"
+            alt=""
+          />
+          {{ suggestion.productName }}
+        </a>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="suggestions == []">
+      <div>Không tìm thấy sản phẩm bạn đang tìm kiếm</div>
+    </ng-container>
+  </div>
+</div>

@@ -34,11 +34,9 @@
     <tr class="product-image">
       <td colspan="2">
         <!-- Xử lý slider -->
-        <img
-          *ngFor="let img of product.productImage"
-          [src]="'http://localhost:5000/images/' + img"
-          alt=""
-        />
+        <div *ngFor="let img of product.productImage">
+          <img [src]="'http://localhost:5000/images/' + img" alt="" />
+        </div>
         <!-- <slider [type]="'image'" [list]="product.productImage"></slider> -->
       </td>
     </tr>

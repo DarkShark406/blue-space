@@ -408,7 +408,24 @@ router.post("/filter/:categoryName", async (req, res) => {
 	}
 });
 
-// sort sản phẩm theo tăng dần, giảm dần
+// sort sản phẩm với tất cả sản phẩm
+router.get("/sort/:sortType", async (req, res) => {
+	const sortType = req.params["sortType"];
+
+	let data = await ProductModel.find({});
+
+	const result = data.sort((a: Product, b: Product) => {
+		if (sortType == "asc") {
+			return a.productPrice - b.productPrice;
+		} else {
+			return b.productPrice - a.productPrice;
+		}
+	});
+
+	res.send(result);
+});
+
+// sort sản phẩm theo tăng dần, giảm dần với sp cho trước
 router.post("/sort/:sortType", (req, res) => {
 	const sortType = req.params["sortType"];
 	let result = req.body;
