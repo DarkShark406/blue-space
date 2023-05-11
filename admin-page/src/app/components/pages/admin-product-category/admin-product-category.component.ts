@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Product } from 'src/app/interfaces/product';
 
 import { AdminProductService } from 'src/app/services/admin-product.service';
 
@@ -13,6 +14,7 @@ export class AdminProductCategoryComponent {
   categories: any;
   errMessage: string = '';
   categoryName: string = '';
+  searchProduct: Product[] = [];
 
   typeSort: string = ''; // Kiểu sort: asc: tăng dần, desc: giảm dần
 
@@ -171,5 +173,10 @@ export class AdminProductCategoryComponent {
       next: (data) => (this.products = data),
       error: (err) => (this.errMessage = err),
     });
+  }
+
+  // product in search bar
+  getProductInSearch(searchProducts: Product[]) {
+    this.products = searchProducts;
   }
 }
