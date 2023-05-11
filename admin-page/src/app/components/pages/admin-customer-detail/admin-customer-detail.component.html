@@ -1,0 +1,59 @@
+<div class="container">
+  <button (click)="goBack()" type="button" class="btn btn-link">
+    Quay lại
+  </button>
+  <h2 class="mt-4">Chi tiết khách hàng</h2>
+
+  <h2 class="mt-4">Thông tin chi tiết</h2>
+  <table class="table table-bordered mt-4">
+    <tbody>
+      <tr>
+        <td>Id</td>
+        <td>{{ customer.id }}</td>
+      </tr>
+      <tr>
+        <td>Tên</td>
+        <td>{{ customer.name }}</td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td>{{ customer.email }}</td>
+      </tr>
+      <tr>
+        <td>Địa chỉ</td>
+        <td>{{ customer.address }}</td>
+      </tr>
+      <tr>
+        <td>Ngày tạo tài khoản</td>
+        <td>{{ customer.createdAt }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="mt-4">Tổng số đơn hàng: {{ ordersCus.length }}</h2>
+  <h3 class="mt-4">Chi tiết đơn hàng</h3>
+
+  <table class="table table-hover table-bordered">
+    <thead>
+      <th>Id</th>
+      <th>Tên</th>
+      <th>Ngày tạo đơn hàng</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of ordersCus">
+        <td>{{ order.id }}</td>
+        <td>{{ order.name }}</td>
+        <td>{{ order.createdAt }}</td>
+        <td>
+          <button
+            (click)="viewOrderDetails(order.id)"
+            type="button"
+            class="btn btn-link"
+          >
+            Xem chi tiết
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

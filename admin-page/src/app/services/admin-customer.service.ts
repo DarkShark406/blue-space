@@ -10,10 +10,15 @@ export class AdminCustomerService {
   constructor(private http: HttpClient) {}
 
   getUsers() {
-    console.log('vào service get user');
     const url = 'http://localhost:5000/auth/get-users';
 
     return this.http.get<Customer[]>(url);
+  }
+
+  getUserById(id: string) {
+    const url = 'http://localhost:5000/auth/get-user/' + id;
+
+    return this.http.get<Customer>(url);
   }
 
   getNumberOrderByCustomerId(id: string) {

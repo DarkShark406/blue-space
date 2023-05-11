@@ -8,5 +8,5 @@ export class Customer {
   address!: string;
   isAdmin!: boolean;
   cart!: Cart;
-  createAt!: string;
+  createdAt!: string;
 }

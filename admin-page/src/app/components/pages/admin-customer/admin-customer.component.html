@@ -13,12 +13,7 @@
         <th style="text-align: center; vertical-align: middle" scope="col">
           Email
         </th>
-        <th style="text-align: center; vertical-align: middle" scope="col">
-          Tổng số đơn hàng
-        </th>
-        <th style="text-align: center; vertical-align: middle" scope="col">
-          Tổng số tiền đã thanh toán
-        </th>
+
         <th style="text-align: center; vertical-align: middle" scope="col"></th>
       </tr>
     </thead>
@@ -27,8 +22,7 @@
         <td>{{ customer.id }}</td>
         <td>{{ customer.name }}</td>
         <td>{{ customer.email }}</td>
-        <td>{{ getTotalOrdersNumber(customer.id) }}</td>
-        <td>{{ getTotalOrderPrice(customer.cart) }}</td>
+
         <td>
           <button
             (click)="viewDetails(customer.id)"

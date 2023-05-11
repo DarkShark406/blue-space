@@ -123,6 +123,15 @@ router.get("/get-users", auth, async (req, res) => {
 	res.send(result);
 });
 
+// Lấy user by id
+router.get("/get-user/:id", auth, async (req, res) => {
+	const id = req.params["id"];
+
+	const result = await UserModel.findOne({ _id: id });
+
+	res.send(result);
+});
+
 router.put("/change-password", auth, async (req: any, res) => {
 	const { newPassword, currentPassword } = req.body;
 

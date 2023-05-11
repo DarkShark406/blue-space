@@ -58,28 +58,18 @@ router.post("/pay", async (req: any, res) => {
 //   else res.status(HTTP_BAD_REQUEST).send();
 // });
 
-// Lấy đơn hàng theo user id
-router.get("/listOrderCustomer/:customerId", async (req, res) => {
-	console.log("vào get đơn hàng");
-	const customerId = req.params["customerId"];
-	const idObject = new mongoose.Types.ObjectId(customerId);
-
-	let orders = await OrderModel.find({ user: idObject });
-	console.log(orders);
-	res.send(orders.length);
-});
-
 router.get("/listOrder", async (req: any, res) => {
 	const list = await OrderModel.find({ user: req.user.id });
 	res.send(list);
 });
+
 // Customer order
 router.post("/listOrderCust", async (req: any, res) => {
-  const id = new mongoose.Types.ObjectId(req.body.id);
-  console.log(id);
-  const list = await OrderModel.find({ user: id });
-  console.log(list);
-  res.send(list);
+	const id = new mongoose.Types.ObjectId(req.body.id);
+	console.log(id);
+	const list = await OrderModel.find({ user: id });
+	console.log(list);
+	res.send(list);
 });
 
 async function getNewOrderForCurrentUser(req: any) {
