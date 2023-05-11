@@ -14,7 +14,9 @@ button {
   background-color: orange;
   line-height: 104px;
 }
-
+.banner img {
+  width: 100%;
+}
 .routing {
   margin-top: 20px;
   margin-left: 18px;

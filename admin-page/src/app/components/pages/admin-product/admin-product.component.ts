@@ -178,7 +178,7 @@ export class AdminProductComponent {
   getProductInSearch(searchProducts: Product[]) {
     this.products = searchProducts;
   }
-  trash: boolean = true;
+  trash: boolean = false;
   deletedProduct: any;
   getDeletedProduct() {
     this._service.getDeletedProduct().subscribe((d) => {
@@ -188,6 +188,7 @@ export class AdminProductComponent {
   restoreProduct(id: string) {
     this._service.restoreProduct(id).subscribe((d) => {
       alert('Khôi phục thành công');
+      window.location.reload();
     });
   }
   ngOnInit() {
