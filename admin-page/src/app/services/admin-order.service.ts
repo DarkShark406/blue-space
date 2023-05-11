@@ -18,6 +18,11 @@ export class AdminOrderService {
     return this.http.get<Order>(url);
   }
 
+  getCustomerOrder(id: string) {
+    const body = { id };
+    const url = 'http://localhost:5000/orders/listOrderCust';
+    return this.http.post<any>(url, body);
+  }
   getAddress() {
     return this.http.get<any>('http://localhost:5000/images/address');
   }

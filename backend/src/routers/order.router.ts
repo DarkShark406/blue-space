@@ -73,6 +73,14 @@ router.get("/listOrder", async (req: any, res) => {
 	const list = await OrderModel.find({ user: req.user.id });
 	res.send(list);
 });
+// Customer order
+router.post("/listOrderCust", async (req: any, res) => {
+  const id = new mongoose.Types.ObjectId(req.body.id);
+  console.log(id);
+  const list = await OrderModel.find({ user: id });
+  console.log(list);
+  res.send(list);
+});
 
 async function getNewOrderForCurrentUser(req: any) {
 	return await OrderModel.findOne({

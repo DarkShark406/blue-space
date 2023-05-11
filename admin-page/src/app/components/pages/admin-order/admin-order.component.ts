@@ -10,6 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AdminOrderComponent implements OnInit {
   orders: any;
+  cusOrders: any;
   constructor(
     private orderService: AdminOrderService,
 
@@ -24,6 +25,12 @@ export class AdminOrderComponent implements OnInit {
     this.orderService.getOrders().subscribe((d) => {
       this.orders = d;
     });
+    this.orderService
+      .getCustomerOrder('64586913301b92c3ea0a4924')
+      .subscribe((d) => {
+        this.cusOrders = d;
+        console.log(d.length);
+      });
   }
 
   viewDetails(id: string) {

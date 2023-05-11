@@ -29,10 +29,12 @@
             <td class="name-item">
               <a class="text-link" [href]="'/product/' + cartItem.product.id">
                 {{ cartItem.product.productName }} <br />
-                <span class="color"
-                  >Màu {{ cartItem.product.specifications.color }}
-                </span>
               </a>
+              <span
+                class="color"
+                *ngIf="cartItem.product.specifications.color[0] !== null"
+                >Màu {{ cartItem.product.specifications.color }}
+              </span>
             </td>
             <td class="price-item">
               {{
