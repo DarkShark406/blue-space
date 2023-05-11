@@ -856,3 +856,8 @@ input[name="type-show-list"] {
   width: 100px;
   cursor: pointer;
 }
+.select-box select option {
+  background-color: white;
+  color: #333;
+  font-size: 20px;
+}

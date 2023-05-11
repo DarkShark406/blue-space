@@ -95,6 +95,23 @@ export class UserService {
     if (userJson) return JSON.parse(userJson) as User;
     return new User();
   }
+
+  saveChange(newName: string, newAddress: string) {
+    const body = {
+      newName: newName,
+      newAddress: newAddress,
+    };
+    return this.http.put<any>(this.USER_URL + '/user/update', body).pipe(
+      tap({
+        next: (user) => {
+          this.logout();
+          this.setUserToLocalStorage(user);
+          this.userSubject.next(user);
+        },
+        error: (errorResponse) => {},
+      })
+    );
+  }
   handleError(error: HttpErrorResponse) {
     return throwError(() => new Error(error.message));
   }
