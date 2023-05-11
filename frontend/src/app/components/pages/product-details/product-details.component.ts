@@ -57,6 +57,7 @@ export class ProductDetailsComponent {
   };
 
   product: Product = new Product();
+  newP: Product = new Product();
   comboProduct: Product[] = [];
   selectedColor: string = '';
   quantity: number = 1;
@@ -75,6 +76,7 @@ export class ProductDetailsComponent {
     this.productSerivce.getComboProduct(id).subscribe((d) => {
       this.comboProduct = d;
     });
+    console.log(this.product.productID == '');
   }
 
   addToCart(product: Product, quantity: number) {
