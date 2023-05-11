@@ -1,5 +1,5 @@
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, finalize } from 'rxjs';
 import { Product } from 'src/app/interfaces/product';
@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
   templateUrl: './admin-product-update.component.html',
   styleUrls: ['./admin-product-update.component.css'],
 })
-export class AdminProductUpdateComponent {
+export class AdminProductUpdateComponent implements AfterViewInit {
   product = new Product();
   products: any;
   errMessage: string = '';
@@ -33,6 +33,11 @@ export class AdminProductUpdateComponent {
     });
 
     this.deleteImages();
+  }
+
+  ngAfterViewInit(): void {
+    // @ts-ignore
+    new FroalaEditor('#decription-product');
   }
 
   goBack() {

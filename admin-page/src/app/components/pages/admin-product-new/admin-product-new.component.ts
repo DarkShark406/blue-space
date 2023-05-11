@@ -202,6 +202,7 @@ export class AdminProductNewComponent {
   // ------------------- Xử lý submit ----------------------
 
   checkMainValue() {
+    this.isValidSubmit = true;
     // Tags
     const productTagsInput = document.getElementById(
       'product-tags'
@@ -264,6 +265,8 @@ export class AdminProductNewComponent {
     const colorValue = colorInput.value.trim();
 
     this.checkMainValue();
+    if (!this.isValidSubmit) {
+    }
 
     if (this.product.specifications.cpu == '') {
       this.addClassInvalid('cpu');
@@ -322,6 +325,10 @@ export class AdminProductNewComponent {
     } else this.isValidSubmit == true;
 
     if (this.isValidSubmit) {
+      const descriptionElement = document.getElementById('decription-product');
+      if (descriptionElement) {
+        this.product.description = descriptionElement.innerHTML;
+      }
       this.postProduct();
     } else {
       alert('Nhập thiếu thông tin');
@@ -365,6 +372,8 @@ export class AdminProductNewComponent {
     };
 
     this.checkMainValue();
+    if (!this.isValidSubmit) {
+    }
 
     if (this.product.specifications.cpu == '') {
       this.addClassInvalid('cpu');
@@ -431,6 +440,10 @@ export class AdminProductNewComponent {
     } else this.isValidSubmit == true;
 
     if (this.isValidSubmit) {
+      const descriptionElement = document.getElementById('decription-product');
+      if (descriptionElement) {
+        this.product.description = descriptionElement.innerHTML;
+      }
       this.postProduct();
     } else {
       alert('Nhập thiếu thông tin');
@@ -469,6 +482,9 @@ export class AdminProductNewComponent {
     const colorValue = colorInput.value.trim();
 
     this.checkMainValue();
+    if (!this.isValidSubmit) {
+    }
+
     if (this.product.specifications.cpu == '') {
       this.addClassInvalid('cpu');
       this.isValidSubmit = false;
@@ -534,6 +550,10 @@ export class AdminProductNewComponent {
     } else this.isValidSubmit == true;
 
     if (this.isValidSubmit) {
+      const descriptionElement = document.getElementById('decription-product');
+      if (descriptionElement) {
+        this.product.description = descriptionElement.innerHTML;
+      }
       this.postProduct();
     } else {
       alert('Nhập thiếu thông tin');
@@ -547,6 +567,8 @@ export class AdminProductNewComponent {
     const colorValue = colorInput.value.trim();
 
     this.checkMainValue();
+    if (!this.isValidSubmit) {
+    }
 
     if (this.product.specifications.model == '') {
       this.addClassInvalid('model');
@@ -602,6 +624,10 @@ export class AdminProductNewComponent {
     } else this.isValidSubmit == true;
 
     if (this.isValidSubmit) {
+      const descriptionElement = document.getElementById('decription-product');
+      if (descriptionElement) {
+        this.product.description = descriptionElement.innerHTML;
+      }
       this.postProduct();
     } else {
       alert('Nhập thiếu thông tin');
@@ -615,6 +641,9 @@ export class AdminProductNewComponent {
     const colorValue = colorInput.value.trim();
 
     this.checkMainValue();
+    if (!this.isValidSubmit) {
+    }
+
     if (this.product.specifications.DPI == '') {
       this.addClassInvalid('DPI');
       this.isValidSubmit = false;
@@ -644,6 +673,10 @@ export class AdminProductNewComponent {
     } else this.isValidSubmit == true;
 
     if (this.isValidSubmit) {
+      const descriptionElement = document.getElementById('decription-product');
+      if (descriptionElement) {
+        this.product.description = descriptionElement.innerHTML;
+      }
       this.postProduct();
     } else {
       alert('Nhập thiếu thông tin');
@@ -653,6 +686,9 @@ export class AdminProductNewComponent {
   //thông tin chi tiết keyboard
   onSubmitKeyboard() {
     this.checkMainValue();
+    if (!this.isValidSubmit) {
+    }
+
     if (this.product.specifications.model == '') {
       this.addClassInvalid('model');
       this.isValidSubmit = false;
@@ -695,6 +731,10 @@ export class AdminProductNewComponent {
     }
 
     if (this.isValidSubmit) {
+      const descriptionElement = document.getElementById('decription-product');
+      if (descriptionElement) {
+        this.product.description = descriptionElement.innerHTML;
+      }
       this.postProduct();
     } else {
       alert('Nhập thiếu thông tin');
@@ -704,6 +744,8 @@ export class AdminProductNewComponent {
   //thông tin chi tiết application
   onSubmitApplication() {
     this.checkMainValue();
+    if (!this.isValidSubmit) {
+    }
 
     if (this.product.specifications.language == '') {
       this.addClassInvalid('language');
@@ -723,6 +765,10 @@ export class AdminProductNewComponent {
     } else this.isValidSubmit == true;
 
     if (this.isValidSubmit) {
+      const descriptionElement = document.getElementById('decription-product');
+      if (descriptionElement) {
+        this.product.description = descriptionElement.innerHTML;
+      }
       this.postProduct();
     } else {
       alert('Nhập thiếu thông tin');

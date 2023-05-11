@@ -3,6 +3,7 @@
     <div class="header-left">
       <p>Chỉnh sửa thông tin chi tiết sản phẩm</p>
     </div>
+
     <div class="header-right">
       <a href="" class="icon-style"
         ><i class="fa-solid fa-magnifying-glass" style="color: #000000"></i
@@ -16,6 +17,7 @@
       >
     </div>
   </div>
+
   <div>
     <button type="button" class="btn btn-link" (click)="goBack()">
       Go Back
@@ -236,6 +238,19 @@
               [src]="'http://localhost:5000/images/temp/' + item"
             />
           </div>
+        </div>
+
+        <div class="decription-product">
+          <label for="product-description"
+            >Mô tả sản phẩm<span class="required">*</span></label
+          >
+          <input
+            name=""
+            id="product-description"
+            #ProductDecription
+            (input)="clearClassInvalid(ProductDecription.id)"
+            [(ngModel)]="product.description"
+          />
         </div>
       </div>
     </div>
