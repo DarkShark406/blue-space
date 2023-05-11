@@ -19,6 +19,7 @@ import { SwiperModule } from 'swiper/angular';
 import { AdminOrderComponent } from './components/pages/admin-order/admin-order.component';
 import { AdminOrderDetailComponent } from './components/pages/admin-order-detail/admin-order-detail.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { SearchBarComponent } from './components/partials/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     AdminLoginComponent,
     AdminOrderComponent,
     AdminOrderDetailComponent,
+    SearchBarComponent,
   ],
   imports: [
     BrowserModule,

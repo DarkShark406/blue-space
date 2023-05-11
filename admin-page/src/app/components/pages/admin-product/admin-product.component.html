@@ -41,23 +41,27 @@
     </div>
     <div class="function">
       <div class="filter">
-        <select id="category-select">
+        <select
+          (change)="sortAllProduct(categorySelect.value)"
+          #categorySelect
+          id="category-select"
+        >
           <option value="all">
             <i class="fa-solid fa-filter"></i> Thêm điều kiện lọc
           </option>
-          <option value="category1">Tên theo thứ tự A-Z</option>
-          <option value="category2">Sản phẩm có giá từ nhỏ đến lớn</option>
-          <option value="category2">Sản phẩm có giá từ lớn đến nhỏ</option>
+          <option value="asc">Sản phẩm có giá từ nhỏ đến lớn</option>
+          <option value="desc">Sản phẩm có giá từ lớn đến nhỏ</option>
         </select>
       </div>
-      <div class="search-container">
+      <search-bar #searchBar></search-bar>
+      <!-- <div class="search-container">
         <form action="#">
           <input type="text" placeholder="Tìm kiếm..." />
           <button type="submit" class="btn-search">
             <i class="fa fa-search"></i>
           </button>
         </form>
-      </div>
+      </div> -->
     </div>
     <table class="table">
       <thead>
@@ -73,6 +77,7 @@
         <tr *ngFor="let p of getProductsForCurrentPage()">
           <td>
             <input
+              style="width: 16px; height: 16px"
               type="checkbox"
               name=""
               id=""

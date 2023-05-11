@@ -26,7 +26,7 @@
       <tr *ngFor="let order of orders">
         <th scope="row">{{ order.id }}</th>
         <td>{{ order.name }}</td>
-        <td>
+        <td style="text-align: right">
           {{
             (order.totalPrice * 23000).toLocaleString("vi", {
               style: "currency",

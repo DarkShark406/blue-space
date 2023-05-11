@@ -43,6 +43,12 @@ export class AdminProductService {
     return this.http.get<any>(url);
   }
 
+  getProductBySort(sortType: string) {
+    const url = 'http://localhost:5000/product/sort/' + sortType;
+
+    return this.http.get<Product[]>(url);
+  }
+
   handleError(error: HttpErrorResponse) {
     return throwError(() => new Error(error.message));
   }

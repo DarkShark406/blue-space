@@ -5,7 +5,20 @@
 }
 .container {
   width: 75%;
-  float: right;
+  margin-left: 350px;
+}
+
+table thead th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+table tbody tr td {
+  vertical-align: middle;
+}
+
+table tbody tr td:nth-child(6) {
+  text-align: right;
 }
 
 .header {
@@ -141,6 +154,8 @@ button:hover {
   /* border-radius: 0 5px 5px 0;
   cursor: pointer; */
   padding: 4px;
+  cursor: pointer;
+  margin-left: 16px;
 }
 
 /* Table */
@@ -216,7 +231,7 @@ button:hover {
 }
 
 .pagination {
-  width: 75%;
+  width: 100%;
   margin-top: 30px;
   display: flex;
   align-items: center;
