@@ -50,14 +50,18 @@
           <option value="category2">Sản phẩm có giá từ lớn đến nhỏ</option>
         </select>
       </div>
-      <div class="search-container">
+      <search-bar
+        #searchBar
+        (childEvent)="getProductInSearch($event)"
+      ></search-bar>
+      <!-- <div class="search-container">
         <form action="#">
           <input type="text" placeholder="Tìm kiếm..." />
           <button type="submit" class="btn-search">
             <i class="fa fa-search"></i>
           </button>
         </form>
-      </div>
+      </div> -->
     </div>
     <table class="table">
       <thead>

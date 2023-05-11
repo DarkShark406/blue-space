@@ -20,6 +20,7 @@ import { AdminOrderComponent } from './components/pages/admin-order/admin-order.
 import { AdminOrderDetailComponent } from './components/pages/admin-order-detail/admin-order-detail.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { SearchBarComponent } from './components/partials/search-bar/search-bar.component';
+import { AdminCustomerComponent } from './components/pages/admin-customer/admin-customer.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { SearchBarComponent } from './components/partials/search-bar/search-bar.
     AdminOrderComponent,
     AdminOrderDetailComponent,
     SearchBarComponent,
+    AdminCustomerComponent,
   ],
   imports: [
     BrowserModule,

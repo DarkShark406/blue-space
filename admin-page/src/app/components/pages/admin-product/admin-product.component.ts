@@ -11,7 +11,7 @@ export class AdminProductComponent {
   products: any;
   categories: any;
   errMessage: string = '';
-
+  searchProduct: Product[] = [];
   typeSort: string = ''; // Kiểu sort: asc: tăng dần, desc: giảm dần
 
   constructor(private _service: AdminProductService) {
@@ -172,5 +172,10 @@ export class AdminProductComponent {
       next: (data) => (this.products = data),
       error: (err) => (this.errMessage = err),
     });
+  }
+
+  // product in search bar
+  getProductInSearch(searchProducts: Product[]) {
+    this.products = searchProducts;
   }
 }

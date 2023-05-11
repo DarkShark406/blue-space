@@ -32,7 +32,7 @@ export class SearchBarComponent {
   }
 
   sendSuggestProduct() {
-    console.log(this.allProduct);
     this.childEvent.emit(this.allProduct);
+    this.suggestions = [];
   }
 }
