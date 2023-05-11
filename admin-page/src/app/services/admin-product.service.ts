@@ -117,4 +117,11 @@ export class AdminProductService {
       }
     );
   }
+  getDeletedProduct() {
+    return this.http.get<any>('http://localhost:5000/product/deletedProduct');
+  }
+  restoreProduct(id: string) {
+    const body = { id };
+    return this.http.put<any>('http://localhost:5000/product/restore', body);
+  }
 }
