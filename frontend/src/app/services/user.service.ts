@@ -63,7 +63,7 @@ export class UserService {
           alert(`Welcome to BlueSpace ${user.name}!\nRegister Successful!`);
         },
         error: (errorResponse) => {
-          alert('Register Failed');
+          alert('Email invalid!');
         },
       })
     );
