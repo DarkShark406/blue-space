@@ -46,4 +46,13 @@ export class AdminTrashComponent {
   goBack() {
     this.location.back();
   }
+  modal: boolean = false;
+  selectedDeleteProduct = '';
+  showModal(id: string) {
+    this.modal = true;
+    this.selectedDeleteProduct = id;
+  }
+  hideModal() {
+    this.modal = false;
+  }
 }

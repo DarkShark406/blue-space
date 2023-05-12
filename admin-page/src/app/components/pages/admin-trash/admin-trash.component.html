@@ -47,7 +47,7 @@
           <button
             type="button"
             class="btn btn-link btn-remove"
-            (click)="permanentDeleteProduct(p.id)"
+            (click)="showModal(p.id)"
           >
             Xóa vĩnh viễn
           </button>
@@ -55,4 +55,33 @@
       </tr>
     </tbody>
   </table>
+</div>
+
+<!-- Confirm delete course -->
+<div id="delete-course-modal" class="modal" *ngIf="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Xóa sản phẩm?</h5>
+    </div>
+    <div class="modal-body">Bạn chắc chắn muốn xóa sản phẩm này?</div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        data-dismiss="modal"
+        (click)="hideModal()"
+      >
+        Hủy
+      </button>
+      <button
+        id="btn-delete-course"
+        type="button"
+        class="btn btn-danger"
+        (click)="permanentDeleteProduct(selectedDeleteProduct)"
+      >
+        Xóa sản phẩm
+      </button>
+    </div>
+  </div>
 </div>
