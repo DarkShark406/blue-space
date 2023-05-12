@@ -63,6 +63,20 @@ router.delete("/delete/:id", async (req, res) => {
 
   res.send(result);
 });
+
+// Delete product by id
+router.delete("/permanentDelete/:id", async (req, res) => {
+  console.log("vào delete sản phẩm");
+  const id = req.params["id"];
+  const idObject = new mongoose.Types.ObjectId(id);
+  const now = Date.now();
+  const result = await ProductModel.findOneAndDelete({ _id: idObject });
+
+  //   const result = await ProductModel.updateOne(idObject);
+
+  res.send(result);
+});
+
 router.put("/restore", async (req, res) => {
   const id = req.body.id;
   const idObject = new mongoose.Types.ObjectId(id);
