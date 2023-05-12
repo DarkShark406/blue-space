@@ -106,15 +106,15 @@ export class AdminProductService {
     const url = 'http://localhost:5000/images/delete/' + productId;
     console.log(url);
     // this.http.delete<boolean>(url).subscribe(
-    //   (response) => {
-    //     if (response === true) {
-    //       console.log('Đã xóa');
-    //     }
-    //   },
-    //   (error) => {
-    //     console.error(error);
-    //     console.log('Có lỗi xảy ra');
+    // (response) => {
+    //   if (response === true) {
+    //     console.log('Đã xóa');
     //   }
+    // },
+    // (error) => {
+    //   console.error(error);
+    //   console.log('Có lỗi xảy ra');
+    // }
     // );
   }
   getDeletedProduct() {
@@ -123,5 +123,21 @@ export class AdminProductService {
   restoreProduct(id: string) {
     const body = { id };
     return this.http.put<any>('http://localhost:5000/product/restore', body);
+  }
+  permanentDeleteProduct(id: string) {
+    this.http
+      .delete<any>('http://localhost:5000/product/permanentDelete/' + id)
+      .subscribe(
+        (response) => {
+          if (response === true) {
+            alert('Đã xóa');
+            window.location.reload();
+          }
+        },
+        (error) => {
+          console.error(error);
+          alert('Có lỗi xảy ra');
+        }
+      );
   }
 }
