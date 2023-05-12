@@ -8,7 +8,10 @@
       <th>Loại sản phẩm</th>
       <th>Thương hiệu</th>
       <th>Giá</th>
-      <th colspan="3"></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
     </thead>
     <tbody>
       <tr *ngFor="let p of deletedProduct">
@@ -31,15 +34,22 @@
             })
           }}
         </td>
-        <td></td>
-        <td></td>
         <td>
           <button
             type="button"
             class="btn btn-link btn-remove"
-            (click)="restoreProduct(p)"
+            (click)="restoreProduct(p.id)"
           >
             Khôi phục
+          </button>
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-link btn-remove"
+            (click)="permanentDeleteProduct(p.id)"
+          >
+            Xóa vĩnh viễn
           </button>
         </td>
       </tr>

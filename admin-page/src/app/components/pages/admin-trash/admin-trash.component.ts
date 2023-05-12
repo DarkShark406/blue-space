@@ -23,6 +23,20 @@ export class AdminTrashComponent {
     this._service.restoreProduct(id).subscribe((d) => {
       alert('Khôi phục thành công');
     });
+    window.location.reload();
+  }
+
+  permanentDeleteProduct(id: string) {
+    this._service.permanentDeleteProduct(id).subscribe(
+      (response) => {
+        alert('Đã xóa');
+        window.location.reload();
+      },
+      (error) => {
+        console.error(error);
+        alert('Có lỗi xảy ra');
+      }
+    );
   }
 
   ngOnInit() {
