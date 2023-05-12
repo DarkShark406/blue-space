@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
   const data = await ProductModel.find({ deletedAt: null });
   res.send(data);
 });
-// Get all products
+// Get all deleted products
 router.get("/deletedProduct", async (req, res) => {
   const data = await ProductModel.find({ deletedAt: { $ne: null } });
   res.send(data);
@@ -133,10 +133,9 @@ router.get("/tag/:tag", async (req, res) => {
 // Product by id
 router.get("/id/:id", async (req, res) => {
   let id = req.params.id;
-  const obID = new mongoose.Types.ObjectId(id);
-  const data = await ProductModel.find({ _id: obID, deletedAt: null });
-  console.log(data);
-  if (data.length > 0) res.send(data);
+  //   const obID = new mongoose.Types.ObjectId(id);
+  const data = await ProductModel.find({ _id: id, deletedAt: null });
+  if (data.length > 0) res.send(data[0]);
   else res.status(HTTP_BAD_REQUEST).send("Không tìm thấy sản phẩm");
 });
 
@@ -196,12 +195,13 @@ router.get("/combo-product/:id", async (req, res) => {
     let randomProducts: Product[] = [];
 
     randomProducts = await ProductModel.aggregate([
-      { $match: { categoryId: { $ne: product.categoryId } } },
+      { $match: { categoryId: { $ne: product.categoryId }, deletedAt: null } },
       { $sample: { size: 3 } },
       {
         $project: {
           id: "$_id",
           productName: 1,
+          productID: 1,
           categoryId: 1,
           productPrice: 1,
           productDiscount: 1,
@@ -214,6 +214,7 @@ router.get("/combo-product/:id", async (req, res) => {
           description: 1,
           productTags: 1,
           specifications: 1,
+          deletedAt: 1,
         },
       },
     ]);

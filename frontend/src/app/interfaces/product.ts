@@ -94,6 +94,7 @@ export class Product {
       operationSystem: '',
       pen: true,
       materialKeycaps: '',
-    }
+    },
+    public deletedAt = null
   ) {}
 }

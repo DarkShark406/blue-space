@@ -20,7 +20,6 @@ export class ShoppingCartComponent implements OnInit {
 
   ngOnInit(): void {
     this.cart = this.cartService.getCart();
-    console.log(this.cart.items[2].product.specifications.color === null);
     this.calculateTotalMoney();
   }
 

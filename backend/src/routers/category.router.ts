@@ -87,7 +87,10 @@ router.get("/:categoryName", async (req, res) => {
 
   if (category) {
     const categoryId = category.categoryId;
-    const data = await ProductModel.find({ categoryId: categoryId });
+    const data = await ProductModel.find({
+      categoryId: categoryId,
+      deletedAt: null,
+    });
     res.send(data);
   } else {
     res.status(404).json({ message: "Category not found" });
@@ -106,6 +109,7 @@ router.get("/:categoryName/:brand", async (req, res) => {
     const categoryId = category.categoryId;
     const data = await ProductModel.find({
       categoryId: categoryId,
+      deletedAt: null,
       productBrand: { $regex: new RegExp(brand, "i") },
     });
     res.send(data);
