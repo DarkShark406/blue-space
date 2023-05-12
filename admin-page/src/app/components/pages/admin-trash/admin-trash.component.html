@@ -1,0 +1,48 @@
+<div class="container mt-4">
+  <button (click)="goBack()" type="button" class="btn btn-link">Go back</button>
+
+  <table class="table mt-4">
+    <thead>
+      <th></th>
+      <th>Tên sản phẩm</th>
+      <th>Loại sản phẩm</th>
+      <th>Thương hiệu</th>
+      <th>Giá</th>
+      <th colspan="3"></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of deletedProduct">
+        <td class="product-image">
+          <img
+            [src]="'http://localhost:5000/images/' + p.productImage[0]"
+            style="width: 100px"
+          />
+        </td>
+        <td class="product-name">
+          {{ p.productName }}
+        </td>
+        <td class="product-category">Laptop</td>
+        <td class="product-brand">{{ p.productBrand }}</td>
+        <td class="product-price">
+          {{
+            p.productPrice.toLocaleString("vi", {
+              style: "currency",
+              currency: "VND"
+            })
+          }}
+        </td>
+        <td></td>
+        <td></td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-link btn-remove"
+            (click)="restoreProduct(p)"
+          >
+            Khôi phục
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
