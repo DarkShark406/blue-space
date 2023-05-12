@@ -125,19 +125,8 @@ export class AdminProductService {
     return this.http.put<any>('http://localhost:5000/product/restore', body);
   }
   permanentDeleteProduct(id: string) {
-    this.http
-      .delete<any>('http://localhost:5000/product/permanentDelete/' + id)
-      .subscribe(
-        (response) => {
-          if (response === true) {
-            alert('Đã xóa');
-            window.location.reload();
-          }
-        },
-        (error) => {
-          console.error(error);
-          alert('Có lỗi xảy ra');
-        }
-      );
+    return this.http.delete<any>(
+      'http://localhost:5000/product/permanentDelete/' + id
+    );
   }
 }

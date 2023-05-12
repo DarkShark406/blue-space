@@ -22,6 +22,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { SearchBarComponent } from './components/partials/search-bar/search-bar.component';
 import { AdminCustomerComponent } from './components/pages/admin-customer/admin-customer.component';
 import { AdminCustomerDetailComponent } from './components/pages/admin-customer-detail/admin-customer-detail.component';
+import { AdminTrashComponent } from './components/pages/admin-trash/admin-trash.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { AdminCustomerDetailComponent } from './components/pages/admin-customer-
     SearchBarComponent,
     AdminCustomerComponent,
     AdminCustomerDetailComponent,
+    AdminTrashComponent,
   ],
   imports: [
     BrowserModule,

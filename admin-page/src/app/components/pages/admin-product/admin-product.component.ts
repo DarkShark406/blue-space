@@ -194,7 +194,4 @@ export class AdminProductComponent {
   ngOnInit() {
     this.getDeletedProduct();
   }
-  toggle() {
-    this.trash = !this.trash;
-  }
 }
