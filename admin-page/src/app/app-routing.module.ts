@@ -42,6 +42,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'trash',
+    component: AdminOrderComponent,
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'orders/details/:id',
     component: AdminOrderDetailComponent,
     canActivate: [AuthGuard],

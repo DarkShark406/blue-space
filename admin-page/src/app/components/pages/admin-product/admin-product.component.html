@@ -2,7 +2,7 @@
   <button *ngIf="!trash" (click)="toggle()">Thùng rác</button>
   <button *ngIf="trash" (click)="toggle()">Trang sản phẩm</button>
 </div>
-<ng-container *ngIf="!trash">
+<ng-container *ngIf="trash">
   <div class="container">
     <div class="header">
       <div class="header-left">
@@ -187,7 +187,7 @@
   </div>
 </div>
 
-<ng-container *ngIf="trash">
+<ng-container *ngIf="!trash">
   <div class="container">
     <table class="table">
       <thead>
